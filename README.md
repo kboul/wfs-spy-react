@@ -1,9 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Wfs Spy
 
-### `npm start`
+A client side app t oextract Web Feature Services (WFS).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Run the project
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+clone the project
+
+select master branch
+
+Navigate to the root folder:
+
+```
+npm install
+```
+
+```
+npm start
+```
+
+browser listens to [http://localhost:3000](http://localhost:3000) as default port
