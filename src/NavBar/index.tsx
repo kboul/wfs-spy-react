@@ -6,12 +6,14 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
+    NavLink,
+    NavbarText
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
+import Logos from './Logos';
 import routes from '../constants';
 
-export interface INavBar {}
+interface INavBar {}
 
 const navbarBackgroundColor = { backgroundColor: '#eeeeff' };
 
@@ -23,7 +25,7 @@ const NavBar: FC<INavBar> = () => {
 
     return (
         <Navbar style={navbarBackgroundColor} light expand="md">
-            <NavbarBrand>Wfs Spy</NavbarBrand>
+            <NavbarBrand>WFS Spy</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
@@ -38,6 +40,9 @@ const NavBar: FC<INavBar> = () => {
                         </NavItem>
                     ))}
                 </Nav>
+                <NavbarText>
+                    <Logos />
+                </NavbarText>
             </Collapse>
         </Navbar>
     );
