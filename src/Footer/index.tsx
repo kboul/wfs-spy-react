@@ -4,7 +4,12 @@ import styles from './index.module.sass';
 interface FooterProps {}
 
 const Footer: FC<FooterProps> = () => {
-    const text = 'Developed by Konstantinos Voulgaridis';
+    const text = (
+        <div>
+            Developed & designed by <b>Konstantinos Voulgaridis</b>
+        </div>
+    );
+
     return (
         <div>
             <div className={styles.phantom} />

@@ -13,6 +13,8 @@ import routes from '../constants';
 
 export interface INavBar {}
 
+const navbarBackgroundColor = { backgroundColor: '#eeeeff' };
+
 const NavBar: FC<INavBar> = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { pathname } = useLocation();
@@ -20,7 +22,7 @@ const NavBar: FC<INavBar> = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <Navbar color="light" light expand="md">
+        <Navbar style={navbarBackgroundColor} light expand="md">
             <NavbarBrand>Wfs Spy</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
