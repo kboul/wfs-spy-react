@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface FeatureTypeListProps {}
+export interface IFeatureTypeList {}
 
-const FeatureTypeList: React.SFC<FeatureTypeListProps> = () => {
+const FeatureTypeList: FC<IFeatureTypeList> = () => {
     return <div>FeatureTypeList</div>;
 };
 

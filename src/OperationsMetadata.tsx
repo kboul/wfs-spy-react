@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface OperationsMetadataProps {}
+export interface IOperationsMetadata {}
 
-const OperationsMetadata: React.SFC<OperationsMetadataProps> = () => {
+const OperationsMetadata: FC<IOperationsMetadata> = () => {
     return <div>OperationMetadata</div>;
 };
 

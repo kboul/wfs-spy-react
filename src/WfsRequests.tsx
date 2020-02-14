@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface WfsRequestsProps {}
+export interface IWfsRequests {}
 
-const WfsRequests: React.SFC<WfsRequestsProps> = () => {
+const WfsRequests: FC<IWfsRequests> = () => {
     return <div>Wfs Requests</div>;
 };
 

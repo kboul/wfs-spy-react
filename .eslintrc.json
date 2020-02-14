@@ -40,6 +40,21 @@
                 "tsx": "never",
                 "mjs": "never"
             }
+        ],
+        "overrides": [
+            {
+                "files": ["serviceWorker.ts", "react-app-env.d.ts"],
+                "rules": {
+                    "no-use-before-define": "off",
+                    "spaced-comment": "off"
+                }
+            },
+            {
+                "files": ["*.ts", "*.tsx"],
+                "rules": {
+                    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+                }
+            }
         ]
     }
 }

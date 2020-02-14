@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
     Collapse,
     Navbar,
@@ -11,9 +11,9 @@ import {
 import { Link } from 'react-router-dom';
 import routes from '../constants';
 
-export interface NavBarProps {}
+export interface INavBar {}
 
-const NavBar: React.SFC<NavBarProps> = () => {
+const NavBar: FC<INavBar> = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);

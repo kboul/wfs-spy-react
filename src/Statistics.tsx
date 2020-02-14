@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface StatisticsProps {}
+export interface IStatistics {}
 
-const Statistics: React.SFC<StatisticsProps> = () => {
+const Statistics: FC<IStatistics> = () => {
     return <div>Statistics</div>;
 };
 

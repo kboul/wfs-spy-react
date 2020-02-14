@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface FilterCapabilitiesProps {}
+export interface IFilterCapabilities {}
 
-const FilterCapabilities: React.SFC<FilterCapabilitiesProps> = () => {
+const FilterCapabilities: FC<IFilterCapabilities> = () => {
     return <div>Filter Capabilities</div>;
 };
 

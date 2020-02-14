@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface AttrNamesTypesProps {}
+export interface IAttrNamesTypes {}
 
-const AttrNamesTypes: React.SFC<AttrNamesTypesProps> = () => {
+const AttrNamesTypes: FC<IAttrNamesTypes> = () => {
     return <div>AttrNamesTypes</div>;
 };
 

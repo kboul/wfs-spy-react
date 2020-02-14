@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-export interface ServiceIdProviderProps {}
+export interface IServiceIdProvider {}
 
-const ServiceIdProvider: React.SFC<ServiceIdProviderProps> = () => {
+const ServiceIdProvider: FC<IServiceIdProvider> = () => {
     return <div>ServiceIdProvider</div>;
 };
 
