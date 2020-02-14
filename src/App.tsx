@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
 import routes from './constants';
+import Footer from './Footer';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 ))}
                 <Redirect from="*" to={routes[0].path} />
             </Switch>
+            <Footer />
         </>
     );
 };
