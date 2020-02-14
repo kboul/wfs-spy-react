@@ -8,13 +8,14 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import routes from '../constants';
 
 export interface INavBar {}
 
 const NavBar: FC<INavBar> = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { pathname } = useLocation();
 
     const toggle = () => setIsOpen(!isOpen);
 
@@ -26,7 +27,10 @@ const NavBar: FC<INavBar> = () => {
                 <Nav className="mr-auto" navbar>
                     {routes.map(({ path, name }) => (
                         <NavItem key={`nav-item-${name}`}>
-                            <NavLink tag={Link} to={path}>
+                            <NavLink
+                                tag={Link}
+                                to={path}
+                                active={path === pathname}>
                                 {name}
                             </NavLink>
                         </NavItem>

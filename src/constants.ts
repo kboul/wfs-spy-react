@@ -8,34 +8,34 @@ import FeatureTypeList from './FeatureTypeList';
 
 export default [
     {
-        path: 'wfs-requests',
+        path: '/wfs-requests',
         name: 'WFS Description / Filter',
         component: WfsRequests
     },
     {
-        path: 'attribute-names-types',
+        path: '/attribute-names-types',
         name: 'Attribute Names & Types',
         component: AttrNamesTypes
     },
     {
-        path: 'service-id-provider',
+        path: '/service-id-provider',
         name: 'Service Id & Provider',
         component: ServiceIdProvider
     },
     {
-        path: 'operations-metadata',
+        path: '/operations-metadata',
         name: 'Operations Metadata',
         component: OperationsMetadata
     },
     {
-        path: 'feature-type-list',
+        path: '/feature-type-list',
         name: 'FeatureTypeList',
         component: FeatureTypeList
     },
     {
-        path: 'filter-capabilities',
+        path: '/filter-capabilities',
         name: 'Filter Capabilities',
         component: FilterCapabilities
     },
-    { path: 'statistics', name: 'Statistics', component: Statistics }
+    { path: '/statistics', name: 'Statistics', component: Statistics }
 ];

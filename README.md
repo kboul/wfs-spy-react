@@ -1,6 +1,6 @@
 # Wfs Spy
 
-A client side app t oextract Web Feature Services (WFS).
+A client side app to extract Web Feature Services (WFS).
 
 ## Run the project
 

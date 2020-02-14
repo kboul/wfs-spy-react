@@ -11,11 +11,11 @@ const App = () => {
                 {routes.map(({ path, component }) => (
                     <Route
                         key={`route-${path}`}
-                        path={`/${path}`}
+                        path={path}
                         component={component}
                     />
                 ))}
-                <Redirect from="*" to="/wfs-requests" />
+                <Redirect from="*" to={routes[0].path} />
             </Switch>
         </>
     );
