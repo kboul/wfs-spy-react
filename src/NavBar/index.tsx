@@ -8,7 +8,8 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
-import routes from './constants';
+import { Link } from 'react-router-dom';
+import routes from '../constants';
 
 export interface NavBarProps {}
 
@@ -23,9 +24,11 @@ const NavBar: React.SFC<NavBarProps> = () => {
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
-                    {routes.map(({ url, name }) => (
-                        <NavItem key={`route-${name}`}>
-                            <NavLink href={url}>{name}</NavLink>
+                    {routes.map(({ path, name }) => (
+                        <NavItem key={`nav-item-${name}`}>
+                            <NavLink tag={Link} to={path}>
+                                {name}
+                            </NavLink>
                         </NavItem>
                     ))}
                 </Nav>
