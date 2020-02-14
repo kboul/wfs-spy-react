@@ -25,6 +25,8 @@
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
         "no-console": "off",
         "import/prefer-default-export": "off",
