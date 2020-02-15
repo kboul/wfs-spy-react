@@ -1,4 +1,4 @@
-import WfsRequests from './WfsRequests';
+import WFSRequests from './WFSRequests';
 import AttrNamesTypes from './AttrNamesTypes';
 import ServiceIdProvider from './ServiceIdProvider';
 import OperationsMetadata from './OperationsMetadata';
@@ -10,7 +10,7 @@ export default [
     {
         path: '/wfs-requests',
         name: 'WFS Requests',
-        component: WfsRequests
+        component: WFSRequests
     },
     {
         path: '/attribute-names-types',

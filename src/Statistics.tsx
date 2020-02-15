@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-export interface IStatistics {}
+interface IStatistics {}
 
 const Statistics: FC<IStatistics> = () => {
     return <div>Statistics</div>;

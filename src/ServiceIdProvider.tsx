@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-export interface IServiceIdProvider {}
+interface IServiceIdProvider {}
 
 const ServiceIdProvider: FC<IServiceIdProvider> = () => {
     return <div>ServiceIdProvider</div>;
