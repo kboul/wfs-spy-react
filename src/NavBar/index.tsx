@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 import Logos from './Logos';
-import routes from '../constants';
+import routes from '../routes';
 
 interface INavBar {}
 

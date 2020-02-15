@@ -9,7 +9,7 @@ import FeatureTypeList from './FeatureTypeList';
 export default [
     {
         path: '/wfs-requests',
-        name: 'WFS Description / Filter',
+        name: 'WFS Requests',
         component: WfsRequests
     },
     {
