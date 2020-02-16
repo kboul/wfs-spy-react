@@ -115,6 +115,22 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <TableButtons label="" />
                     </Col>
                 </FormGroup>
+                <FormGroup className="text-center" row>
+                    <Col md={{ size: 9, offset: 2 }}>
+                        <Label
+                            for="wfsResponse"
+                            className={sharedStyles.labelFont}>
+                            Response - Metadata & Corresponding operations:
+                        </Label>
+                        <Input
+                            type="textarea"
+                            rows="10"
+                            className={sharedStyles.textarea}
+                            disabled
+                        />
+                        <TableButtons label="" hasModal />
+                    </Col>
+                </FormGroup>
             </Form>
         </Col>
     );

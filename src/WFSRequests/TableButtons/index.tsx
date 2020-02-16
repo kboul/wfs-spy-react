@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
 import { Table, Button } from 'reactstrap';
+import styles from './index.module.sass';
 
 interface ITableButtons {
     label: string;
+    hasModal?: boolean;
 }
 
-const TableButtons: FC<ITableButtons> = ({ label }) => {
+const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
     return (
-        <Table borderless>
+        <Table borderless className={styles.table}>
             <thead>
                 <tr>
                     <th>
@@ -30,6 +32,30 @@ const TableButtons: FC<ITableButtons> = ({ label }) => {
                     </th>
                 </tr>
             </thead>
+            {hasModal && (
+                <tbody>
+                    <tr>
+                        <td>
+                            <Button
+                                color="primary"
+                                size="sm"
+                                className="float-right"
+                                disabled>
+                                Open in a new window
+                            </Button>
+                        </td>
+                        <td>
+                            <Button
+                                color="primary"
+                                size="sm"
+                                className="float-left"
+                                disabled>
+                                Open in a new window
+                            </Button>
+                        </td>
+                    </tr>
+                </tbody>
+            )}
         </Table>
     );
 };

@@ -110,6 +110,23 @@ const FilterWFS: FC<IFilterWFS> = () => {
                         <TableButtons label="Filter" />
                     </Col>
                 </FormGroup>
+                <FormGroup className="text-center" row>
+                    <Col md={{ size: 9, offset: 2 }}>
+                        <Label
+                            for="wfsFilterResponse"
+                            className={sharedStyles.labelFont}>
+                            Filtered Response - Metadata using Filter
+                            parameters:
+                        </Label>
+                        <Input
+                            type="textarea"
+                            rows="10"
+                            className={sharedStyles.textarea}
+                            disabled
+                        />
+                        <TableButtons label="" hasModal />
+                    </Col>
+                </FormGroup>
             </Form>
         </Col>
     );
