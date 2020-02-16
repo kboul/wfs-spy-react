@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import ogcLogo from './assets/ogc_logo.jpg';
-import tuLogo from './assets/tu_logo.png';
+import tuLogo from './assets/tu_logo.jpeg';
 import styles from './index.module.sass';
 
 interface ILogos {}

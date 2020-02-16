@@ -7,7 +7,7 @@ import sharedStyles from '../shared.module.sass';
 interface IExploreWFS {}
 
 const ExploreWFS: FC<IExploreWFS> = () => {
-    const urlStyle = `${sharedStyles.labelFont} ${styles.labelDescription}`;
+    const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
     return (
         <Col md="6" className={styles.description}>
             <h4 className={sharedStyles.header}>
@@ -100,7 +100,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
-                    <Col md={{ size: 9, offset: 2 }}>
+                    <Col md={{ size: 10, offset: 1 }}>
                         <Label
                             for="formWfsRequest"
                             className={sharedStyles.labelFont}>
@@ -116,7 +116,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
-                    <Col md={{ size: 9, offset: 2 }}>
+                    <Col md={{ size: 10, offset: 1 }}>
                         <Label
                             for="wfsResponse"
                             className={sharedStyles.labelFont}>

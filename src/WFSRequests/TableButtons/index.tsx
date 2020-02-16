@@ -1,11 +1,7 @@
 import React, { FC } from 'react';
 import { Table, Button } from 'reactstrap';
+import ITableButtons from './ITableButtons';
 import styles from './index.module.sass';
-
-interface ITableButtons {
-    label: string;
-    hasModal?: boolean;
-}
 
 const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
     return (

@@ -6,16 +6,13 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    NavbarText
+    NavLink
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 import Logos from './Logos';
 import routes from '../routes';
 
 interface INavBar {}
-
-const navbarBackgroundColor = { backgroundColor: '#eeeeff' };
 
 const NavBar: FC<INavBar> = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +21,7 @@ const NavBar: FC<INavBar> = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <Navbar style={navbarBackgroundColor} light expand="md">
+        <Navbar className="navbar-dark bg-dark" expand="md">
             <NavbarBrand>WFS Spy</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
@@ -40,9 +37,7 @@ const NavBar: FC<INavBar> = () => {
                         </NavItem>
                     ))}
                 </Nav>
-                <NavbarText>
-                    <Logos />
-                </NavbarText>
+                <Logos />
             </Collapse>
         </Navbar>
     );

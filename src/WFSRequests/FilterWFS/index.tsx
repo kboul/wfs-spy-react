@@ -16,11 +16,11 @@ const FilterWFS: FC<IFilterWFS> = () => {
                 <FormGroup row>
                     <Label
                         for="selectedTypename"
-                        md={3}
+                        md={4}
                         className={selectedTypenameStyle}>
                         Selected typeName & valueReference
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input
                             type="textarea"
                             rows="3"
@@ -31,71 +31,71 @@ const FilterWFS: FC<IFilterWFS> = () => {
                 <FormGroup row>
                     <Label
                         for="valueCount"
-                        md={3}
+                        md={4}
                         className={sharedStyles.labelFont}>
                         Value count
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="text" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label
                         for="minValue"
-                        md={3}
+                        md={4}
                         className={sharedStyles.labelFont}>
                         Minimum value
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="text" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label
                         for="maxValue"
-                        md={3}
+                        md={4}
                         className={sharedStyles.labelFont}>
                         Maximum value
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="text" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label
                         for="comparisonOperators"
-                        md={3}
+                        md={4}
                         className={sharedStyles.labelFont}>
                         Comparison oper.
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="select" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label
                         for="filValueCount"
-                        md={3}
+                        md={4}
                         className={sharedStyles.labelFont}>
                         Filtered value count
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="text" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label
-                        for="addSortBy"
-                        md={3}
-                        className={sharedStyles.labelFont}>
+                        for="addSortByAsc"
+                        md={4}
+                        className={`${sharedStyles.labelFont} mb-2`}>
                         Add SortBy ASC
                     </Label>
-                    <Col md={8}>
+                    <Col md={7}>
                         <Input type="select" disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
-                    <Col md={{ size: 9, offset: 2 }}>
+                    <Col md={{ size: 10, offset: 1 }}>
                         <Label
                             for="formWfsFilterRequest"
                             className={sharedStyles.labelFont}>
@@ -111,7 +111,7 @@ const FilterWFS: FC<IFilterWFS> = () => {
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
-                    <Col md={{ size: 9, offset: 2 }}>
+                    <Col md={{ size: 10, offset: 1 }}>
                         <Label
                             for="wfsFilterResponse"
                             className={sharedStyles.labelFont}>
