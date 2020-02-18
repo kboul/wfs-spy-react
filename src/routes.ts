@@ -2,9 +2,9 @@ import WFSRequests from './WFSRequests';
 import AttrNamesTypes from './AttrNamesTypes';
 import ServiceIdProvider from './ServiceIdProvider';
 import OperationsMetadata from './OperationsMetadata';
+import FeatureTypeList from './FeatureTypeList';
 import FilterCapabilities from './FilterCapabilities';
 import Statistics from './Statistics';
-import FeatureTypeList from './FeatureTypeList';
 
 export default [
     {
