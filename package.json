@@ -13,6 +13,7 @@
         "@types/react-router-dom": "^5.1.3",
         "@types/reactstrap": "^8.4.1",
         "bootstrap": "^4.4.1",
+        "font-awesome": "^4.7.0",
         "node-sass": "^4.13.1",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
