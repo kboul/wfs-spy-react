@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Col } from 'reactstrap';
-import IFeatureTypeList from './model';
 import Panel from '../Panel';
+import IFeatureTypeList from './model';
 import defaultProps from './constants';
 
 const FeatureTypeList: FC<IFeatureTypeList> = ({

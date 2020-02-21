@@ -11,16 +11,3 @@ export const defaultProps = {
     wfsProviderText:
         'Provides contact information about the company including telephone - website and email'
 };
-
-export const props = {
-    header: defaultProps.header,
-    descr: defaultProps.descr,
-    wfsTitleHeader: defaultProps.wfsTitleHeader,
-    wfsTitleHeaderText: defaultProps.wfsTitleHeaderText,
-    wfsVersionsHeader: defaultProps.wfsVersionsHeader,
-    wfsVersionsText: defaultProps.wfsVersionsText,
-    wfsAbstractHeader: defaultProps.wfsAbstractHeader,
-    wfsAbstractText: defaultProps.wfsAbstractText,
-    wfsProviderHeader: defaultProps.wfsProviderHeader,
-    wfsProviderText: defaultProps.wfsProviderText
-};
