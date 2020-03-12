@@ -2,27 +2,18 @@ import React, { FC } from 'react';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
 import IStatistics from './model';
-import { defaultProps } from './constants';
+import consts from './constants';
 
-const Statistics: FC<IStatistics> = ({
-    header,
-    descr,
-    respTimeHeader,
-    respTimeDescr,
-    reqTimeHeader,
-    reqTimeDescr
-}) => {
+const Statistics: FC<IStatistics> = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
-            <h3>{header}</h3>
-            <p>{descr}</p>
+            <h3>{consts.header}</h3>
+            <p>{consts.descr}</p>
 
-            <Panel header={respTimeHeader} text={respTimeDescr} />
-            <Panel header={reqTimeHeader} text={reqTimeDescr} />
+            <Panel header={consts.respTimeHeader} text={consts.respTimeDescr} />
+            <Panel header={consts.reqTimeHeader} text={consts.reqTimeDescr} />
         </Col>
     );
 };
-
-Statistics.defaultProps = defaultProps;
 
 export default Statistics;

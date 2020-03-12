@@ -1,4 +1,4 @@
-export const defaultProps = {
+export default {
     header: 'Filter Capabilities',
     descr:
         'This section lists the available filters provided by the WFS. Spatial Operators (Equals/Touches) Comparison Operators (LessThan/GreaterThan) and other Functions are all listed here.',

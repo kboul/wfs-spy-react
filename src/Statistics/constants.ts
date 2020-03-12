@@ -1,4 +1,4 @@
-export const defaultProps = {
+export default {
     header: 'Statistics',
     descr:
         'This section provides statistics derived from the GetCapabilities, DescribeFeatureType & GetPropertyValue responses.',

@@ -2,24 +2,20 @@ import React, { FC } from 'react';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
 import IAttrNamesTypes from './model';
-import defaultProps from './constants';
+import consts from './constants';
 
-const AttrNamesTypes: FC<IAttrNamesTypes> = ({
-    header,
-    descr,
-    attrNamesTypesHeader,
-    attrNamesTypesDescr
-}) => {
+const AttrNamesTypes: FC<IAttrNamesTypes> = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
-            <h3>{header}</h3>
-            <p>{descr}</p>
+            <h3>{consts.header}</h3>
+            <p>{consts.descr}</p>
 
-            <Panel header={attrNamesTypesHeader} text={attrNamesTypesDescr} />
+            <Panel
+                header={consts.attrNamesTypesHeader}
+                text={consts.attrNamesTypesDescr}
+            />
         </Col>
     );
 };
-
-AttrNamesTypes.defaultProps = defaultProps;
 
 export default AttrNamesTypes;

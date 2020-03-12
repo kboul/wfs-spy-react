@@ -1,4 +1,4 @@
-export const defaultProps = {
+export default {
     header: 'Service Id & Provider',
     descr: `This section provides information for the service identification & provider.`,
     wfsTitleHeader: 'WFS Title',

@@ -25,6 +25,7 @@ const FilterWFS: FC<IFilterWFS> = () => {
                             type="textarea"
                             rows="3"
                             className={sharedStyles.textarea}
+                            disabled
                         />
                     </Col>
                 </FormGroup>

@@ -2,22 +2,19 @@ import React, { FC } from 'react';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
 import IFeatureTypeList from './model';
-import defaultProps from './constants';
+import consts from './constants';
 
-const FeatureTypeList: FC<IFeatureTypeList> = ({
-    header,
-    wfsFeatTypeListHeader,
-    wfsFeatTypeListText
-}) => {
+const FeatureTypeList: FC<IFeatureTypeList> = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
-            <h3>{header}</h3>
+            <h3>{consts.header}</h3>
 
-            <Panel header={wfsFeatTypeListHeader} text={wfsFeatTypeListText} />
+            <Panel
+                header={consts.wfsFeatTypeListHeader}
+                text={consts.wfsFeatTypeListText}
+            />
         </Col>
     );
 };
-
-FeatureTypeList.defaultProps = defaultProps;
 
 export default FeatureTypeList;
