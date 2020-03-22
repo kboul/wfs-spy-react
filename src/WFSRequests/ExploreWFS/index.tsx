@@ -3,6 +3,7 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import TableButtons from '../TableButtons';
 import styles from './index.module.sass';
 import sharedStyles from '../shared.module.sass';
+import { versions, requests } from './constants';
 
 interface IExploreWFS {}
 
@@ -35,8 +36,9 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     </Label>
                     <Col md={9}>
                         <Input type="select">
-                            <option>2.0.0</option>
-                            <option>2.0.2</option>
+                            {versions.map((version) => (
+                                <option key={version}>{version}</option>
+                            ))}
                         </Input>
                     </Col>
                 </FormGroup>
@@ -49,9 +51,9 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     </Label>
                     <Col md={9}>
                         <Input type="select">
-                            <option>GetCapabilities</option>
-                            <option>DescribeFeatureType</option>
-                            <option>GetPropertyValue</option>
+                            {requests.map((request) => (
+                                <option key={request}>{request}</option>
+                            ))}
                         </Input>
                     </Col>
                 </FormGroup>
