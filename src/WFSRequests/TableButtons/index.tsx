@@ -3,7 +3,12 @@ import { Table, Button } from 'reactstrap';
 import ITableButtons from './ITableButtons';
 import styles from './index.module.sass';
 
-const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
+const TableButtons: FC<ITableButtons> = ({
+    label,
+    hasModal,
+    onClick,
+    disabled
+}) => {
     return (
         <Table borderless className={styles.table}>
             <thead>
@@ -13,8 +18,9 @@ const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
                             color="primary"
                             size="sm"
                             className="float-right"
-                            disabled>
-                            GET {label} Request
+                            disabled={disabled}
+                            onClick={onClick}>
+                            GET {label}
                         </Button>
                     </th>
                     <th>
@@ -22,8 +28,8 @@ const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
                             color="primary"
                             size="sm"
                             className="float-left"
-                            disabled>
-                            POST {label} Request
+                            disabled={disabled}>
+                            POST {label}
                         </Button>
                     </th>
                 </tr>
@@ -36,7 +42,7 @@ const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
                                 color="primary"
                                 size="sm"
                                 className="float-right"
-                                disabled>
+                                disabled={disabled}>
                                 Open in a new window
                             </Button>
                         </td>
@@ -45,7 +51,7 @@ const TableButtons: FC<ITableButtons> = ({ label, hasModal }) => {
                                 color="primary"
                                 size="sm"
                                 className="float-left"
-                                disabled>
+                                disabled={disabled}>
                                 Open in a new window
                             </Button>
                         </td>

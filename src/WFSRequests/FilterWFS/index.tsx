@@ -108,7 +108,10 @@ const FilterWFS: FC<IFilterWFS> = () => {
                             className={sharedStyles.textarea}
                             disabled
                         />
-                        <TableButtons label="Filter" />
+                        <TableButtons
+                            label="Filter Request"
+                            onClick={() => {}}
+                        />
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
@@ -125,7 +128,11 @@ const FilterWFS: FC<IFilterWFS> = () => {
                             className={sharedStyles.textarea}
                             disabled
                         />
-                        <TableButtons label="" hasModal />
+                        <TableButtons
+                            label="Filter Response"
+                            hasModal
+                            onClick={() => {}}
+                        />
                     </Col>
                 </FormGroup>
             </Form>
