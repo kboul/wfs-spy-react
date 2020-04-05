@@ -1,7 +1,7 @@
-import { iValues } from './model';
+import { iValues, Errors } from './models';
 
-const validateForm = (values: iValues): iValues => {
-    const errors: any = {};
+const validateForm = (values: iValues): Errors => {
+    const errors: Errors = {};
     if (values.url === '') {
         errors.url = 'Url is required';
     }
@@ -13,14 +13,15 @@ const adjustProxyToUrl = (url: string): string => {
 };
 
 const formWfsRequest = (values: iValues): string => {
-    const url = adjustProxyToUrl(values.url) + '?\n';
-    const version = 'version=' + values.version + '&\n';
-    const request = 'request=' + values.request + '&\n';
-    const service = 'service=' + values.service;
+    let { url, version, request, service } = values;
+    url = `${adjustProxyToUrl(url)}?\n`;
+    version = `version=${version}&\n`;
+    request = `request=${request}&\n`;
+    service = `service=${service}`;
 
     switch (values.request) {
         case 'GetCapabilities':
-            return url.concat(version, request, service);
+            return `${url}${version}${request}${service}`;
         default:
             return '';
     }

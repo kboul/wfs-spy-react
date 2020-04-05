@@ -17,6 +17,10 @@ interface WfsResponse {
     request: Object;
 }
 
+interface Errors {
+    url?: string;
+}
+
 interface IExploreWFS {}
 
-export type { iValues, IExploreWFS, WfsResponse };
+export type { iValues, IExploreWFS, WfsResponse, Errors };

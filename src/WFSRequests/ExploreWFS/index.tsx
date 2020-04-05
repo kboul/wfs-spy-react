@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import TableButtons from '../TableButtons';
-import useForm from './hooks';
+import { useForm, useInputFocus } from './hooks';
 import { validateForm, formWfsRequest } from './utils';
-import { IExploreWFS, WfsResponse } from './model';
+import { IExploreWFS, WfsResponse } from './models';
 import { versions, requests } from './constants';
 import sharedStyles from '../shared.module.sass';
 import styles from './index.module.sass';
@@ -13,6 +13,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
     const [wfsRequest, setWfsRequest] = useState<string>('');
     const [wfsResponse, setWfsResponse] = useState<string>('');
+    const [{ urlRef, urlBackgroud }, onFocus, onBlur] = useInputFocus();
 
     const displayGetRequest = () => setWfsRequest(formWfsRequest(values));
     const onGetResponseClick = async () => {
@@ -51,12 +52,16 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <Input
                             type="textarea"
                             rows="3"
+                            style={{ backgroundColor: urlBackgroud }}
                             className={`${sharedStyles.textarea} form-control ${
                                 errors.url && 'is-invalid'
-                            }`}
+                            } `}
                             name="url"
+                            innerRef={urlRef}
                             value={values.url}
                             onChange={onChange}
+                            onFocus={onFocus}
+                            onBlur={onBlur}
                             required
                         />
                         {errors.url && (

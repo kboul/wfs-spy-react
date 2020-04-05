@@ -1,13 +1,13 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { iValues } from './model';
+import { useState, ChangeEvent, FormEvent, useEffect, useRef } from 'react';
+import { iValues, Errors } from './models';
 
 const useForm = (
     callback: () => void,
     initialState: iValues,
     validate: (values: iValues) => Object
 ) => {
-    const [values, setValues] = useState<iValues>(initialState || {});
-    const [errors, setErrors] = useState<any>({});
+    const [values, setValues] = useState<iValues>(initialState);
+    const [errors, setErrors] = useState<Errors>({});
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [e.target.name]: e.target.value });
@@ -28,8 +28,27 @@ const useForm = (
         values,
         onChange,
         onSubmit,
-        errors,
+        errors
     };
 };
 
-export default useForm;
+const useInputFocus = (): any => {
+    const urlRef = useRef<any>(null);
+    const [urlBackgroud, setUrlBackground] = useState('#eeeeff');
+
+    useEffect(() => urlRef.current.focus(), []);
+
+    const onFocus = () => {
+        urlRef.current.focus();
+        setUrlBackground('#eeeeff');
+    };
+
+    const onBlur = () => {
+        urlRef.current.blur();
+        setUrlBackground('#ffffff');
+    };
+
+    return [{ urlRef, urlBackgroud }, onFocus, onBlur];
+};
+
+export { useForm, useInputFocus };
