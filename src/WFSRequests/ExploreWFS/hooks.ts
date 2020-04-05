@@ -2,8 +2,8 @@ import { useState, ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import { iValues, Errors } from './models';
 
 const useForm = (
-    callback: () => void,
     initialState: iValues,
+    callback: () => void,
     validate: (values: iValues) => Object
 ) => {
     const [values, setValues] = useState<iValues>(initialState);

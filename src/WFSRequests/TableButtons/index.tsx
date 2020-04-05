@@ -7,7 +7,8 @@ const TableButtons: FC<ITableButtons> = ({
     label,
     hasModal,
     onClick,
-    disabled
+    initialState,
+    isGetRequest
 }) => {
     return (
         <Table borderless className={styles.table}>
@@ -18,7 +19,7 @@ const TableButtons: FC<ITableButtons> = ({
                             color="primary"
                             size="sm"
                             className="float-right"
-                            disabled={disabled}
+                            disabled={initialState}
                             onClick={onClick}>
                             GET {label}
                         </Button>
@@ -28,7 +29,8 @@ const TableButtons: FC<ITableButtons> = ({
                             color="primary"
                             size="sm"
                             className="float-left"
-                            disabled={disabled}>
+                            disabled={initialState || isGetRequest}
+                            onClick={onClick}>
                             POST {label}
                         </Button>
                     </th>
@@ -42,7 +44,7 @@ const TableButtons: FC<ITableButtons> = ({
                                 color="primary"
                                 size="sm"
                                 className="float-right"
-                                disabled={disabled}>
+                                disabled={initialState}>
                                 Open in a new window
                             </Button>
                         </td>
@@ -51,7 +53,7 @@ const TableButtons: FC<ITableButtons> = ({
                                 color="primary"
                                 size="sm"
                                 className="float-left"
-                                disabled={disabled}>
+                                disabled={initialState || isGetRequest}>
                                 Open in a new window
                             </Button>
                         </td>

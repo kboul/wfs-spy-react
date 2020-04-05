@@ -110,6 +110,7 @@ const FilterWFS: FC<IFilterWFS> = () => {
                         />
                         <TableButtons
                             label="Filter Request"
+                            initialState
                             onClick={() => {}}
                         />
                     </Col>
@@ -131,6 +132,7 @@ const FilterWFS: FC<IFilterWFS> = () => {
                         <TableButtons
                             label="Filter Response"
                             hasModal
+                            initialState
                             onClick={() => {}}
                         />
                     </Col>

@@ -1,9 +1,9 @@
-import React, { FC, useState, useRef, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import TableButtons from '../TableButtons';
 import { useForm, useInputFocus } from './hooks';
-import { validateForm, formWfsRequest } from './utils';
+import { validateForm, formWfsRequest, parseXML } from './utils';
 import { IExploreWFS, WfsResponse } from './models';
 import { versions, requests } from './constants';
 import sharedStyles from '../shared.module.sass';
@@ -13,19 +13,27 @@ const ExploreWFS: FC<IExploreWFS> = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
     const [wfsRequest, setWfsRequest] = useState<string>('');
     const [wfsResponse, setWfsResponse] = useState<string>('');
+    const [isGetRequest, setIsGetRequest] = useState<boolean>(false);
     const [{ urlRef, urlBackgroud }, onFocus, onBlur] = useInputFocus();
 
-    const displayGetRequest = () => setWfsRequest(formWfsRequest(values));
+    const displayGetRequest = () => {
+        if (values.request === requests[1]) {
+            setWfsResponse('');
+        }
+        setWfsRequest(formWfsRequest(values));
+        setIsGetRequest(true);
+    };
+
     const onGetResponseClick = async () => {
         const request = formWfsRequest(values);
         if (request) {
-            const { data }: WfsResponse = await axios.get(request);
-            setWfsResponse(data);
+            const response: WfsResponse = await axios.get(request);
+            console.log(parseXML(response.data));
+            setWfsResponse(response.data);
         }
     };
 
     const { values, onChange, onSubmit, errors } = useForm(
-        displayGetRequest,
         {
             url: '',
             version: versions[0],
@@ -35,6 +43,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
             valueRefer: '',
             sortBy: 'ASC'
         },
+        displayGetRequest,
         validateForm
     );
 
@@ -198,7 +207,8 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             label="Response"
                             hasModal
                             onClick={onGetResponseClick}
-                            disabled={values.url === ''}
+                            initialState={wfsRequest === ''}
+                            isGetRequest={isGetRequest}
                         />
                     </Col>
                 </FormGroup>

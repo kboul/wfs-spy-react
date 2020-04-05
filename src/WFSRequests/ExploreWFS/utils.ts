@@ -1,4 +1,5 @@
 import { iValues, Errors } from './models';
+import { requests } from './constants';
 
 const validateForm = (values: iValues): Errors => {
     const errors: Errors = {};
@@ -13,18 +14,32 @@ const adjustProxyToUrl = (url: string): string => {
 };
 
 const formWfsRequest = (values: iValues): string => {
-    let { url, version, request, service } = values;
+    let { url, version, request, service, typename } = values;
     url = `${adjustProxyToUrl(url)}?\n`;
     version = `version=${version}&\n`;
     request = `request=${request}&\n`;
     service = `service=${service}`;
 
     switch (values.request) {
-        case 'GetCapabilities':
+        case requests[0]:
             return `${url}${version}${request}${service}`;
+        case requests[1]:
+            if (['---', '', null].includes(typename)) {
+                // to include also empty first value
+                return `${url}${version}${request}${service}`;
+            } else {
+                // Request for individual FeatureType ==> should be TypeName
+                typename = '&\nTypeName=' + typename;
+                return `${url}${version}${request}${service}${typename}`;
+            }
         default:
             return '';
     }
 };
 
-export { validateForm, formWfsRequest };
+const parseXML = (response: string): Object => {
+    const parser = new DOMParser();
+    return parser.parseFromString(response, 'text/xml');
+};
+
+export { validateForm, formWfsRequest, parseXML };
