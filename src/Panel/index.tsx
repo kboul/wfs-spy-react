@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { Card, CardHeader, CardBody, CardText, Collapse } from 'reactstrap';
-import PanelProps from './model';
+import IPanel from './model';
 import styles from './index.module.sass';
 
-const Panel: FC<PanelProps> = ({ header, text }) => {
+const Panel: FC<IPanel> = ({ header, text }) => {
     const [isCardOpen, setIsCardOpen] = useState(true);
     const toggleCard = () => setIsCardOpen(!isCardOpen);
 

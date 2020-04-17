@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
-import routes from './routes';
 import Footer from './Footer';
+import routes from './routes';
 
 const App = () => {
     return (

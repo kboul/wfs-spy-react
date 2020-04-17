@@ -1,10 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
+import { Context } from '../context';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
 import IServiceIdProvider from './model';
 import consts from './constants';
 
 const ServiceIdProvider: FC<IServiceIdProvider> = () => {
+    const { state } = useContext(Context);
+    console.log(state);
+    if (state.parsedGetCapResp) {
+        const wfsTitle = state.parsedGetCapResp.querySelector('Title');
+        console.log(wfsTitle);
+    }
+
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>

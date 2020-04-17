@@ -1,8 +1,8 @@
-import { iValues, Errors } from './models';
-import { requests } from './constants';
+import { IValues, IErrors } from './models';
+import { requests } from '../../shared/constants';
 
-const validateForm = (values: iValues): Errors => {
-    const errors: Errors = {};
+const validateForm = (values: IValues): IErrors => {
+    const errors: IErrors = {};
     if (values.url === '') {
         errors.url = 'Url is required';
     }
@@ -13,7 +13,7 @@ const adjustProxyToUrl = (url: string): string => {
     return `${process.env.REACT_APP_PROXY_URL}${url}`;
 };
 
-const formWfsRequest = (values: iValues): string => {
+const formWfsRequest = (values: IValues): string => {
     let { url, version, request, service, typename } = values;
     url = `${adjustProxyToUrl(url)}?\n`;
     version = `version=${version}&\n`;

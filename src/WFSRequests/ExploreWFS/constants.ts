@@ -1,9 +1,8 @@
-const versions: string[] = ['2.0.0', '2.0.2'];
+import { IColors } from './models';
 
-const requests: string[] = [
-    'GetCapabilities',
-    'DescribeFeatureType',
-    'GetPropertyValue'
-];
+const colors: IColors = {
+    white: '#ffffff',
+    lightPurple: '#eeeeff'
+};
 
-export { versions, requests };
+export { colors };

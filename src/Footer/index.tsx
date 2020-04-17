@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import styles from './index.module.sass';
 
-interface FooterProps {}
+interface IFooter {}
 
-const Footer: FC<FooterProps> = () => {
+const Footer: FC<IFooter> = () => {
     const text = (
         <div>
             Developed & designed by <b>Konstantinos Voulgaridis</b>
