@@ -10,15 +10,36 @@ const FilterCapabilities: FC<IFilterCapabilities> = () => {
             <h3>{consts.header}</h3>
             <p>{consts.descr}</p>
 
-            <Panel header={consts.compOperHeader} text={consts.compOperDescr} />
-            <Panel header={consts.spatOperHeader} text={consts.spatOperDescr} />
-            <Panel header={consts.geomOperHeader} text={consts.geomOperDescr} />
+            <Panel
+                header={consts.compOperHeader}
+                title={consts.compOperDescr}
+                content=""
+            />
+            <Panel
+                header={consts.spatOperHeader}
+                title={consts.spatOperDescr}
+                content=""
+            />
+            <Panel
+                header={consts.geomOperHeader}
+                title={consts.geomOperDescr}
+                content=""
+            />
             <Panel
                 header={consts.tempOperandsHeader}
-                text={consts.tempOperandsDescr}
+                title={consts.tempOperandsDescr}
+                content=""
             />
-            <Panel header={consts.tempOperHeader} text={consts.tempOperDescr} />
-            <Panel header={consts.funcHeader} text={consts.funcDescr} />
+            <Panel
+                header={consts.tempOperHeader}
+                title={consts.tempOperDescr}
+                content=""
+            />
+            <Panel
+                header={consts.funcHeader}
+                title={consts.funcDescr}
+                content=""
+            />
         </Col>
     );
 };

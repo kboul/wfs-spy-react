@@ -1,5 +1,6 @@
 import { IValues, IErrors } from './models';
 import { requests } from '../../shared/constants';
+import { IState } from '../../context/models';
 
 const validateForm = (values: IValues): IErrors => {
     const errors: IErrors = {};
@@ -13,14 +14,14 @@ const adjustProxyToUrl = (url: string): string => {
     return `${process.env.REACT_APP_PROXY_URL}${url}`;
 };
 
-const formWfsRequest = (values: IValues): string => {
-    let { url, version, request, service, typename } = values;
+const formWfsRequest = (state: IState): string => {
+    let { url, version, request, service, typename } = state;
     url = `${adjustProxyToUrl(url)}?\n`;
     version = `version=${version}&\n`;
     request = `request=${request}&\n`;
     service = `service=${service}`;
 
-    switch (values.request) {
+    switch (state.request) {
         case requests[0]:
             return `${url}${version}${request}${service}`;
         case requests[1]:
@@ -37,9 +38,4 @@ const formWfsRequest = (values: IValues): string => {
     }
 };
 
-const parseXML = (response: string): Object => {
-    const parser = new DOMParser();
-    return parser.parseFromString(response, 'text/xml');
-};
-
-export { validateForm, formWfsRequest, parseXML };
+export { validateForm, formWfsRequest };

@@ -2,10 +2,7 @@ interface IValues {
     url: string;
     version: string;
     request: string;
-    service: string;
-    typename: string;
     valueRefer: string;
-    sortBy: string;
 }
 
 interface IWfsResponse {

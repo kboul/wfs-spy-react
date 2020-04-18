@@ -12,7 +12,8 @@ const OperationsMetadata: FC<IOperationsMetadata> = () => {
 
             <Panel
                 header={consts.wfsOperMetaHeader}
-                text={consts.wfsOperMetaText}
+                title={consts.wfsOperMetaText}
+                content=""
             />
         </Col>
     );

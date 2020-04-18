@@ -4,7 +4,11 @@ export default {
     url: '',
     version: versions[0],
     request: requests[0],
+    service: 'WFS',
+    typename: '',
+    typenames: [],
     wfsRequest: '',
     wfsResponse: '',
-    parsedGetCapResp: null
+    getCapResponse: null,
+    sortBy: 'ASC'
 };

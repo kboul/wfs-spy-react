@@ -8,9 +8,13 @@ interface IState {
     url: string;
     version: string;
     request: string;
+    service: string;
+    typename: string;
+    typenames: string[];
     wfsRequest: string;
     wfsResponse: string;
-    parsedGetCapResp: Object;
+    getCapResponse: XMLDocument;
+    sortBy: string;
 }
 
 interface IAction {

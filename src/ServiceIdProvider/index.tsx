@@ -2,16 +2,23 @@ import React, { FC, useContext } from 'react';
 import { Context } from '../context';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
-import IServiceIdProvider from './model';
+import {
+    extractTitle,
+    parseXML,
+    extractAbstract,
+    extractAcceptedVersions
+} from '../shared/wfsMetadata';
+import { IServiceIdProvider } from './model';
 import consts from './constants';
+import AcceptedVersions from './AcceptedVersions';
 
 const ServiceIdProvider: FC<IServiceIdProvider> = () => {
     const { state } = useContext(Context);
-    console.log(state);
-    if (state.parsedGetCapResp) {
-        const wfsTitle = state.parsedGetCapResp.querySelector('Title');
-        console.log(wfsTitle);
-    }
+    const wfsResponse = parseXML(state.getCapResponse);
+    console.log(wfsResponse);
+    const title = extractTitle(wfsResponse);
+    const abstract = extractAbstract(wfsResponse);
+    const acceptedVersions = extractAcceptedVersions(wfsResponse);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
@@ -19,20 +26,26 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
             <p>{consts.descr}</p>
 
             <Panel
-                header={consts.wfsTitleHeader}
-                text={consts.wfsTitleHeaderText}
+                header={consts.titleHeader}
+                title={consts.titleHeaderTitle}
+                content={<b>{title}</b>}
             />
             <Panel
-                header={consts.wfsVersionsHeader}
-                text={consts.wfsVersionsText}
+                header={consts.versionsHeader}
+                title={consts.versionsTitle}
+                content={
+                    <AcceptedVersions acceptedVersions={acceptedVersions} />
+                }
             />
             <Panel
-                header={consts.wfsAbstractHeader}
-                text={consts.wfsAbstractText}
+                header={consts.abstractHeader}
+                title={consts.abstractTitle}
+                content={abstract}
             />
             <Panel
-                header={consts.wfsProviderHeader}
-                text={consts.wfsProviderText}
+                header={consts.providerHeader}
+                title={consts.providerTitle}
+                content=""
             />
         </Col>
     );

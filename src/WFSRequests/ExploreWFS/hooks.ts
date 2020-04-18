@@ -32,6 +32,9 @@ const useForm = (
             case 'request':
                 dispatch({ type: types.SET_REQUEST, payload: value });
                 break;
+            case 'typename':
+                dispatch({ type: types.SET_TYPENAME, payload: value });
+                break;
             default:
         }
         setValues({ ...values, [e.target.name]: value });

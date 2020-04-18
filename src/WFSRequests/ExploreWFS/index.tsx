@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Context } from '../../context';
 import TableButtons from '../TableButtons';
 import { useForm, useInputFocus } from './hooks';
-import { validateForm, formWfsRequest, parseXML } from './utils';
+import { extractTypenames } from '../../shared/wfsMetadata';
+import { validateForm, formWfsRequest } from './utils';
 import { IExploreWFS, IWfsResponse } from './models';
 import { versions, requests } from '../../shared/constants';
 import sharedStyles from '../shared.module.sass';
@@ -26,26 +27,29 @@ const ExploreWFS: FC<IExploreWFS> = () => {
         }
         dispatch({
             type: types.SET_WFS_REQUEST,
-            payload: formWfsRequest(values)
+            payload: formWfsRequest(state)
         });
         setIsGetRequest(true);
     };
 
     const onGetResponseClick = async () => {
-        const operationUrl = formWfsRequest(values);
+        const operationUrl = formWfsRequest(state);
         if (operationUrl) {
-            const response: IWfsResponse = await axios.get(operationUrl);
+            const { data }: IWfsResponse = await axios.get(operationUrl);
             dispatch({
                 type: types.SET_WFS_RESPONSE,
-                payload: response.data
+                payload: data
             });
-            const sth: any = parseXML(response.data);
-            console.log(sth.querySelector('Title'));
-            if (values.request === requests[0])
+            if (values.request === requests[0]) {
+                dispatch({
+                    type: types.SET_TYPENAMES,
+                    payload: extractTypenames(data)
+                });
                 dispatch({
                     type: types.SET_GET_CAP_RESPONSE,
-                    payload: parseXML(response.data)
+                    payload: data
                 });
+            }
         }
     };
 
@@ -54,10 +58,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
             url: state.url,
             version: state.version,
             request: state.request,
-            service: 'WFS',
-            typename: '',
-            valueRefer: '',
-            sortBy: 'ASC'
+            valueRefer: ''
         },
         displayGetRequest,
         validateForm
@@ -140,7 +141,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         Service
                     </Label>
                     <Col md={9}>
-                        <Input type="text" value="WFS" disabled />
+                        <Input type="text" value={state.service} disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -153,11 +154,14 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     <Col md={9}>
                         <Input
                             type="select"
-                            disabled
+                            disabled={!state.typenames.length}
                             name="typename"
-                            value={values.typename}
-                            onChange={e => onChange('typename', e)}
-                        />
+                            value={state.typename}
+                            onChange={e => onChange('typename', e)}>
+                            {state.typenames.map((typename: string) => (
+                                <option key={typename}>{typename}</option>
+                            ))}
+                        </Input>
                     </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -185,7 +189,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         Sort By
                     </Label>
                     <Col md={9}>
-                        <Input type="text" value="ASC" disabled />
+                        <Input type="text" value={state.sortBy} disabled />
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>

@@ -12,7 +12,8 @@ const AttrNamesTypes: FC<IAttrNamesTypes> = () => {
 
             <Panel
                 header={consts.attrNamesTypesHeader}
-                text={consts.attrNamesTypesDescr}
+                title={consts.attrNamesTypesDescr}
+                content=""
             />
         </Col>
     );

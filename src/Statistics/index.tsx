@@ -10,8 +10,16 @@ const Statistics: FC<IStatistics> = () => {
             <h3>{consts.header}</h3>
             <p>{consts.descr}</p>
 
-            <Panel header={consts.respTimeHeader} text={consts.respTimeDescr} />
-            <Panel header={consts.reqTimeHeader} text={consts.reqTimeDescr} />
+            <Panel
+                header={consts.respTimeHeader}
+                title={consts.respTimeDescr}
+                content=""
+            />
+            <Panel
+                header={consts.reqTimeHeader}
+                title={consts.reqTimeDescr}
+                content=""
+            />
         </Col>
     );
 };

@@ -1,13 +1,14 @@
 export default {
     header: 'Service Id & Provider',
     descr: `This section provides information for the service identification & provider.`,
-    wfsTitleHeader: 'WFS Title',
-    wfsTitleHeaderText: 'Provides information for the WFS title',
-    wfsVersionsHeader: 'WFS Accepted Versions',
-    wfsVersionsText: 'Provides information for the WFS accepted versions',
-    wfsAbstractHeader: 'WFS Abstract',
-    wfsAbstractText: 'Provides an abstract for the selected WFS',
-    wfsProviderHeader: 'WFS Provider',
-    wfsProviderText:
-        'Provides contact information about the company including telephone - website and email'
+    titleHeader: 'WFS Title',
+    titleHeaderTitle: 'Provides information for the WFS title',
+    versionsHeader: 'WFS Accepted Versions',
+    versionsTitle: 'Provides information for the WFS accepted versions',
+    abstractHeader: 'WFS Abstract',
+    abstractTitle: 'Provides an abstract for the selected WFS',
+    providerHeader: 'WFS Provider',
+    providerTitle:
+        'Provides contact information about the company including telephone - website and email',
+    acceptedVersionsStr: 'The selected WFS service supports versions'
 };

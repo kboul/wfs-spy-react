@@ -1,28 +1,29 @@
 import React, { FC, useState } from 'react';
-import { Card, CardHeader, CardBody, CardText, Collapse } from 'reactstrap';
+import { Card, CardHeader, CardBody, Collapse, CardTitle } from 'reactstrap';
 import IPanel from './model';
 import styles from './index.module.sass';
 
-const Panel: FC<IPanel> = ({ header, text }) => {
+const Panel: FC<IPanel> = ({ header, title, content }) => {
     const [isCardOpen, setIsCardOpen] = useState(true);
     const toggleCard = () => setIsCardOpen(!isCardOpen);
 
-    const cardIcon = isCardOpen ? 'down' : 'right';
+    const iconDirection = isCardOpen ? 'down' : 'right';
 
     return (
-        <Card outline color="primary" className="mb-4" onClick={toggleCard}>
-            <CardHeader
-                className={`card bg-primary text-white ${styles.cardHeader}`}>
+        <Card outline color="primary" className="mb-4">
+            <CardHeader className="card bg-primary text-white">
                 <span>
                     {header}
                     <i
-                        className={`fa fa-chevron-${cardIcon} float-right my-1`}
+                        className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
+                        onClick={toggleCard}
                     />
                 </span>
             </CardHeader>
             <Collapse isOpen={isCardOpen}>
                 <CardBody>
-                    <CardText>{text}</CardText>
+                    <CardTitle>{title}</CardTitle>
+                    {content}
                 </CardBody>
             </Collapse>
         </Card>

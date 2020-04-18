@@ -1,4 +1,4 @@
-export default interface IAttrNamesTypes {
+interface IServiceIdProvider {
     header: string;
     descr: string;
     wfsTitleHeader: string;
@@ -10,3 +10,9 @@ export default interface IAttrNamesTypes {
     wfsProviderHeader: string;
     wfsProviderText: string;
 }
+
+interface IAcceptedVersions {
+    acceptedVersions: any;
+}
+
+export type { IServiceIdProvider, IAcceptedVersions };
