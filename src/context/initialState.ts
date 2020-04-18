@@ -9,6 +9,6 @@ export default {
     typenames: [],
     wfsRequest: '',
     wfsResponse: '',
-    getCapResponse: null,
+    getCapResponse: '',
     sortBy: 'ASC'
 };

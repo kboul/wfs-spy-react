@@ -12,7 +12,14 @@ interface IServiceIdProvider {
 }
 
 interface IAcceptedVersions {
-    acceptedVersions: any;
+    versions: string[];
 }
 
-export type { IServiceIdProvider, IAcceptedVersions };
+interface IServiceProvider {
+    provider: {
+        providerNames: string[];
+        providerValues: string[];
+    };
+}
+
+export type { IServiceIdProvider, IAcceptedVersions, IServiceProvider };

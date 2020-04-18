@@ -2,23 +2,25 @@ import React, { FC, useContext } from 'react';
 import { Context } from '../context';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
+import AcceptedVersions from './AcceptedVersions';
+import ServiceProvider from './ServiceProvider';
 import {
     extractTitle,
     parseXML,
     extractAbstract,
-    extractAcceptedVersions
+    extractAcceptedVersions,
+    extractProvider
 } from '../shared/wfsMetadata';
 import { IServiceIdProvider } from './model';
 import consts from './constants';
-import AcceptedVersions from './AcceptedVersions';
 
 const ServiceIdProvider: FC<IServiceIdProvider> = () => {
     const { state } = useContext(Context);
     const wfsResponse = parseXML(state.getCapResponse);
-    console.log(wfsResponse);
     const title = extractTitle(wfsResponse);
     const abstract = extractAbstract(wfsResponse);
     const acceptedVersions = extractAcceptedVersions(wfsResponse);
+    const provider = extractProvider(wfsResponse);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
@@ -27,15 +29,13 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
 
             <Panel
                 header={consts.titleHeader}
-                title={consts.titleHeaderTitle}
+                title={consts.titleTitle}
                 content={<b>{title}</b>}
             />
             <Panel
                 header={consts.versionsHeader}
                 title={consts.versionsTitle}
-                content={
-                    <AcceptedVersions acceptedVersions={acceptedVersions} />
-                }
+                content={<AcceptedVersions versions={acceptedVersions} />}
             />
             <Panel
                 header={consts.abstractHeader}
@@ -45,7 +45,7 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
             <Panel
                 header={consts.providerHeader}
                 title={consts.providerTitle}
-                content=""
+                content={<ServiceProvider provider={provider} />}
             />
         </Col>
     );

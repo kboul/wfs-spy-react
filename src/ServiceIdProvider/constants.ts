@@ -2,7 +2,7 @@ export default {
     header: 'Service Id & Provider',
     descr: `This section provides information for the service identification & provider.`,
     titleHeader: 'WFS Title',
-    titleHeaderTitle: 'Provides information for the WFS title',
+    titleTitle: 'Provides information for the WFS title',
     versionsHeader: 'WFS Accepted Versions',
     versionsTitle: 'Provides information for the WFS accepted versions',
     abstractHeader: 'WFS Abstract',
