@@ -1,5 +1,1 @@
-export default interface IOperationsMetadata {
-    header: string;
-    wfsFeatTypeListHeader: string;
-    wfsFeatTypeListText: string;
-}
+export default interface IOperationsMetadata {}

@@ -6,7 +6,6 @@ import styles from './index.module.sass';
 const Panel: FC<IPanel> = ({ header, title, content }) => {
     const [isCardOpen, setIsCardOpen] = useState(true);
     const toggleCard = () => setIsCardOpen(!isCardOpen);
-
     const iconDirection = isCardOpen ? 'down' : 'right';
 
     return (

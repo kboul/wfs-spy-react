@@ -16,7 +16,7 @@ const adjustProxyToUrl = (url: string): string => {
 
 const formWfsRequest = (state: IState): string => {
     let { url, version, request, service, typename } = state;
-    url = `${adjustProxyToUrl(url)}?\n`;
+    url = `${url}?\n`;
     version = `version=${version}&\n`;
     request = `request=${request}&\n`;
     service = `service=${service}`;
@@ -38,4 +38,4 @@ const formWfsRequest = (state: IState): string => {
     }
 };
 
-export { validateForm, formWfsRequest };
+export { validateForm, adjustProxyToUrl, formWfsRequest };

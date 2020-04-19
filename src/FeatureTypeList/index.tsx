@@ -10,8 +10,8 @@ const FeatureTypeList: FC<IFeatureTypeList> = () => {
             <h3>{consts.header}</h3>
 
             <Panel
-                header={consts.wfsFeatTypeListHeader}
-                title={consts.wfsFeatTypeListText}
+                header={consts.featTypeListHeader}
+                title={consts.featTypeListText}
                 content=""
             />
         </Col>

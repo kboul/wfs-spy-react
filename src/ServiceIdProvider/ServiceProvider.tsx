@@ -1,16 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
+import { Context } from '../context';
 import { formalProviderName } from './utils';
-import { IServiceProvider } from './model';
+import { IServiceProvider } from './models';
+import consts from './constants';
 
 const ServiceProvider: FC<IServiceProvider> = ({ provider }) => {
+    const { state } = useContext(Context);
     const { providerNames, providerValues } = provider;
-    return (
+    const hasProvider = providerNames.length && providerValues.length;
+
+    return hasProvider ? (
         <Table
             responsive
             className="table-striped text-center table-borderless">
             <tbody>
-                {providerNames.map((name: string, nameIndex: number) => (
+                {providerNames.map((name, nameIndex) => (
                     <tr key={nameIndex}>
                         <th>{formalProviderName(name)}</th>
                         <td>{providerValues[nameIndex]}</td>
@@ -18,7 +23,9 @@ const ServiceProvider: FC<IServiceProvider> = ({ provider }) => {
                 ))}
             </tbody>
         </Table>
-    );
+    ) : state.getCapResponse && !hasProvider ? (
+        <b>{consts.noProvider}</b>
+    ) : null;
 };
 
 export default ServiceProvider;

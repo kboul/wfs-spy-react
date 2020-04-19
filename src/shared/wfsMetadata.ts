@@ -15,26 +15,61 @@ const extractTypenames = (data: string): string[] => {
 };
 
 const extractTitle = (wfsResponse: XMLDocument): string | null | undefined => {
-    return wfsResponse.querySelector('Title')?.textContent;
+    const title = wfsResponse.querySelector('Title')?.textContent;
+    if (title) return title;
+
+    const allTitles = wfsResponse.querySelectorAll('Title');
+    if (allTitles) {
+        let title;
+        Array.from(allTitles).forEach(t => {
+            if (t.textContent !== '') title = t.textContent;
+        });
+        return title;
+    }
+
+    return '';
 };
 
-const extractAcceptedVersions = (wfsResponse: XMLDocument): string[] => {
-    const acceptedVersions: string[] = [];
+const extractAcceptVersions = (wfsResponse: XMLDocument): string[] => {
+    const acceptVersions: string[] = [];
     const acceptVersionTag = wfsResponse.querySelector(
         '[name="AcceptVersions"]'
     );
-    const acceptVersionChildren: HTMLCollection | undefined =
-        acceptVersionTag?.children[0]?.children;
+
+    const acceptVersionChildren = acceptVersionTag?.children[0]?.children;
     if (acceptVersionChildren) {
         Array.from(acceptVersionChildren).forEach((child: any) =>
-            acceptedVersions.push(child.textContent)
+            acceptVersions.push(child.textContent)
         );
+    } else {
+        const acceptVersionOneChild = acceptVersionTag?.children;
+        if (acceptVersionOneChild) {
+            Array.from(acceptVersionOneChild).forEach((child: any) =>
+                acceptVersions.push(child.textContent)
+            );
+        }
     }
-    return acceptedVersions;
+
+    return acceptVersions;
 };
 
-const extractAbstract = (wfsResponse: XMLDocument): string | null | undefined =>
-    wfsResponse.querySelector('Abstract')?.textContent;
+const extractAbstract = (
+    wfsResponse: XMLDocument
+): string | null | undefined => {
+    const abstract = wfsResponse.querySelector('Abstract')?.textContent;
+    if (abstract) return abstract;
+
+    const allAbstracts = wfsResponse.querySelectorAll('Abstract');
+    if (allAbstracts) {
+        let abstract;
+        Array.from(allAbstracts).forEach(t => {
+            if (t.textContent !== '') abstract = t.textContent;
+        });
+        return abstract;
+    }
+
+    return '';
+};
 
 const extractProviderValue = (
     wfsResponse: XMLDocument,
@@ -49,33 +84,38 @@ const extractProviderValue = (
 
 const extractProviderValueForW3 = (
     wfsResponse: XMLDocument,
-    providerName: any
+    providerName: string
 ): string => {
     //for tag contents containing www
     const tagNameW3 = wfsResponse.querySelector(providerName);
     if (tagNameW3) {
-        if (tagNameW3.attributes[0].textContent !== '') {
-            if (tagNameW3.attributes[0].textContent.indexOf('www') > -1) {
-                return tagNameW3.attributes[0].textContent;
+        if (tagNameW3.attributes[0]) {
+            const tagNameW3Value = tagNameW3.attributes[0].textContent;
+            if (tagNameW3Value !== '' && tagNameW3Value) {
+                if (tagNameW3Value.indexOf('www') > -1) return tagNameW3Value;
             }
         }
         if (tagNameW3.attributes[1]) {
-            if (tagNameW3.attributes[1].textContent !== '') {
-                if (tagNameW3.attributes[1].textContent.indexOf('www') > -1) {
-                    //if the second attribute contains www...
-                    return tagNameW3.attributes[1].textContent;
-                }
+            const tagNameW3Value = tagNameW3.attributes[1].textContent;
+            if (tagNameW3Value !== '' && tagNameW3Value) {
+                //if the second attribute contains www...
+                if (tagNameW3Value.indexOf('www') > -1) return tagNameW3Value;
             }
         }
     }
     return '';
 };
 
-const extractProvider = (wfsResponse: XMLDocument) => {
+const extractProvider = (
+    wfsResponse: XMLDocument
+): { providerNames: string[]; providerValues: string[] } => {
     const providerName = wfsResponse.querySelector('ProviderName');
     const serviceContact = wfsResponse.querySelector('ServiceContact');
+    if (!providerName?.textContent && !serviceContact?.textContent)
+        return { providerNames: [], providerValues: [] };
+
     const providerNames: string[] = [];
-    const providerValues: any = [];
+    const providerValues: string[] = [];
     if (providerName?.textContent && serviceContact?.textContent) {
         allProviderNames.forEach(providerName => {
             const value = extractProviderValue(wfsResponse, providerName);
@@ -103,6 +143,6 @@ export {
     extractTypenames,
     extractTitle,
     extractAbstract,
-    extractAcceptedVersions,
+    extractAcceptVersions,
     extractProvider
 };

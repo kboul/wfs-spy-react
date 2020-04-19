@@ -5,7 +5,7 @@ import { Context } from '../../context';
 import TableButtons from '../TableButtons';
 import { useForm, useInputFocus } from './hooks';
 import { extractTypenames } from '../../shared/wfsMetadata';
-import { validateForm, formWfsRequest } from './utils';
+import { validateForm, adjustProxyToUrl, formWfsRequest } from './utils';
 import { IExploreWFS, IWfsResponse } from './models';
 import { versions, requests } from '../../shared/constants';
 import sharedStyles from '../shared.module.sass';
@@ -15,7 +15,7 @@ import types from '../../context/types';
 const ExploreWFS: FC<IExploreWFS> = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
     const [isGetRequest, setIsGetRequest] = useState<boolean>(false);
-    const [{ urlRef, urlBackgroud }, onFocus, onBlur] = useInputFocus();
+    const { urlRef, urlBackgroud, onFocus, onBlur } = useInputFocus();
     const { state, dispatch } = useContext(Context);
 
     const displayGetRequest = () => {
@@ -33,7 +33,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
     };
 
     const onGetResponseClick = async () => {
-        const operationUrl = formWfsRequest(state);
+        const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const { data }: IWfsResponse = await axios.get(operationUrl);
             dispatch({

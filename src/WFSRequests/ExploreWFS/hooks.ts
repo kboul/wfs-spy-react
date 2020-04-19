@@ -59,23 +59,25 @@ const useForm = (
     };
 };
 
-const useInputFocus = (): any => {
-    const urlRef = useRef<any>(null);
-    const [urlBackgroud, setUrlBackground] = useState(colors.lightPurple);
+const useInputFocus = () => {
+    const urlRef = useRef<HTMLInputElement | null>(null);
+    const [urlBackgroud, setUrlBackground] = useState<string>(
+        colors.lightPurple
+    );
 
-    useEffect(() => urlRef.current.focus(), []);
+    useEffect(() => urlRef?.current?.focus(), []);
 
     const onFocus = () => {
-        urlRef.current.focus();
+        urlRef?.current?.focus();
         setUrlBackground(colors.lightPurple);
     };
 
     const onBlur = () => {
-        urlRef.current.blur();
+        urlRef?.current?.blur();
         setUrlBackground(colors.white);
     };
 
-    return [{ urlRef, urlBackgroud }, onFocus, onBlur];
+    return { urlRef, urlBackgroud, onFocus, onBlur };
 };
 
 export { useForm, useInputFocus };

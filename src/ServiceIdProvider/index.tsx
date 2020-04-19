@@ -2,16 +2,18 @@ import React, { FC, useContext } from 'react';
 import { Context } from '../context';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
-import AcceptedVersions from './AcceptedVersions';
+import Title from './Title';
+import Abstract from './Abstract';
+import AcceptVersions from './AcceptVersions';
 import ServiceProvider from './ServiceProvider';
 import {
     extractTitle,
     parseXML,
     extractAbstract,
-    extractAcceptedVersions,
+    extractAcceptVersions,
     extractProvider
 } from '../shared/wfsMetadata';
-import { IServiceIdProvider } from './model';
+import { IServiceIdProvider } from './models';
 import consts from './constants';
 
 const ServiceIdProvider: FC<IServiceIdProvider> = () => {
@@ -19,7 +21,7 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
     const wfsResponse = parseXML(state.getCapResponse);
     const title = extractTitle(wfsResponse);
     const abstract = extractAbstract(wfsResponse);
-    const acceptedVersions = extractAcceptedVersions(wfsResponse);
+    const acceptVersions = extractAcceptVersions(wfsResponse);
     const provider = extractProvider(wfsResponse);
 
     return (
@@ -30,17 +32,17 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
             <Panel
                 header={consts.titleHeader}
                 title={consts.titleTitle}
-                content={<b>{title}</b>}
-            />
-            <Panel
-                header={consts.versionsHeader}
-                title={consts.versionsTitle}
-                content={<AcceptedVersions versions={acceptedVersions} />}
+                content={<Title title={title} />}
             />
             <Panel
                 header={consts.abstractHeader}
                 title={consts.abstractTitle}
-                content={abstract}
+                content={<Abstract abstract={abstract} />}
+            />
+            <Panel
+                header={consts.versionsHeader}
+                title={consts.versionsTitle}
+                content={<AcceptVersions versions={acceptVersions} />}
             />
             <Panel
                 header={consts.providerHeader}
