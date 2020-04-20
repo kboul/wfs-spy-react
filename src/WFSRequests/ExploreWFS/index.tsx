@@ -79,9 +79,9 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             type="textarea"
                             rows="3"
                             style={{ backgroundColor: urlBackgroud }}
-                            className={`${
-                                sharedStyles.textarea
-                            } form-control ${errors.url && 'is-invalid'} `}
+                            className={`${sharedStyles.textarea} form-control ${
+                                errors.url && 'is-invalid'
+                            } `}
                             name="url"
                             innerRef={urlRef}
                             value={values.url}

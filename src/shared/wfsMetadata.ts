@@ -1,4 +1,4 @@
-import { allProviderNames, allProviderNamesW3 } from './constants';
+import { IOperations, IProvider } from './models';
 
 const parseXML = (response: string): XMLDocument => {
     const parser = new DOMParser();
@@ -71,71 +71,144 @@ const extractAbstract = (
     return '';
 };
 
-const extractProviderValue = (
-    wfsResponse: XMLDocument,
-    providerName: string
-): string | null => {
-    const tagName = wfsResponse.querySelector(providerName);
-    if (tagName) {
-        if (tagName.textContent !== '') return tagName.textContent;
-    }
-    return '';
-};
-
-const extractProviderValueForW3 = (
-    wfsResponse: XMLDocument,
-    providerName: string
-): string => {
-    //for tag contents containing www
-    const tagNameW3 = wfsResponse.querySelector(providerName);
-    if (tagNameW3) {
-        if (tagNameW3.attributes[0]) {
-            const tagNameW3Value = tagNameW3.attributes[0].textContent;
-            if (tagNameW3Value !== '' && tagNameW3Value) {
-                if (tagNameW3Value.indexOf('www') > -1) return tagNameW3Value;
-            }
-        }
-        if (tagNameW3.attributes[1]) {
-            const tagNameW3Value = tagNameW3.attributes[1].textContent;
-            if (tagNameW3Value !== '' && tagNameW3Value) {
-                //if the second attribute contains www...
-                if (tagNameW3Value.indexOf('www') > -1) return tagNameW3Value;
-            }
-        }
-    }
-    return '';
-};
-
-const extractProvider = (
-    wfsResponse: XMLDocument
-): { providerNames: string[]; providerValues: string[] } => {
+const extractProvider = (wfsResponse: XMLDocument): IProvider => {
     const providerName = wfsResponse.querySelector('ProviderName');
     const serviceContact = wfsResponse.querySelector('ServiceContact');
-    if (!providerName?.textContent && !serviceContact?.textContent)
-        return { providerNames: [], providerValues: [] };
-
     const providerNames: string[] = [];
     const providerValues: string[] = [];
+
     if (providerName?.textContent && serviceContact?.textContent) {
-        allProviderNames.forEach(providerName => {
-            const value = extractProviderValue(wfsResponse, providerName);
-            if (value !== '' && value) {
-                providerNames.push(providerName);
-                providerValues.push(value);
+        if (!providerName?.textContent && !serviceContact?.textContent)
+            return { providerNames: [], providerValues: [] };
+
+        const serviceProvider = wfsResponse.querySelector('ServiceProvider');
+        const serviceProviderLength = serviceProvider?.children.length;
+
+        if (serviceProvider && serviceProvider.children) {
+            Array.from(serviceProvider.children).forEach((item, index) => {
+                if (
+                    serviceProviderLength &&
+                    item &&
+                    item.textContent &&
+                    item.textContent !== '' &&
+                    index !== serviceProviderLength - 1
+                ) {
+                    providerNames.push(item.tagName.replace('ows:', ''));
+                    providerValues.push(item.textContent);
+                }
+            });
+
+            const serviceContact = wfsResponse.querySelector('ServiceContact');
+            if (serviceContact && serviceContact.children) {
+                Array.from(serviceContact?.children).forEach(servContItem => {
+                    if (
+                        servContItem &&
+                        servContItem.textContent &&
+                        servContItem.textContent !== '' &&
+                        !servContItem.children.length
+                    ) {
+                        providerNames.push(
+                            servContItem.tagName.replace('ows:', '')
+                        );
+                        providerValues.push(servContItem.textContent);
+                    }
+                    if (servContItem.children.length) {
+                        const phone = wfsResponse.querySelector('Phone');
+                        if (phone) {
+                            Array.from(phone?.children).forEach(phoneItem => {
+                                if (
+                                    phoneItem &&
+                                    phoneItem.textContent &&
+                                    phoneItem.textContent !== ''
+                                ) {
+                                    providerNames.push(
+                                        phoneItem.tagName.replace('ows:', '')
+                                    );
+                                    providerValues.push(
+                                        phoneItem.textContent.trim()
+                                    );
+                                }
+                            });
+                        }
+                        const address = wfsResponse.querySelector('Address');
+                        if (address) {
+                            Array.from(address.children).forEach(address => {
+                                if (
+                                    address &&
+                                    address.textContent &&
+                                    address.textContent !== ''
+                                ) {
+                                    providerNames.push(
+                                        address.tagName.replace('ows:', '')
+                                    );
+                                    providerValues.push(
+                                        address.textContent.trim()
+                                    );
+                                }
+                            });
+                        }
+                    }
+                });
             }
-        });
-        allProviderNamesW3.forEach(providerName => {
-            const value = extractProviderValueForW3(wfsResponse, providerName);
-            if (value !== '' && value) {
-                providerNames.push(providerName);
-                providerValues.push(value);
-            }
-        });
+        }
     }
     return {
         providerNames,
         providerValues
     };
+};
+
+const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
+    const operationsMetadata = wfsResponse.querySelectorAll('Operation');
+    const operations: IOperations = {};
+
+    if (operationsMetadata) {
+        Array.from(operationsMetadata).forEach(operation => {
+            const operationMethod = operation.getAttribute('name');
+            if (
+                operation &&
+                operationMethod &&
+                operation.children[0].children[0].children[0]
+            ) {
+                const attributeChildren =
+                    operation.children[0].children[0].children.length;
+                const attributeNodeName =
+                    operation.children[0].children[0].children[0].nodeName;
+
+                switch (attributeChildren) {
+                    // both request methods are not supported
+                    case 0:
+                        operations[operationMethod] = {
+                            get: '✘',
+                            post: '✘'
+                        };
+                        break;
+                    // only one request method is supported
+                    case 1:
+                        if (attributeNodeName.indexOf('Get') > -1) {
+                            operations[operationMethod] = {
+                                get: '✓',
+                                post: '✘'
+                            };
+                        } else if (attributeNodeName.indexOf('Post') > -1) {
+                            operations[operationMethod] = {
+                                get: '✘',
+                                post: '✓'
+                            };
+                        }
+                        break;
+                    // both request methods are supported
+                    case 2:
+                        operations[operationMethod] = {
+                            get: '✓',
+                            post: '✓'
+                        };
+                        break;
+                }
+            }
+        });
+    }
+    return operations;
 };
 
 export {
@@ -144,5 +217,6 @@ export {
     extractTitle,
     extractAbstract,
     extractAcceptVersions,
-    extractProvider
+    extractProvider,
+    etxractOperations
 };

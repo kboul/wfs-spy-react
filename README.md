@@ -6,7 +6,7 @@ These variations can be further branched and be found not only in different WFS 
 
 The user will be able to derive WFS metadata regarding the supported FeatureTypes (using either GET or POST methods) via a GetCapabilities request and the attribute names via a DescribeFeatureType request. Following, a GetPropertyValue request will be provided to derive the attribute values. Last, using a GetPropertyValue filter request, it will be possible to derive a desired subset of the attribute values or else acquire further knowledge about the content and distribution of those values, which is the main objective of this thesis.
 
-At this point, the application will not provide geometrical feature manipulation via features' geometry filter extraction. It can be included in a future extension of the application. The application aims explicitly in the extraction and filter of WFS features' values .
+At this point, the application will not provide geometrical feature manipulation via features' geometry filter extraction. It can be included in a future extension of the application. The application aims explicitly in the extraction and filter of WFS features' values.
 
 ## Run the project
 

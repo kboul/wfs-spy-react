@@ -1,9 +1,10 @@
 export default {
     header: 'Filter Capabilities',
     descr: `
-        This section lists the available filters provided by the WFS. 
-        Spatial Operators (Equals/Touches) Comparison Operators (LessThan/GreaterThan) 
-        and other Functions are all listed here.
+        Lists the filters, or expressions, that are available to form query predicates, 
+        for example, SpatialOperators (such as Equals, Touches) and ComparisonOperators 
+        (such as LessThan, GreaterThan). The filters themselves are not included in the 
+        GetCapabilities document.
     `,
     compOperHeader: 'Comparison Operators',
     compOperDescr: 'Informs which Comparison Operators are supported',

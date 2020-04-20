@@ -1,10 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
+import { Context } from '../context';
 import Panel from '../Panel';
-import IOperationsMetadata from './model';
+import OperationsTable from './OperationsTable';
+import { parseXML, etxractOperations } from '../shared/wfsMetadata';
+import { IOperationsMetadata } from './models';
 import consts from './constants';
 
 const OperationsMetadata: FC<IOperationsMetadata> = () => {
+    const { state } = useContext(Context);
+    const wfsResponse = parseXML(state.getCapResponse);
+    const operations = etxractOperations(wfsResponse);
+
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>
@@ -13,7 +20,7 @@ const OperationsMetadata: FC<IOperationsMetadata> = () => {
             <Panel
                 header={consts.operMetaHeader}
                 title={consts.operMetaText}
-                content=""
+                content={<OperationsTable operations={operations} />}
             />
         </Col>
     );

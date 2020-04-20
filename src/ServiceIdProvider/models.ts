@@ -1,3 +1,5 @@
+import { IProvider } from '../shared/models';
+
 interface IServiceIdProvider {}
 
 interface ITitle {
@@ -9,10 +11,7 @@ interface IAcceptVersions {
 }
 
 interface IServiceProvider {
-    provider: {
-        providerNames: string[];
-        providerValues: string[];
-    };
+    provider: IProvider;
 }
 
 interface IAbstract {
