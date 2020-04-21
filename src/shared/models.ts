@@ -7,4 +7,8 @@ interface IOperations {
     [operations: string]: { get: string; post: string };
 }
 
-export type { IProvider, IOperations };
+interface ITotalItems {
+    numberOfItems: number;
+}
+
+export type { IProvider, IOperations, ITotalItems };

@@ -6,4 +6,6 @@ const requests: string[] = [
     'GetPropertyValue'
 ];
 
-export { versions, requests };
+const totalItems: string = 'Total Items:';
+
+export { versions, requests, totalItems };

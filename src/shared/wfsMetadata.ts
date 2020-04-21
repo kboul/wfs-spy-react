@@ -82,76 +82,119 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
             return { providerNames: [], providerValues: [] };
 
         const serviceProvider = wfsResponse.querySelector('ServiceProvider');
-        const serviceProviderLength = serviceProvider?.children.length;
-
         if (serviceProvider && serviceProvider.children) {
-            Array.from(serviceProvider.children).forEach((item, index) => {
-                if (
-                    serviceProviderLength &&
-                    item &&
-                    item.textContent &&
-                    item.textContent !== '' &&
-                    index !== serviceProviderLength - 1
-                ) {
-                    providerNames.push(item.tagName.replace('ows:', ''));
-                    providerValues.push(item.textContent);
+            Array.from(serviceProvider.children).forEach(servProvItem => {
+                const providerSite = servProvItem.getAttribute('xlink:href');
+                if (servProvItem) {
+                    if (
+                        servProvItem.textContent &&
+                        servProvItem.textContent !== '' &&
+                        !servProvItem.children.length
+                    ) {
+                        providerNames.push(
+                            servProvItem.tagName.replace('ows:', '')
+                        );
+                        providerValues.push(servProvItem.textContent);
+                    } else if (!servProvItem.children.length && providerSite) {
+                        providerNames.push(
+                            servProvItem.tagName.replace('ows:', '')
+                        );
+                        providerValues.push(providerSite);
+                    }
                 }
             });
 
             const serviceContact = wfsResponse.querySelector('ServiceContact');
             if (serviceContact && serviceContact.children) {
                 Array.from(serviceContact?.children).forEach(servContItem => {
-                    if (
-                        servContItem &&
-                        servContItem.textContent &&
-                        servContItem.textContent !== '' &&
-                        !servContItem.children.length
-                    ) {
-                        providerNames.push(
-                            servContItem.tagName.replace('ows:', '')
-                        );
-                        providerValues.push(servContItem.textContent);
-                    }
-                    if (servContItem.children.length) {
-                        const phone = wfsResponse.querySelector('Phone');
-                        if (phone) {
-                            Array.from(phone?.children).forEach(phoneItem => {
-                                if (
-                                    phoneItem &&
-                                    phoneItem.textContent &&
-                                    phoneItem.textContent !== ''
-                                ) {
-                                    providerNames.push(
-                                        phoneItem.tagName.replace('ows:', '')
-                                    );
-                                    providerValues.push(
-                                        phoneItem.textContent.trim()
-                                    );
-                                }
-                            });
+                    const servContItemChildrenLength =
+                        servContItem.children.length;
+
+                    if (servContItem) {
+                        if (
+                            servContItem.textContent &&
+                            servContItem.textContent !== '' &&
+                            !servContItemChildrenLength
+                        ) {
+                            providerNames.push(
+                                servContItem.tagName.replace('ows:', '')
+                            );
+                            providerValues.push(servContItem.textContent);
                         }
-                        const address = wfsResponse.querySelector('Address');
-                        if (address) {
-                            Array.from(address.children).forEach(address => {
-                                if (
-                                    address &&
-                                    address.textContent &&
-                                    address.textContent !== ''
-                                ) {
-                                    providerNames.push(
-                                        address.tagName.replace('ows:', '')
+                        if (servContItemChildrenLength) {
+                            Array.from(servContItem.children).forEach(
+                                servContItem1stChildItem => {
+                                    const onlineResource = servContItem1stChildItem.getAttribute(
+                                        'xlink:href'
                                     );
-                                    providerValues.push(
-                                        address.textContent.trim()
+                                    console.log(servContItem1stChildItem);
+                                    console.log(
+                                        servContItem1stChildItem.children
                                     );
+                                    if (servContItem1stChildItem) {
+                                        if (
+                                            servContItem1stChildItem.textContent &&
+                                            !servContItem1stChildItem.children
+                                                .length
+                                        ) {
+                                            providerNames.push(
+                                                servContItem1stChildItem.tagName.replace(
+                                                    'ows:',
+                                                    ''
+                                                )
+                                            );
+                                            providerValues.push(
+                                                servContItem1stChildItem.textContent
+                                            );
+                                        }
+                                        if (
+                                            !servContItem1stChildItem.children
+                                                .length &&
+                                            onlineResource
+                                        ) {
+                                            providerNames.push(
+                                                servContItem1stChildItem.tagName.replace(
+                                                    'ows:',
+                                                    ''
+                                                )
+                                            );
+                                            providerValues.push(onlineResource);
+                                        }
+                                        if (
+                                            servContItem1stChildItem.children
+                                                .length
+                                        ) {
+                                            Array.from(
+                                                servContItem1stChildItem.children
+                                            ).forEach(
+                                                servContItem2ndChildItem => {
+                                                    if (
+                                                        servContItem2ndChildItem &&
+                                                        servContItem2ndChildItem.textContent
+                                                    ) {
+                                                        providerNames.push(
+                                                            servContItem2ndChildItem.tagName.replace(
+                                                                'ows:',
+                                                                ''
+                                                            )
+                                                        );
+                                                        providerValues.push(
+                                                            servContItem2ndChildItem.textContent
+                                                        );
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
                                 }
-                            });
+                            );
                         }
                     }
                 });
             }
         }
     }
+
     return {
         providerNames,
         providerValues
@@ -161,6 +204,8 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
 const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
     const operationsMetadata = wfsResponse.querySelectorAll('Operation');
     const operations: IOperations = {};
+    const checkMark = '✓';
+    const xMark = '✘';
 
     if (operationsMetadata) {
         Array.from(operationsMetadata).forEach(operation => {
@@ -170,44 +215,45 @@ const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
                 operationMethod &&
                 operation.children[0].children[0].children[0]
             ) {
-                const attributeChildren =
+                const operationChildrenLength =
                     operation.children[0].children[0].children.length;
-                const attributeNodeName =
+                const operationNodeName =
                     operation.children[0].children[0].children[0].nodeName;
 
-                switch (attributeChildren) {
+                switch (operationChildrenLength) {
                     // both request methods are not supported
                     case 0:
                         operations[operationMethod] = {
-                            get: '✘',
-                            post: '✘'
+                            get: xMark,
+                            post: xMark
                         };
                         break;
                     // only one request method is supported
                     case 1:
-                        if (attributeNodeName.indexOf('Get') > -1) {
+                        if (operationNodeName.indexOf('Get') > -1) {
                             operations[operationMethod] = {
-                                get: '✓',
-                                post: '✘'
+                                get: checkMark,
+                                post: xMark
                             };
-                        } else if (attributeNodeName.indexOf('Post') > -1) {
+                        } else if (operationNodeName.indexOf('Post') > -1) {
                             operations[operationMethod] = {
-                                get: '✘',
-                                post: '✓'
+                                get: xMark,
+                                post: checkMark
                             };
                         }
                         break;
                     // both request methods are supported
                     case 2:
                         operations[operationMethod] = {
-                            get: '✓',
-                            post: '✓'
+                            get: checkMark,
+                            post: checkMark
                         };
                         break;
                 }
             }
         });
     }
+
     return operations;
 };
 
