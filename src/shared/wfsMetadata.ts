@@ -127,10 +127,6 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
                                     const onlineResource = servContItem1stChildItem.getAttribute(
                                         'xlink:href'
                                     );
-                                    console.log(servContItem1stChildItem);
-                                    console.log(
-                                        servContItem1stChildItem.children
-                                    );
                                     if (servContItem1stChildItem) {
                                         if (
                                             servContItem1stChildItem.textContent &&
@@ -257,6 +253,69 @@ const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
     return operations;
 };
 
+const extractFilterCap = (
+    wfsResponse: XMLDocument,
+    operator: string
+): string[] => {
+    const operand = wfsResponse.querySelectorAll(operator);
+    const operands: string[] = [];
+    if (operand && operand.length) {
+        operand.forEach(operandItem => {
+            const operItemAttr = operandItem.attributes;
+            if (operItemAttr && operItemAttr[0] && operItemAttr[0].nodeValue) {
+                operands.push(operItemAttr[0].nodeValue);
+            }
+        });
+    }
+
+    return operands;
+};
+
+const extractFunctions = (wfsResponse: XMLDocument) => {
+    const functionTag = wfsResponse.querySelectorAll('Function');
+    const returnsTag = wfsResponse.querySelectorAll('Returns');
+    const argumentTag = wfsResponse.querySelectorAll('Argument');
+    const typeTag = wfsResponse.querySelectorAll('Type');
+
+    const names: string[] = [];
+    const returns: string[] | any = [];
+    const args: string[] | any = [];
+    const types: string[] | any = [];
+
+    if (functionTag) {
+        Array.from(functionTag).forEach((funItem, index) => {
+            if (
+                funItem &&
+                funItem.attributes[0] &&
+                funItem.attributes[0].textContent
+            ) {
+                names.push(funItem.attributes[0].textContent);
+                if (returnsTag[index] && returnsTag[index].textContent) {
+                    returns.push(returnsTag[index].textContent);
+                }
+                if (
+                    argumentTag[index] &&
+                    argumentTag[index].attributes &&
+                    argumentTag[index].attributes[0] &&
+                    argumentTag[index].attributes[0].textContent
+                ) {
+                    args.push(argumentTag[index].attributes[0].textContent);
+                }
+                if (typeTag && typeTag[index] && typeTag[index].textContent) {
+                    types.push(typeTag[index].textContent);
+                }
+            }
+        });
+    }
+
+    return {
+        names,
+        returns,
+        args,
+        types
+    };
+};
+
 export {
     parseXML,
     extractTypenames,
@@ -264,5 +323,7 @@ export {
     extractAbstract,
     extractAcceptVersions,
     extractProvider,
-    etxractOperations
+    etxractOperations,
+    extractFilterCap,
+    extractFunctions
 };

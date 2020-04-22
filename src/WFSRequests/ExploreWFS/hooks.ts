@@ -7,7 +7,7 @@ import {
     useContext
 } from 'react';
 import { IValues, IErrors } from './models';
-import { Context } from '../../context';
+import Context from '../../context';
 import types from '../../context/types';
 import { colors } from './constants';
 

@@ -1,5 +1,5 @@
 import React, { FC, useReducer } from 'react';
-import { Context } from '.';
+import Context from '.';
 import { IProvider } from './models';
 import initialState from './initialState';
 import reducer from './reducer';

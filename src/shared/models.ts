@@ -11,4 +11,11 @@ interface ITotalItems {
     numberOfItems: number;
 }
 
-export type { IProvider, IOperations, ITotalItems };
+interface IFuncs {
+    names: string[];
+    returns: string[];
+    args: string[];
+    types: string[];
+}
+
+export type { IProvider, IOperations, ITotalItems, IFuncs };

@@ -1,11 +1,12 @@
+import { noOperation } from '../shared/constants';
+
 const title = 'Title';
 const abstract = 'Abstract';
 const acceptVersions = 'Accept Versions';
 const serviceProvider = 'Service Provider';
-const no = 'This WFS service does not provide ';
 
 export default {
-    header: 'Service Id & Provider',
+    header: 'Service Identification & Provider',
     descr: `
         Contains basic header information for the request such as the Title and ServiceType. 
         The ServiceType indicates which version(s) of WFS are supported. Moreover it provides 
@@ -22,10 +23,14 @@ export default {
     providerTitle:
         'Provides contact information about the company including telephone - website and email',
     acceptVersionsStr: 'The selected WFS service supports versions ',
+    voice: 'Voice',
+    telephone: 'Telephone',
+    facsimile: 'Facsimile',
+    fax: 'Fax',
     electrMailAddress: 'Electronic Mail Address',
     email: 'Email',
-    noTitle: `${no} ${title}.`,
-    noAbstract: `${no} ${abstract}.`,
-    noAcceptVersions: `${no} ${acceptVersions}.`,
-    noProvider: `${no} ${serviceProvider} information.`
+    noTitle: `${noOperation} ${title}.`,
+    noAbstract: `${noOperation} ${abstract}.`,
+    noAcceptVersions: `${noOperation} ${acceptVersions}.`,
+    noProvider: `${noOperation} ${serviceProvider} information.`
 };

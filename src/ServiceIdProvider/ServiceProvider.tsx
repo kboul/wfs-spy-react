@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import { Context } from '../context';
+import Context from '../context';
 import TotalItems from '../shared/TotalItems';
 import { formalProviderName } from './utils';
 import { IServiceProvider } from './models';

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { Context } from '../context';
+import Context from '../context';
 import { Col } from 'reactstrap';
 import Panel from '../Panel';
 import Title from './Title';

@@ -8,4 +8,6 @@ const requests: string[] = [
 
 const totalItems: string = 'Total Items:';
 
-export { versions, requests, totalItems };
+const noOperation = 'This WFS service does not provide ';
+
+export { versions, requests, totalItems, noOperation };

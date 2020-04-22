@@ -1,16 +1,17 @@
 import React, { FC, useState, useContext } from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
-import { Context } from '../../context';
+import Context from '../../context';
+import types from '../../context/types';
 import TableButtons from '../TableButtons';
 import { useForm, useInputFocus } from './hooks';
 import { extractTypenames } from '../../shared/wfsMetadata';
 import { validateForm, adjustProxyToUrl, formWfsRequest } from './utils';
 import { IExploreWFS, IWfsResponse } from './models';
 import { versions, requests } from '../../shared/constants';
+import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 import styles from './index.module.sass';
-import types from '../../context/types';
 
 const ExploreWFS: FC<IExploreWFS> = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
@@ -66,13 +67,11 @@ const ExploreWFS: FC<IExploreWFS> = () => {
 
     return (
         <Col md="6" className={styles.description}>
-            <h4 className={sharedStyles.header}>
-                Service and Feature Description
-            </h4>
+            <h4 className={sharedStyles.header}>{consts.header}</h4>
             <Form noValidate>
                 <FormGroup row>
                     <Label for="url" md={2} className={urlStyle}>
-                        URL
+                        {consts.url}
                     </Label>
                     <Col md={9}>
                         <Input
@@ -100,7 +99,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="version"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        Version
+                        {consts.version}
                     </Label>
                     <Col md={9}>
                         <Input
@@ -119,7 +118,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="request"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        Request
+                        {consts.request}
                     </Label>
                     <Col md={9}>
                         <Input
@@ -138,7 +137,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="service"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        Service
+                        {consts.service}
                     </Label>
                     <Col md={9}>
                         <Input type="text" value={state.service} disabled />
@@ -149,7 +148,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="typeName"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        typeName
+                        {consts.typename}
                     </Label>
                     <Col md={9}>
                         <Input
@@ -169,7 +168,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="valueRefer"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        valueRefer.
+                        {consts.valueRefer}
                     </Label>
                     <Col md={9}>
                         <Input
@@ -186,7 +185,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="sortBy"
                         md={2}
                         className={`${sharedStyles.labelFont} mb-2`}>
-                        Sort By
+                        {consts.sortBy}
                     </Label>
                     <Col md={9}>
                         <Input type="text" value={state.sortBy} disabled />
@@ -197,7 +196,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <Label
                             for="wfsRequest"
                             className={sharedStyles.labelFont}>
-                            Form WFS Request:
+                            {consts.formWfsRequest}
                         </Label>
                         <Input
                             type="textarea"
@@ -206,7 +205,10 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             disabled
                             value={state.wfsRequest}
                         />
-                        <TableButtons label="Request" onClick={onSubmit} />
+                        <TableButtons
+                            label={consts.Request}
+                            onClick={onSubmit}
+                        />
                     </Col>
                 </FormGroup>
                 <FormGroup className="text-center" row>
@@ -214,7 +216,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <Label
                             for="wfsResponse"
                             className={sharedStyles.labelFont}>
-                            Response - Metadata & Corresponding operations:
+                            {consts.responseMetadata}
                         </Label>
                         <Input
                             type="textarea"
@@ -224,7 +226,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             value={state.wfsResponse}
                         />
                         <TableButtons
-                            label="Response"
+                            label={consts.Response}
                             hasModal
                             onClick={onGetResponseClick}
                             initialState={state.wfsRequest === ''}

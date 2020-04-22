@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Table, Button } from 'reactstrap';
 import ITableButtons from './ITableButtons';
+import consts from './constants';
 import styles from './index.module.sass';
 
 const TableButtons: FC<ITableButtons> = ({
@@ -21,7 +22,7 @@ const TableButtons: FC<ITableButtons> = ({
                             className="float-right"
                             disabled={initialState}
                             onClick={onClick}>
-                            GET {label}
+                            {consts.get} {label}
                         </Button>
                     </th>
                     <th>
@@ -31,7 +32,7 @@ const TableButtons: FC<ITableButtons> = ({
                             className="float-left"
                             disabled={initialState || isGetRequest}
                             onClick={onClick}>
-                            POST {label}
+                            {consts.post} {label}
                         </Button>
                     </th>
                 </tr>
@@ -45,7 +46,7 @@ const TableButtons: FC<ITableButtons> = ({
                                 size="sm"
                                 className="float-right"
                                 disabled={initialState}>
-                                Open in a new window
+                                {consts.openInANewWindow}
                             </Button>
                         </td>
                         <td>
@@ -54,7 +55,7 @@ const TableButtons: FC<ITableButtons> = ({
                                 size="sm"
                                 className="float-left"
                                 disabled={initialState || isGetRequest}>
-                                Open in a new window
+                                {consts.openInANewWindow}
                             </Button>
                         </td>
                     </tr>
