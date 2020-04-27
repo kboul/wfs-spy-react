@@ -7,10 +7,6 @@ interface IOperations {
     [operations: string]: { get: string; post: string };
 }
 
-interface ITotalItems {
-    numberOfItems: number;
-}
-
 interface IFuncs {
     names: string[];
     returns: string[];
@@ -18,4 +14,4 @@ interface IFuncs {
     types: string[];
 }
 
-export type { IProvider, IOperations, ITotalItems, IFuncs };
+export type { IProvider, IOperations, IFuncs };

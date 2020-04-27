@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
-import { ITotalItems } from './models';
 import { totalItems } from './constants';
+
+interface ITotalItems {
+    numberOfItems: number;
+}
 
 const TotalItems: FC<ITotalItems> = ({ numberOfItems }) => {
     return (

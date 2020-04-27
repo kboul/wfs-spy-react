@@ -1,7 +1,8 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../context';
 import TotalItems from '../shared/TotalItems';
+import TablePagination from '../shared/TablePagination';
 import { IFunctions } from './models';
 import consts from './constants';
 
@@ -9,6 +10,16 @@ const Functions: FC<IFunctions> = ({ functions }) => {
     const { state } = useContext(Context);
     const functionsLength = functions.names.length;
     const { names, returns, args, types } = functions;
+
+    const pageSize = 10;
+    const pagesCount = Math.ceil(names.length / pageSize);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const onClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+        e.preventDefault();
+        setCurrentPage(index);
+    };
+
     return functionsLength ? (
         <>
             <Table
@@ -23,16 +34,26 @@ const Functions: FC<IFunctions> = ({ functions }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {names.map((name, nameIndex) => (
-                        <tr key={nameIndex}>
-                            <td>{name}</td>
-                            <td>{returns[nameIndex]}</td>
-                            {/* <td>{args[nameIndex]}</td>
+                    {names
+                        .slice(
+                            currentPage * pageSize,
+                            (currentPage + 1) * pageSize
+                        )
+                        .map((name, nameIndex) => (
+                            <tr key={nameIndex}>
+                                <td>{name}</td>
+                                <td>{returns[nameIndex]}</td>
+                                {/* <td>{args[nameIndex]}</td>
                             <td>{types[nameIndex]}</td> */}
-                        </tr>
-                    ))}
+                            </tr>
+                        ))}
                 </tbody>
             </Table>
+            <TablePagination
+                currentPage={currentPage}
+                pagesCount={pagesCount}
+                onClick={onClick}
+            />
             <TotalItems numberOfItems={functionsLength} />
         </>
     ) : state.getCapResponse && !functionsLength ? (
