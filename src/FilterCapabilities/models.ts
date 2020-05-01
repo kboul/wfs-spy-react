@@ -23,7 +23,7 @@ interface ITemporalOperators {
 }
 
 interface IFunctions {
-    functions: IFuncs;
+    functions: IFuncs[];
 }
 
 export type {

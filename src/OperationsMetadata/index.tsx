@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
 import Context from '../context';
-import Panel from '../Panel';
+import Panel from '../shared/Panel';
 import OperationsTable from './OperationsTable';
 import { parseXML, etxractOperations } from '../shared/wfsMetadata';
 import { IOperationsMetadata } from './models';

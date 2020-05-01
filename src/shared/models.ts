@@ -8,10 +8,9 @@ interface IOperations {
 }
 
 interface IFuncs {
-    names: string[];
-    returns: string[];
-    args: string[];
-    types: string[];
+    name?: string;
+    returns?: string;
+    argsAndTypes?: string[];
 }
 
 export type { IProvider, IOperations, IFuncs };

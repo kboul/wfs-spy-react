@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
 import Context from '../context';
-import Panel from '../Panel';
+import Panel from '../shared/Panel';
 import CompOper from './ComparisonOperators';
 import SpatialOperators from './SpatialOperators';
 import {

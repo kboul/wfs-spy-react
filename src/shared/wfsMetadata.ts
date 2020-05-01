@@ -1,4 +1,4 @@
-import { IOperations, IProvider } from './models';
+import { IOperations, IProvider, IFuncs } from './models';
 
 const parseXML = (response: string): XMLDocument => {
     const parser = new DOMParser();
@@ -11,6 +11,7 @@ const extractTypenames = (data: string): string[] => {
     if (typenamesTags) {
         typenamesTags.forEach((tag: any) => typenames.push(tag.textContent));
     }
+
     return typenames;
 };
 
@@ -271,49 +272,52 @@ const extractFilterCap = (
     return operands;
 };
 
-const extractFunctions = (wfsResponse: XMLDocument) => {
+const extractFunctions = (wfsResponse: XMLDocument): IFuncs[] => {
     const functionTag = wfsResponse.querySelectorAll('Function');
-    const returnsTag = wfsResponse.querySelectorAll('Returns');
-    const argumentTag = wfsResponse.querySelectorAll('Argument');
-    const typeTag = wfsResponse.querySelectorAll('Type');
-
-    const names: string[] = [];
-    const returns: string[] | any = [];
-    const args: string[] | any = [];
-    const types: string[] | any = [];
+    let functions: IFuncs[] = [];
 
     if (functionTag) {
-        Array.from(functionTag).forEach((funItem, index) => {
+        Array.from(functionTag).forEach(funItem => {
             if (
                 funItem &&
                 funItem.attributes[0] &&
                 funItem.attributes[0].textContent
             ) {
-                names.push(funItem.attributes[0].textContent);
-                if (returnsTag[index] && returnsTag[index].textContent) {
-                    returns.push(returnsTag[index].textContent);
+                const funItem1stChild = funItem.children[0];
+                const funItem2ndChild = funItem.children[1];
+                if (funItem1stChild && funItem1stChild.textContent) {
+                    functions.push({
+                        name: funItem.attributes[0].textContent,
+                        returns: funItem1stChild.textContent
+                    });
                 }
-                if (
-                    argumentTag[index] &&
-                    argumentTag[index].attributes &&
-                    argumentTag[index].attributes[0] &&
-                    argumentTag[index].attributes[0].textContent
-                ) {
-                    args.push(argumentTag[index].attributes[0].textContent);
-                }
-                if (typeTag && typeTag[index] && typeTag[index].textContent) {
-                    types.push(typeTag[index].textContent);
+                if (funItem2ndChild && funItem2ndChild.children) {
+                    const argsAndTypes: string[] = [];
+                    Array.from(funItem2ndChild.children).forEach(
+                        (args, argsIndex) => {
+                            const argsAttr = args.attributes[0];
+                            if (argsAttr && argsAttr.textContent) {
+                                argsAndTypes.push(
+                                    `${argsAttr.textContent} (${args.children[0].textContent})`
+                                );
+                                if (
+                                    argsIndex ===
+                                    funItem2ndChild.children.length - 1
+                                ) {
+                                    functions = [...functions];
+                                    functions[
+                                        functions.length - 1
+                                    ].argsAndTypes = argsAndTypes;
+                                }
+                            }
+                        }
+                    );
                 }
             }
         });
     }
 
-    return {
-        names,
-        returns,
-        args,
-        types
-    };
+    return functions;
 };
 
 export {
