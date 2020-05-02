@@ -31,29 +31,6 @@ const extractTitle = (wfsResponse: XMLDocument): string | null | undefined => {
     return '';
 };
 
-const extractAcceptVersions = (wfsResponse: XMLDocument): string[] => {
-    const acceptVersions: string[] = [];
-    const acceptVersionTag = wfsResponse.querySelector(
-        '[name="AcceptVersions"]'
-    );
-
-    const acceptVersionChildren = acceptVersionTag?.children[0]?.children;
-    if (acceptVersionChildren) {
-        Array.from(acceptVersionChildren).forEach((child: any) =>
-            acceptVersions.push(child.textContent)
-        );
-    } else {
-        const acceptVersionOneChild = acceptVersionTag?.children;
-        if (acceptVersionOneChild) {
-            Array.from(acceptVersionOneChild).forEach((child: any) =>
-                acceptVersions.push(child.textContent)
-            );
-        }
-    }
-
-    return acceptVersions;
-};
-
 const extractAbstract = (
     wfsResponse: XMLDocument
 ): string | null | undefined => {
@@ -70,6 +47,44 @@ const extractAbstract = (
     }
 
     return '';
+};
+
+const extractKeywords = (wfsResponse: XMLDocument) => {
+    const keywordsTag = wfsResponse.querySelector('Keywords');
+    const keywords: string[] = [];
+
+    if (keywordsTag?.children) {
+        Array.from(keywordsTag.children).forEach(keyword => {
+            if (keyword && keyword.textContent) {
+                keywords.push(keyword.textContent);
+            }
+        });
+    }
+
+    return keywords;
+};
+
+const extractAcceptVersions = (wfsResponse: XMLDocument): string[] => {
+    const acceptVersionTag = wfsResponse.querySelector(
+        '[name="AcceptVersions"]'
+    );
+    const acceptVersions: string[] = [];
+
+    const acceptVersionChildren = acceptVersionTag?.children[0]?.children;
+    if (acceptVersionChildren) {
+        Array.from(acceptVersionChildren).forEach((child: any) =>
+            acceptVersions.push(child.textContent)
+        );
+    } else {
+        const acceptVersionOneChild = acceptVersionTag?.children;
+        if (acceptVersionOneChild) {
+            Array.from(acceptVersionOneChild).forEach((child: any) =>
+                acceptVersions.push(child.textContent)
+            );
+        }
+    }
+
+    return acceptVersions;
 };
 
 const extractProvider = (wfsResponse: XMLDocument): IProvider => {
@@ -325,6 +340,7 @@ export {
     extractTypenames,
     extractTitle,
     extractAbstract,
+    extractKeywords,
     extractAcceptVersions,
     extractProvider,
     etxractOperations,

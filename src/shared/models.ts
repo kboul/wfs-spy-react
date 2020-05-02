@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 interface IProvider {
     providerNames: string[];
     providerValues: string[];
@@ -13,4 +15,10 @@ interface IFuncs {
     argsAndTypes?: string[];
 }
 
-export type { IProvider, IOperations, IFuncs };
+interface IRoutes {
+    path: string;
+    name: string;
+    component: FC;
+}
+
+export type { IProvider, IOperations, IFuncs, IRoutes };

@@ -1,8 +1,8 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
-import TablePagination from '../shared/TablePagination';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
+import TablePagination from '../../shared/TablePagination';
 import { IFunctions } from './models';
 import consts from './constants';
 

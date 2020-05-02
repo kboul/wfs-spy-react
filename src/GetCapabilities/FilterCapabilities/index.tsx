@@ -1,14 +1,14 @@
 import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
-import Context from '../context';
-import Panel from '../shared/Panel';
+import Context from '../../context';
+import Panel from '../../shared/Panel';
 import CompOper from './ComparisonOperators';
 import SpatialOperators from './SpatialOperators';
 import {
     parseXML,
     extractFilterCap,
     extractFunctions
-} from '../shared/wfsMetadata';
+} from '../../shared/wfsMetadata';
 import { IFilterCapabilities } from './models';
 import consts from './constants';
 import GeometryOperands from './GeometryOperands';

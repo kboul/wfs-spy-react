@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
 import { ISpatialOperators } from './models';
 import consts from './constants';
 
@@ -13,11 +13,6 @@ const SpatialOperators: FC<ISpatialOperators> = ({ spatialOper }) => {
             <Table
                 responsive
                 className="table-striped text-center table-borderless">
-                <thead>
-                    <tr>
-                        <th>{consts.spatOperHeader}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {spatialOper.map((operator, operatorIndex) => (
                         <tr key={operatorIndex}>

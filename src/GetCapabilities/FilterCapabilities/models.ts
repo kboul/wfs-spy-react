@@ -1,4 +1,4 @@
-import { IFuncs } from '../shared/models';
+import { IFuncs } from '../../shared/models';
 
 interface IFilterCapabilities {}
 

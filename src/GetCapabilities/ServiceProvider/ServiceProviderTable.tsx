@@ -1,12 +1,12 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
 import { formalProviderName } from './utils';
-import { IServiceProvider } from './models';
+import { IServiceProviderTable } from './models';
 import consts from './constants';
 
-const ServiceProvider: FC<IServiceProvider> = ({ provider }) => {
+const ServiceProviderTable: FC<IServiceProviderTable> = ({ provider }) => {
     const { state } = useContext(Context);
     const { providerNames, providerValues } = provider;
     const hasProvider = providerNames.length && providerValues.length;
@@ -32,4 +32,4 @@ const ServiceProvider: FC<IServiceProvider> = ({ provider }) => {
     ) : null;
 };
 
-export default ServiceProvider;
+export default ServiceProviderTable;

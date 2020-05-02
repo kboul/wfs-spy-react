@@ -1,4 +1,4 @@
-import { noOperation } from '../shared/constants';
+import { noOperation } from '../../shared/constants';
 
 const compOper = 'Comparison Operators';
 const spatOper = 'Spatial Operators';

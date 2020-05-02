@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
 import { IOperationsTable } from './models';
 import consts from './constants';
 

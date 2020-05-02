@@ -1,26 +1,23 @@
 import WFSRequests from './WFSRequests';
-import AttrNamesTypes from './AttrNamesTypes';
-import ServiceIdProvider from './ServiceIdProvider';
-import OperationsMetadata from './OperationsMetadata';
-import FeatureTypeList from './FeatureTypeList';
-import FilterCapabilities from './FilterCapabilities';
+import ServiceIdentification from './GetCapabilities/ServiceIdentification';
+import ServiceProvider from './GetCapabilities/ServiceProvider';
+import OperationsMetadata from './GetCapabilities/OperationsMetadata';
+import FeatureTypeList from './GetCapabilities/FeatureTypeList';
+import FilterCapabilities from './GetCapabilities/FilterCapabilities';
+import AttrNamesTypes from './DescribeFeatureType/AttrNamesTypes';
 import Statistics from './Statistics';
+import { IRoutes } from './shared/models';
 
-export default [
+const getCapRoutes: IRoutes[] = [
     {
-        path: '/wfs-requests',
-        name: 'WFS Requests',
-        component: WFSRequests
+        path: '/service-identification',
+        name: 'Service Identification',
+        component: ServiceIdentification
     },
     {
-        path: '/attribute-names-types',
-        name: 'Attribute Names & Types',
-        component: AttrNamesTypes
-    },
-    {
-        path: '/service-id-provider',
-        name: 'Service Id & Provider',
-        component: ServiceIdProvider
+        path: '/service-provider',
+        name: 'Service Provider',
+        component: ServiceProvider
     },
     {
         path: '/operations-metadata',
@@ -36,6 +33,28 @@ export default [
         path: '/filter-capabilities',
         name: 'Filter Capabilities',
         component: FilterCapabilities
-    },
-    { path: '/statistics', name: 'Statistics', component: Statistics }
+    }
 ];
+
+const descrFeatTypeRoutes: IRoutes[] = [
+    {
+        path: '/attribute-names-types',
+        name: 'Attribute Names & Types',
+        component: AttrNamesTypes
+    }
+];
+
+const mainRoutes: IRoutes[] = [
+    {
+        path: '/wfs-requests',
+        name: '',
+        component: WFSRequests
+    },
+    {
+        path: '/statistics',
+        name: 'Statistics',
+        component: Statistics
+    }
+];
+
+export { getCapRoutes, descrFeatTypeRoutes, mainRoutes };

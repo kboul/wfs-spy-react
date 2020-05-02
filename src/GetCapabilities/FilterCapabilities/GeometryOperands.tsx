@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
 import { IGeometryOperands } from './models';
 import consts from './constants';
 
@@ -13,11 +13,6 @@ const GeometryOperands: FC<IGeometryOperands> = ({ geomOper }) => {
             <Table
                 responsive
                 className="table-striped text-center table-borderless">
-                <thead>
-                    <tr>
-                        <th>{consts.geomOperHeader}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {geomOper.map((operand, operandIndex) => (
                         <tr key={operandIndex}>

@@ -1,28 +1,25 @@
 import React, { FC, useContext } from 'react';
-import Context from '../context';
+import Context from '../../context';
 import { Col } from 'reactstrap';
-import Panel from '../shared/Panel';
+import Panel from '../../shared/Panel';
 import Title from './Title';
 import Abstract from './Abstract';
-import AcceptVersions from './AcceptVersions';
-import ServiceProvider from './ServiceProvider';
+import Keywords from './Keywords';
 import {
     extractTitle,
     parseXML,
     extractAbstract,
-    extractAcceptVersions,
-    extractProvider
-} from '../shared/wfsMetadata';
-import { IServiceIdProvider } from './models';
+    extractKeywords
+} from '../../shared/wfsMetadata';
+import { IServiceIdentification } from './models';
 import consts from './constants';
 
-const ServiceIdProvider: FC<IServiceIdProvider> = () => {
+const ServiceIdentification: FC<IServiceIdentification> = () => {
     const { state } = useContext(Context);
     const wfsResponse = parseXML(state.getCapResponse);
     const title = extractTitle(wfsResponse);
     const abstract = extractAbstract(wfsResponse);
-    const acceptVersions = extractAcceptVersions(wfsResponse);
-    const provider = extractProvider(wfsResponse);
+    const keywords = extractKeywords(wfsResponse);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
@@ -40,17 +37,12 @@ const ServiceIdProvider: FC<IServiceIdProvider> = () => {
                 content={<Abstract abstract={abstract} />}
             />
             <Panel
-                header={consts.versionsHeader}
-                title={consts.versionsTitle}
-                content={<AcceptVersions versions={acceptVersions} />}
-            />
-            <Panel
-                header={consts.providerHeader}
-                title={consts.providerTitle}
-                content={<ServiceProvider provider={provider} />}
+                header={consts.keywordsHeader}
+                title={consts.keywordsTitle}
+                content={<Keywords keywords={keywords} />}
             />
         </Col>
     );
 };
 
-export default ServiceIdProvider;
+export default ServiceIdentification;

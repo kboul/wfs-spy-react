@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import Context from '../context';
+import Context from '../../context';
 import { IAcceptVersions } from './models';
 import consts from './constants';
 

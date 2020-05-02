@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
-import Context from '../context';
-import TotalItems from '../shared/TotalItems';
+import Context from '../../context';
+import TotalItems from '../../shared/TotalItems';
 import { ITemporalOperands } from './models';
 import consts from './constants';
 
@@ -13,11 +13,6 @@ const TemporalOperands: FC<ITemporalOperands> = ({ tempOperands }) => {
             <Table
                 responsive
                 className="table-striped text-center table-borderless">
-                <thead>
-                    <tr>
-                        <th>{consts.tempOperandsHeader}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {tempOperands.map((operand, operandIndex) => (
                         <tr key={operandIndex}>
