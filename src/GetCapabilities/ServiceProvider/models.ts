@@ -2,8 +2,8 @@ import { IProvider } from '../../shared/models';
 
 interface IServiceProvider {}
 
-interface IServiceProviderTable {
+interface IProviderDetails {
     provider: IProvider;
 }
 
-export type { IServiceProvider, IServiceProviderTable };
+export type { IServiceProvider, IProviderDetails };

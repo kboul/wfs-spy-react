@@ -8,29 +8,31 @@ import AttrNamesTypes from './DescribeFeatureType/AttrNamesTypes';
 import Statistics from './Statistics';
 import { IRoutes } from './shared/models';
 
+const getCapRoute = '/get-capabilities';
+
 const getCapRoutes: IRoutes[] = [
     {
-        path: '/service-identification',
+        path: `${getCapRoute}/service-identification`,
         name: 'Service Identification',
         component: ServiceIdentification
     },
     {
-        path: '/service-provider',
+        path: `${getCapRoute}/service-provider`,
         name: 'Service Provider',
         component: ServiceProvider
     },
     {
-        path: '/operations-metadata',
+        path: `${getCapRoute}/operations-metadata`,
         name: 'Operations Metadata',
         component: OperationsMetadata
     },
     {
-        path: '/feature-type-list',
+        path: `${getCapRoute}/feature-type-list`,
         name: 'FeatureTypeList',
         component: FeatureTypeList
     },
     {
-        path: '/filter-capabilities',
+        path: `${getCapRoute}/filter-capabilities`,
         name: 'Filter Capabilities',
         component: FilterCapabilities
     }
@@ -38,7 +40,7 @@ const getCapRoutes: IRoutes[] = [
 
 const descrFeatTypeRoutes: IRoutes[] = [
     {
-        path: '/attribute-names-types',
+        path: '/describe-feature-type/attribute-names-types',
         name: 'Attribute Names & Types',
         component: AttrNamesTypes
     }

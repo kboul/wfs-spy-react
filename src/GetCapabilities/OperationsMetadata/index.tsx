@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
 import Context from '../../context';
 import Panel from '../../shared/Panel';
-import OperationsTable from './OperationsTable';
+import OperationsTable from './OperationDetails';
 import AcceptVersions from './AcceptVersions';
 import {
     parseXML,

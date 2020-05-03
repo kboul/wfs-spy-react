@@ -1,12 +1,21 @@
-import React, { FC, useState, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import Context from '../../context';
-import types from '../../context/types';
 import TableButtons from '../TableButtons';
-import { useForm, useInputFocus } from './hooks';
+import useInputFocus from './hooks';
+import {
+    setWfsResponse,
+    setWfsRequest,
+    setTypenames,
+    setGetCapResponse,
+    setUrl,
+    setVersion,
+    setRequest,
+    setTypename
+} from '../../context/actions';
 import { extractTypenames } from '../../shared/wfsMetadata';
-import { validateForm, adjustProxyToUrl, formWfsRequest } from './utils';
+import { adjustProxyToUrl, formWfsRequest } from './utils';
 import { IExploreWFS, IWfsResponse } from './models';
 import { versions, requests } from '../../shared/constants';
 import { consts } from './constants';
@@ -15,55 +24,25 @@ import styles from './index.module.sass';
 
 const ExploreWFS: FC<IExploreWFS> = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
-    const [isGetRequest, setIsGetRequest] = useState<boolean>(false);
     const { urlRef, urlBackgroud, onFocus, onBlur } = useInputFocus();
     const { state, dispatch } = useContext(Context);
 
     const displayGetRequest = () => {
-        if (values.request === requests[1]) {
-            dispatch({
-                type: types.SET_WFS_RESPONSE,
-                payload: ''
-            });
-        }
-        dispatch({
-            type: types.SET_WFS_REQUEST,
-            payload: formWfsRequest(state)
-        });
-        setIsGetRequest(true);
+        if (state.request === requests[1]) dispatch(setWfsResponse(''));
+        dispatch(setWfsRequest(formWfsRequest(state)));
     };
 
-    const onGetResponseClick = async () => {
+    const getResponse = async () => {
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const { data }: IWfsResponse = await axios.get(operationUrl);
-            dispatch({
-                type: types.SET_WFS_RESPONSE,
-                payload: data
-            });
-            if (values.request === requests[0]) {
-                dispatch({
-                    type: types.SET_TYPENAMES,
-                    payload: extractTypenames(data)
-                });
-                dispatch({
-                    type: types.SET_GET_CAP_RESPONSE,
-                    payload: data
-                });
+            dispatch(setWfsResponse(data));
+            if (state.request === requests[0]) {
+                dispatch(setTypenames(extractTypenames(data)));
+                dispatch(setGetCapResponse(data));
             }
         }
     };
-
-    const { values, onChange, onSubmit, errors } = useForm(
-        {
-            url: state.url,
-            version: state.version,
-            request: state.request,
-            valueRefer: ''
-        },
-        displayGetRequest,
-        validateForm
-    );
 
     return (
         <Col md="6" className={styles.description}>
@@ -79,18 +58,19 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             rows="3"
                             style={{ backgroundColor: urlBackgroud }}
                             className={`${sharedStyles.textarea} form-control ${
-                                errors.url && 'is-invalid'
+                                state.errors.url && 'is-invalid'
                             } `}
-                            name="url"
                             innerRef={urlRef}
-                            value={values.url}
-                            onChange={e => onChange('url', e)}
+                            value={state.url}
+                            onChange={e => dispatch(setUrl(e.target.value))}
                             onFocus={onFocus}
                             onBlur={onBlur}
                             required
                         />
-                        {errors.url && (
-                            <div className="invalid-feedback">{errors.url}</div>
+                        {state.errors.url && (
+                            <div className="invalid-feedback">
+                                {state.errors.url}
+                            </div>
                         )}
                     </Col>
                 </FormGroup>
@@ -104,9 +84,10 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                     <Col md={9}>
                         <Input
                             type="select"
-                            value={values.version}
-                            name="version"
-                            onChange={e => onChange('version', e)}>
+                            value={state.version}
+                            onChange={e =>
+                                dispatch(setVersion(e.target.value))
+                            }>
                             {versions.map(version => (
                                 <option key={version}>{version}</option>
                             ))}
@@ -118,14 +99,15 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         for="request"
                         md={2}
                         className={sharedStyles.labelFont}>
-                        {consts.request}
+                        {consts.requestOperation}
                     </Label>
                     <Col md={9}>
                         <Input
                             type="select"
-                            name="request"
-                            value={values.request}
-                            onChange={e => onChange('request', e)}>
+                            value={state.request}
+                            onChange={e =>
+                                dispatch(setRequest(e.target.value))
+                            }>
                             {requests.map(request => (
                                 <option key={request}>{request}</option>
                             ))}
@@ -154,9 +136,10 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <Input
                             type="select"
                             disabled={!state.typenames.length}
-                            name="typename"
                             value={state.typename}
-                            onChange={e => onChange('typename', e)}>
+                            onChange={e =>
+                                dispatch(setTypename(e.target.value))
+                            }>
                             {state.typenames.map((typename: string) => (
                                 <option key={typename}>{typename}</option>
                             ))}
@@ -174,9 +157,10 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                         <Input
                             type="select"
                             disabled
-                            name="valueRefer"
-                            value={values.valueRefer}
-                            onChange={e => onChange('valueRefer', e)}
+                            value={state.valueRefer}
+                            onChange={e =>
+                                dispatch(setTypename(e.target.value))
+                            }
                         />
                     </Col>
                 </FormGroup>
@@ -206,8 +190,8 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             value={state.wfsRequest}
                         />
                         <TableButtons
-                            label={consts.Request}
-                            onClick={onSubmit}
+                            label={consts.request}
+                            onClick={displayGetRequest}
                         />
                     </Col>
                 </FormGroup>
@@ -226,11 +210,11 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                             value={state.wfsResponse}
                         />
                         <TableButtons
-                            label={consts.Response}
+                            label={consts.response}
                             hasModal
-                            onClick={onGetResponseClick}
-                            initialState={state.wfsRequest === ''}
-                            isGetRequest={isGetRequest}
+                            onClick={getResponse}
+                            initialState={!state.wfsRequest}
+                            isGetRequest={!state.getCapResponse}
                         />
                     </Col>
                 </FormGroup>

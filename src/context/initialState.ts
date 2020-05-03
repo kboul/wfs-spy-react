@@ -10,5 +10,6 @@ export default {
     wfsRequest: '',
     wfsResponse: '',
     getCapResponse: '',
-    sortBy: 'ASC'
+    sortBy: 'ASC',
+    errors: {}
 };

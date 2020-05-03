@@ -8,9 +8,12 @@ const TablePagination: FC<ITablePagination> = ({
     pagesCount,
     onClick
 }) => {
+    const paginationStyle = {
+        justifyContent: pagesCount < 300 ? 'center' : 'start'
+    };
     return (
         <div className="paginationWrapper">
-            <Pagination className="pagination">
+            <Pagination style={paginationStyle}>
                 <PaginationItem disabled={currentPage <= 0}>
                     <PaginationLink
                         className="paginationLink"

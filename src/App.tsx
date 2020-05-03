@@ -10,9 +10,9 @@ const App = () => {
         <>
             <NavBar />
             <Switch>
-                {routes.map(({ path, component }) => (
+                {routes.map(({ path, component }, routeIndex) => (
                     <Route
-                        key={`route-${path}`}
+                        key={`route-${routeIndex}`}
                         path={path}
                         component={component}
                     />

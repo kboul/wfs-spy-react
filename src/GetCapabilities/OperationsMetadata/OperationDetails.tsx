@@ -2,10 +2,10 @@ import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
-import { IOperationsTable } from './models';
+import { IOperationsDetails } from './models';
 import consts from './constants';
 
-const OperationsTable: FC<IOperationsTable> = ({ operations }) => {
+const OperationsDetails: FC<IOperationsDetails> = ({ operations }) => {
     const { state } = useContext(Context);
     const operationsLength = Object.keys(operations).length;
 
@@ -40,4 +40,4 @@ const OperationsTable: FC<IOperationsTable> = ({ operations }) => {
     ) : null;
 };
 
-export default OperationsTable;
+export default OperationsDetails;

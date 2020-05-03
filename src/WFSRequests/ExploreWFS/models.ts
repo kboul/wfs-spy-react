@@ -1,10 +1,3 @@
-interface IValues {
-    url: string;
-    version: string;
-    request: string;
-    valueRefer: string;
-}
-
 interface IWfsResponse {
     data: string;
     status: number;
@@ -14,10 +7,6 @@ interface IWfsResponse {
     request: Object;
 }
 
-interface IErrors {
-    url?: string;
-}
-
 interface IColors {
     white: string;
     lightPurple: string;
@@ -25,4 +14,4 @@ interface IColors {
 
 interface IExploreWFS {}
 
-export type { IValues, IExploreWFS, IWfsResponse, IErrors, IColors };
+export type { IExploreWFS, IWfsResponse, IColors };

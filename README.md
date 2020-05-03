@@ -1,6 +1,8 @@
-# Wfs Spy
+# WFS Spy
 
-WFS Spy is a client application which extracts Web Feature Service (WFS). WFS information extraction is achieved by querying the service itself and those queries follow Open Geospatial Consortium's (OGC) standards. It is aimed to provide a generic approach to cover as many WFS as possible and bridge gaps between existing service variations.
+WFS Spy is a client application which extracts Web Feature Services' (WFS) metadata. It was developed in 2015 and was my master thesis project in the department of Geodesy & Geoinformation Science at the Techical University of Berlin (TU Berlin) using an old JS stack (jquery, es5, css, no css framework). This is an approach to rewrite the application using a modern JS stack (React, Typescript, Bootstrap, SASS, npm) and make it also mobile friendly.
+
+WFS information extraction is achieved by querying the service itself and those queries follow Open Geospatial Consortium's (OGC) standards. It was aimed to provide a generic approach to cover as many WFS as possible and bridge gaps between existing service variations.
 
 These variations can be further branched and be found not only in different WFS versions but within one version as well. In order to keep the effort on a reasonable level, it was decided to support versions 2.0.x, thus 2.0.0 and 2.0.2, which are the latest and currently widely used. A large number of services that support versions 2.0.x support also versions 1.x, thus 1.0.0 and 1.1.0, therefore the application can be addressed to them as well. However, there are older services which support only 1.x versions. In that case, meta information cannot currently be extracted for them.
 

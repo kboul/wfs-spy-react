@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react';
 import Context from '../../context';
 import { Col } from 'reactstrap';
 import Panel from '../../shared/Panel';
-import ServiceProviderTable from './ServiceProviderTable';
+import ProviderDetails from './ProviderDetails';
 import { parseXML, extractProvider } from '../../shared/wfsMetadata';
 import { IServiceProvider } from './models';
 import consts from './constants';
@@ -20,7 +20,7 @@ const ServiceProvider: FC<IServiceProvider> = () => {
             <Panel
                 header={consts.providerHeader}
                 title={consts.providerTitle}
-                content={<ServiceProviderTable provider={provider} />}
+                content={<ProviderDetails provider={provider} />}
             />
         </Col>
     );

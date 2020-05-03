@@ -1,5 +1,7 @@
 import { IState, IAction } from './models';
 import types from './types';
+import initialState from './initialState';
+import consts from './constants';
 
 const reducer = (state: IState, action: IAction) => {
     switch (action.type) {
@@ -14,11 +16,20 @@ const reducer = (state: IState, action: IAction) => {
         case types.SET_TYPENAMES:
             return { ...state, typenames: action.payload };
         case types.SET_WFS_REQUEST:
-            return { ...state, wfsRequest: action.payload };
+            if (!state.url) {
+                const errors = { ...state.errors };
+                errors.url = consts.urlValidation;
+                return { ...state, wfsRequest: '', errors };
+            }
+            const errors = { ...state.errors };
+            errors.url = '';
+            return { ...state, wfsRequest: action.payload, errors };
         case types.SET_WFS_RESPONSE:
             return { ...state, wfsResponse: action.payload };
         case types.SET_GET_CAP_RESPONSE:
             return { ...state, getCapResponse: action.payload };
+        case types.RESET:
+            return initialState;
         default:
             return state;
     }

@@ -1,56 +1,61 @@
 import { IOperations, IProvider, IFuncs } from './models';
+import { tags } from './constants';
+
+const replaceOws = (expression: string) => expression.replace('ows:', '');
 
 const parseXML = (response: string): XMLDocument => {
     const parser = new DOMParser();
     return parser.parseFromString(response, 'text/xml');
 };
 
-const extractTypenames = (data: string): string[] => {
-    const typenames = ['---'];
-    const typenamesTags = parseXML(data).querySelectorAll('Name');
+const extractTypenames = (data: string) => {
+    const typenamesTags = parseXML(data).querySelectorAll(tags.featureTypeName);
+    const typenames: string[] = ['---'];
+
     if (typenamesTags) {
-        typenamesTags.forEach((tag: any) => typenames.push(tag.textContent));
+        typenamesTags.forEach(tag => {
+            if (tag && tag.textContent) typenames.push(tag.textContent);
+        });
     }
 
     return typenames;
 };
 
-const extractTitle = (wfsResponse: XMLDocument): string | null | undefined => {
-    const title = wfsResponse.querySelector('Title')?.textContent;
-    if (title) return title;
+const extractTitle = (wfsResponse: XMLDocument) => {
+    const titleTag = wfsResponse.querySelector(tags.title);
+    let title: string = '';
+    if (titleTag && titleTag?.textContent) title = titleTag.textContent;
 
-    const allTitles = wfsResponse.querySelectorAll('Title');
-    if (allTitles) {
-        let title;
-        Array.from(allTitles).forEach(t => {
-            if (t.textContent !== '') title = t.textContent;
+    const titleTags = wfsResponse.querySelectorAll(tags.title);
+    if (titleTags) {
+        Array.from(titleTags).forEach(titleItem => {
+            if (titleItem && titleItem.textContent)
+                return (title = titleItem.textContent);
         });
-        return title;
     }
 
-    return '';
+    return title;
 };
 
-const extractAbstract = (
-    wfsResponse: XMLDocument
-): string | null | undefined => {
-    const abstract = wfsResponse.querySelector('Abstract')?.textContent;
-    if (abstract) return abstract;
+const extractAbstract = (wfsResponse: XMLDocument) => {
+    const abstractTag = wfsResponse.querySelector(tags.abstract);
+    let abstract: string | null = '';
+    if (abstractTag && abstractTag.textContent)
+        abstract = abstractTag.textContent;
 
-    const allAbstracts = wfsResponse.querySelectorAll('Abstract');
-    if (allAbstracts) {
-        let abstract;
-        Array.from(allAbstracts).forEach(t => {
-            if (t.textContent !== '') abstract = t.textContent;
+    const abstractTags = wfsResponse.querySelectorAll(tags.abstract);
+    if (abstractTags) {
+        Array.from(abstractTags).forEach(abstrItem => {
+            if (abstrItem && abstrItem.textContent)
+                return (abstract = abstrItem.textContent);
         });
-        return abstract;
     }
 
-    return '';
+    return abstract;
 };
 
 const extractKeywords = (wfsResponse: XMLDocument) => {
-    const keywordsTag = wfsResponse.querySelector('Keywords');
+    const keywordsTag = wfsResponse.querySelector(tags.keywords);
     const keywords: string[] = [];
 
     if (keywordsTag?.children) {
@@ -64,19 +69,42 @@ const extractKeywords = (wfsResponse: XMLDocument) => {
     return keywords;
 };
 
-const extractAcceptVersions = (wfsResponse: XMLDocument): string[] => {
-    const acceptVersionTag = wfsResponse.querySelector(
-        '[name="AcceptVersions"]'
+const extractServiceId = (wfsResponse: XMLDocument) => {
+    const title = extractTitle(wfsResponse);
+    const abstract = extractAbstract(wfsResponse);
+    const keywords = extractKeywords(wfsResponse);
+
+    const serviceTypeTag = wfsResponse.querySelector(tags.serviceType);
+    const serviceTypeVersionTag = wfsResponse.querySelector(
+        tags.serviceTypeVersion
     );
+    const feesTag = wfsResponse.querySelector(tags.fees);
+    const accessConstraintsTag = wfsResponse.querySelector(
+        tags.accessConstraints
+    );
+
+    return {
+        [tags.title]: title || '-',
+        [tags.abstract]: abstract || '-',
+        [tags.keywords]: keywords.join(', ') || '-',
+        [tags.serviceType]: serviceTypeTag?.textContent || '-',
+        [tags.serviceTypeVersion]: serviceTypeVersionTag?.textContent || '-',
+        [tags.fees]: feesTag?.textContent || '-',
+        [tags.accessConstraints]: accessConstraintsTag?.textContent || '-'
+    };
+};
+
+const extractAcceptVersions = (wfsResponse: XMLDocument) => {
+    const acceptVersionsTag = wfsResponse.querySelector(tags.acceptVersions);
     const acceptVersions: string[] = [];
 
-    const acceptVersionChildren = acceptVersionTag?.children[0]?.children;
+    const acceptVersionChildren = acceptVersionsTag?.children[0]?.children;
     if (acceptVersionChildren) {
         Array.from(acceptVersionChildren).forEach((child: any) =>
             acceptVersions.push(child.textContent)
         );
     } else {
-        const acceptVersionOneChild = acceptVersionTag?.children;
+        const acceptVersionOneChild = acceptVersionsTag?.children;
         if (acceptVersionOneChild) {
             Array.from(acceptVersionOneChild).forEach((child: any) =>
                 acceptVersions.push(child.textContent)
@@ -88,121 +116,123 @@ const extractAcceptVersions = (wfsResponse: XMLDocument): string[] => {
 };
 
 const extractProvider = (wfsResponse: XMLDocument): IProvider => {
-    const providerName = wfsResponse.querySelector('ProviderName');
-    const serviceContact = wfsResponse.querySelector('ServiceContact');
+    const providerNameTag = wfsResponse.querySelector(tags.providerName);
+    const serviceContactTag = wfsResponse.querySelector(tags.serviceContact);
     const providerNames: string[] = [];
     const providerValues: string[] = [];
 
-    if (providerName?.textContent && serviceContact?.textContent) {
-        if (!providerName?.textContent && !serviceContact?.textContent)
+    if (providerNameTag?.textContent && serviceContactTag?.textContent) {
+        if (!providerNameTag?.textContent && !serviceContactTag?.textContent)
             return { providerNames: [], providerValues: [] };
 
-        const serviceProvider = wfsResponse.querySelector('ServiceProvider');
-        if (serviceProvider && serviceProvider.children) {
-            Array.from(serviceProvider.children).forEach(servProvItem => {
+        const serviceProviderTag = wfsResponse.querySelector(
+            tags.serviceProvider
+        );
+        if (serviceProviderTag && serviceProviderTag.children) {
+            Array.from(serviceProviderTag.children).forEach(servProvItem => {
                 const providerSite = servProvItem.getAttribute('xlink:href');
                 if (servProvItem) {
                     if (
                         servProvItem.textContent &&
-                        servProvItem.textContent !== '' &&
                         !servProvItem.children.length
                     ) {
-                        providerNames.push(
-                            servProvItem.tagName.replace('ows:', '')
-                        );
+                        providerNames.push(replaceOws(servProvItem.tagName));
                         providerValues.push(servProvItem.textContent);
                     } else if (!servProvItem.children.length && providerSite) {
-                        providerNames.push(
-                            servProvItem.tagName.replace('ows:', '')
-                        );
+                        providerNames.push(replaceOws(servProvItem.tagName));
                         providerValues.push(providerSite);
                     }
                 }
             });
 
-            const serviceContact = wfsResponse.querySelector('ServiceContact');
-            if (serviceContact && serviceContact.children) {
-                Array.from(serviceContact?.children).forEach(servContItem => {
-                    const servContItemChildrenLength =
-                        servContItem.children.length;
+            const serviceContactTag = wfsResponse.querySelector(
+                tags.serviceContact
+            );
+            if (serviceContactTag && serviceContactTag.children) {
+                Array.from(serviceContactTag?.children).forEach(
+                    servContItem => {
+                        const servContItemChildrenLength =
+                            servContItem.children.length;
 
-                    if (servContItem) {
-                        if (
-                            servContItem.textContent &&
-                            servContItem.textContent !== '' &&
-                            !servContItemChildrenLength
-                        ) {
-                            providerNames.push(
-                                servContItem.tagName.replace('ows:', '')
-                            );
-                            providerValues.push(servContItem.textContent);
-                        }
-                        if (servContItemChildrenLength) {
-                            Array.from(servContItem.children).forEach(
-                                servContItem1stChildItem => {
-                                    const onlineResource = servContItem1stChildItem.getAttribute(
-                                        'xlink:href'
-                                    );
-                                    if (servContItem1stChildItem) {
-                                        if (
-                                            servContItem1stChildItem.textContent &&
-                                            !servContItem1stChildItem.children
-                                                .length
-                                        ) {
-                                            providerNames.push(
-                                                servContItem1stChildItem.tagName.replace(
-                                                    'ows:',
-                                                    ''
-                                                )
-                                            );
-                                            providerValues.push(
-                                                servContItem1stChildItem.textContent
-                                            );
-                                        }
-                                        if (
-                                            !servContItem1stChildItem.children
-                                                .length &&
-                                            onlineResource
-                                        ) {
-                                            providerNames.push(
-                                                servContItem1stChildItem.tagName.replace(
-                                                    'ows:',
-                                                    ''
-                                                )
-                                            );
-                                            providerValues.push(onlineResource);
-                                        }
-                                        if (
-                                            servContItem1stChildItem.children
-                                                .length
-                                        ) {
-                                            Array.from(
-                                                servContItem1stChildItem.children
-                                            ).forEach(
-                                                servContItem2ndChildItem => {
-                                                    if (
-                                                        servContItem2ndChildItem &&
-                                                        servContItem2ndChildItem.textContent
-                                                    ) {
-                                                        providerNames.push(
-                                                            servContItem2ndChildItem.tagName.replace(
-                                                                'ows:',
-                                                                ''
-                                                            )
-                                                        );
-                                                        providerValues.push(
+                        if (servContItem) {
+                            if (
+                                servContItem.textContent &&
+                                !servContItemChildrenLength
+                            ) {
+                                providerNames.push(
+                                    replaceOws(servContItem.tagName)
+                                );
+                                providerValues.push(servContItem.textContent);
+                            }
+                            if (servContItemChildrenLength) {
+                                Array.from(servContItem.children).forEach(
+                                    servContItem1stChildItem => {
+                                        const onlineResource = servContItem1stChildItem.getAttribute(
+                                            'xlink:href'
+                                        );
+                                        if (servContItem1stChildItem) {
+                                            if (
+                                                servContItem1stChildItem.textContent &&
+                                                !servContItem1stChildItem
+                                                    .children.length
+                                            ) {
+                                                providerNames.push(
+                                                    servContItem1stChildItem.tagName.replace(
+                                                        'ows:',
+                                                        ''
+                                                    )
+                                                );
+                                                providerValues.push(
+                                                    servContItem1stChildItem.textContent
+                                                );
+                                            }
+                                            if (
+                                                !servContItem1stChildItem
+                                                    .children.length &&
+                                                onlineResource
+                                            ) {
+                                                providerNames.push(
+                                                    servContItem1stChildItem.tagName.replace(
+                                                        'ows:',
+                                                        ''
+                                                    )
+                                                );
+                                                providerValues.push(
+                                                    onlineResource
+                                                );
+                                            }
+                                            if (
+                                                servContItem1stChildItem
+                                                    .children.length
+                                            ) {
+                                                Array.from(
+                                                    servContItem1stChildItem.children
+                                                ).forEach(
+                                                    servContItem2ndChildItem => {
+                                                        if (
+                                                            servContItem2ndChildItem &&
                                                             servContItem2ndChildItem.textContent
-                                                        );
+                                                        ) {
+                                                            providerNames.push(
+                                                                servContItem2ndChildItem.tagName.replace(
+                                                                    'ows:',
+                                                                    ''
+                                                                )
+                                                            );
+                                                            providerValues.push(
+                                                                servContItem2ndChildItem.textContent
+                                                            );
+                                                        }
                                                     }
-                                                }
-                                            );
+                                                );
+                                            }
                                         }
                                     }
-                                }
-                            );
+                                );
+                            }
                         }
                     }
-                });
+                );
             }
         }
     }
@@ -213,15 +243,17 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
     };
 };
 
-const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
-    const operationsMetadata = wfsResponse.querySelectorAll('Operation');
+const etxractOperations = (wfsResponse: XMLDocument) => {
+    const operationTags = wfsResponse.querySelectorAll(tags.operation);
     const operations: IOperations = {};
     const checkMark = '✓';
     const xMark = '✘';
 
-    if (operationsMetadata) {
-        Array.from(operationsMetadata).forEach(operation => {
-            const operationMethod = operation.getAttribute('name');
+    if (operationTags) {
+        Array.from(operationTags).forEach(operation => {
+            const operationMethod = operation.getAttribute(
+                tags.operationMethod
+            );
             if (
                 operation &&
                 operationMethod &&
@@ -269,17 +301,57 @@ const etxractOperations = (wfsResponse: XMLDocument): IOperations => {
     return operations;
 };
 
-const extractFilterCap = (
-    wfsResponse: XMLDocument,
-    operator: string
-): string[] => {
-    const operand = wfsResponse.querySelectorAll(operator);
+const extractFeatureTypeList = (wfsResponse: XMLDocument) => {
+    const featureTypeTags = wfsResponse.querySelectorAll(tags.featureType);
+    const names: string[] = [];
+    const titles: string[] = [];
+    const abstracts: string[] = [];
+    const defaultCRS: string[] = [];
+    const lowerCorner: string[] = [];
+    const upperCorner: string[] = [];
+
+    const feature = (tagName: string, arrayToStore: string[]) => {
+        const tag = wfsResponse.querySelectorAll(tagName);
+        tag.forEach((tagItem, index) => {
+            if (tagItem && tagItem.textContent) {
+                if ([tags.title, tags.abstract].includes(tagName)) {
+                    if (index > 0) arrayToStore.push(tagItem.textContent);
+                } else arrayToStore.push(tagItem.textContent);
+            }
+        });
+    };
+
+    if (featureTypeTags && featureTypeTags.length) {
+        feature(tags.featureTypeName, names);
+        feature(tags.abstract, abstracts);
+        feature(tags.title, titles);
+        feature(tags.defaultCRS, defaultCRS);
+        feature(tags.lowerCorner, lowerCorner);
+        feature(tags.upperCorner, upperCorner);
+    }
+
+    return {
+        names,
+        titles,
+        abstracts,
+        defaultCRS,
+        lowerCorner,
+        upperCorner
+    };
+};
+
+const extractFilterCap = (wfsResponse: XMLDocument, operator: string) => {
+    const operatorTags = wfsResponse.querySelectorAll(operator);
     const operands: string[] = [];
-    if (operand && operand.length) {
-        operand.forEach(operandItem => {
-            const operItemAttr = operandItem.attributes;
-            if (operItemAttr && operItemAttr[0] && operItemAttr[0].nodeValue) {
-                operands.push(operItemAttr[0].nodeValue);
+    if (operatorTags && operatorTags.length) {
+        operatorTags.forEach(operItem => {
+            const operItemAttr = operItem.attributes;
+            if (
+                operItemAttr &&
+                operItemAttr[0] &&
+                operItemAttr[0].textContent
+            ) {
+                operands.push(operItemAttr[0].textContent);
             }
         });
     }
@@ -287,12 +359,12 @@ const extractFilterCap = (
     return operands;
 };
 
-const extractFunctions = (wfsResponse: XMLDocument): IFuncs[] => {
-    const functionTag = wfsResponse.querySelectorAll('Function');
+const extractFunctions = (wfsResponse: XMLDocument) => {
+    const functionTags = wfsResponse.querySelectorAll(tags.function);
     let functions: IFuncs[] = [];
 
-    if (functionTag) {
-        Array.from(functionTag).forEach(funItem => {
+    if (functionTags) {
+        Array.from(functionTags).forEach(funItem => {
             if (
                 funItem &&
                 funItem.attributes[0] &&
@@ -338,12 +410,11 @@ const extractFunctions = (wfsResponse: XMLDocument): IFuncs[] => {
 export {
     parseXML,
     extractTypenames,
-    extractTitle,
-    extractAbstract,
-    extractKeywords,
+    extractServiceId,
     extractAcceptVersions,
     extractProvider,
     etxractOperations,
+    extractFeatureTypeList,
     extractFilterCap,
     extractFunctions
 };

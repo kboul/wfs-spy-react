@@ -10,4 +10,26 @@ const totalItems: string = 'Total Items:';
 
 const noOperation = 'This WFS service does not provide ';
 
-export { versions, requests, totalItems, noOperation };
+const tags = {
+    featureTypeName: 'Name',
+    title: 'Title',
+    abstract: 'Abstract',
+    defaultCRS: 'DefaultCRS',
+    lowerCorner: 'LowerCorner',
+    upperCorner: 'UpperCorner',
+    serviceType: 'ServiceType',
+    serviceTypeVersion: 'ServiceTypeVersion',
+    fees: 'Fees',
+    accessConstraints: 'AccessConstraints',
+    keywords: 'Keywords',
+    acceptVersions: '[name="AcceptVersions"]',
+    providerName: 'ProviderName',
+    serviceContact: 'ServiceContact',
+    serviceProvider: 'ServiceProvider',
+    operation: 'Operation',
+    operationMethod: 'name',
+    featureType: 'FeatureType',
+    function: 'Function'
+};
+
+export { versions, requests, totalItems, noOperation, tags };

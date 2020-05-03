@@ -6,8 +6,8 @@ interface IAcceptVersions {
     versions: string[];
 }
 
-interface IOperationsTable {
+interface IOperationsDetails {
     operations: IOperations;
 }
 
-export type { IOperationsMetadata, IAcceptVersions, IOperationsTable };
+export type { IOperationsMetadata, IAcceptVersions, IOperationsDetails };

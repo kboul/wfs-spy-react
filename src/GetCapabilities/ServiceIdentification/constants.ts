@@ -1,22 +1,15 @@
 import { noOperation } from '../../shared/constants';
 
-const title = 'Title';
-const abstract = 'Abstract';
-const keywords = 'Keywords';
+const serviceId = 'Service Identification';
 
 export default {
-    header: 'Service Identification',
+    header: serviceId,
     descr: `
         Contains basic header information for the request such as the Title and ServiceType. 
+        The ServiceType indicates which version(s) of WFS are supported. 
     `,
-    titleHeader: title,
-    titleTitle: 'Provides information for the WFS title',
-    abstractHeader: abstract,
-    abstractTitle: 'Provides an abstract for the selected WFS',
-    keywordsHeader: keywords,
-    keywordsTitle: 'Provides keywords for the selected WFS',
-    keywordsStr: 'The selected WFS service has the keywords ',
-    noTitle: `${noOperation} ${title}.`,
-    noAbstract: `${noOperation} ${abstract}.`,
-    noKeywords: `${noOperation} ${keywords}.`
+    serviceIdHeader: serviceId,
+    serviceIdTitle:
+        'Lists information regarding Title, Abstract, Keywords, ServiceType, ServiceTypeVersion, Fees & AccessConstraints',
+    noServiceId: `${noOperation} ${serviceId} information.`
 };

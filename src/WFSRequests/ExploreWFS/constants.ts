@@ -4,15 +4,15 @@ const consts = {
     header: 'Service and Feature Description',
     url: 'url',
     version: 'version',
-    request: 'request',
+    requestOperation: 'request',
     service: 'service',
     typename: 'typeName',
     valueRefer: 'valueReference',
     sortBy: 'sortBy',
     formWfsRequest: 'Form WFS Request:',
     responseMetadata: 'Response - Metadata & Corresponding operations:',
-    Request: 'Request',
-    Response: 'Response'
+    request: 'Request',
+    response: 'Response'
 };
 
 const colors: IColors = {

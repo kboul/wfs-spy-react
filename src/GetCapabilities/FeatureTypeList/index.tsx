@@ -1,10 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Col } from 'reactstrap';
+import Context from '../../context';
 import Panel from '../../shared/Panel';
-import IFeatureTypeList from './model';
+import FeatureDetails from './FeatureDetails';
+import { IFeatureTypeList } from './models';
+import { extractFeatureTypeList, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
 const FeatureTypeList: FC<IFeatureTypeList> = () => {
+    const { state } = useContext(Context);
+    const wfsResponse = parseXML(state.getCapResponse);
+    const features = extractFeatureTypeList(wfsResponse);
+
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>
@@ -13,7 +20,7 @@ const FeatureTypeList: FC<IFeatureTypeList> = () => {
             <Panel
                 header={consts.featTypeListHeader}
                 title={consts.featTypeListText}
-                content=""
+                content={<FeatureDetails features={features} />}
             />
         </Col>
     );

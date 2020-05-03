@@ -1,14 +1,5 @@
-import { IValues, IErrors } from './models';
 import { requests } from '../../shared/constants';
 import { IState } from '../../context/models';
-
-const validateForm = (values: IValues): IErrors => {
-    const errors: IErrors = {};
-    if (values.url === '') {
-        errors.url = 'Url is required';
-    }
-    return errors;
-};
 
 const adjustProxyToUrl = (url: string): string => {
     return `${process.env.REACT_APP_PROXY_URL}${url}`;
@@ -38,4 +29,4 @@ const formWfsRequest = (state: IState): string => {
     }
 };
 
-export { validateForm, adjustProxyToUrl, formWfsRequest };
+export { adjustProxyToUrl, formWfsRequest };

@@ -1,15 +1,27 @@
 interface IServiceIdentification {}
 
 interface ITitle {
-    title: string | null | undefined;
+    title: string | undefined;
 }
 
 interface IAbstract {
-    abstract: string | null | undefined;
+    abstract: string | undefined;
 }
 
 interface IKeywords {
     keywords: string[];
 }
 
-export type { IServiceIdentification, ITitle, IAbstract, IKeywords };
+interface IServiceIdDetails {
+    serviceId: {
+        [x: string]: string;
+    };
+}
+
+export type {
+    IServiceIdentification,
+    ITitle,
+    IAbstract,
+    IKeywords,
+    IServiceIdDetails
+};

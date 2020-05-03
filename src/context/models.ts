@@ -15,6 +15,9 @@ interface IState {
     wfsResponse: string;
     getCapResponse: string;
     sortBy: string;
+    errors: {
+        url?: string;
+    };
 }
 
 interface IAction {
