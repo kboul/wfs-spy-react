@@ -14,10 +14,15 @@ interface IState {
     wfsRequest: string;
     wfsResponse: string;
     getCapResponse: string;
+    descFeatTypeResp: string;
     sortBy: string;
     errors: {
         url?: string;
     };
+    getGetCapTime: number;
+    getGetCapNumber: number;
+    getDescFeatTypeTime: number;
+    getDescFeatTypeNumber: number;
 }
 
 interface IAction {

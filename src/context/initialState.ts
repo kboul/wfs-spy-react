@@ -10,6 +10,11 @@ export default {
     wfsRequest: '',
     wfsResponse: '',
     getCapResponse: '',
+    descFeatTypeResp: '',
     sortBy: 'ASC',
-    errors: {}
+    errors: {},
+    getGetCapTime: 0,
+    getGetCapNumber: 0,
+    getDescFeatTypeTime: 0,
+    getDescFeatTypeNumber: 0
 };

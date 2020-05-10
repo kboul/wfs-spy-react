@@ -21,13 +21,20 @@ const setWfsResponse = (payload: string) => ({
     payload
 });
 
-const setTypenames = (payload: string[]) => ({
-    type: types.SET_TYPENAMES,
+const setGetCapResp = (payload: {
+    getCapResponse: string;
+    typenames: string[];
+    getGetCapTime: number;
+}) => ({
+    type: types.SET_GET_CAP_RESPONSE,
     payload
 });
 
-const setGetCapResponse = (payload: string) => ({
-    type: types.SET_GET_CAP_RESPONSE,
+const setDescFeatTypeResp = (payload: {
+    descFeatTypeResp: string;
+    getDescFeatTypeTime: number;
+}) => ({
+    type: types.SET_DESC_FEAT_TYPE_RESP,
     payload
 });
 
@@ -40,7 +47,7 @@ export {
     setTypename,
     setWfsRequest,
     setWfsResponse,
-    setTypenames,
-    setGetCapResponse,
+    setGetCapResp,
+    setDescFeatTypeResp,
     reset
 };

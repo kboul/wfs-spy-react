@@ -100,15 +100,17 @@ const extractAcceptVersions = (getCapResponse: XMLDocument) => {
 
     const acceptVersionChildren = acceptVersionsTag?.children[0]?.children;
     if (acceptVersionChildren) {
-        Array.from(acceptVersionChildren).forEach((child: any) =>
-            acceptVersions.push(child.textContent)
-        );
+        Array.from(acceptVersionChildren).forEach(child => {
+            if (child && child.textContent)
+                acceptVersions.push(child.textContent);
+        });
     } else {
         const acceptVersionOneChild = acceptVersionsTag?.children;
         if (acceptVersionOneChild) {
-            Array.from(acceptVersionOneChild).forEach((child: any) =>
-                acceptVersions.push(child.textContent)
-            );
+            Array.from(acceptVersionOneChild).forEach(child => {
+                if (child && child.textContent)
+                    acceptVersions.push(child.textContent);
+            });
         }
     }
 
