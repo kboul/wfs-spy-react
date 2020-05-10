@@ -21,12 +21,12 @@ const extractTypenames = (data: string) => {
     return typenames;
 };
 
-const extractTitle = (wfsResponse: XMLDocument) => {
-    const titleTag = wfsResponse.querySelector(tags.title);
+const extractTitle = (getCapResponse: XMLDocument) => {
+    const titleTag = getCapResponse.querySelector(tags.title);
     let title: string = '';
     if (titleTag && titleTag?.textContent) title = titleTag.textContent;
 
-    const titleTags = wfsResponse.querySelectorAll(tags.title);
+    const titleTags = getCapResponse.querySelectorAll(tags.title);
     if (titleTags) {
         Array.from(titleTags).forEach(titleItem => {
             if (titleItem && titleItem.textContent)
@@ -37,13 +37,13 @@ const extractTitle = (wfsResponse: XMLDocument) => {
     return title;
 };
 
-const extractAbstract = (wfsResponse: XMLDocument) => {
-    const abstractTag = wfsResponse.querySelector(tags.abstract);
+const extractAbstract = (getCapResponse: XMLDocument) => {
+    const abstractTag = getCapResponse.querySelector(tags.abstract);
     let abstract: string | null = '';
     if (abstractTag && abstractTag.textContent)
         abstract = abstractTag.textContent;
 
-    const abstractTags = wfsResponse.querySelectorAll(tags.abstract);
+    const abstractTags = getCapResponse.querySelectorAll(tags.abstract);
     if (abstractTags) {
         Array.from(abstractTags).forEach(abstrItem => {
             if (abstrItem && abstrItem.textContent)
@@ -54,8 +54,8 @@ const extractAbstract = (wfsResponse: XMLDocument) => {
     return abstract;
 };
 
-const extractKeywords = (wfsResponse: XMLDocument) => {
-    const keywordsTag = wfsResponse.querySelector(tags.keywords);
+const extractKeywords = (getCapResponse: XMLDocument) => {
+    const keywordsTag = getCapResponse.querySelector(tags.keywords);
     const keywords: string[] = [];
 
     if (keywordsTag?.children) {
@@ -69,17 +69,17 @@ const extractKeywords = (wfsResponse: XMLDocument) => {
     return keywords;
 };
 
-const extractServiceId = (wfsResponse: XMLDocument) => {
-    const title = extractTitle(wfsResponse);
-    const abstract = extractAbstract(wfsResponse);
-    const keywords = extractKeywords(wfsResponse);
+const extractServiceId = (getCapResponse: XMLDocument) => {
+    const title = extractTitle(getCapResponse);
+    const abstract = extractAbstract(getCapResponse);
+    const keywords = extractKeywords(getCapResponse);
 
-    const serviceTypeTag = wfsResponse.querySelector(tags.serviceType);
-    const serviceTypeVersionTag = wfsResponse.querySelector(
+    const serviceTypeTag = getCapResponse.querySelector(tags.serviceType);
+    const serviceTypeVersionTag = getCapResponse.querySelector(
         tags.serviceTypeVersion
     );
-    const feesTag = wfsResponse.querySelector(tags.fees);
-    const accessConstraintsTag = wfsResponse.querySelector(
+    const feesTag = getCapResponse.querySelector(tags.fees);
+    const accessConstraintsTag = getCapResponse.querySelector(
         tags.accessConstraints
     );
 
@@ -94,8 +94,8 @@ const extractServiceId = (wfsResponse: XMLDocument) => {
     };
 };
 
-const extractAcceptVersions = (wfsResponse: XMLDocument) => {
-    const acceptVersionsTag = wfsResponse.querySelector(tags.acceptVersions);
+const extractAcceptVersions = (getCapResponse: XMLDocument) => {
+    const acceptVersionsTag = getCapResponse.querySelector(tags.acceptVersions);
     const acceptVersions: string[] = [];
 
     const acceptVersionChildren = acceptVersionsTag?.children[0]?.children;
@@ -115,9 +115,9 @@ const extractAcceptVersions = (wfsResponse: XMLDocument) => {
     return acceptVersions;
 };
 
-const extractProvider = (wfsResponse: XMLDocument): IProvider => {
-    const providerNameTag = wfsResponse.querySelector(tags.providerName);
-    const serviceContactTag = wfsResponse.querySelector(tags.serviceContact);
+const extractProvider = (getCapResponse: XMLDocument): IProvider => {
+    const providerNameTag = getCapResponse.querySelector(tags.providerName);
+    const serviceContactTag = getCapResponse.querySelector(tags.serviceContact);
     const providerNames: string[] = [];
     const providerValues: string[] = [];
 
@@ -125,7 +125,7 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
         if (!providerNameTag?.textContent && !serviceContactTag?.textContent)
             return { providerNames: [], providerValues: [] };
 
-        const serviceProviderTag = wfsResponse.querySelector(
+        const serviceProviderTag = getCapResponse.querySelector(
             tags.serviceProvider
         );
         if (serviceProviderTag && serviceProviderTag.children) {
@@ -145,7 +145,7 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
                 }
             });
 
-            const serviceContactTag = wfsResponse.querySelector(
+            const serviceContactTag = getCapResponse.querySelector(
                 tags.serviceContact
             );
             if (serviceContactTag && serviceContactTag.children) {
@@ -243,8 +243,8 @@ const extractProvider = (wfsResponse: XMLDocument): IProvider => {
     };
 };
 
-const etxractOperations = (wfsResponse: XMLDocument) => {
-    const operationTags = wfsResponse.querySelectorAll(tags.operation);
+const etxractOperations = (getCapResponse: XMLDocument) => {
+    const operationTags = getCapResponse.querySelectorAll(tags.operation);
     const operations: IOperations = {};
     const checkMark = '✓';
     const xMark = '✘';
@@ -301,8 +301,8 @@ const etxractOperations = (wfsResponse: XMLDocument) => {
     return operations;
 };
 
-const extractFeatureTypeList = (wfsResponse: XMLDocument) => {
-    const featureTypeTags = wfsResponse.querySelectorAll(tags.featureType);
+const extractFeatureTypeList = (getCapResponse: XMLDocument) => {
+    const featureTypeTags = getCapResponse.querySelectorAll(tags.featureType);
     const names: string[] = [];
     const titles: string[] = [];
     const abstracts: string[] = [];
@@ -311,7 +311,7 @@ const extractFeatureTypeList = (wfsResponse: XMLDocument) => {
     const upperCorner: string[] = [];
 
     const feature = (tagName: string, arrayToStore: string[]) => {
-        const tag = wfsResponse.querySelectorAll(tagName);
+        const tag = getCapResponse.querySelectorAll(tagName);
         tag.forEach((tagItem, index) => {
             if (tagItem && tagItem.textContent) {
                 if ([tags.title, tags.abstract].includes(tagName)) {
@@ -340,8 +340,8 @@ const extractFeatureTypeList = (wfsResponse: XMLDocument) => {
     };
 };
 
-const extractFilterCap = (wfsResponse: XMLDocument, operator: string) => {
-    const operatorTags = wfsResponse.querySelectorAll(operator);
+const extractFilterCap = (getCapResponse: XMLDocument, operator: string) => {
+    const operatorTags = getCapResponse.querySelectorAll(operator);
     const operands: string[] = [];
     if (operatorTags && operatorTags.length) {
         operatorTags.forEach(operItem => {
@@ -359,8 +359,8 @@ const extractFilterCap = (wfsResponse: XMLDocument, operator: string) => {
     return operands;
 };
 
-const extractFunctions = (wfsResponse: XMLDocument) => {
-    const functionTags = wfsResponse.querySelectorAll(tags.function);
+const extractFunctions = (getCapResponse: XMLDocument) => {
+    const functionTags = getCapResponse.querySelectorAll(tags.function);
     let functions: IFuncs[] = [];
 
     if (functionTags) {

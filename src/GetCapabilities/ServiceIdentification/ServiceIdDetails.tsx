@@ -2,6 +2,7 @@ import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
+import { splitStrOnUpperCase } from '../../shared/utils';
 import { IServiceIdDetails } from './models';
 import consts from './constants';
 
@@ -17,9 +18,9 @@ const ServiceIdDetails: FC<IServiceIdDetails> = ({ serviceId }) => {
                     className="table-striped text-center table-borderless">
                     <tbody>
                         {Object.entries(serviceId).map(
-                            ([serviceName, serviceValue], serviceIndex) => (
-                                <tr key={serviceIndex}>
-                                    <th>{serviceName}</th>
+                            ([serviceName, serviceValue], index) => (
+                                <tr key={`service-details-${index}`}>
+                                    <th>{splitStrOnUpperCase(serviceName)}</th>
                                     <td>{serviceValue}</td>
                                 </tr>
                             )

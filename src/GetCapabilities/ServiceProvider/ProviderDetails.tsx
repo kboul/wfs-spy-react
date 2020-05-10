@@ -17,10 +17,10 @@ const ProviderDetails: FC<IProviderDetails> = ({ provider }) => {
                 responsive
                 className="table-striped text-center table-borderless">
                 <tbody>
-                    {providerNames.map((name, nameIndex) => (
-                        <tr key={nameIndex}>
+                    {providerNames.map((name, index) => (
+                        <tr key={`provider-details-${index}`}>
                             <th>{formalProviderName(name)}</th>
-                            <td>{providerValues[nameIndex]}</td>
+                            <td>{providerValues[index]}</td>
                         </tr>
                     ))}
                 </tbody>

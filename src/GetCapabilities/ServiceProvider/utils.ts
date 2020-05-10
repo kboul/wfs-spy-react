@@ -1,8 +1,9 @@
 import consts from './constants';
+import { splitStrOnUpperCase } from '../../shared/utils';
 
-const formalProviderName = (wordWithCaps: string): string => {
-    const splitWord = wordWithCaps.split(/(?=[A-Z])/).join(' ');
-    switch (splitWord) {
+const formalProviderName = (strOnUpperCase: string): string => {
+    const splittedString = splitStrOnUpperCase(strOnUpperCase);
+    switch (splittedString) {
         case consts.voice:
             return consts.telephone;
         case consts.facsimile:
@@ -10,7 +11,7 @@ const formalProviderName = (wordWithCaps: string): string => {
         case consts.electrMailAddress:
             return consts.email;
         default:
-            return splitWord;
+            return splittedString;
     }
 };
 

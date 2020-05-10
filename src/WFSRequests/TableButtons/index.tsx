@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Table, Button } from 'reactstrap';
-import ITableButtons from './ITableButtons';
+import ITableButtons from './model';
 import consts from './constants';
 import styles from './index.module.sass';
 

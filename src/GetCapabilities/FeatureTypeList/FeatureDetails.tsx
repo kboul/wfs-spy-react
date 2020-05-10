@@ -5,6 +5,7 @@ import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
 import { IFeatureDetails } from './models';
 import { checkAbstractLength } from './utils';
+import { splitStrOnUpperCase } from '../../shared/utils';
 import { tags } from '../../shared/constants';
 import consts from './constants';
 
@@ -31,9 +32,9 @@ const FeatureDetails: FC<IFeatureDetails> = ({ features }) => {
                         <th>{tags.title}</th>
                         <th>{tags.featureTypeName}</th>
                         <th>{tags.abstract}</th>
-                        <th>{tags.defaultCRS}</th>
-                        <th>{tags.lowerCorner}</th>
-                        <th>{tags.upperCorner}</th>
+                        <th>{splitStrOnUpperCase(tags.defaultCRS)}</th>
+                        <th>{splitStrOnUpperCase(tags.lowerCorner)}</th>
+                        <th>{splitStrOnUpperCase(tags.upperCorner)}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +78,6 @@ const FeatureDetails: FC<IFeatureDetails> = ({ features }) => {
                         })}
                 </tbody>
             </Table>
-
             {featuresLength > 10 && (
                 <TablePagination
                     currentPage={currentPage}
