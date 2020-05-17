@@ -1,14 +1,28 @@
-import { IOperations, IProvider, IFuncs } from './models';
+import {
+    IOperations,
+    IProvider,
+    IFuncs,
+    IServiceId,
+    IFeatureTypes,
+    IAttrNamesTypes
+} from './models';
 import { tags } from './constants';
 
-const replaceOws = (expression: string) => expression.replace('ows:', '');
+const replaceOws = (expression: string): string => {
+    if (!expression) return '';
+    return expression.replace('ows:', '');
+};
 
 const parseXML = (response: string): XMLDocument => {
     const parser = new DOMParser();
+
+    if (!response) return parser.parseFromString('', 'text/xml');
     return parser.parseFromString(response, 'text/xml');
 };
 
-const extractTypenames = (data: string) => {
+const extractTypenames = (data: string): string[] => {
+    if (!data) return [];
+
     const typenamesTags = parseXML(data).querySelectorAll(tags.featureTypeName);
     const typenames: string[] = ['---'];
 
@@ -21,12 +35,14 @@ const extractTypenames = (data: string) => {
     return typenames;
 };
 
-const extractTitle = (getCapResponse: XMLDocument) => {
-    const titleTag = getCapResponse.querySelector(tags.title);
+const extractTitle = (getCapResp: XMLDocument): string => {
+    if (!getCapResp) return '';
+
+    const titleTag = getCapResp.querySelector(tags.title);
     let title: string = '';
     if (titleTag && titleTag?.textContent) title = titleTag.textContent;
 
-    const titleTags = getCapResponse.querySelectorAll(tags.title);
+    const titleTags = getCapResp.querySelectorAll(tags.title);
     if (titleTags) {
         Array.from(titleTags).forEach(titleItem => {
             if (titleItem && titleItem.textContent)
@@ -37,25 +53,29 @@ const extractTitle = (getCapResponse: XMLDocument) => {
     return title;
 };
 
-const extractAbstract = (getCapResponse: XMLDocument) => {
-    const abstractTag = getCapResponse.querySelector(tags.abstract);
+const extractAbstract = (getCapResp: XMLDocument): string => {
+    if (!getCapResp) return '';
+
+    const abstractTag = getCapResp.querySelector(tags.abstract);
     let abstract: string | null = '';
     if (abstractTag && abstractTag.textContent)
         abstract = abstractTag.textContent;
 
-    const abstractTags = getCapResponse.querySelectorAll(tags.abstract);
+    const abstractTags = getCapResp.querySelectorAll(tags.abstract);
     if (abstractTags) {
-        Array.from(abstractTags).forEach(abstrItem => {
-            if (abstrItem && abstrItem.textContent)
-                return (abstract = abstrItem.textContent);
+        Array.from(abstractTags).forEach(abstractItem => {
+            if (abstractItem && abstractItem.textContent)
+                return (abstract = abstractItem.textContent);
         });
     }
 
     return abstract;
 };
 
-const extractKeywords = (getCapResponse: XMLDocument) => {
-    const keywordsTag = getCapResponse.querySelector(tags.keywords);
+const extractKeywords = (getCapResp: XMLDocument): string[] => {
+    if (!getCapResp) return [];
+
+    const keywordsTag = getCapResp.querySelector(tags.keywords);
     const keywords: string[] = [];
 
     if (keywordsTag?.children) {
@@ -69,17 +89,19 @@ const extractKeywords = (getCapResponse: XMLDocument) => {
     return keywords;
 };
 
-const extractServiceId = (getCapResponse: XMLDocument) => {
-    const title = extractTitle(getCapResponse);
-    const abstract = extractAbstract(getCapResponse);
-    const keywords = extractKeywords(getCapResponse);
+const extractServiceId = (getCapResp: XMLDocument): IServiceId => {
+    if (!getCapResp) return {};
 
-    const serviceTypeTag = getCapResponse.querySelector(tags.serviceType);
-    const serviceTypeVersionTag = getCapResponse.querySelector(
+    const title = extractTitle(getCapResp);
+    const abstract = extractAbstract(getCapResp);
+    const keywords = extractKeywords(getCapResp);
+
+    const serviceTypeTag = getCapResp.querySelector(tags.serviceType);
+    const serviceTypeVersionTag = getCapResp.querySelector(
         tags.serviceTypeVersion
     );
-    const feesTag = getCapResponse.querySelector(tags.fees);
-    const accessConstraintsTag = getCapResponse.querySelector(
+    const feesTag = getCapResp.querySelector(tags.fees);
+    const accessConstraintsTag = getCapResp.querySelector(
         tags.accessConstraints
     );
 
@@ -94,8 +116,10 @@ const extractServiceId = (getCapResponse: XMLDocument) => {
     };
 };
 
-const extractAcceptVersions = (getCapResponse: XMLDocument) => {
-    const acceptVersionsTag = getCapResponse.querySelector(tags.acceptVersions);
+const extractAcceptVersions = (getCapResp: XMLDocument): string[] => {
+    if (!getCapResp) return [];
+
+    const acceptVersionsTag = getCapResp.querySelector(tags.acceptVersions);
     const acceptVersions: string[] = [];
 
     const acceptVersionChildren = acceptVersionsTag?.children[0]?.children;
@@ -117,9 +141,9 @@ const extractAcceptVersions = (getCapResponse: XMLDocument) => {
     return acceptVersions;
 };
 
-const extractProvider = (getCapResponse: XMLDocument): IProvider => {
-    const providerNameTag = getCapResponse.querySelector(tags.providerName);
-    const serviceContactTag = getCapResponse.querySelector(tags.serviceContact);
+const extractProvider = (getCapResp: XMLDocument): IProvider => {
+    const providerNameTag = getCapResp.querySelector(tags.providerName);
+    const serviceContactTag = getCapResp.querySelector(tags.serviceContact);
     const providerNames: string[] = [];
     const providerValues: string[] = [];
 
@@ -127,12 +151,12 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
         if (!providerNameTag?.textContent && !serviceContactTag?.textContent)
             return { providerNames: [], providerValues: [] };
 
-        const serviceProviderTag = getCapResponse.querySelector(
+        const serviceProviderTag = getCapResp.querySelector(
             tags.serviceProvider
         );
         if (serviceProviderTag && serviceProviderTag.children) {
             Array.from(serviceProviderTag.children).forEach(servProvItem => {
-                const providerSite = servProvItem.getAttribute('xlink:href');
+                const providerSite = servProvItem.getAttribute(tags.xLinkHRef);
                 if (servProvItem) {
                     if (
                         servProvItem.textContent &&
@@ -147,7 +171,7 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
                 }
             });
 
-            const serviceContactTag = getCapResponse.querySelector(
+            const serviceContactTag = getCapResp.querySelector(
                 tags.serviceContact
             );
             if (serviceContactTag && serviceContactTag.children) {
@@ -170,7 +194,7 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
                                 Array.from(servContItem.children).forEach(
                                     servContItem1stChildItem => {
                                         const onlineResource = servContItem1stChildItem.getAttribute(
-                                            'xlink:href'
+                                            tags.xLinkHRef
                                         );
                                         if (servContItem1stChildItem) {
                                             if (
@@ -179,9 +203,8 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
                                                     .children.length
                                             ) {
                                                 providerNames.push(
-                                                    servContItem1stChildItem.tagName.replace(
-                                                        'ows:',
-                                                        ''
+                                                    replaceOws(
+                                                        servContItem1stChildItem.tagName
                                                     )
                                                 );
                                                 providerValues.push(
@@ -194,9 +217,8 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
                                                 onlineResource
                                             ) {
                                                 providerNames.push(
-                                                    servContItem1stChildItem.tagName.replace(
-                                                        'ows:',
-                                                        ''
+                                                    replaceOws(
+                                                        servContItem1stChildItem.tagName
                                                     )
                                                 );
                                                 providerValues.push(
@@ -216,9 +238,8 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
                                                             servContItem2ndChildItem.textContent
                                                         ) {
                                                             providerNames.push(
-                                                                servContItem2ndChildItem.tagName.replace(
-                                                                    'ows:',
-                                                                    ''
+                                                                replaceOws(
+                                                                    servContItem2ndChildItem.tagName
                                                                 )
                                                             );
                                                             providerValues.push(
@@ -245,8 +266,10 @@ const extractProvider = (getCapResponse: XMLDocument): IProvider => {
     };
 };
 
-const etxractOperations = (getCapResponse: XMLDocument) => {
-    const operationTags = getCapResponse.querySelectorAll(tags.operation);
+const etxractOperations = (getCapResp: XMLDocument): IOperations => {
+    if (!getCapResp) return {};
+
+    const operationTags = getCapResp.querySelectorAll(tags.operation);
     const operations: IOperations = {};
     const checkMark = '✓';
     const xMark = '✘';
@@ -303,17 +326,22 @@ const etxractOperations = (getCapResponse: XMLDocument) => {
     return operations;
 };
 
-const extractFeatureTypeList = (getCapResponse: XMLDocument) => {
-    const featureTypeTags = getCapResponse.querySelectorAll(tags.featureType);
-    const names: string[] = [];
-    const titles: string[] = [];
-    const abstracts: string[] = [];
-    const defaultCRS: string[] = [];
-    const lowerCorner: string[] = [];
-    const upperCorner: string[] = [];
+const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes => {
+    const featureTypes = {
+        names: [],
+        titles: [],
+        abstracts: [],
+        defaultCRS: [],
+        lowerCorner: [],
+        upperCorner: []
+    };
+
+    if (!getCapResp) return featureTypes;
+
+    const featureTypeTags = getCapResp.querySelectorAll(tags.featureType);
 
     const feature = (tagName: string, arrayToStore: string[]) => {
-        const tag = getCapResponse.querySelectorAll(tagName);
+        const tag = getCapResp.querySelectorAll(tagName);
         tag.forEach((tagItem, index) => {
             if (tagItem && tagItem.textContent) {
                 if ([tags.title, tags.abstract].includes(tagName)) {
@@ -324,26 +352,24 @@ const extractFeatureTypeList = (getCapResponse: XMLDocument) => {
     };
 
     if (featureTypeTags && featureTypeTags.length) {
-        feature(tags.featureTypeName, names);
-        feature(tags.abstract, abstracts);
-        feature(tags.title, titles);
-        feature(tags.defaultCRS, defaultCRS);
-        feature(tags.lowerCorner, lowerCorner);
-        feature(tags.upperCorner, upperCorner);
+        feature(tags.featureTypeName, featureTypes.names);
+        feature(tags.abstract, featureTypes.abstracts);
+        feature(tags.title, featureTypes.titles);
+        feature(tags.defaultCRS, featureTypes.defaultCRS);
+        feature(tags.lowerCorner, featureTypes.lowerCorner);
+        feature(tags.upperCorner, featureTypes.upperCorner);
     }
 
-    return {
-        names,
-        titles,
-        abstracts,
-        defaultCRS,
-        lowerCorner,
-        upperCorner
-    };
+    return featureTypes;
 };
 
-const extractFilterCap = (getCapResponse: XMLDocument, operator: string) => {
-    const operatorTags = getCapResponse.querySelectorAll(operator);
+const extractFilterCap = (
+    getCapResp: XMLDocument,
+    operator: string
+): string[] => {
+    if (!getCapResp) return [];
+
+    const operatorTags = getCapResp.querySelectorAll(operator);
     const operands: string[] = [];
     if (operatorTags && operatorTags.length) {
         operatorTags.forEach(operItem => {
@@ -361,8 +387,10 @@ const extractFilterCap = (getCapResponse: XMLDocument, operator: string) => {
     return operands;
 };
 
-const extractFunctions = (getCapResponse: XMLDocument) => {
-    const functionTags = getCapResponse.querySelectorAll(tags.function);
+const extractFunctions = (getCapResp: XMLDocument): IFuncs[] => {
+    if (!getCapResp) return [];
+
+    const functionTags = getCapResp.querySelectorAll(tags.function);
     let functions: IFuncs[] = [];
 
     if (functionTags) {
@@ -409,6 +437,66 @@ const extractFunctions = (getCapResponse: XMLDocument) => {
     return functions;
 };
 
+const extractAttrNamesTypes = (
+    descFeatTypeResp: XMLDocument
+): IAttrNamesTypes => {
+    const valueReferences: IAttrNamesTypes = {
+        names: {},
+        types: {}
+    };
+
+    if (!descFeatTypeResp) return valueReferences;
+
+    const complexTypeTags = descFeatTypeResp.querySelectorAll(tags.complexType);
+    const sequenceTags = descFeatTypeResp.querySelectorAll(tags.sequence);
+
+    if (complexTypeTags.length > 0) {
+        complexTypeTags.forEach((complexType, complexTypeIndex) => {
+            const complexTypeAttrName = complexType.getAttribute(tags.name);
+            if (complexType && complexTypeAttrName) {
+                valueReferences.names[complexTypeAttrName] = new Array(
+                    sequenceTags[complexTypeIndex].children.length
+                );
+
+                valueReferences.types[complexTypeAttrName] = new Array(
+                    sequenceTags[complexTypeIndex].children.length
+                );
+
+                const sequenceTagsChildren =
+                    sequenceTags[complexTypeIndex].children;
+
+                if (sequenceTags && sequenceTagsChildren) {
+                    Array.from(sequenceTagsChildren).forEach(
+                        (sequence, sequenceIndex) => {
+                            if (
+                                sequence &&
+                                complexType &&
+                                complexTypeAttrName
+                            ) {
+                                // Store attribute names as an asscociative array
+                                valueReferences.names[complexTypeAttrName][
+                                    sequenceIndex
+                                ] = sequenceTagsChildren[
+                                    sequenceIndex
+                                ].getAttribute(tags.name);
+
+                                // Store attribute types as an asscociative array
+                                valueReferences.types[complexTypeAttrName][
+                                    sequenceIndex
+                                ] = sequenceTagsChildren[
+                                    sequenceIndex
+                                ].getAttribute(tags.type);
+                            }
+                        }
+                    );
+                }
+            }
+        });
+    }
+
+    return valueReferences;
+};
+
 export {
     parseXML,
     extractTypenames,
@@ -416,7 +504,8 @@ export {
     extractAcceptVersions,
     extractProvider,
     etxractOperations,
-    extractFeatureTypeList,
+    extractFeatureTypes,
     extractFilterCap,
-    extractFunctions
+    extractFunctions,
+    extractAttrNamesTypes
 };

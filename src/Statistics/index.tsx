@@ -27,7 +27,7 @@ const Statistics: FC<IStatistics> = () => {
     }, [state.getGetCapNumber, state.getDescFeatTypeNumber]);
 
     useEffect(() => {
-        if (!state.getCapResponse) return;
+        if (!state.getCapResp) return;
 
         setTimeOpts(prevState => {
             const options = { ...prevState };
@@ -35,7 +35,7 @@ const Statistics: FC<IStatistics> = () => {
             series[0].data = [state.getGetCapTime];
             return options;
         });
-    }, [state.getCapResponse, state.getGetCapTime]);
+    }, [state.getCapResp, state.getGetCapTime]);
 
     useEffect(() => {
         if (!state.descFeatTypeResp) return;
@@ -49,7 +49,7 @@ const Statistics: FC<IStatistics> = () => {
     }, [state.descFeatTypeResp, state.getDescFeatTypeTime]);
 
     useEffect(() => {
-        if (!state.getCapResponse && !state.descFeatTypeResp) return;
+        if (!state.getCapResp && !state.descFeatTypeResp) return;
 
         setRequestsOpts(prevState => {
             const options = { ...prevState };
@@ -62,7 +62,7 @@ const Statistics: FC<IStatistics> = () => {
             return options;
         });
     }, [
-        state.getCapResponse,
+        state.getCapResp,
         state.descFeatTypeResp,
         state.getGetCapTime,
         state.getGetCapNumber,
@@ -78,7 +78,7 @@ const Statistics: FC<IStatistics> = () => {
                 header={consts.respTimeHeader}
                 title={consts.respTimeDescr}
                 content={
-                    state.getCapResponse && (
+                    state.getCapResp && (
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={timeOpts}
@@ -90,7 +90,7 @@ const Statistics: FC<IStatistics> = () => {
                 header={consts.reqTimeHeader}
                 title={consts.reqTimeDescr}
                 content={
-                    state.getCapResponse && (
+                    state.getCapResp && (
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={requestsOpts}

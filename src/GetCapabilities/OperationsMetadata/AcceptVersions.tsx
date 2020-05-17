@@ -19,7 +19,7 @@ const AcceptVersions: FC<IAcceptVersions> = ({ versions }) => {
                         {versionIndex === lastVersion && '.'}
                     </span>
                 ))
-            ) : state.getCapResponse && !versions.length ? (
+            ) : state.getCapResp && !versions.length ? (
                 <b>{consts.noAcceptVersions}</b>
             ) : null}
         </>

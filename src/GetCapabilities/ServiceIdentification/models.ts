@@ -1,3 +1,5 @@
+import { IServiceId } from '../../shared/models';
+
 interface IServiceIdentification {}
 
 interface ITitle {
@@ -13,9 +15,7 @@ interface IKeywords {
 }
 
 interface IServiceIdDetails {
-    serviceId: {
-        [x: string]: string;
-    };
+    serviceId: IServiceId;
 }
 
 export type {

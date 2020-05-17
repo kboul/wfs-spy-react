@@ -11,7 +11,7 @@ const ServiceIdDetails: FC<IServiceIdDetails> = ({ serviceId }) => {
     const serviceIdLength = Object.keys(serviceId).length;
 
     return serviceIdLength ? (
-        state.getCapResponse && (
+        state.getCapResp && (
             <>
                 <Table
                     responsive
@@ -30,7 +30,7 @@ const ServiceIdDetails: FC<IServiceIdDetails> = ({ serviceId }) => {
                 <TotalItems numberOfItems={serviceIdLength} />
             </>
         )
-    ) : state.getCapResponse && !serviceIdLength ? (
+    ) : state.getCapResp && !serviceIdLength ? (
         <b>{consts.noServiceId}</b>
     ) : null;
 };

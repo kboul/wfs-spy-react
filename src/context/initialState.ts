@@ -9,7 +9,7 @@ export default {
     typenames: [],
     wfsRequest: '',
     wfsResponse: '',
-    getCapResponse: '',
+    getCapResp: '',
     descFeatTypeResp: '',
     sortBy: 'ASC',
     errors: {},

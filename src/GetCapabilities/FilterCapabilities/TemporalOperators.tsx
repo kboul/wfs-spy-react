@@ -23,7 +23,7 @@ const TemporalOperators: FC<ITemporalOperators> = ({ tempOperators }) => {
             </Table>
             <TotalItems numberOfItems={tempOperatorsLength} />
         </>
-    ) : state.getCapResponse && !tempOperatorsLength ? (
+    ) : state.getCapResp && !tempOperatorsLength ? (
         <b>{consts.noTempOperators}</b>
     ) : null;
 };

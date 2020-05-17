@@ -21,4 +21,30 @@ interface IRoutes {
     component: FC;
 }
 
-export type { IProvider, IOperations, IFuncs, IRoutes };
+interface IServiceId {
+    [serviceIdTag: string]: string;
+}
+
+interface IFeatureTypes {
+    names: string[];
+    titles: string[];
+    abstracts: string[];
+    defaultCRS: string[];
+    lowerCorner: string[];
+    upperCorner: string[];
+}
+
+interface IAttrNamesTypes {
+    names: { [complexType: string]: string[] | any };
+    types: { [complexType: string]: string[] | any };
+}
+
+export type {
+    IProvider,
+    IOperations,
+    IFuncs,
+    IRoutes,
+    IServiceId,
+    IFeatureTypes,
+    IAttrNamesTypes
+};

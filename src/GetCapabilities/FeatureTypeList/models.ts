@@ -1,14 +1,8 @@
+import { IFeatureTypes } from '../../shared/models';
 interface IFeatureTypeList {}
 
 interface IFeatureDetails {
-    features: {
-        names: string[];
-        titles: string[];
-        abstracts: string[];
-        defaultCRS: string[];
-        lowerCorner: string[];
-        upperCorner: string[];
-    };
+    features: IFeatureTypes;
 }
 
 export type { IFeatureTypeList, IFeatureDetails };

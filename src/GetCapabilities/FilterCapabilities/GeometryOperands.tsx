@@ -23,7 +23,7 @@ const GeometryOperands: FC<IGeometryOperands> = ({ geomOper }) => {
             </Table>
             <TotalItems numberOfItems={geomOperLength} />
         </>
-    ) : state.getCapResponse && !geomOperLength ? (
+    ) : state.getCapResp && !geomOperLength ? (
         <b>{consts.noGeomOper}</b>
     ) : null;
 };

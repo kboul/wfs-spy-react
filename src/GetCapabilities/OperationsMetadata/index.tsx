@@ -14,9 +14,9 @@ import consts from './constants';
 
 const OperationsMetadata: FC<IOperationsMetadata> = () => {
     const { state } = useContext(Context);
-    const wfsResponse = parseXML(state.getCapResponse);
-    const acceptVersions = extractAcceptVersions(wfsResponse);
-    const operations = etxractOperations(wfsResponse);
+    const getCapResp = parseXML(state.getCapResp);
+    const acceptVersions = extractAcceptVersions(getCapResp);
+    const operations = etxractOperations(getCapResp);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">

@@ -87,7 +87,7 @@ const FeatureDetails: FC<IFeatureDetails> = ({ features }) => {
             )}
             <TotalItems numberOfItems={featuresLength} />
         </>
-    ) : state.getCapResponse && !featuresLength ? (
+    ) : state.getCapResp && !featuresLength ? (
         <b>{consts.noFeatures}</b>
     ) : null;
 };

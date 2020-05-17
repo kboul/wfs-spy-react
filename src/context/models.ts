@@ -13,7 +13,7 @@ interface IState {
     typenames: string[];
     wfsRequest: string;
     wfsResponse: string;
-    getCapResponse: string;
+    getCapResp: string;
     descFeatTypeResp: string;
     sortBy: string;
     errors: {

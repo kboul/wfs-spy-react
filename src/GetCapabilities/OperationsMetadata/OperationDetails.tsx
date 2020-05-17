@@ -35,7 +35,7 @@ const OperationsDetails: FC<IOperationsDetails> = ({ operations }) => {
             </Table>
             <TotalItems numberOfItems={operationsLength} />
         </>
-    ) : state.getCapResponse && !operationsLength ? (
+    ) : state.getCapResp && !operationsLength ? (
         <b>{consts.noOperation}</b>
     ) : null;
 };

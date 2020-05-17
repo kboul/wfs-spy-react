@@ -23,7 +23,7 @@ const ComparisonOperators: FC<IComparisonOperators> = ({ compOper }) => {
             </Table>
             <TotalItems numberOfItems={compOperLength} />
         </>
-    ) : state.getCapResponse && !compOperLength ? (
+    ) : state.getCapResp && !compOperLength ? (
         <b>{consts.noCompOper}</b>
     ) : null;
 };

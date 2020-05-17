@@ -23,7 +23,7 @@ const SpatialOperators: FC<ISpatialOperators> = ({ spatialOper }) => {
             </Table>
             <TotalItems numberOfItems={spatialOperLength} />
         </>
-    ) : state.getCapResponse && !spatialOperLength ? (
+    ) : state.getCapResp && !spatialOperLength ? (
         <b>{consts.noSpatialOper}</b>
     ) : null;
 };

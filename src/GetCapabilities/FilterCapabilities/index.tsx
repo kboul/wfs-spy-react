@@ -18,13 +18,13 @@ import Functions from './Functions';
 
 const FilterCapabilities: FC<IFilterCapabilities> = () => {
     const { state } = useContext(Context);
-    const wfsResponse = parseXML(state.getCapResponse);
-    const compOper = extractFilterCap(wfsResponse, 'ComparisonOperator');
-    const spatialOper = extractFilterCap(wfsResponse, 'SpatialOperator');
-    const geomOper = extractFilterCap(wfsResponse, 'GeometryOperand');
-    const tempOperands = extractFilterCap(wfsResponse, 'TemporalOperand');
-    const tempOperators = extractFilterCap(wfsResponse, 'TemporalOperator');
-    const functions = extractFunctions(wfsResponse);
+    const getCapResp = parseXML(state.getCapResp);
+    const compOper = extractFilterCap(getCapResp, 'ComparisonOperator');
+    const spatialOper = extractFilterCap(getCapResp, 'SpatialOperator');
+    const geomOper = extractFilterCap(getCapResp, 'GeometryOperand');
+    const tempOperands = extractFilterCap(getCapResp, 'TemporalOperand');
+    const tempOperators = extractFilterCap(getCapResp, 'TemporalOperator');
+    const functions = extractFunctions(getCapResp);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">

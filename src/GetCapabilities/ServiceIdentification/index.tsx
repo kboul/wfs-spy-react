@@ -9,7 +9,7 @@ import ServiceIdDetails from './ServiceIdDetails';
 
 const ServiceIdentification: FC<IServiceIdentification> = () => {
     const { state } = useContext(Context);
-    const wfsResponse = parseXML(state.getCapResponse);
+    const wfsResponse = parseXML(state.getCapResp);
     const serviceId = extractServiceId(wfsResponse);
 
     return (

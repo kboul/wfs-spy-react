@@ -8,7 +8,7 @@ const requests: string[] = [
 
 const totalItems: string = 'Total Items:';
 
-const noOperation = 'This WFS service does not provide ';
+const noOperation: string = 'This WFS service does not provide ';
 
 const tags = {
     featureTypeName: 'Name',
@@ -29,7 +29,12 @@ const tags = {
     operation: 'Operation',
     operationMethod: 'name',
     featureType: 'FeatureType',
-    function: 'Function'
+    function: 'Function',
+    complexType: 'complexType',
+    sequence: 'sequence',
+    xLinkHRef: 'xlink:href',
+    name: 'name',
+    type: 'type'
 };
 
 export { versions, requests, totalItems, noOperation, tags };

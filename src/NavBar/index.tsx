@@ -29,9 +29,10 @@ const NavBar: FC<INavBar> = () => {
     const resetStyle = { cursor: 'pointer' };
 
     const toggle = () => setIsOpen(!isOpen);
+    const doReset = () => dispatch(reset());
 
     return (
-        <Navbar className="navbar-dark bg-dark" expand="md">
+        <Navbar className="navbar-dark bg-dark" expand="md" sticky="top">
             <NavbarBrand tag={Link} to={mainRoutes[0].path}>
                 {appTitle}
             </NavbarBrand>
@@ -65,9 +66,7 @@ const NavBar: FC<INavBar> = () => {
                             )
                     )}
                     <NavItem>
-                        <NavLink
-                            style={resetStyle}
-                            onClick={() => dispatch(reset())}>
+                        <NavLink style={resetStyle} onClick={doReset}>
                             Reset
                         </NavLink>
                     </NavItem>

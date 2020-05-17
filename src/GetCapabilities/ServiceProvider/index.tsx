@@ -9,8 +9,8 @@ import consts from './constants';
 
 const ServiceProvider: FC<IServiceProvider> = () => {
     const { state } = useContext(Context);
-    const wfsResponse = parseXML(state.getCapResponse);
-    const provider = extractProvider(wfsResponse);
+    const getCapResp = parseXML(state.getCapResp);
+    const provider = extractProvider(getCapResp);
 
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">

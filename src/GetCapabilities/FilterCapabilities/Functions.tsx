@@ -53,7 +53,7 @@ const Functions: FC<IFunctions> = ({ functions }) => {
             />
             <TotalItems numberOfItems={functionsLength} />
         </>
-    ) : state.getCapResponse && !functionsLength ? (
+    ) : state.getCapResp && !functionsLength ? (
         <b>{consts.noFunctions}</b>
     ) : null;
 };

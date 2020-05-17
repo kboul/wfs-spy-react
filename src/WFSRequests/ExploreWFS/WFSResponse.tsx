@@ -31,7 +31,7 @@ const WFSResponse: FC = () => {
                     case requests[0]:
                         dispatch(
                             setGetCapResp({
-                                getCapResponse: data,
+                                getCapResp: data,
                                 typenames: extractTypenames(data),
                                 getGetCapTime: time
                             })
@@ -69,7 +69,7 @@ const WFSResponse: FC = () => {
                     hasModal
                     onClick={getResponse}
                     initialState={!state.wfsRequest}
-                    isGetRequest={!state.getCapResponse}
+                    isGetRequest={!state.getCapResp}
                 />
             </Col>
         </FormGroup>

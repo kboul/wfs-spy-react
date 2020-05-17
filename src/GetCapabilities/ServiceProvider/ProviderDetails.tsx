@@ -27,7 +27,7 @@ const ProviderDetails: FC<IProviderDetails> = ({ provider }) => {
             </Table>
             <TotalItems numberOfItems={providerNames.length} />
         </>
-    ) : state.getCapResponse && !hasProvider ? (
+    ) : state.getCapResp && !hasProvider ? (
         <b>{consts.noProvider}</b>
     ) : null;
 };
