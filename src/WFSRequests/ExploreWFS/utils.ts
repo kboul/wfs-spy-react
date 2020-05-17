@@ -29,4 +29,7 @@ const formWfsRequest = (state: IState): string => {
     }
 };
 
-export { adjustProxyToUrl, formWfsRequest };
+const selectedTypename = (typename: string): string =>
+    `${typename.split(':')[1]}Type`;
+
+export { adjustProxyToUrl, formWfsRequest, selectedTypename };

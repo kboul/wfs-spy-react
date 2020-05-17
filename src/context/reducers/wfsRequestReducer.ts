@@ -7,7 +7,6 @@ const wfsRequestReducer = (state: IState, action: IAction) => {
         errors.url = consts.urlValidation;
         return { ...state, wfsRequest: '', errors };
     }
-    errors.url = '';
     return {
         ...state,
         wfsRequest: action.payload,

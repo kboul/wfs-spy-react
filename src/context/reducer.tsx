@@ -16,6 +16,8 @@ const reducer = (state: IState, action: IAction) => {
             return requestReducer(state, action);
         case types.SET_TYPENAME:
             return { ...state, typename: action.payload };
+        case types.SET_VALUE_REFERENCE:
+            return { ...state, valueReference: action.payload };
         case types.SET_WFS_REQUEST:
             return wfsRequestReducer(state, action);
         case types.SET_WFS_RESPONSE:

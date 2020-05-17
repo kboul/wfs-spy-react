@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IAttrNamesTypes } from '../shared/models';
 
 interface IProvider {
     children: ReactNode;
@@ -11,6 +12,8 @@ interface IState {
     service: string;
     typename: string;
     typenames: string[];
+    valueReference: string;
+    valueReferences: IAttrNamesTypes;
     wfsRequest: string;
     wfsResponse: string;
     getCapResp: string;

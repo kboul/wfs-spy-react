@@ -7,12 +7,13 @@ const consts = {
     requestOperation: 'request',
     service: 'service',
     typename: 'typeName',
-    valueRefer: 'valueReference',
+    valueReference: 'valueReference',
     sortBy: 'sortBy',
     formWfsRequest: 'Form WFS Request:',
     responseMetadata: 'Response - Metadata & Corresponding operations:',
     request: 'Request',
-    response: 'Response'
+    response: 'Response',
+    processing: 'processing request...'
 };
 
 const colors: IColors = {

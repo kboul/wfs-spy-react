@@ -1,4 +1,5 @@
 import { versions, requests } from '../shared/constants';
+import consts from './constants';
 
 export default {
     url: '',
@@ -7,6 +8,8 @@ export default {
     service: 'WFS',
     typename: '',
     typenames: [],
+    valueReference: '',
+    valueReferences: consts.valueReferences,
     wfsRequest: '',
     wfsResponse: '',
     getCapResp: '',

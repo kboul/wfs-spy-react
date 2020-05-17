@@ -4,7 +4,7 @@ import Url from './Url';
 import Version from './Version';
 import Request from './Request';
 import Service from './Service';
-import Typenames from './Typenames';
+import Typename from './Typename';
 import ValueReference from './ValueReference';
 import SortBy from './SortBy';
 import WFSRequest from './WFSRequest';
@@ -23,7 +23,7 @@ const ExploreWFS: FC<IExploreWFS> = () => {
                 <Version />
                 <Request />
                 <Service />
-                <Typenames />
+                <Typename />
                 <ValueReference />
                 <SortBy />
                 <WFSRequest />

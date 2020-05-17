@@ -18,6 +18,11 @@ const setTypename = (payload: string): IAction => ({
     payload
 });
 
+const setValueReference = (payload?: string): IAction => ({
+    type: types.SET_VALUE_REFERENCE,
+    payload
+});
+
 const setWfsRequest = (payload: string): IAction => ({
     type: types.SET_WFS_REQUEST,
     payload
@@ -52,6 +57,7 @@ export {
     setVersion,
     setRequest,
     setTypename,
+    setValueReference,
     setWfsRequest,
     setWfsResponse,
     setGetCapResp,

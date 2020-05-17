@@ -19,6 +19,7 @@ const WFSResponse: FC = () => {
     const { state, dispatch } = useContext(Context);
 
     const getResponse = async () => {
+        dispatch(setWfsResponse(consts.processing));
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();

@@ -5,7 +5,7 @@ import { setTypename } from '../../context/actions';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const Typenames: FC = () => {
+const Typename: FC = () => {
     const { state, dispatch } = useContext(Context);
     return (
         <FormGroup row>
@@ -27,4 +27,4 @@ const Typenames: FC = () => {
     );
 };
 
-export default Typenames;
+export default Typename;
