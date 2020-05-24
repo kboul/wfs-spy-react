@@ -3,11 +3,13 @@ import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
-import { IFunctions } from './models';
+import { extractFunctions, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
-const Functions: FC<IFunctions> = ({ functions }) => {
+const Functions: FC = () => {
     const { state } = useContext(Context);
+    const getCapResp = parseXML(state.getCapResp);
+    const functions = extractFunctions(getCapResp);
     const functionsLength = functions.length;
 
     const pageSize = 10;
@@ -37,8 +39,8 @@ const Functions: FC<IFunctions> = ({ functions }) => {
                             currentPage * pageSize,
                             (currentPage + 1) * pageSize
                         )
-                        .map(({ name, returns, argsAndTypes }, funIndex) => (
-                            <tr key={funIndex}>
+                        .map(({ name, returns, argsAndTypes }, index) => (
+                            <tr key={`functions-${index}`}>
                                 <td>{name}</td>
                                 <td>{returns}</td>
                                 <td>{argsAndTypes?.join(', ')}</td>

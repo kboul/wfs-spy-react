@@ -26,12 +26,12 @@ interface IServiceId {
 }
 
 interface IFeatureTypes {
-    names: string[];
-    titles: string[];
-    abstracts: string[];
-    defaultCRS: string[];
-    lowerCorner: string[];
-    upperCorner: string[];
+    name?: string;
+    title?: string;
+    abstract?: string;
+    defaultCRS?: string;
+    lowerCorner?: string;
+    upperCorner?: string;
 }
 
 interface IAttrNamesTypes {

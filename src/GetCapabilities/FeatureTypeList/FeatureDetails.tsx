@@ -3,18 +3,20 @@ import { Table, UncontrolledTooltip } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
-import { IFeatureDetails } from './models';
+import { extractFeatureTypes, parseXML } from '../../shared/wfsMetadata';
 import { checkAbstractLength } from './utils';
 import { splitStrOnUpperCase } from '../../shared/utils';
 import { tags } from '../../shared/constants';
 import consts from './constants';
 
-const FeatureDetails: FC<IFeatureDetails> = ({ features }) => {
+const FeatureDetails: FC = () => {
     const { state } = useContext(Context);
-    const featuresLength = features.names.length;
+    const getCapResp = parseXML(state.getCapResp);
+    const features = extractFeatureTypes(getCapResp);
+    const featuresLength = features.length;
 
     const pageSize = 10;
-    const pagesCount = Math.ceil(features.names.length / pageSize);
+    const pagesCount = Math.ceil(featuresLength / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
     const onClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
@@ -38,44 +40,49 @@ const FeatureDetails: FC<IFeatureDetails> = ({ features }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {features.titles
+                    {features
                         .slice(
                             currentPage * pageSize,
                             (currentPage + 1) * pageSize
                         )
-                        .map((title, titleIndex) => {
-                            const {
-                                names,
-                                abstracts,
-                                defaultCRS,
-                                lowerCorner,
-                                upperCorner
-                            } = features;
-                            const abstract = abstracts[titleIndex];
-                            return (
-                                <tr key={titleIndex}>
-                                    <td>{title}</td>
-                                    <td>{names[titleIndex]}</td>
-                                    <td>
-                                        <span id={`tooltip-${titleIndex + 1}`}>
-                                            {checkAbstractLength(abstract)}
-                                        </span>
-                                    </td>
-                                    {abstract && (
-                                        <UncontrolledTooltip
-                                            placement="right"
-                                            target={`tooltip-${
-                                                titleIndex + 1
-                                            }`}>
-                                            {abstract}
-                                        </UncontrolledTooltip>
-                                    )}
-                                    <td>{defaultCRS[titleIndex]}</td>
-                                    <td>{lowerCorner[titleIndex]}</td>
-                                    <td>{upperCorner[titleIndex]}</td>
-                                </tr>
-                            );
-                        })}
+                        .map(
+                            (
+                                {
+                                    name,
+                                    title,
+                                    abstract,
+                                    defaultCRS,
+                                    lowerCorner,
+                                    upperCorner
+                                },
+                                index
+                            ) => {
+                                return (
+                                    <tr key={`feature-details-${index}`}>
+                                        <td>{title}</td>
+                                        <td>{name}</td>
+                                        <td>
+                                            <span id={`tooltip-${index + 1}`}>
+                                                {abstract &&
+                                                    checkAbstractLength(
+                                                        abstract
+                                                    )}
+                                            </span>
+                                        </td>
+                                        {abstract && (
+                                            <UncontrolledTooltip
+                                                placement="right"
+                                                target={`tooltip-${index + 1}`}>
+                                                {abstract}
+                                            </UncontrolledTooltip>
+                                        )}
+                                        <td>{defaultCRS}</td>
+                                        <td>{lowerCorner}</td>
+                                        <td>{upperCorner}</td>
+                                    </tr>
+                                );
+                            }
+                        )}
                 </tbody>
             </Table>
             {featuresLength > 10 && (

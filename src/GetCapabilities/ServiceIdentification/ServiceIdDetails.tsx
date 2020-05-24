@@ -2,12 +2,14 @@ import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
+import { parseXML, extractServiceId } from '../../shared/wfsMetadata';
 import { splitStrOnUpperCase } from '../../shared/utils';
-import { IServiceIdDetails } from './models';
 import consts from './constants';
 
-const ServiceIdDetails: FC<IServiceIdDetails> = ({ serviceId }) => {
+const ServiceIdDetails: FC = () => {
     const { state } = useContext(Context);
+    const wfsResponse = parseXML(state.getCapResp);
+    const serviceId = extractServiceId(wfsResponse);
     const serviceIdLength = Object.keys(serviceId).length;
 
     return serviceIdLength ? (

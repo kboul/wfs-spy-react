@@ -2,20 +2,23 @@ import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
-import { ITemporalOperands } from './models';
+import { extractFilterCap, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
-const TemporalOperands: FC<ITemporalOperands> = ({ tempOperands }) => {
+const TemporalOperands: FC = () => {
     const { state } = useContext(Context);
+    const getCapResp = parseXML(state.getCapResp);
+    const tempOperands = extractFilterCap(getCapResp, 'TemporalOperand');
     const tempOperandsLength = tempOperands.length;
+
     return tempOperandsLength ? (
         <>
             <Table
                 responsive
                 className="table-striped text-center table-borderless">
                 <tbody>
-                    {tempOperands.map((operand, operandIndex) => (
-                        <tr key={operandIndex}>
+                    {tempOperands.map((operand, index) => (
+                        <tr key={`temporal-operands-${index}`}>
                             <td>{operand}</td>
                         </tr>
                     ))}

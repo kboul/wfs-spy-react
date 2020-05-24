@@ -2,20 +2,23 @@ import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
-import { IComparisonOperators } from './models';
+import { extractFilterCap, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
-const ComparisonOperators: FC<IComparisonOperators> = ({ compOper }) => {
+const ComparisonOperators: FC = () => {
     const { state } = useContext(Context);
+    const getCapResp = parseXML(state.getCapResp);
+    const compOper = extractFilterCap(getCapResp, 'ComparisonOperator');
     const compOperLength = compOper.length;
+
     return compOperLength ? (
         <>
             <Table
                 responsive
                 className="table-striped text-center table-borderless">
                 <tbody>
-                    {compOper.map((operator, operatorIndex) => (
-                        <tr key={operatorIndex}>
+                    {compOper.map((operator, index) => (
+                        <tr key={`comparison-operators-${index}`}>
                             <td>{operator}</td>
                         </tr>
                     ))}

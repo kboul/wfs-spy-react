@@ -39,14 +39,15 @@ const extractTitle = (getCapResp: XMLDocument): string => {
     if (!getCapResp) return '';
 
     const titleTag = getCapResp.querySelector(tags.title);
-    let title: string = '';
-    if (titleTag && titleTag?.textContent) title = titleTag.textContent;
-
     const titleTags = getCapResp.querySelectorAll(tags.title);
-    if (titleTags) {
+    let title: string = '';
+
+    if (titleTag && titleTag?.textContent) {
+        title = titleTag.textContent;
+    } else if (titleTags) {
         Array.from(titleTags).forEach(titleItem => {
             if (titleItem && titleItem.textContent)
-                return (title = titleItem.textContent);
+                title = titleItem.textContent;
         });
     }
 
@@ -57,15 +58,15 @@ const extractAbstract = (getCapResp: XMLDocument): string => {
     if (!getCapResp) return '';
 
     const abstractTag = getCapResp.querySelector(tags.abstract);
-    let abstract: string | null = '';
-    if (abstractTag && abstractTag.textContent)
-        abstract = abstractTag.textContent;
-
     const abstractTags = getCapResp.querySelectorAll(tags.abstract);
-    if (abstractTags) {
+    let abstract: string = '';
+
+    if (abstractTag && abstractTag.textContent) {
+        abstract = abstractTag.textContent;
+    } else if (abstractTags) {
         Array.from(abstractTags).forEach(abstractItem => {
             if (abstractItem && abstractItem.textContent)
-                return (abstract = abstractItem.textContent);
+                abstract = abstractItem.textContent;
         });
     }
 
@@ -105,14 +106,16 @@ const extractServiceId = (getCapResp: XMLDocument): IServiceId => {
         tags.accessConstraints
     );
 
+    const empty = '-';
+
     return {
-        [tags.title]: title || '-',
-        [tags.abstract]: abstract || '-',
-        [tags.keywords]: keywords.join(', ') || '-',
-        [tags.serviceType]: serviceTypeTag?.textContent || '-',
-        [tags.serviceTypeVersion]: serviceTypeVersionTag?.textContent || '-',
-        [tags.fees]: feesTag?.textContent || '-',
-        [tags.accessConstraints]: accessConstraintsTag?.textContent || '-'
+        [tags.title]: title || empty,
+        [tags.abstract]: abstract || empty,
+        [tags.keywords]: keywords.join(', ') || empty,
+        [tags.serviceType]: serviceTypeTag?.textContent || empty,
+        [tags.serviceTypeVersion]: serviceTypeVersionTag?.textContent || empty,
+        [tags.fees]: feesTag?.textContent || empty,
+        [tags.accessConstraints]: accessConstraintsTag?.textContent || empty
     };
 };
 
@@ -326,38 +329,55 @@ const etxractOperations = (getCapResp: XMLDocument): IOperations => {
     return operations;
 };
 
-const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes => {
-    const featureTypes = {
-        names: [],
-        titles: [],
-        abstracts: [],
-        defaultCRS: [],
-        lowerCorner: [],
-        upperCorner: []
-    };
+const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
+    const featureTypes: IFeatureTypes[] = [];
 
     if (!getCapResp) return featureTypes;
 
     const featureTypeTags = getCapResp.querySelectorAll(tags.featureType);
-
-    const feature = (tagName: string, arrayToStore: string[]) => {
-        const tag = getCapResp.querySelectorAll(tagName);
-        tag.forEach((tagItem, index) => {
-            if (tagItem && tagItem.textContent) {
-                if ([tags.title, tags.abstract].includes(tagName)) {
-                    if (index > 0) arrayToStore.push(tagItem.textContent);
-                } else arrayToStore.push(tagItem.textContent);
+    if (featureTypeTags && featureTypeTags.length) {
+        featureTypeTags.forEach((featureType, index) => {
+            if (featureType) {
+                console.log(featureType);
+                const featName = featureType.querySelector(
+                    tags.featureTypeName
+                );
+                const featTitle = featureType.querySelector(tags.title);
+                const featAbstract = featureType.querySelector(tags.abstract);
+                const featDefaultCRS = featureType.querySelector(
+                    tags.defaultCRS
+                );
+                const featLowerCorner = featureType.querySelector(
+                    tags.lowerCorner
+                );
+                const featUpperCorner = featureType.querySelector(
+                    tags.upperCorner
+                );
+                if (
+                    featName &&
+                    featName.textContent &&
+                    featTitle &&
+                    featTitle?.textContent &&
+                    featAbstract &&
+                    featAbstract.textContent &&
+                    featDefaultCRS &&
+                    featDefaultCRS.textContent &&
+                    featLowerCorner &&
+                    featLowerCorner.textContent &&
+                    featUpperCorner &&
+                    featUpperCorner.textContent
+                ) {
+                    featureTypes.push({
+                        name: featName.textContent,
+                        title: featTitle.textContent,
+                        abstract: featAbstract.textContent,
+                        defaultCRS: featDefaultCRS.textContent,
+                        lowerCorner: featLowerCorner.textContent,
+                        upperCorner: featUpperCorner.textContent
+                    });
+                }
             }
         });
-    };
-
-    if (featureTypeTags && featureTypeTags.length) {
-        feature(tags.featureTypeName, featureTypes.names);
-        feature(tags.abstract, featureTypes.abstracts);
-        feature(tags.title, featureTypes.titles);
-        feature(tags.defaultCRS, featureTypes.defaultCRS);
-        feature(tags.lowerCorner, featureTypes.lowerCorner);
-        feature(tags.upperCorner, featureTypes.upperCorner);
     }
 
     return featureTypes;

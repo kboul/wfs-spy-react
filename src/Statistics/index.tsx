@@ -5,10 +5,10 @@ import HighchartsReact from 'highcharts-react-official';
 import Context from '../context';
 import Panel from '../shared/Panel';
 import chartOptions from './utils';
-import { IStatistics, IChartOpts } from './models';
+import { IChartOpts } from './models';
 import consts from './constants';
 
-const Statistics: FC<IStatistics> = () => {
+const Statistics: FC = () => {
     const { state } = useContext(Context);
     const [timeOpts, setTimeOpts] = useState<IChartOpts>(chartOptions('time'));
     const [requestsOpts, setRequestsOpts] = useState<IChartOpts>(

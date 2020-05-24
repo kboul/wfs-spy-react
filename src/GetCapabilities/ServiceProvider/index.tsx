@@ -1,17 +1,10 @@
-import React, { FC, useContext } from 'react';
-import Context from '../../context';
+import React, { FC } from 'react';
 import { Col } from 'reactstrap';
 import Panel from '../../shared/Panel';
 import ProviderDetails from './ProviderDetails';
-import { parseXML, extractProvider } from '../../shared/wfsMetadata';
-import { IServiceProvider } from './models';
 import consts from './constants';
 
-const ServiceProvider: FC<IServiceProvider> = () => {
-    const { state } = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const provider = extractProvider(getCapResp);
-
+const ServiceProvider: FC = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>
@@ -20,7 +13,7 @@ const ServiceProvider: FC<IServiceProvider> = () => {
             <Panel
                 header={consts.providerHeader}
                 title={consts.providerTitle}
-                content={<ProviderDetails provider={provider} />}
+                content={<ProviderDetails />}
             />
         </Col>
     );

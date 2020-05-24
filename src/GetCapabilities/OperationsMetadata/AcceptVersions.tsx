@@ -1,25 +1,29 @@
 import React, { FC, useContext } from 'react';
 import Context from '../../context';
-import { IAcceptVersions } from './models';
+import { extractAcceptVersions, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
-const AcceptVersions: FC<IAcceptVersions> = ({ versions }) => {
+const AcceptVersions: FC = () => {
     const { state } = useContext(Context);
-    const lastVersion = versions.length - 1;
+    const getCapResp = parseXML(state.getCapResp);
+    const acceptVersions = extractAcceptVersions(getCapResp);
+    const versionsLength = acceptVersions.length;
+    const lastVersion = versionsLength - 1;
+
     return (
         <>
-            {versions.length ? (
-                versions.map((version: string, versionIndex: number) => (
-                    <span key={versionIndex}>
-                        {versionIndex === 0 && consts.acceptVersionsStr}
+            {versionsLength ? (
+                acceptVersions.map((version, index) => (
+                    <span key={`accept-versions-${index}`}>
+                        {index === 0 && consts.acceptVersionsStr}
                         <b>
                             {version}
-                            {versionIndex !== lastVersion ? ', ' : ''}
+                            {index !== lastVersion ? ', ' : ''}
                         </b>
-                        {versionIndex === lastVersion && '.'}
+                        {index === lastVersion && '.'}
                     </span>
                 ))
-            ) : state.getCapResp && !versions.length ? (
+            ) : state.getCapResp && !versionsLength ? (
                 <b>{consts.noAcceptVersions}</b>
             ) : null}
         </>

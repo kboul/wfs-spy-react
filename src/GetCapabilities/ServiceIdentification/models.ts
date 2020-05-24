@@ -1,7 +1,5 @@
 import { IServiceId } from '../../shared/models';
 
-interface IServiceIdentification {}
-
 interface ITitle {
     title: string | undefined;
 }
@@ -18,10 +16,4 @@ interface IServiceIdDetails {
     serviceId: IServiceId;
 }
 
-export type {
-    IServiceIdentification,
-    ITitle,
-    IAbstract,
-    IKeywords,
-    IServiceIdDetails
-};
+export type { ITitle, IAbstract, IKeywords, IServiceIdDetails };

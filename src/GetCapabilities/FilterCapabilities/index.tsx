@@ -1,31 +1,15 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { Col } from 'reactstrap';
-import Context from '../../context';
 import Panel from '../../shared/Panel';
 import CompOper from './ComparisonOperators';
 import SpatialOperators from './SpatialOperators';
-import {
-    parseXML,
-    extractFilterCap,
-    extractFunctions
-} from '../../shared/wfsMetadata';
-import { IFilterCapabilities } from './models';
 import consts from './constants';
 import GeometryOperands from './GeometryOperands';
 import TemporalOperands from './TemporalOperands';
 import TemporalOperators from './TemporalOperators';
 import Functions from './Functions';
 
-const FilterCapabilities: FC<IFilterCapabilities> = () => {
-    const { state } = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const compOper = extractFilterCap(getCapResp, 'ComparisonOperator');
-    const spatialOper = extractFilterCap(getCapResp, 'SpatialOperator');
-    const geomOper = extractFilterCap(getCapResp, 'GeometryOperand');
-    const tempOperands = extractFilterCap(getCapResp, 'TemporalOperand');
-    const tempOperators = extractFilterCap(getCapResp, 'TemporalOperator');
-    const functions = extractFunctions(getCapResp);
-
+const FilterCapabilities: FC = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>
@@ -36,14 +20,14 @@ const FilterCapabilities: FC<IFilterCapabilities> = () => {
                     <Panel
                         header={consts.compOperHeader}
                         title={consts.compOperDescr}
-                        content={<CompOper compOper={compOper} />}
+                        content={<CompOper />}
                     />
                 </div>
                 <div className="col-md-6">
                     <Panel
                         header={consts.spatOperHeader}
                         title={consts.spatOperDescr}
-                        content={<SpatialOperators spatialOper={spatialOper} />}
+                        content={<SpatialOperators />}
                     />
                 </div>
             </div>
@@ -53,25 +37,21 @@ const FilterCapabilities: FC<IFilterCapabilities> = () => {
                     <Panel
                         header={consts.geomOperHeader}
                         title={consts.geomOperDescr}
-                        content={<GeometryOperands geomOper={geomOper} />}
+                        content={<GeometryOperands />}
                     />
                 </div>
                 <div className="col-md-4">
                     <Panel
                         header={consts.tempOperandsHeader}
                         title={consts.tempOperandsDescr}
-                        content={
-                            <TemporalOperands tempOperands={tempOperands} />
-                        }
+                        content={<TemporalOperands />}
                     />
                 </div>
                 <div className="col-md-4">
                     <Panel
                         header={consts.tempOperatorsHeader}
                         title={consts.tempOperatorsDescr}
-                        content={
-                            <TemporalOperators tempOperators={tempOperators} />
-                        }
+                        content={<TemporalOperators />}
                     />
                 </div>
             </div>
@@ -79,7 +59,7 @@ const FilterCapabilities: FC<IFilterCapabilities> = () => {
             <Panel
                 header={consts.funcHeader}
                 title={consts.funcDescr}
-                content={<Functions functions={functions} />}
+                content={<Functions />}
             />
         </Col>
     );

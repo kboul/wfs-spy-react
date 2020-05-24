@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import styles from './index.module.sass';
 
-interface IFooter {}
-
-const Footer: FC<IFooter> = () => {
+const Footer: FC = () => {
     const text = (
         <div>
             Developed & designed by <b>Konstantinos Voulgaridis</b>

@@ -4,9 +4,7 @@ import TableButtons from '../TableButtons';
 import styles from './index.module.sass';
 import sharedStyles from '../shared.module.sass';
 
-interface IFilterWFS {}
-
-const FilterWFS: FC<IFilterWFS> = () => {
+const FilterWFS: FC = () => {
     const selectedTypenameStyle = `${sharedStyles.labelFont} ${styles.labelSelectedTypename}`;
 
     return (

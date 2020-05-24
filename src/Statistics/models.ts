@@ -1,5 +1,3 @@
-interface IStatistics {}
-
 interface IChartOpts {
     chart: {
         type: string;
@@ -67,4 +65,4 @@ interface IChartOpts {
     series: { name: string; data: number[] }[];
 }
 
-export type { IStatistics, IChartOpts };
+export type { IChartOpts };

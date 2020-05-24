@@ -17,10 +17,9 @@ import Logos from './Logos';
 import DropDownItem from './DropDownItem';
 import { reset } from '../context/actions';
 import { mainRoutes } from '../routes';
-import { INavBar } from './models';
 import { appTitle, dropdownRoutes } from './constants';
 
-const NavBar: FC<INavBar> = () => {
+const NavBar: FC = () => {
     const { dispatch } = useContext(Context);
 
     const [isOpen, setIsOpen] = useState(false);

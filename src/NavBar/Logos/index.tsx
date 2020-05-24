@@ -3,9 +3,7 @@ import ogcLogo from './assets/ogc_logo.jpg';
 import tuLogo from './assets/tu_logo.jpeg';
 import styles from './index.module.sass';
 
-interface ILogos {}
-
-const Logos: FC<ILogos> = () => {
+const Logos: FC = () => {
     const ogcStyle = `${styles.logos} ${styles.ogc}`;
     return (
         <>
