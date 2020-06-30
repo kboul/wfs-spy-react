@@ -2,6 +2,7 @@ import React, { FC, useContext } from 'react';
 import axios from 'axios';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import TableButtons from '../TableButtons';
 import {
     changeWfsResponse,
@@ -16,7 +17,7 @@ import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const WFSResponse: FC = () => {
-    const { state, dispatch } = useContext(Context);
+    const { state, dispatch }: IContext = useContext(Context);
 
     const getResponse = async () => {
         dispatch(changeWfsResponse({ wfsResponse: consts.processing }));

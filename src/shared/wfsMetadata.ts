@@ -6,7 +6,7 @@ import {
     IFeatureTypes,
     IAttrNamesTypes
 } from './models';
-import { tags } from './constants';
+import { tags, noOption } from './constants';
 
 const replaceOws = (expression: string): string => {
     if (!expression) return '';
@@ -24,7 +24,7 @@ const extractTypenames = (data: string): string[] => {
     if (!data) return [];
 
     const typenamesTags = parseXML(data).querySelectorAll(tags.featureTypeName);
-    const typenames: string[] = ['---'];
+    const typenames: string[] = [noOption];
 
     if (typenamesTags) {
         typenamesTags.forEach(tag => {
@@ -336,7 +336,7 @@ const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
 
     const featureTypeTags = getCapResp.querySelectorAll(tags.featureType);
     if (featureTypeTags && featureTypeTags.length) {
-        featureTypeTags.forEach((featureType, index) => {
+        featureTypeTags.forEach(featureType => {
             if (featureType) {
                 const featName = featureType.querySelector(
                     tags.featureTypeName

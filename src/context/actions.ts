@@ -21,7 +21,7 @@ const changeTypename = (payload: { typename: string }): IAction => ({
     payload
 });
 
-const changeValueReference = (payload?: {
+const changeValueReference = (payload: {
     valueReference: string;
 }): IAction => ({
     type: types.valueReferenceChanged,

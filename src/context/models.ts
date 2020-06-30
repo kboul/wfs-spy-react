@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Dispatch } from 'react';
 import { IAttrNamesTypes } from '../shared/models';
 
 interface IProvider {
@@ -30,7 +30,14 @@ interface IState {
 
 interface IAction {
     type: string;
-    payload: any;
+    payload: {
+        [property: string]: any;
+    };
 }
 
-export type { IProvider, IState, IAction };
+interface IContext {
+    state: IState;
+    dispatch: Dispatch<IAction>;
+}
+
+export type { IProvider, IState, IAction, IContext };

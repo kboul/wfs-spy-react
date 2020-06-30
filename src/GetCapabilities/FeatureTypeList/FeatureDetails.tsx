@@ -1,6 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table, UncontrolledTooltip } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
 import { extractFeatureTypes, parseXML } from '../../shared/wfsMetadata';
@@ -10,7 +11,7 @@ import { tags } from '../../shared/constants';
 import consts from './constants';
 
 const FeatureDetails: FC = () => {
-    const { state } = useContext(Context);
+    const { state }: IContext = useContext(Context);
     const getCapResp = parseXML(state.getCapResp);
     const features = extractFeatureTypes(getCapResp);
     const featuresLength = features.length;

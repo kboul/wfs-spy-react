@@ -5,9 +5,10 @@ import TotalItems from '../../shared/TotalItems';
 import { parseXML, extractProvider } from '../../shared/wfsMetadata';
 import { formalProviderName } from './utils';
 import consts from './constants';
+import { IContext } from '../../context/models';
 
 const ProviderDetails: FC = () => {
-    const { state } = useContext(Context);
+    const { state }: IContext = useContext(Context);
     const getCapResp = parseXML(state.getCapResp);
     const provider = extractProvider(getCapResp);
     const { providerNames, providerValues } = provider;

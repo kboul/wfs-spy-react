@@ -1,8 +1,9 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
-import useInputFocus from './hooks';
+import { IContext } from '../../context/models';
 import { changeUrl } from '../../context/actions';
+import useInputFocus from './hooks';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 import styles from './index.module.sass';
@@ -12,7 +13,7 @@ const UrlInput: FC = () => {
 
     const { urlRef, urlBackgroud, onFocus, onBlur } = useInputFocus();
 
-    const { state, dispatch } = useContext(Context);
+    const { state, dispatch }: IContext = useContext(Context);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeUrl({ url: e.target.value }));

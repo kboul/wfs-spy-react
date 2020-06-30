@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 import Context from '../context';
+import { IContext } from '../context/models';
 import Logos from './Logos';
 import DropDownItem from './DropDownItem';
 import { resetState } from '../context/actions';
@@ -20,10 +21,10 @@ import { mainRoutes } from '../routes';
 import { appTitle, dropdownRoutes } from './constants';
 
 const NavBar: FC = () => {
-    const { dispatch } = useContext(Context);
+    const { pathname } = useLocation();
+    const { dispatch }: IContext = useContext(Context);
 
     const [isOpen, setIsOpen] = useState(false);
-    const { pathname } = useLocation();
 
     const resetStyle = { cursor: 'pointer' };
 

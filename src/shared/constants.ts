@@ -37,4 +37,6 @@ const tags = {
     type: 'type'
 };
 
-export { versions, requests, totalItems, noOperation, tags };
+const noOption = '---';
+
+export { versions, requests, totalItems, noOperation, tags, noOption };

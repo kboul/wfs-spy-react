@@ -1,10 +1,11 @@
 import React, { FC, useContext } from 'react';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import { extractAcceptVersions, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
 const AcceptVersions: FC = () => {
-    const { state } = useContext(Context);
+    const { state }: IContext = useContext(Context);
     const getCapResp = parseXML(state.getCapResp);
     const acceptVersions = extractAcceptVersions(getCapResp);
     const versionsLength = acceptVersions.length;

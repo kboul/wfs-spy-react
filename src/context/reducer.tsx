@@ -9,19 +9,24 @@ import initialState from './initialState';
 const reducer = (state: IState, action: IAction) => {
     switch (action.type) {
         case types.urlChanged:
-            return { ...state, url: action.payload.url };
+            const { url } = action.payload;
+            return { ...state, url };
         case types.versionChanged:
-            return { ...state, version: action.payload.version };
+            const { version } = action.payload;
+            return { ...state, version };
         case types.requestChanged:
             return requestReducer(state, action);
         case types.typenameChanged:
-            return { ...state, typename: action.payload.typename };
+            const { typename } = action.payload;
+            return { ...state, typename };
         case types.valueReferenceChanged:
-            return { ...state, valueReference: action.payload.valueReference };
+            const { valueReference } = action.payload;
+            return { ...state, valueReference };
         case types.wfsRequestChanged:
             return wfsRequestReducer(state, action);
         case types.wfsResponseChanged:
-            return { ...state, wfsResponse: action.payload.wfsResponse };
+            const { wfsResponse } = action.payload;
+            return { ...state, wfsResponse };
         case types.getCapRespChanged:
             return getCapRespReducer(state, action);
         case types.descFeatTypeRespChanged:

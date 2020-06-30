@@ -1,10 +1,10 @@
-import React, { useContext, FC } from 'react';
+import React, { useContext, FC, useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
 import { changeValueReference } from '../../context/actions';
-import { selectedTypename } from './utils';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
+import { selectedTypename } from '../../shared/utils';
 
 const ValueReference: FC = () => {
     const { state, dispatch } = useContext(Context);
@@ -12,7 +12,21 @@ const ValueReference: FC = () => {
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeValueReference({ valueReference: e.target.value }));
 
-    const currentSelectedTypename = selectedTypename(state.typename);
+    const { typename, valueReferences } = state;
+    const currentSelectedTypename = selectedTypename(typename);
+
+    const didMountRef = useRef(false);
+    useEffect(() => {
+        if (didMountRef.current) {
+            if (!typename || !Object.keys(valueReferences.names).length) return;
+            if (valueReferences?.names[currentSelectedTypename]) {
+                const valueReference =
+                    valueReferences?.names[currentSelectedTypename][0];
+                dispatch(changeValueReference({ valueReference }));
+            }
+        } else didMountRef.current = true;
+        // eslint-disable-next-line
+    }, [typename, valueReferences, dispatch]);
 
     return (
         <FormGroup row>
@@ -25,7 +39,7 @@ const ValueReference: FC = () => {
                     disabled={!state.descFeatTypeResp}
                     value={state.valueReference}
                     onChange={onChange}>
-                    {state.valueReferences?.names[currentSelectedTypename]?.map(
+                    {valueReferences?.names[currentSelectedTypename]?.map(
                         (valueRefer: string) => (
                             <option key={valueRefer}>{valueRefer}</option>
                         )

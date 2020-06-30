@@ -1,26 +1,19 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { Col } from 'reactstrap';
-import Context from '../../context';
 import Panel from '../../shared/Panel';
-import { parseXML, extractAttrNamesTypes } from '../../shared/wfsMetadata';
-import IAttrNamesTypes from './model';
+import AttributeDetails from './AttributeDetails';
 import consts from './constants';
 
-const AttrNamesTypes: FC<IAttrNamesTypes> = () => {
-    const { state } = useContext(Context);
-    const descFeatTypeResp = parseXML(state.descFeatTypeResp);
-    const attrNamesTypes = extractAttrNamesTypes(descFeatTypeResp);
-    console.log(attrNamesTypes);
-
+const AttrNamesTypes: FC = () => {
     return (
         <Col md={{ size: 8, offset: 2 }} className="mt-4">
             <h3>{consts.header}</h3>
             <p>{consts.descr}</p>
 
             <Panel
-                header={consts.attrNamesTypesHeader}
-                title={consts.attrNamesTypesDescr}
-                content=""
+                header={consts.panelHeader}
+                title={consts.panelDescr}
+                content={<AttributeDetails />}
             />
         </Col>
     );

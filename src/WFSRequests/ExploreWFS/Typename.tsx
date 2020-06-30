@@ -1,12 +1,13 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import { changeTypename } from '../../context/actions';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const Typename: FC = () => {
-    const { state, dispatch } = useContext(Context);
+    const { state, dispatch }: IContext = useContext(Context);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeTypename({ typename: e.target.value }));
@@ -22,7 +23,7 @@ const Typename: FC = () => {
                     disabled={!state.typenames.length}
                     value={state.typename}
                     onChange={onChange}>
-                    {state.typenames.map((typename: string) => (
+                    {state.typenames.map(typename => (
                         <option key={typename}>{typename}</option>
                     ))}
                 </Input>

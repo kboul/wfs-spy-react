@@ -1,11 +1,12 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const SortBy: FC = () => {
-    const { state } = useContext(Context);
+    const { state }: IContext = useContext(Context);
     return (
         <FormGroup row>
             <Label

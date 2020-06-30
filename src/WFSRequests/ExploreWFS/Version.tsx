@@ -1,13 +1,14 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import { changeVersion } from '../../context/actions';
 import { versions } from '../../shared/constants';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const VersionInput: FC = () => {
-    const { state, dispatch } = useContext(Context);
+    const { state, dispatch }: IContext = useContext(Context);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeVersion({ version: e.target.value }));

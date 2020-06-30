@@ -1,13 +1,14 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table } from 'reactstrap';
 import Context from '../../context';
+import { IContext } from '../../context/models';
 import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
 import { extractFunctions, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';
 
 const Functions: FC = () => {
-    const { state } = useContext(Context);
+    const { state }: IContext = useContext(Context);
     const getCapResp = parseXML(state.getCapResp);
     const functions = extractFunctions(getCapResp);
     const functionsLength = functions.length;

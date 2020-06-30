@@ -1,4 +1,4 @@
-import { requests } from '../../shared/constants';
+import { requests, noOption } from '../../shared/constants';
 import { IState } from '../../context/models';
 
 const adjustProxyToUrl = (url: string): string => {
@@ -16,7 +16,7 @@ const formWfsRequest = (state: IState): string => {
         case requests[0]:
             return `${url}${version}${request}${service}`;
         case requests[1]:
-            if (['---', '', null].includes(typename)) {
+            if ([noOption, '', null].includes(typename)) {
                 // to include also empty first value
                 return `${url}${version}${request}${service}`;
             } else {
@@ -29,7 +29,4 @@ const formWfsRequest = (state: IState): string => {
     }
 };
 
-const selectedTypename = (typename: string): string =>
-    `${typename.split(':')[1]}Type`;
-
-export { adjustProxyToUrl, formWfsRequest, selectedTypename };
+export { adjustProxyToUrl, formWfsRequest };

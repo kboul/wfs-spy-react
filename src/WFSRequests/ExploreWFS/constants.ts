@@ -7,7 +7,7 @@ const consts = {
     requestOperation: 'request',
     service: 'service',
     typename: 'typeName',
-    valueReference: 'valueReference',
+    valueReference: 'valueRefer.',
     sortBy: 'sortBy',
     formWfsRequest: 'Form WFS Request:',
     responseMetadata: 'Response - Metadata & Corresponding operations:',
