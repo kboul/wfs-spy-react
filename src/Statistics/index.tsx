@@ -33,9 +33,10 @@ const Statistics: FC = () => {
             const options = { ...prevState };
             const series = [...options.series];
             series[0].data = [state.getGetCapTime];
+            series[1].data = [state.getDescFeatTypeTime];
             return options;
         });
-    }, [state.getCapResp, state.getGetCapTime]);
+    }, [state.getCapResp, state.getGetCapTime, state.getDescFeatTypeTime]);
 
     useEffect(() => {
         if (!state.descFeatTypeResp) return;

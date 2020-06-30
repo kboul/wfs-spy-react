@@ -338,7 +338,6 @@ const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
     if (featureTypeTags && featureTypeTags.length) {
         featureTypeTags.forEach((featureType, index) => {
             if (featureType) {
-                console.log(featureType);
                 const featName = featureType.querySelector(
                     tags.featureTypeName
                 );

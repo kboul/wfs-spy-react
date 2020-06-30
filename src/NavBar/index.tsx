@@ -15,7 +15,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Context from '../context';
 import Logos from './Logos';
 import DropDownItem from './DropDownItem';
-import { reset } from '../context/actions';
+import { resetState } from '../context/actions';
 import { mainRoutes } from '../routes';
 import { appTitle, dropdownRoutes } from './constants';
 
@@ -27,15 +27,15 @@ const NavBar: FC = () => {
 
     const resetStyle = { cursor: 'pointer' };
 
-    const toggle = () => setIsOpen(!isOpen);
-    const doReset = () => dispatch(reset());
+    const toggleNavbar = () => setIsOpen(!isOpen);
+    const doResetState = () => dispatch(resetState());
 
     return (
         <Navbar className="navbar-dark bg-dark" expand="md" sticky="top">
             <NavbarBrand tag={Link} to={mainRoutes[0].path}>
                 {appTitle}
             </NavbarBrand>
-            <NavbarToggler onClick={toggle} />
+            <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     {dropdownRoutes.map(({ name, routes }) => (
@@ -65,7 +65,7 @@ const NavBar: FC = () => {
                             )
                     )}
                     <NavItem>
-                        <NavLink style={resetStyle} onClick={doReset}>
+                        <NavLink style={resetStyle} onClick={doResetState}>
                             Reset
                         </NavLink>
                     </NavItem>

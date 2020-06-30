@@ -5,8 +5,10 @@ import styles from './index.module.sass';
 
 const Panel: FC<IPanel> = ({ header, title, content }) => {
     const [isCardOpen, setIsCardOpen] = useState(true);
-    const toggleCard = () => setIsCardOpen(!isCardOpen);
+
     const iconDirection = isCardOpen ? 'down' : 'right';
+
+    const onClick = () => setIsCardOpen(!isCardOpen);
 
     return (
         <Card outline color="primary" className="mb-4">
@@ -15,7 +17,7 @@ const Panel: FC<IPanel> = ({ header, title, content }) => {
                     {header}
                     <i
                         className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
-                        onClick={toggleCard}
+                        onClick={onClick}
                     />
                 </span>
             </CardHeader>

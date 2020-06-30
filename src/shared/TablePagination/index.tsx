@@ -11,6 +11,14 @@ const TablePagination: FC<ITablePagination> = ({
     const paginationStyle = {
         justifyContent: pagesCount < 300 ? 'center' : 'start'
     };
+
+    type ButtonEvent = React.MouseEvent<HTMLElement>;
+
+    const previousFirst = (e: ButtonEvent) => onClick(e, 0);
+    const previous = (e: ButtonEvent) => onClick(e, currentPage - 1);
+    const next = (e: ButtonEvent) => onClick(e, currentPage + 1);
+    const nextLast = (e: ButtonEvent) => onClick(e, pagesCount - 1);
+
     return (
         <div className="paginationWrapper">
             <Pagination style={paginationStyle}>
@@ -19,13 +27,13 @@ const TablePagination: FC<ITablePagination> = ({
                         className="paginationLink"
                         first
                         href="#"
-                        onClick={e => onClick(e, 0)}
+                        onClick={previousFirst}
                     />
                 </PaginationItem>
                 <PaginationItem disabled={currentPage <= 0}>
                     <PaginationLink
                         className="paginationLink"
-                        onClick={e => onClick(e, currentPage - 1)}
+                        onClick={previous}
                         previous
                         href="#"
                     />
@@ -43,7 +51,7 @@ const TablePagination: FC<ITablePagination> = ({
                 <PaginationItem disabled={currentPage >= pagesCount - 1}>
                     <PaginationLink
                         className="paginationLink"
-                        onClick={e => onClick(e, currentPage + 1)}
+                        onClick={next}
                         next
                         href="#"
                     />
@@ -53,7 +61,7 @@ const TablePagination: FC<ITablePagination> = ({
                         className="paginationLink"
                         last
                         href="#"
-                        onClick={e => onClick(e, pagesCount - 1)}
+                        onClick={nextLast}
                     />
                 </PaginationItem>
             </Pagination>

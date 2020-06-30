@@ -9,7 +9,7 @@ const wfsRequestReducer = (state: IState, action: IAction) => {
     }
     return {
         ...state,
-        wfsRequest: action.payload,
+        wfsRequest: action.payload.wfsRequest,
         wfsResponse: '',
         errors: { ...errors, url: '' }
     };

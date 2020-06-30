@@ -4,9 +4,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
 import TableButtons from '../TableButtons';
 import {
-    setWfsResponse,
-    setGetCapResp,
-    setDescFeatTypeResp
+    changeWfsResponse,
+    changeGetCapResp,
+    changeDescFeatTypeResp
 } from '../../context/actions';
 import { extractTypenames } from '../../shared/wfsMetadata';
 import { adjustProxyToUrl, formWfsRequest } from './utils';
@@ -19,19 +19,19 @@ const WFSResponse: FC = () => {
     const { state, dispatch } = useContext(Context);
 
     const getResponse = async () => {
-        dispatch(setWfsResponse(consts.processing));
+        dispatch(changeWfsResponse({ wfsResponse: consts.processing }));
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();
             const response: IWfsResponse = await axios.get(operationUrl);
             if (response.status === 200) {
                 const { data } = response;
-                dispatch(setWfsResponse(data));
+                dispatch(changeWfsResponse({ wfsResponse: data }));
                 const time = new Date().getTime() - startGET;
                 switch (state.request) {
                     case requests[0]:
                         dispatch(
-                            setGetCapResp({
+                            changeGetCapResp({
                                 getCapResp: data,
                                 typenames: extractTypenames(data),
                                 getGetCapTime: time
@@ -40,7 +40,7 @@ const WFSResponse: FC = () => {
                         break;
                     case requests[1]:
                         dispatch(
-                            setDescFeatTypeResp({
+                            changeDescFeatTypeResp({
                                 descFeatTypeResp: data,
                                 getDescFeatTypeTime: time
                             })

@@ -2,15 +2,20 @@ import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
 import useInputFocus from './hooks';
-import { setUrl } from '../../context/actions';
+import { changeUrl } from '../../context/actions';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 import styles from './index.module.sass';
 
 const UrlInput: FC = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
+
     const { urlRef, urlBackgroud, onFocus, onBlur } = useInputFocus();
+
     const { state, dispatch } = useContext(Context);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(changeUrl({ url: e.target.value }));
 
     return (
         <FormGroup row>
@@ -27,7 +32,7 @@ const UrlInput: FC = () => {
                     } `}
                     innerRef={urlRef}
                     value={state.url}
-                    onChange={e => dispatch(setUrl(e.target.value))}
+                    onChange={onChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     required

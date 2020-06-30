@@ -1,66 +1,71 @@
-import types from './types';
+import types from './actionTypes';
 import { IAction } from './models';
 
-const setUrl = (payload: string): IAction => ({ type: types.SET_URL, payload });
-
-const setVersion = (payload: string): IAction => ({
-    type: types.SET_VERSION,
+const changeUrl = (payload: { url: string }): IAction => ({
+    type: types.urlChanged,
     payload
 });
 
-const setRequest = (payload: string): IAction => ({
-    type: types.SET_REQUEST,
+const changeVersion = (payload: { version: string }): IAction => ({
+    type: types.versionChanged,
     payload
 });
 
-const setTypename = (payload: string): IAction => ({
-    type: types.SET_TYPENAME,
+const changeRequest = (payload: { request: string }): IAction => ({
+    type: types.requestChanged,
     payload
 });
 
-const setValueReference = (payload?: string): IAction => ({
-    type: types.SET_VALUE_REFERENCE,
+const changeTypename = (payload: { typename: string }): IAction => ({
+    type: types.typenameChanged,
     payload
 });
 
-const setWfsRequest = (payload: string): IAction => ({
-    type: types.SET_WFS_REQUEST,
+const changeValueReference = (payload?: {
+    valueReference: string;
+}): IAction => ({
+    type: types.valueReferenceChanged,
     payload
 });
 
-const setWfsResponse = (payload: string): IAction => ({
-    type: types.SET_WFS_RESPONSE,
+const changeWfsRequest = (payload: { wfsRequest: string }): IAction => ({
+    type: types.wfsRequestChanged,
     payload
 });
 
-const setGetCapResp = (payload: {
+const changeWfsResponse = (payload: { wfsResponse: string }): IAction => ({
+    type: types.wfsResponseChanged,
+    payload
+});
+
+const changeGetCapResp = (payload: {
     getCapResp: string;
     typenames: string[];
     getGetCapTime: number;
 }): IAction => ({
-    type: types.SET_GET_CAP_RESPONSE,
+    type: types.getCapRespChanged,
     payload
 });
 
-const setDescFeatTypeResp = (payload: {
+const changeDescFeatTypeResp = (payload: {
     descFeatTypeResp: string;
     getDescFeatTypeTime: number;
 }): IAction => ({
-    type: types.SET_DESC_FEAT_TYPE_RESP,
+    type: types.descFeatTypeRespChanged,
     payload
 });
 
-const reset = (): IAction => ({ type: types.RESET, payload: {} });
+const resetState = (): IAction => ({ type: types.stateReset, payload: {} });
 
 export {
-    setUrl,
-    setVersion,
-    setRequest,
-    setTypename,
-    setValueReference,
-    setWfsRequest,
-    setWfsResponse,
-    setGetCapResp,
-    setDescFeatTypeResp,
-    reset
+    changeUrl,
+    changeVersion,
+    changeRequest,
+    changeTypename,
+    changeValueReference,
+    changeWfsRequest,
+    changeWfsResponse,
+    changeGetCapResp,
+    changeDescFeatTypeResp,
+    resetState
 };

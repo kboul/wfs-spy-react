@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
 import TableButtons from '../TableButtons';
-import { setWfsRequest } from '../../context/actions';
+import { changeWfsRequest } from '../../context/actions';
 import { formWfsRequest } from './utils';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
@@ -10,9 +10,8 @@ import sharedStyles from '../shared.module.sass';
 const WFSRequest: FC = () => {
     const { state, dispatch } = useContext(Context);
 
-    const displayGetRequest = () => {
-        dispatch(setWfsRequest(formWfsRequest(state)));
-    };
+    const onClick = () =>
+        dispatch(changeWfsRequest({ wfsRequest: formWfsRequest(state) }));
 
     return (
         <FormGroup className="text-center" row>
@@ -27,10 +26,7 @@ const WFSRequest: FC = () => {
                     disabled
                     value={state.wfsRequest}
                 />
-                <TableButtons
-                    label={consts.request}
-                    onClick={displayGetRequest}
-                />
+                <TableButtons label={consts.request} onClick={onClick} />
             </Col>
         </FormGroup>
     );

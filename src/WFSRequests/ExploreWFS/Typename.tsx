@@ -1,12 +1,16 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
-import { setTypename } from '../../context/actions';
+import { changeTypename } from '../../context/actions';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const Typename: FC = () => {
     const { state, dispatch } = useContext(Context);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(changeTypename({ typename: e.target.value }));
+
     return (
         <FormGroup row>
             <Label for="typeName" md={2} className={sharedStyles.labelFont}>
@@ -17,7 +21,7 @@ const Typename: FC = () => {
                     type="select"
                     disabled={!state.typenames.length}
                     value={state.typename}
-                    onChange={e => dispatch(setTypename(e.target.value))}>
+                    onChange={onChange}>
                     {state.typenames.map((typename: string) => (
                         <option key={typename}>{typename}</option>
                     ))}
