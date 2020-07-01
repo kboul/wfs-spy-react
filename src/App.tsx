@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import { getCapRoutes, descrFeatTypeRoutes, mainRoutes } from './routes';
@@ -8,6 +9,7 @@ const App = () => {
     const routes = [...mainRoutes, ...getCapRoutes, ...descrFeatTypeRoutes];
     return (
         <>
+            <ToastContainer hideProgressBar />
             <NavBar />
             <Switch>
                 {routes.map(({ path, component }, index) => (

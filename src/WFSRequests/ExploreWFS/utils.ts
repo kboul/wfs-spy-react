@@ -6,24 +6,31 @@ const adjustProxyToUrl = (url: string): string => {
 };
 
 const formWfsRequest = (state: IState): string => {
-    let { url, version, request, service, typename } = state;
-    url = `${url}?\n`;
-    version = `version=${version}&\n`;
-    request = `request=${request}&\n`;
-    service = `service=${service}`;
+    let {
+        url,
+        version,
+        request,
+        service,
+        typename,
+        valueReference,
+        sortBy
+    } = state;
+
+    const basicRequest = `${url}?\nversion=${version}&\nrequest=${request}&\nservice=${service}`;
 
     switch (state.request) {
         case requests[0]:
-            return `${url}${version}${request}${service}`;
+            return basicRequest;
         case requests[1]:
             if ([noOption, '', null].includes(typename)) {
                 // to include also empty first value
-                return `${url}${version}${request}${service}`;
+                return basicRequest;
             } else {
                 // Request for individual FeatureType ==> should be TypeName
-                typename = '&\nTypeName=' + typename;
-                return `${url}${version}${request}${service}${typename}`;
+                return `${basicRequest}\n&TypeName=${typename}`;
             }
+        case requests[2]:
+            return `${basicRequest}\n&typeNames=${typename}\n&valueReference=${valueReference}\n&sortBy=${valueReference}+${sortBy}`;
         default:
             return '';
     }

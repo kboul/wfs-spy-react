@@ -1,18 +1,69 @@
+import { toast } from 'react-toastify';
 import { IState, IAction } from '../models';
+import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
 const wfsRequestReducer = (state: IState, action: IAction) => {
     const errors = { ...state.errors };
+    const stateObj = { ...state };
+
     if (!state.url) {
         errors.url = consts.urlValidation;
-        return { ...state, wfsRequest: '', errors };
+        return { ...stateObj, wfsRequest: '', wfsResponse: '', errors };
     }
-    return {
-        ...state,
-        wfsRequest: action.payload.wfsRequest,
-        wfsResponse: '',
-        errors: { ...errors, url: '' }
-    };
+
+    stateObj.wfsRequest = action.payload.wfsRequest;
+    stateObj.wfsResponse = '';
+    stateObj.errors = { ...errors, url: '' };
+    stateObj.selectedTypValueRef = '';
+
+    if (state.request === requests[0] && state.url) {
+        return {
+            ...stateObj,
+            getCapResp: '',
+            typename: '',
+            typenames: [],
+            valueReferences: consts.valueReferences,
+            valueReference: '',
+            descFeatTypeResp: '',
+            ...consts.revertGetPropValInputs
+        };
+    }
+    if (state.request === requests[1] && state.typename) {
+        return {
+            ...stateObj,
+            valueReference: '',
+            valueReferences: consts.valueReferences,
+            descFeatTypeResp: '',
+            ...consts.revertGetPropValInputs
+        };
+    }
+    // no typename & valueReference
+    if (
+        state.request === requests[2] &&
+        state.typename === noOption &&
+        !state.valueReference
+    ) {
+        toast.info(consts.toasts.typenameValueRef);
+        return {
+            ...stateObj,
+            wfsRequest: ''
+        };
+    }
+    if (
+        state.request === requests[2] &&
+        state.typename !== noOption &&
+        state.valueReference
+    ) {
+        const selectedTypValueRef = `typeName: ${state.typename} \n valueReference: ${state.valueReference}`;
+        return {
+            ...stateObj,
+            ...consts.revertGetPropValInputs,
+            selectedTypValueRef,
+            getPropValResp: ''
+        };
+    }
+    return stateObj;
 };
 
 export default wfsRequestReducer;

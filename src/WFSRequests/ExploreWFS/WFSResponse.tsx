@@ -7,7 +7,8 @@ import TableButtons from '../TableButtons';
 import {
     changeWfsResponse,
     changeGetCapResp,
-    changeDescFeatTypeResp
+    changeDescFeatTypeResp,
+    changeGetPropValResp
 } from '../../context/actions';
 import { extractTypenames } from '../../shared/wfsMetadata';
 import { adjustProxyToUrl, formWfsRequest } from './utils';
@@ -44,6 +45,14 @@ const WFSResponse: FC = () => {
                             changeDescFeatTypeResp({
                                 descFeatTypeResp: data,
                                 getDescFeatTypeTime: time
+                            })
+                        );
+                        break;
+                    case requests[2]:
+                        dispatch(
+                            changeGetPropValResp({
+                                getPropValResp: data,
+                                getGetPropValTime: time
                             })
                         );
                         break;

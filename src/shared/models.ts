@@ -34,6 +34,14 @@ interface IFeatureTypes {
     upperCorner?: string;
 }
 
+interface IFeatureTypeObj {
+    name?: string;
+    title?: string;
+    abstract?: string;
+    defaultCRS?: string;
+    lowerCorner?: string;
+    upperCorner?: string;
+}
 interface IAttrNamesTypes {
     names: { [complexType: string]: string[] | any };
     types: { [complexType: string]: string[] | any };
@@ -46,5 +54,6 @@ export type {
     IRoutes,
     IServiceId,
     IFeatureTypes,
+    IFeatureTypeObj,
     IAttrNamesTypes
 };

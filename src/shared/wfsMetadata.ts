@@ -4,7 +4,8 @@ import {
     IFuncs,
     IServiceId,
     IFeatureTypes,
-    IAttrNamesTypes
+    IAttrNamesTypes,
+    IFeatureTypeObj
 } from './models';
 import { tags, noOption } from './constants';
 
@@ -352,29 +353,23 @@ const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
                 const featUpperCorner = featureType.querySelector(
                     tags.upperCorner
                 );
-                if (
-                    featName &&
-                    featName.textContent &&
-                    featTitle &&
-                    featTitle?.textContent &&
-                    featAbstract &&
-                    featAbstract.textContent &&
-                    featDefaultCRS &&
-                    featDefaultCRS.textContent &&
-                    featLowerCorner &&
-                    featLowerCorner.textContent &&
-                    featUpperCorner &&
-                    featUpperCorner.textContent
-                ) {
-                    featureTypes.push({
-                        name: featName.textContent,
-                        title: featTitle.textContent,
-                        abstract: featAbstract.textContent,
-                        defaultCRS: featDefaultCRS.textContent,
-                        lowerCorner: featLowerCorner.textContent,
-                        upperCorner: featUpperCorner.textContent
-                    });
+                const obj: IFeatureTypeObj = {};
+
+                if (featName && featName.textContent) {
+                    obj.name = featName.textContent;
                 }
+                if (featTitle && featTitle?.textContent)
+                    obj.title = featTitle.textContent;
+                if (featAbstract && featAbstract.textContent)
+                    obj.abstract = featAbstract.textContent;
+                if (featDefaultCRS && featDefaultCRS.textContent)
+                    obj.defaultCRS = featDefaultCRS.textContent;
+                if (featLowerCorner && featLowerCorner.textContent)
+                    obj.lowerCorner = featLowerCorner.textContent;
+                if (featUpperCorner && featUpperCorner.textContent)
+                    obj.upperCorner = featUpperCorner.textContent;
+
+                featureTypes.push(obj);
             }
         });
     }
@@ -516,6 +511,25 @@ const extractAttrNamesTypes = (
     return valueReferences;
 };
 
+const extractAttrValuesData = (
+    getPropValueResp: XMLDocument
+): {
+    valueCount: string;
+    minValue: string | undefined;
+    maxValue: string | undefined;
+} => {
+    const member = getPropValueResp.querySelectorAll(tags.member);
+    if (member && member[0]) {
+        const valueCount = member.length;
+        return {
+            valueCount: valueCount.toString(),
+            minValue: member[0].textContent?.trim(),
+            maxValue: member[valueCount - 1].textContent?.trim()
+        };
+    }
+    return { valueCount: '-', minValue: '-', maxValue: '-' };
+};
+
 export {
     parseXML,
     extractTypenames,
@@ -526,5 +540,6 @@ export {
     extractFeatureTypes,
     extractFilterCap,
     extractFunctions,
-    extractAttrNamesTypes
+    extractAttrNamesTypes,
+    extractAttrValuesData
 };

@@ -1,4 +1,5 @@
 import { IState, IAction } from '../models';
+import { noOption } from '../../shared/constants';
 
 const getCapRespReducer = (state: IState, action: IAction) => {
     return {
@@ -6,7 +7,8 @@ const getCapRespReducer = (state: IState, action: IAction) => {
         getCapResp: action.payload.getCapResp,
         typenames: action.payload.typenames,
         getGetCapTime: action.payload.getGetCapTime,
-        getGetCapNumber: ++state.getGetCapNumber
+        getGetCapNumber: ++state.getGetCapNumber,
+        typename: noOption
     };
 };
 

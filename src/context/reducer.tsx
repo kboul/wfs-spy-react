@@ -4,9 +4,10 @@ import requestReducer from './reducers/requestReducer';
 import wfsRequestReducer from './reducers/wfsRequestReducer';
 import getCapRespReducer from './reducers/getCapRespReducer';
 import descFeatTypeRespReducer from './reducers/descFeatTypeRespReducer';
+import getPropValRespReducer from './reducers/getPropValRespReducer';
 import initialState from './initialState';
 
-const reducer = (state: IState, action: IAction) => {
+const reducer = (state: IState, action: IAction): IState => {
     switch (action.type) {
         case types.urlChanged:
             const { url } = action.payload;
@@ -31,6 +32,8 @@ const reducer = (state: IState, action: IAction) => {
             return getCapRespReducer(state, action);
         case types.descFeatTypeRespChanged:
             return descFeatTypeRespReducer(state, action);
+        case types.getPropValRespChanged:
+            return getPropValRespReducer(state, action);
         case types.stateReset:
             return initialState;
         default:

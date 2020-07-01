@@ -34,7 +34,8 @@ const tags = {
     sequence: 'sequence',
     xLinkHRef: 'xlink:href',
     name: 'name',
-    type: 'type'
+    type: 'type',
+    member: 'member'
 };
 
 const noOption = '---';

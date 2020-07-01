@@ -6,8 +6,6 @@ import TotalItems from '../../shared/TotalItems';
 import TablePagination from '../../shared/TablePagination';
 import { extractFeatureTypes, parseXML } from '../../shared/wfsMetadata';
 import { checkAbstractLength } from './utils';
-import { splitStrOnUpperCase } from '../../shared/utils';
-import { tags } from '../../shared/constants';
 import consts from './constants';
 
 const FeatureDetails: FC = () => {
@@ -32,12 +30,9 @@ const FeatureDetails: FC = () => {
                 className="table-striped text-center table-borderless">
                 <thead>
                     <tr>
-                        <th>{tags.title}</th>
-                        <th>{tags.featureTypeName}</th>
-                        <th>{tags.abstract}</th>
-                        <th>{splitStrOnUpperCase(tags.defaultCRS)}</th>
-                        <th>{splitStrOnUpperCase(tags.lowerCorner)}</th>
-                        <th>{splitStrOnUpperCase(tags.upperCorner)}</th>
+                        {consts.tableHeaders.map(({ id, key, value }) => (
+                            <th key={id}>{key in features[0] ? value : ''}</th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>

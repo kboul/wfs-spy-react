@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.sass';
 
 import Provider from './context/Provider';

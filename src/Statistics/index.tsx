@@ -15,16 +15,24 @@ const Statistics: FC = () => {
         chartOptions('number')
     );
 
+    const totalRequestNumber =
+        state.getGetCapNumber +
+        state.getDescFeatTypeNumber +
+        state.getGetPropValNumber;
+
     useEffect(() => {
-        const totalRequestNumber =
-            state.getGetCapNumber + state.getDescFeatTypeNumber;
         setRequestsOpts(prevState => {
             const options = { ...prevState };
             options.yAxis.max =
                 totalRequestNumber >= 10 ? totalRequestNumber + 1 : 10;
             return options;
         });
-    }, [state.getGetCapNumber, state.getDescFeatTypeNumber]);
+    }, [
+        state.getGetCapNumber,
+        state.getDescFeatTypeNumber,
+        state.getGetPropValNumber,
+        totalRequestNumber
+    ]);
 
     useEffect(() => {
         if (!state.getCapResp) return;
@@ -34,40 +42,35 @@ const Statistics: FC = () => {
             const series = [...options.series];
             series[0].data = [state.getGetCapTime];
             series[1].data = [state.getDescFeatTypeTime];
+            series[2].data = [state.getGetPropValTime];
             return options;
         });
-    }, [state.getCapResp, state.getGetCapTime, state.getDescFeatTypeTime]);
+    }, [
+        state.getCapResp,
+        state.getGetCapTime,
+        state.getDescFeatTypeTime,
+        state.getGetPropValTime
+    ]);
 
     useEffect(() => {
-        if (!state.descFeatTypeResp) return;
-
-        setTimeOpts(prevState => {
-            const options = { ...prevState };
-            const series = [...options.series];
-            series[1].data = [state.getDescFeatTypeTime];
-            return options;
-        });
-    }, [state.descFeatTypeResp, state.getDescFeatTypeTime]);
-
-    useEffect(() => {
-        if (!state.getCapResp && !state.descFeatTypeResp) return;
+        if (!state.getCapResp) return;
 
         setRequestsOpts(prevState => {
             const options = { ...prevState };
             const series = [...options.series];
             series[0].data = [state.getGetCapNumber];
             series[1].data = [state.getDescFeatTypeNumber];
-            series[4].data = [
-                state.getGetCapNumber + state.getDescFeatTypeNumber
-            ];
+            series[2].data = [state.getGetPropValNumber];
+            series[4].data = [totalRequestNumber];
             return options;
         });
     }, [
         state.getCapResp,
         state.descFeatTypeResp,
-        state.getGetCapTime,
         state.getGetCapNumber,
-        state.getDescFeatTypeNumber
+        state.getDescFeatTypeNumber,
+        state.getGetPropValNumber,
+        totalRequestNumber
     ]);
 
     return (

@@ -14,10 +14,19 @@ export default {
     wfsResponse: '',
     getCapResp: '',
     descFeatTypeResp: '',
+    getPropValResp: '',
     sortBy: 'ASC',
-    errors: {},
+    errors: {
+        url: ''
+    },
+    selectedTypValueRef: '',
+    valueCount: '',
+    minValue: '',
+    maxValue: '',
     getGetCapTime: 0,
     getGetCapNumber: 0,
     getDescFeatTypeTime: 0,
-    getDescFeatTypeNumber: 0
+    getDescFeatTypeNumber: 0,
+    getGetPropValTime: 0,
+    getGetPropValNumber: 0
 };

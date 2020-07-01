@@ -55,6 +55,14 @@ const changeDescFeatTypeResp = (payload: {
     payload
 });
 
+const changeGetPropValResp = (payload: {
+    getPropValResp: string;
+    getGetPropValTime: number;
+}): IAction => ({
+    type: types.getPropValRespChanged,
+    payload
+});
+
 const resetState = (): IAction => ({ type: types.stateReset, payload: {} });
 
 export {
@@ -67,5 +75,6 @@ export {
     changeWfsResponse,
     changeGetCapResp,
     changeDescFeatTypeResp,
+    changeGetPropValResp,
     resetState
 };

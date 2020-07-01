@@ -18,14 +18,21 @@ interface IState {
     wfsResponse: string;
     getCapResp: string;
     descFeatTypeResp: string;
+    getPropValResp: string;
     sortBy: string;
     errors: {
-        url?: string;
+        url: string;
     };
+    selectedTypValueRef: string;
+    valueCount: string;
+    minValue: string | undefined;
+    maxValue: string | undefined;
     getGetCapTime: number;
     getGetCapNumber: number;
     getDescFeatTypeTime: number;
     getDescFeatTypeNumber: number;
+    getGetPropValTime: number;
+    getGetPropValNumber: number;
 }
 
 interface IAction {

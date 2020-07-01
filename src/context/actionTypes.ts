@@ -8,5 +8,6 @@ export default {
     wfsResponseChanged: 'wfsResponseChanged',
     getCapRespChanged: 'getCapRespChanged',
     descFeatTypeRespChanged: 'descFeatTypeRespChanged',
+    getPropValRespChanged: 'getPropValRespChanged',
     stateReset: 'stateReset'
 };
