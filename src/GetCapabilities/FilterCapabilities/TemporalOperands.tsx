@@ -8,11 +8,12 @@ import consts from './constants';
 
 const TemporalOperands: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const tempOperands = extractFilterCap(getCapResp, 'TemporalOperand');
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const tempOperands = extractFilterCap(parsedResponse, 'TemporalOperand');
     const tempOperandsLength = tempOperands.length;
 
-    return tempOperandsLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -27,9 +28,12 @@ const TemporalOperands: FC = () => {
             </Table>
             <TotalItems numberOfItems={tempOperandsLength} />
         </>
-    ) : state.getCapResp && !tempOperandsLength ? (
-        <b>{consts.noTempOperands}</b>
-    ) : null;
+    );
+
+    if (tempOperandsLength) return table;
+    if (getCapResp && !tempOperandsLength)
+        return <b>{consts.noTempOperands}</b>;
+    return null;
 };
 
 export default TemporalOperands;

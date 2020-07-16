@@ -8,11 +8,12 @@ import consts from './constants';
 
 const OperationsDetails: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const operations = etxractOperations(getCapResp);
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const operations = etxractOperations(parsedResponse);
     const operationsLength = Object.keys(operations).length;
 
-    return operationsLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -36,9 +37,11 @@ const OperationsDetails: FC = () => {
             </Table>
             <TotalItems numberOfItems={operationsLength} />
         </>
-    ) : state.getCapResp && !operationsLength ? (
-        <b>{consts.noOperation}</b>
-    ) : null;
+    );
+
+    if (operationsLength) return table;
+    if (getCapResp && !operationsLength) return <b>{consts.noOperation}</b>;
+    return null;
 };
 
 export default OperationsDetails;

@@ -9,11 +9,12 @@ import consts from './constants';
 
 const ServiceIdDetails: FC = () => {
     const { state }: IContext = useContext(Context);
-    const wfsResponse = parseXML(state.getCapResp);
-    const serviceId = extractServiceId(wfsResponse);
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const serviceId = extractServiceId(parsedResponse);
     const serviceIdLength = Object.keys(serviceId).length;
 
-    return serviceIdLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -31,9 +32,11 @@ const ServiceIdDetails: FC = () => {
             </Table>
             <TotalItems numberOfItems={serviceIdLength} />
         </>
-    ) : state.getCapResp && !serviceIdLength ? (
-        <b>{consts.noServiceId}</b>
-    ) : null;
+    );
+
+    if (getCapResp && serviceIdLength) return table;
+    if (getCapResp && !serviceIdLength) return <b>{consts.noServiceId}</b>;
+    return null;
 };
 
 export default ServiceIdDetails;

@@ -8,11 +8,12 @@ import consts from './constants';
 
 const SpatialOperators: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const spatialOper = extractFilterCap(getCapResp, 'SpatialOperator');
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const spatialOper = extractFilterCap(parsedResponse, 'SpatialOperator');
     const spatialOperLength = spatialOper.length;
 
-    return spatialOperLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -27,9 +28,11 @@ const SpatialOperators: FC = () => {
             </Table>
             <TotalItems numberOfItems={spatialOperLength} />
         </>
-    ) : state.getCapResp && !spatialOperLength ? (
-        <b>{consts.noSpatialOper}</b>
-    ) : null;
+    );
+
+    if (spatialOperLength) return table;
+    if (getCapResp && !spatialOperLength) return <b>{consts.noSpatialOper}</b>;
+    return null;
 };
 
 export default SpatialOperators;

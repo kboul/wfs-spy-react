@@ -9,8 +9,9 @@ import consts from './constants';
 
 const Functions: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const functions = extractFunctions(getCapResp);
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const functions = extractFunctions(parsedResponse);
     const functionsLength = functions.length;
 
     const pageSize = 10;
@@ -22,7 +23,7 @@ const Functions: FC = () => {
         setCurrentPage(index);
     };
 
-    return functionsLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -56,9 +57,11 @@ const Functions: FC = () => {
             />
             <TotalItems numberOfItems={functionsLength} />
         </>
-    ) : state.getCapResp && !functionsLength ? (
-        <b>{consts.noFunctions}</b>
-    ) : null;
+    );
+
+    if (functionsLength) return table;
+    if (getCapResp && !functionsLength) return <b>{consts.noFunctions}</b>;
+    return null;
 };
 
 export default Functions;

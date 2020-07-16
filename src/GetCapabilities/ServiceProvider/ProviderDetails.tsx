@@ -9,12 +9,13 @@ import { IContext } from '../../context/models';
 
 const ProviderDetails: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const provider = extractProvider(getCapResp);
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const provider = extractProvider(parsedResponse);
     const { providerNames, providerValues } = provider;
     const hasProvider = providerNames.length && providerValues.length;
 
-    return hasProvider ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -30,9 +31,11 @@ const ProviderDetails: FC = () => {
             </Table>
             <TotalItems numberOfItems={providerNames.length} />
         </>
-    ) : state.getCapResp && !hasProvider ? (
-        <b>{consts.noProvider}</b>
-    ) : null;
+    );
+
+    if (hasProvider) return table;
+    if (getCapResp && !hasProvider) return <b>{consts.noProvider}</b>;
+    return null;
 };
 
 export default ProviderDetails;

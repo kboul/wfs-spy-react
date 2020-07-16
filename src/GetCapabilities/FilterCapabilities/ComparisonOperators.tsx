@@ -8,11 +8,12 @@ import consts from './constants';
 
 const ComparisonOperators: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const compOper = extractFilterCap(getCapResp, 'ComparisonOperator');
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const compOper = extractFilterCap(parsedResponse, 'ComparisonOperator');
     const compOperLength = compOper.length;
 
-    return compOperLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -27,9 +28,11 @@ const ComparisonOperators: FC = () => {
             </Table>
             <TotalItems numberOfItems={compOperLength} />
         </>
-    ) : state.getCapResp && !compOperLength ? (
-        <b>{consts.noCompOper}</b>
-    ) : null;
+    );
+
+    if (compOperLength) return table;
+    if (getCapResp && !compOperLength) return <b>{consts.noCompOper}</b>;
+    return null;
 };
 
 export default ComparisonOperators;

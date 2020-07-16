@@ -10,8 +10,9 @@ import consts from './constants';
 
 const FeatureDetails: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const features = extractFeatureTypes(getCapResp);
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const features = extractFeatureTypes(parsedResponse);
     const featuresLength = features.length;
 
     const pageSize = 10;
@@ -23,7 +24,7 @@ const FeatureDetails: FC = () => {
         setCurrentPage(index);
     };
 
-    return featuresLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -90,9 +91,11 @@ const FeatureDetails: FC = () => {
             )}
             <TotalItems numberOfItems={featuresLength} />
         </>
-    ) : state.getCapResp && !featuresLength ? (
-        <b>{consts.noFeatures}</b>
-    ) : null;
+    );
+
+    if (featuresLength) return table;
+    if (getCapResp && !featuresLength) return <b>{consts.noFeatures}</b>;
+    return null;
 };
 
 export default FeatureDetails;

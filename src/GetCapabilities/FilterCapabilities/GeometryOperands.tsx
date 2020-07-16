@@ -8,11 +8,12 @@ import consts from './constants';
 
 const GeometryOperands: FC = () => {
     const { state }: IContext = useContext(Context);
-    const getCapResp = parseXML(state.getCapResp);
-    const geomOper = extractFilterCap(getCapResp, 'GeometryOperand');
+    const { getCapResp } = state;
+    const parsedResponse = parseXML(getCapResp);
+    const geomOper = extractFilterCap(parsedResponse, 'GeometryOperand');
     const geomOperLength = geomOper.length;
 
-    return geomOperLength ? (
+    const table = (
         <>
             <Table
                 responsive
@@ -27,9 +28,11 @@ const GeometryOperands: FC = () => {
             </Table>
             <TotalItems numberOfItems={geomOperLength} />
         </>
-    ) : state.getCapResp && !geomOperLength ? (
-        <b>{consts.noGeomOper}</b>
-    ) : null;
+    );
+
+    if (geomOperLength) return table;
+    if (getCapResp && !geomOperLength) return <b>{consts.noGeomOper}</b>;
+    return null;
 };
 
 export default GeometryOperands;

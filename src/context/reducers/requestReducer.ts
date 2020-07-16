@@ -7,19 +7,16 @@ const requestReducer = (state: IState, action: IAction) => {
     // ensure request order
     const { request } = action.payload;
     const { toasts } = consts;
-    if (
-        request === requests[2] &&
-        !state.descFeatTypeResp &&
-        !state.getCapResp
-    ) {
+    const { getCapResp, descFeatTypeResp } = state;
+    if (request === requests[2] && !descFeatTypeResp && !getCapResp) {
         toast.info(toasts.getCapDescFeatTypeFirst);
         return { ...state, request: requests[0] };
     }
-    if (request === requests[1] && !state.getCapResp) {
+    if (request === requests[1] && !getCapResp) {
         toast.info(toasts.getCapFirst);
         return { ...state, request: requests[0] };
     }
-    if (request === requests[2] && !state.descFeatTypeResp) {
+    if (request === requests[2] && !descFeatTypeResp) {
         toast.info(toasts.descFeatTypeFirst);
         return { ...state, request: requests[1] };
     }

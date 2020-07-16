@@ -13,8 +13,9 @@ import consts from './constants';
 
 const AttributeDetails: FC = () => {
     const { state }: IContext = useContext(Context);
-    const descFeatTypeResp = parseXML(state.descFeatTypeResp);
-    const attrNamesTypes = extractAttrNamesTypes(descFeatTypeResp);
+    const { descFeatTypeResp } = state;
+    const parsedResponse = parseXML(descFeatTypeResp);
+    const attrNamesTypes = extractAttrNamesTypes(parsedResponse);
     const namesLength = Object.keys(attrNamesTypes.names).length;
 
     const selectedAttrNameType: IAttrNameType[] = attrNameType(
@@ -37,7 +38,7 @@ const AttributeDetails: FC = () => {
     const attributesExist =
         typename && typename !== noOption && selectedAttrNameType.length;
 
-    return namesLength ? (
+    const table = (
         <>
             <Typename />
 
@@ -79,9 +80,11 @@ const AttributeDetails: FC = () => {
                 <TotalItems numberOfItems={selectedAttrNameType?.length} />
             )}
         </>
-    ) : state.descFeatTypeResp && !namesLength ? (
-        <b>{consts.noAttributes}</b>
-    ) : null;
+    );
+
+    if (namesLength) return table;
+    if (descFeatTypeResp && !namesLength) return <b>{consts.noAttributes}</b>;
+    return null;
 };
 
 export default AttributeDetails;
