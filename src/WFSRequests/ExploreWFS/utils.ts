@@ -6,7 +6,7 @@ const adjustProxyToUrl = (url: string): string => {
 };
 
 const formWfsRequest = (state: IState): string => {
-    let {
+    const {
         url,
         version,
         request,
@@ -25,10 +25,9 @@ const formWfsRequest = (state: IState): string => {
             if ([noOption, '', null].includes(typename)) {
                 // to include also empty first value
                 return basicRequest;
-            } else {
-                // Request for individual FeatureType ==> should be TypeName
-                return `${basicRequest}\n&TypeName=${typename}`;
             }
+            // Request for individual FeatureType ==> should be TypeName
+            return `${basicRequest}\n&TypeName=${typename}`;
         case requests[2]:
             return `${basicRequest}\n&typeNames=${typename}\n&valueReference=${valueReference}\n&sortBy=${valueReference}+${sortBy}`;
         default:
@@ -36,4 +35,8 @@ const formWfsRequest = (state: IState): string => {
     }
 };
 
-export { adjustProxyToUrl, formWfsRequest };
+const disableGeometry = (valueRefer: string): boolean => {
+    return valueRefer ? valueRefer.includes('gml') : false;
+};
+
+export { adjustProxyToUrl, formWfsRequest, disableGeometry };

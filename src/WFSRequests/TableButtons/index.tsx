@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Table, Button } from 'reactstrap';
 import ITableButtons from './model';
 import consts from './constants';
 import styles from './index.module.sass';
 
-const TableButtons: FC<ITableButtons> = ({
+const TableButtons = ({
     label,
     hasModal,
     onClick,
     initialState,
     isGetRequest
-}) => {
+}: ITableButtons) => {
     return (
         <Table borderless className={styles.table}>
             <thead>

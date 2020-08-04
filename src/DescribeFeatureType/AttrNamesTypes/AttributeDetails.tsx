@@ -69,7 +69,7 @@ const AttributeDetails: FC = () => {
                     </tbody>
                 </Table>
             ) : null}
-            {selectedAttrNameType && selectedAttrNameType.length > 10 && (
+            {selectedAttrNameType && selectedAttrNameType.length > pageSize && (
                 <TablePagination
                     currentPage={currentPage}
                     pagesCount={pagesCount}

@@ -175,10 +175,10 @@ const extractProvider = (getCapResp: XMLDocument): IProvider => {
                 }
             });
 
-            const serviceContactTag = getCapResp.querySelector(
+            const serviceContactSubTag = getCapResp.querySelector(
                 tags.serviceContact
             );
-            if (serviceContactTag && serviceContactTag.children) {
+            if (serviceContactSubTag && serviceContactSubTag.children) {
                 Array.from(serviceContactTag?.children).forEach(
                     servContItem => {
                         const servContItemChildrenLength =
@@ -322,6 +322,7 @@ const etxractOperations = (getCapResp: XMLDocument): IOperations => {
                             post: checkMark
                         };
                         break;
+                    default:
                 }
             }
         });
@@ -527,7 +528,7 @@ const extractAttrValuesData = (
             maxValue: member[valueCount - 1].textContent?.trim()
         };
     }
-    return { valueCount: '-', minValue: '-', maxValue: '-' };
+    return { valueCount: '', minValue: '', maxValue: '' };
 };
 
 export {

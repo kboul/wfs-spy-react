@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Collapse, CardTitle } from 'reactstrap';
 import IPanel from './model';
 import styles from './index.module.sass';
 
-const Panel: FC<IPanel> = ({ header, title, content }) => {
+const Panel: FC<IPanel> = ({ header, title, content }: IPanel) => {
     const [isCardOpen, setIsCardOpen] = useState(true);
 
     const iconDirection = isCardOpen ? 'down' : 'right';
@@ -16,8 +16,12 @@ const Panel: FC<IPanel> = ({ header, title, content }) => {
                 <span>
                     {header}
                     <i
+                        aria-label="Toggle card"
                         className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
                         onClick={onClick}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={() => {}}
                     />
                 </span>
             </CardHeader>

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { colors } from './constants';
 
 const useInputFocus = () => {
-    const urlRef = useRef<HTMLInputElement | null>(null);
+    const urlRef = useRef<HTMLInputElement>(null);
     const [urlBackgroud, setUrlBackground] = useState<string>(
         colors.lightPurple
     );
@@ -10,12 +10,12 @@ const useInputFocus = () => {
     useEffect(() => urlRef?.current?.focus(), []);
 
     const onFocus = () => {
-        urlRef?.current?.focus();
+        urlRef.current?.focus();
         setUrlBackground(colors.lightPurple);
     };
 
     const onBlur = () => {
-        urlRef?.current?.blur();
+        urlRef.current?.blur();
         setUrlBackground(colors.white);
     };
 

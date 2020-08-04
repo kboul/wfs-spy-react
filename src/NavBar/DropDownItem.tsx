@@ -3,7 +3,7 @@ import { DropdownItem } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { IDropDownItem } from './models';
 
-const DropDownItem: FC<IDropDownItem> = ({ routes }) => {
+const DropDownItem: FC<IDropDownItem> = ({ routes }: IDropDownItem) => {
     const { pathname } = useLocation();
     return (
         <>

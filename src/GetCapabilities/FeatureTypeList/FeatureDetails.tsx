@@ -31,9 +31,12 @@ const FeatureDetails: FC = () => {
                 className="table-striped text-center table-borderless">
                 <thead>
                     <tr>
-                        {consts.tableHeaders.map(({ id, key, value }) => (
-                            <th key={id}>{key in features[0] ? value : ''}</th>
-                        ))}
+                        {featuresLength &&
+                            consts.tableHeaders.map(({ id, key, value }) => (
+                                <th key={id}>
+                                    {key in features[0] ? value : ''}
+                                </th>
+                            ))}
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +85,7 @@ const FeatureDetails: FC = () => {
                         )}
                 </tbody>
             </Table>
-            {featuresLength > 10 && (
+            {featuresLength > pageSize && (
                 <TablePagination
                     currentPage={currentPage}
                     pagesCount={pagesCount}

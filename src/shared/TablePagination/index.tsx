@@ -7,7 +7,7 @@ const TablePagination: FC<ITablePagination> = ({
     currentPage,
     pagesCount,
     onClick
-}) => {
+}: ITablePagination) => {
     const paginationStyle = {
         justifyContent: pagesCount < 300 ? 'center' : 'start'
     };

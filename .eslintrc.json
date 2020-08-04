@@ -25,6 +25,21 @@
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
+        // Assignment to property of function parameter 'state'.
+        "no-param-reassign": [
+            2,
+            {
+                "props": false
+            }
+        ],
+        "no-unused-expressions": "off",
+        "react/no-array-index-key": "off",
+        "no-plusplus": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "no-unused-vars": "off",
+        "no-undef": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "react/jsx-closing-bracket-location": "off",
         "react/jsx-indent": "off",
         "react/jsx-indent-props": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
@@ -40,21 +55,14 @@
                 "tsx": "never",
                 "mjs": "never"
             }
-        ],
-        "overrides": [
-            {
-                "files": ["serviceWorker.ts", "react-app-env.d.ts"],
-                "rules": {
-                    "no-use-before-define": "off",
-                    "spaced-comment": "off"
-                }
-            },
-            {
-                "files": ["*.ts", "*.tsx"],
-                "rules": {
-                    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
-                }
-            }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["serviceWorker.ts"],
+            "rules": {
+                "no-use-before-define": "off"
+            }
+        }
+    ]
 }

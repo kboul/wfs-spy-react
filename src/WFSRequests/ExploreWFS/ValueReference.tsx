@@ -2,9 +2,10 @@ import React, { useContext, FC, useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context from '../../context';
 import { changeValueReference } from '../../context/actions';
+import { selectedTypename } from '../../shared/utils';
+import { disableGeometry } from './utils';
 import { consts } from './constants';
 import sharedStyles from '../shared.module.sass';
-import { selectedTypename } from '../../shared/utils';
 
 const ValueReference: FC = () => {
     const { state, dispatch } = useContext(Context);
@@ -40,8 +41,16 @@ const ValueReference: FC = () => {
                     value={state.valueReference}
                     onChange={onChange}>
                     {valueReferences?.names[currentSelectedTypename]?.map(
-                        (valueRefer: string) => (
-                            <option key={valueRefer}>{valueRefer}</option>
+                        (valueRefer: string, index: number) => (
+                            <option
+                                key={`value-reference-${index}`}
+                                disabled={disableGeometry(
+                                    valueReferences?.types[
+                                        currentSelectedTypename
+                                    ][index]
+                                )}>
+                                {valueRefer}
+                            </option>
                         )
                     )}
                 </Input>
