@@ -1,5 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
@@ -29,7 +30,7 @@ const AttributeDetails: FC = () => {
         Math.ceil(selectedAttrNameType?.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const onClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };
@@ -73,7 +74,7 @@ const AttributeDetails: FC = () => {
                 <TablePagination
                     currentPage={currentPage}
                     pagesCount={pagesCount}
-                    onClick={onClick}
+                    onClick={handleClick}
                 />
             )}
             {selectedAttrNameType && (

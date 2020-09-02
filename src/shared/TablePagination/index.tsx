@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+
 import ITablePagination from './model';
 import './index.sass';
 
@@ -14,10 +15,11 @@ const TablePagination: FC<ITablePagination> = ({
 
     type ButtonEvent = React.MouseEvent<HTMLElement>;
 
-    const previousFirst = (e: ButtonEvent) => onClick(e, 0);
-    const previous = (e: ButtonEvent) => onClick(e, currentPage - 1);
-    const next = (e: ButtonEvent) => onClick(e, currentPage + 1);
-    const nextLast = (e: ButtonEvent) => onClick(e, pagesCount - 1);
+    const handlePreviousFirstClick = (e: ButtonEvent) => onClick(e, 0);
+    const handlePreviousClick = (e: ButtonEvent) => onClick(e, currentPage - 1);
+    const handleCurrentClick = (e: ButtonEvent, i: number) => onClick(e, i);
+    const handleNextClick = (e: ButtonEvent) => onClick(e, currentPage + 1);
+    const handleNextLastClick = (e: ButtonEvent) => onClick(e, pagesCount - 1);
 
     return (
         <div className="paginationWrapper">
@@ -27,13 +29,13 @@ const TablePagination: FC<ITablePagination> = ({
                         className="paginationLink"
                         first
                         href="#"
-                        onClick={previousFirst}
+                        onClick={handlePreviousFirstClick}
                     />
                 </PaginationItem>
                 <PaginationItem disabled={currentPage <= 0}>
                     <PaginationLink
                         className="paginationLink"
-                        onClick={previous}
+                        onClick={handlePreviousClick}
                         previous
                         href="#"
                     />
@@ -42,7 +44,7 @@ const TablePagination: FC<ITablePagination> = ({
                     <PaginationItem active={i === currentPage} key={i}>
                         <PaginationLink
                             className="paginationLink"
-                            onClick={e => onClick(e, i)}
+                            onClick={e => handleCurrentClick(e, i)}
                             href="#">
                             {i + 1}
                         </PaginationLink>
@@ -51,7 +53,7 @@ const TablePagination: FC<ITablePagination> = ({
                 <PaginationItem disabled={currentPage >= pagesCount - 1}>
                     <PaginationLink
                         className="paginationLink"
-                        onClick={next}
+                        onClick={handleNextClick}
                         next
                         href="#"
                     />
@@ -61,7 +63,7 @@ const TablePagination: FC<ITablePagination> = ({
                         className="paginationLink"
                         last
                         href="#"
-                        onClick={nextLast}
+                        onClick={handleNextLastClick}
                     />
                 </PaginationItem>
             </Pagination>

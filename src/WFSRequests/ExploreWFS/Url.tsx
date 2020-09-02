@@ -1,5 +1,6 @@
 import React, { useContext, FC } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import { changeUrl } from '../../context/actions';
@@ -11,11 +12,11 @@ import styles from './index.module.sass';
 const UrlInput: FC = () => {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
 
-    const { urlRef, urlBackgroud, onFocus, onBlur } = useInputFocus();
+    const { urlRef, urlBackgroud, handleFocus, handleBlur } = useInputFocus();
 
     const { state, dispatch }: IContext = useContext(Context);
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeUrl({ url: e.target.value }));
 
     return (
@@ -33,9 +34,9 @@ const UrlInput: FC = () => {
                     } `}
                     innerRef={urlRef}
                     value={state.url}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
+                    onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
                     required
                 />
                 {state.errors.url && (

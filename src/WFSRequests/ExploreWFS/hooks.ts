@@ -9,17 +9,17 @@ const useInputFocus = () => {
 
     useEffect(() => urlRef?.current?.focus(), []);
 
-    const onFocus = () => {
+    const handleFocus = () => {
         urlRef.current?.focus();
         setUrlBackground(colors.lightPurple);
     };
 
-    const onBlur = () => {
+    const handleBlur = () => {
         urlRef.current?.blur();
         setUrlBackground(colors.white);
     };
 
-    return { urlRef, urlBackgroud, onFocus, onBlur };
+    return { urlRef, urlBackgroud, handleFocus, handleBlur };
 };
 
 export default useInputFocus;

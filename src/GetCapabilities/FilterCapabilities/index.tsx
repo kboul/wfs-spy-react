@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 import { Col } from 'reactstrap';
+
 import Panel from '../../shared/Panel';
 import CompOper from './ComparisonOperators';
 import SpatialOperators from './SpatialOperators';
-import consts from './constants';
 import GeometryOperands from './GeometryOperands';
 import TemporalOperands from './TemporalOperands';
 import TemporalOperators from './TemporalOperators';
 import Functions from './Functions';
+import consts from './constants';
 
 const FilterCapabilities: FC = () => {
     return (

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Card, CardHeader, CardBody, Collapse, CardTitle } from 'reactstrap';
+
 import IPanel from './model';
 import styles from './index.module.sass';
 
@@ -8,7 +9,7 @@ const Panel: FC<IPanel> = ({ header, title, content }: IPanel) => {
 
     const iconDirection = isCardOpen ? 'down' : 'right';
 
-    const onClick = () => setIsCardOpen(!isCardOpen);
+    const handleClick = () => setIsCardOpen(!isCardOpen);
 
     return (
         <Card outline color="primary" className="mb-4">
@@ -18,7 +19,7 @@ const Panel: FC<IPanel> = ({ header, title, content }: IPanel) => {
                     <i
                         aria-label="Toggle card"
                         className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
-                        onClick={onClick}
+                        onClick={handleClick}
                         role="button"
                         tabIndex={0}
                         onKeyDown={() => {}}

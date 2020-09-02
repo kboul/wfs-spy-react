@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Col } from 'reactstrap';
+
 import Panel from '../../shared/Panel';
 import ProviderDetails from './ProviderDetails';
 import consts from './constants';

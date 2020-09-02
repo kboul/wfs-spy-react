@@ -2,6 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+
 import Context from '../context';
 import Panel from '../shared/Panel';
 import chartOptions from './utils';

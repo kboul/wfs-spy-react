@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import { changeWfsRequest } from '../../context/actions';
@@ -11,7 +12,7 @@ import sharedStyles from '../shared.module.sass';
 const WFSRequest: FC = () => {
     const { state, dispatch }: IContext = useContext(Context);
 
-    const onClick = () =>
+    const handleClick = () =>
         dispatch(changeWfsRequest({ wfsRequest: formWfsRequest(state) }));
 
     return (
@@ -27,7 +28,7 @@ const WFSRequest: FC = () => {
                     disabled
                     value={state.wfsRequest}
                 />
-                <TableButtons label={consts.request} onClick={onClick} />
+                <TableButtons label={consts.request} onClick={handleClick} />
             </Col>
         </FormGroup>
     );

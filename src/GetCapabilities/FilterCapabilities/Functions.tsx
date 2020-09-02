@@ -1,5 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import TotalItems from '../../shared/TotalItems';
@@ -18,7 +19,7 @@ const Functions: FC = () => {
     const pagesCount = Math.ceil(functions.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const onClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };
@@ -53,7 +54,7 @@ const Functions: FC = () => {
             <TablePagination
                 currentPage={currentPage}
                 pagesCount={pagesCount}
-                onClick={onClick}
+                onClick={handleClick}
             />
             <TotalItems numberOfItems={functionsLength} />
         </>

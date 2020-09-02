@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { totalItems } from './constants';
 
 interface ITotalItems {

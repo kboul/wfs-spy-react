@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import Context from '../../context';
+
 import { IContext } from '../../context/models';
 import { extractAcceptVersions, parseXML } from '../../shared/wfsMetadata';
 import consts from './constants';

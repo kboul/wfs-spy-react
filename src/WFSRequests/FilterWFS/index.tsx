@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Col, Form } from 'reactstrap';
+
 import SelectedTypValueRefer from './SelectedTypValueRefer';
 import ValueCount from './ValueCount';
 import MinValue from './MinValue';

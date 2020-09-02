@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Table } from 'reactstrap';
+
 import Context from '../../context';
 import TotalItems from '../../shared/TotalItems';
 import { parseXML, extractProvider } from '../../shared/wfsMetadata';

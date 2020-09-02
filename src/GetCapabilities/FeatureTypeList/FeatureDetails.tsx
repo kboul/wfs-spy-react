@@ -1,5 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import { Table, UncontrolledTooltip } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import TotalItems from '../../shared/TotalItems';
@@ -19,7 +20,7 @@ const FeatureDetails: FC = () => {
     const pagesCount = Math.ceil(featuresLength / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const onClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };
@@ -89,7 +90,7 @@ const FeatureDetails: FC = () => {
                 <TablePagination
                     currentPage={currentPage}
                     pagesCount={pagesCount}
-                    onClick={onClick}
+                    onClick={handleClick}
                 />
             )}
             <TotalItems numberOfItems={featuresLength} />

@@ -1,5 +1,6 @@
 import React, { useContext, FC, useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
+
 import Context from '../../context';
 import { changeValueReference } from '../../context/actions';
 import { selectedTypename } from '../../shared/utils';
@@ -10,7 +11,7 @@ import sharedStyles from '../shared.module.sass';
 const ValueReference: FC = () => {
     const { state, dispatch } = useContext(Context);
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         dispatch(changeValueReference({ valueReference: e.target.value }));
 
     const { typename, valueReferences } = state;
@@ -39,7 +40,7 @@ const ValueReference: FC = () => {
                     type="select"
                     disabled={!state.descFeatTypeResp}
                     value={state.valueReference}
-                    onChange={onChange}>
+                    onChange={handleChange}>
                     {valueReferences?.names[currentSelectedTypename]?.map(
                         (valueRefer: string, index: number) => (
                             <option

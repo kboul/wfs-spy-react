@@ -1,6 +1,7 @@
 import React, { FC, useContext } from 'react';
 import axios from 'axios';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
+
 import Context from '../../context';
 import { IContext } from '../../context/models';
 import TableButtons from '../TableButtons';
@@ -20,7 +21,7 @@ import sharedStyles from '../shared.module.sass';
 const WFSResponse: FC = () => {
     const { state, dispatch }: IContext = useContext(Context);
 
-    const getResponse = async () => {
+    const handleGetResponse = async () => {
         dispatch(changeWfsResponse({ wfsResponse: consts.processing }));
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
@@ -78,7 +79,7 @@ const WFSResponse: FC = () => {
                 <TableButtons
                     label={consts.response}
                     hasModal
-                    onClick={getResponse}
+                    onClick={handleGetResponse}
                     initialState={!state.wfsRequest}
                     isGetRequest={!state.getCapResp}
                 />

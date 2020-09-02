@@ -10,6 +10,13 @@ The user will be able to derive WFS metadata regarding the supported FeatureType
 
 At this point, the application will not provide geometrical feature manipulation via features' geometry filter extraction. It can be included in a future extension of the application. The application aims explicitly in the extraction and filter of WFS features' values.
 
+## WFS metadata statistics
+
+|                        WFS Url                         | Service Id | Accept Versions | Service Provider | Operations Metadata | typenames / FeatureTypeList | Filter Capabilities |              valueReferences              |
+| :----------------------------------------------------: | :--------: | :-------------: | :--------------: | :-----------------: | :-------------------------: | :-----------------: | :---------------------------------------: |
+|            http://daim.lfv.se/geoserver/wfs            |     7      |        3        |        9         |          8          |             36              |       yes all       | requires individual DescFeatType requests |
+| http://data.gov.au/geoserver/ballarat-corner-shops/wfs |     7      |        3        |        9         |         11          |              1              |       yes all       |                     -                     |
+
 ## Run the project
 
 clone the project
