@@ -1,5 +1,10 @@
-import { createContext } from 'react';
-import { IState } from './models';
+import { createContext, Dispatch } from 'react';
+import { State, Action } from './models';
 import initialState from './initialState';
 
-export default createContext<IState | any>(initialState);
+export interface ContextProps {
+    state: State;
+    dispatch: Dispatch<Action>;
+}
+
+export default createContext<State | any>(initialState);

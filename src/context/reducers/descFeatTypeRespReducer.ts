@@ -1,7 +1,7 @@
-import { IState, IAction } from '../models';
+import { State, Action } from '../models';
 import { extractAttrNamesTypes, parseXML } from '../../shared/wfsMetadata';
 
-const descFeatTypeRespReducer = (state: IState, action: IAction) => {
+const descFeatTypeRespReducer = (state: State, action: Action) => {
     const descFeatTypeResp = parseXML(action.payload.descFeatTypeResp);
 
     return {

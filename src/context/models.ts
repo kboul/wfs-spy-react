@@ -1,11 +1,6 @@
-import { ReactNode, Dispatch } from 'react';
-import { IAttrNamesTypes } from '../shared/models';
+import { AttrNamesTypes } from '../shared/models';
 
-interface IProvider {
-    children: ReactNode;
-}
-
-interface IState {
+interface State {
     url: string;
     version: string;
     request: string;
@@ -13,7 +8,7 @@ interface IState {
     typename: string;
     typenames: string[];
     valueReference: string;
-    valueReferences: IAttrNamesTypes;
+    valueReferences: AttrNamesTypes;
     wfsRequest: string;
     wfsResponse: string;
     getCapResp: string;
@@ -35,16 +30,11 @@ interface IState {
     getGetPropValNumber: number;
 }
 
-interface IAction {
+interface Action {
     type: string;
     payload: {
         [property: string]: any;
     };
 }
 
-interface IContext {
-    state: IState;
-    dispatch: Dispatch<IAction>;
-}
-
-export type { IProvider, IState, IAction, IContext };
+export type { State, Action };

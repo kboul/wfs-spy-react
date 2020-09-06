@@ -1,7 +1,7 @@
 import { versions, requests } from '../shared/constants';
 import consts from './constants';
 
-export default {
+const initialState = {
     url: '',
     version: versions[0],
     request: requests[0],
@@ -30,3 +30,5 @@ export default {
     getGetPropValTime: 0,
     getGetPropValNumber: 0
 };
+
+export default initialState;

@@ -1,11 +1,10 @@
 import {
-    IOperations,
-    IProvider,
-    IFuncs,
-    IServiceId,
-    IFeatureTypes,
-    IAttrNamesTypes,
-    IFeatureTypeObj
+    Operations,
+    Provider,
+    Funcs,
+    ServiceId,
+    FeatureTypes,
+    AttrNamesTypes
 } from './models';
 import { tags, noOption } from './constants';
 
@@ -91,7 +90,7 @@ const extractKeywords = (getCapResp: XMLDocument): string[] => {
     return keywords;
 };
 
-const extractServiceId = (getCapResp: XMLDocument): IServiceId => {
+const extractServiceId = (getCapResp: XMLDocument): ServiceId => {
     if (!getCapResp) return {};
 
     const title = extractTitle(getCapResp);
@@ -145,7 +144,7 @@ const extractAcceptVersions = (getCapResp: XMLDocument): string[] => {
     return acceptVersions;
 };
 
-const extractProvider = (getCapResp: XMLDocument): IProvider => {
+const extractProvider = (getCapResp: XMLDocument): Provider => {
     const providerNameTag = getCapResp.querySelector(tags.providerName);
     const serviceContactTag = getCapResp.querySelector(tags.serviceContact);
     const providerNames: string[] = [];
@@ -270,11 +269,11 @@ const extractProvider = (getCapResp: XMLDocument): IProvider => {
     };
 };
 
-const etxractOperations = (getCapResp: XMLDocument): IOperations => {
+const etxractOperations = (getCapResp: XMLDocument): Operations => {
     if (!getCapResp) return {};
 
     const operationTags = getCapResp.querySelectorAll(tags.operation);
-    const operations: IOperations = {};
+    const operations: Operations = {};
     const checkMark = '✓';
     const xMark = '✘';
 
@@ -331,8 +330,8 @@ const etxractOperations = (getCapResp: XMLDocument): IOperations => {
     return operations;
 };
 
-const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
-    const featureTypes: IFeatureTypes[] = [];
+const extractFeatureTypes = (getCapResp: XMLDocument): FeatureTypes[] => {
+    const featureTypes: FeatureTypes[] = [];
 
     if (!getCapResp) return featureTypes;
 
@@ -354,7 +353,7 @@ const extractFeatureTypes = (getCapResp: XMLDocument): IFeatureTypes[] => {
                 const featUpperCorner = featureType.querySelector(
                     tags.upperCorner
                 );
-                const obj: IFeatureTypeObj = {};
+                const obj: FeatureTypes = {};
 
                 if (featName && featName.textContent) {
                     obj.name = featName.textContent;
@@ -402,11 +401,11 @@ const extractFilterCap = (
     return operands;
 };
 
-const extractFunctions = (getCapResp: XMLDocument): IFuncs[] => {
+const extractFunctions = (getCapResp: XMLDocument): Funcs[] => {
     if (!getCapResp) return [];
 
     const functionTags = getCapResp.querySelectorAll(tags.function);
-    let functions: IFuncs[] = [];
+    let functions: Funcs[] = [];
 
     if (functionTags) {
         Array.from(functionTags).forEach(funItem => {
@@ -454,8 +453,8 @@ const extractFunctions = (getCapResp: XMLDocument): IFuncs[] => {
 
 const extractAttrNamesTypes = (
     descFeatTypeResp: XMLDocument
-): IAttrNamesTypes => {
-    const valueReferences: IAttrNamesTypes = {
+): AttrNamesTypes => {
+    const valueReferences: AttrNamesTypes = {
         names: {},
         types: {}
     };

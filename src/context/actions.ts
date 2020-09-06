@@ -1,39 +1,37 @@
 import types from './actionTypes';
-import { IAction } from './models';
+import { Action } from './models';
 
-const changeUrl = (payload: { url: string }): IAction => ({
+const changeUrl = (payload: { url: string }): Action => ({
     type: types.urlChanged,
     payload
 });
 
-const changeVersion = (payload: { version: string }): IAction => ({
+const changeVersion = (payload: { version: string }): Action => ({
     type: types.versionChanged,
     payload
 });
 
-const changeRequest = (payload: { request: string }): IAction => ({
+const changeRequest = (payload: { request: string }): Action => ({
     type: types.requestChanged,
     payload
 });
 
-const changeTypename = (payload: { typename: string }): IAction => ({
+const changeTypename = (payload: { typename: string }): Action => ({
     type: types.typenameChanged,
     payload
 });
 
-const changeValueReference = (payload: {
-    valueReference: string;
-}): IAction => ({
+const changeValueReference = (payload: { valueReference: string }): Action => ({
     type: types.valueReferenceChanged,
     payload
 });
 
-const changeWfsRequest = (payload: { wfsRequest: string }): IAction => ({
+const changeWfsRequest = (payload: { wfsRequest: string }): Action => ({
     type: types.wfsRequestChanged,
     payload
 });
 
-const changeWfsResponse = (payload: { wfsResponse: string }): IAction => ({
+const changeWfsResponse = (payload: { wfsResponse: string }): Action => ({
     type: types.wfsResponseChanged,
     payload
 });
@@ -42,7 +40,7 @@ const changeGetCapResp = (payload: {
     getCapResp: string;
     typenames: string[];
     getGetCapTime: number;
-}): IAction => ({
+}): Action => ({
     type: types.getCapRespChanged,
     payload
 });
@@ -50,7 +48,7 @@ const changeGetCapResp = (payload: {
 const changeDescFeatTypeResp = (payload: {
     descFeatTypeResp: string;
     getDescFeatTypeTime: number;
-}): IAction => ({
+}): Action => ({
     type: types.descFeatTypeRespChanged,
     payload
 });
@@ -58,12 +56,12 @@ const changeDescFeatTypeResp = (payload: {
 const changeGetPropValResp = (payload: {
     getPropValResp: string;
     getGetPropValTime: number;
-}): IAction => ({
+}): Action => ({
     type: types.getPropValRespChanged,
     payload
 });
 
-const resetState = (): IAction => ({ type: types.stateReset, payload: {} });
+const resetState = (): Action => ({ type: types.stateReset, payload: {} });
 
 export {
     changeUrl,

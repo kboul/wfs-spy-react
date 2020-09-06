@@ -1,4 +1,4 @@
-import { IState, IAction } from './models';
+import { State, Action } from './models';
 import types from './actionTypes';
 import requestReducer from './reducers/requestReducer';
 import wfsRequestReducer from './reducers/wfsRequestReducer';
@@ -7,7 +7,7 @@ import descFeatTypeRespReducer from './reducers/descFeatTypeRespReducer';
 import getPropValRespReducer from './reducers/getPropValRespReducer';
 import initialState from './initialState';
 
-const reducer = (state: IState, action: IAction): IState => {
+const reducer = (state: State, action: Action): State => {
     switch (action.type) {
         case types.urlChanged: {
             const { url } = action.payload;

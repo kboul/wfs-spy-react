@@ -1,9 +1,9 @@
 import { toast } from 'react-toastify';
-import { IState, IAction } from '../models';
+import { State, Action } from '../models';
 import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
-const wfsRequestReducer = (state: IState, action: IAction) => {
+const wfsRequestReducer = (state: State, action: Action) => {
     const errors = { ...state.errors };
     const stateObj = { ...state };
 

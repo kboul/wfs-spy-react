@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardBody, Collapse, CardTitle } from 'reactstrap';
 
-import IPanel from './model';
+import PanelProps from './model';
 import styles from './index.module.sass';
 
-const Panel: FC<IPanel> = ({ header, title, content }: IPanel) => {
+export default function Panel({ content, header, title }: PanelProps) {
     const [isCardOpen, setIsCardOpen] = useState(true);
 
     const iconDirection = isCardOpen ? 'down' : 'right';
@@ -34,6 +34,4 @@ const Panel: FC<IPanel> = ({ header, title, content }: IPanel) => {
             </Collapse>
         </Card>
     );
-};
-
-export default Panel;
+}

@@ -1,7 +1,7 @@
-import { IState, IAction } from '../models';
+import { State, Action } from '../models';
 import { extractAttrValuesData, parseXML } from '../../shared/wfsMetadata';
 
-const getPropValRespReducer = (state: IState, action: IAction): IState => {
+const getPropValRespReducer = (state: State, action: Action): State => {
     const { getPropValResp, getGetPropValTime } = action.payload;
     const parsedResponse = parseXML(getPropValResp);
     const { valueCount, minValue, maxValue } = extractAttrValuesData(

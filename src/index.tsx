@@ -8,8 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './index.sass';
 
-import Provider from './context/Provider';
 import App from './App';
+import Provider from './context/Provider';
 
 import * as serviceWorker from './serviceWorker';
 

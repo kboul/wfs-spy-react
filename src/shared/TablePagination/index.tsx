@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-import ITablePagination from './model';
+import TablePaginationProps from './model';
 import './index.sass';
 
-const TablePagination: FC<ITablePagination> = ({
+export default function TablePagination({
     currentPage,
     pagesCount,
     onClick
-}: ITablePagination) => {
+}: TablePaginationProps) {
     const paginationStyle = {
         justifyContent: pagesCount < 300 ? 'center' : 'start'
     };
@@ -69,6 +69,4 @@ const TablePagination: FC<ITablePagination> = ({
             </Pagination>
         </div>
     );
-};
-
-export default TablePagination;
+}

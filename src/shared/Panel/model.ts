@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 
-export default interface IPanel {
+export default interface PanelProps {
+    content: ReactElement | ReactNode | string;
     header: string;
     title: string;
-    content: ReactElement | ReactNode | string;
 }

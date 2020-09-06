@@ -1,31 +1,23 @@
-import { FC } from 'react';
-
-interface IProvider {
+interface Provider {
     providerNames: string[];
     providerValues: string[];
 }
 
-interface IOperations {
+interface Operations {
     [operations: string]: { get: string; post: string };
 }
 
-interface IFuncs {
+interface Funcs {
     name?: string;
     returns?: string;
     argsAndTypes?: string[];
 }
 
-interface IRoutes {
-    path: string;
-    name: string;
-    component: FC;
-}
-
-interface IServiceId {
+interface ServiceId {
     [serviceIdTag: string]: string;
 }
 
-interface IFeatureTypes {
+interface FeatureTypes {
     name?: string;
     title?: string;
     abstract?: string;
@@ -34,26 +26,16 @@ interface IFeatureTypes {
     upperCorner?: string;
 }
 
-interface IFeatureTypeObj {
-    name?: string;
-    title?: string;
-    abstract?: string;
-    defaultCRS?: string;
-    lowerCorner?: string;
-    upperCorner?: string;
-}
-interface IAttrNamesTypes {
+interface AttrNamesTypes {
     names: { [complexType: string]: string[] | any };
     types: { [complexType: string]: string[] | any };
 }
 
 export type {
-    IProvider,
-    IOperations,
-    IFuncs,
-    IRoutes,
-    IServiceId,
-    IFeatureTypes,
-    IFeatureTypeObj,
-    IAttrNamesTypes
+    Provider,
+    Operations,
+    Funcs,
+    ServiceId,
+    FeatureTypes,
+    AttrNamesTypes
 };

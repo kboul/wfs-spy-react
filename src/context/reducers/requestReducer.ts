@@ -1,9 +1,9 @@
 import { toast } from 'react-toastify';
-import { IState, IAction } from '../models';
+import { State, Action } from '../models';
 import { requests } from '../../shared/constants';
 import consts from '../constants';
 
-const requestReducer = (state: IState, action: IAction) => {
+const requestReducer = (state: State, action: Action) => {
     // ensure request order
     const { request } = action.payload;
     const { toasts } = consts;
