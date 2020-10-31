@@ -5,14 +5,15 @@ import Context, { ContextProps } from '../../../context';
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
 import TablePagination from '../../../shared/TablePagination';
 import TotalItems from '../../../shared/TotalItems';
-import { parseXML, extractAttrNamesTypes } from '../../../shared/wfsMetadata';
 import attrNameType from './utils';
+import { parseXML, extractAttrNamesTypes } from '../../../shared/wfsMetadata';
+import { ClickEvent } from '../../../shared/models';
 import { noOption } from '../../../shared/constants';
 import consts from './constants';
 
 export default function AttributeDetails() {
     const { state } = useContext<ContextProps>(Context);
-    const { descFeatTypeResp } = state;
+    const { descFeatTypeResp, typename } = state;
     const parsedResponse = parseXML(descFeatTypeResp);
     const attrNamesTypes = extractAttrNamesTypes(parsedResponse);
     const namesLength = Object.keys(attrNamesTypes.names).length;
@@ -25,15 +26,13 @@ export default function AttributeDetails() {
         Math.ceil(selectedAttrNameType?.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: ClickEvent, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };
 
     const attributesExist =
-        state.typename &&
-        state.typename !== noOption &&
-        selectedAttrNameType.length;
+        typename && typename !== noOption && selectedAttrNameType.length;
 
     const table = (
         <>

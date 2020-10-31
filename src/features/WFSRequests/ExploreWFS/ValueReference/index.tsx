@@ -4,6 +4,7 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context, { ContextProps } from '../../../../context';
 import { changeValueReference } from '../../../../context/actions';
 import { selectedTypename } from '../../../../shared/utils';
+import { ChangeEvent } from '../../../../shared/models';
 import { disableGeometry } from './utils';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
@@ -11,7 +12,7 @@ import sharedStyles from '../../shared.module.sass';
 const ValueReference = () => {
     const { state, dispatch } = useContext<ContextProps>(Context);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: ChangeEvent) =>
         dispatch(changeValueReference({ valueReference: e.target.value }));
 
     const { typename, valueReferences } = state;

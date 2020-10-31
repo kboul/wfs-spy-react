@@ -5,6 +5,7 @@ import Context, { ContextProps } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
 import { extractFeatureTypes, parseXML } from '../../../shared/wfsMetadata';
+import { ClickEvent } from '../../../shared/models';
 import { checkAbstractLength } from './utils';
 import consts from './constants';
 
@@ -19,7 +20,7 @@ export default function FeatureDetails() {
     const pagesCount = Math.ceil(featuresLength / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: ClickEvent, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };

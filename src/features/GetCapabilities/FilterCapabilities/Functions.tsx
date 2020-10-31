@@ -5,6 +5,7 @@ import Context, { ContextProps } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
 import { extractFunctions, parseXML } from '../../../shared/wfsMetadata';
+import { ClickEvent } from '../../../shared/models';
 import consts from './constants';
 
 export default function Functions() {
@@ -18,7 +19,7 @@ export default function Functions() {
     const pagesCount = Math.ceil(functions.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const handleClick = (e: React.MouseEvent<HTMLElement>, index: number) => {
+    const handleClick = (e: ClickEvent, index: number) => {
         e.preventDefault();
         setCurrentPage(index);
     };

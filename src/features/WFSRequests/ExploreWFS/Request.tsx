@@ -4,13 +4,14 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import Context, { ContextProps } from '../../../context';
 import { changeRequest } from '../../../context/actions';
 import { requests } from '../../../shared/constants';
+import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const RequestInput = () => {
     const { state, dispatch } = useContext<ContextProps>(Context);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: ChangeEvent) =>
         dispatch(changeRequest({ request: e.target.value }));
 
     return (

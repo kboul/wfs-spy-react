@@ -3,13 +3,14 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import Context, { ContextProps } from '../../../context';
 import { changeTypename } from '../../../context/actions';
+import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const Typename = () => {
     const { state, dispatch } = useContext<ContextProps>(Context);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: ChangeEvent) =>
         dispatch(changeTypename({ typename: e.target.value }));
 
     return (

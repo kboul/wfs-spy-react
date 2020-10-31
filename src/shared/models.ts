@@ -31,11 +31,17 @@ interface AttrNamesTypes {
     types: { [complexType: string]: string[] | any };
 }
 
+type ClickEvent = React.MouseEvent<HTMLElement>;
+
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
+
 export type {
     Provider,
     Operations,
     Funcs,
     ServiceId,
     FeatureTypes,
-    AttrNamesTypes
+    AttrNamesTypes,
+    ClickEvent,
+    ChangeEvent
 };

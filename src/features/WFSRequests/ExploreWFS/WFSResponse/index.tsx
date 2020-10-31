@@ -70,18 +70,18 @@ const WFSResponse = () => {
                     {consts.responseMetadata}
                 </Label>
                 <Input
-                    type="textarea"
-                    rows="10"
                     className={sharedStyles.textarea}
                     disabled
+                    rows="10"
+                    type="textarea"
                     value={state.wfsResponse}
                 />
                 <TableButtons
-                    label={consts.response}
                     hasModal
-                    onClick={handleGetResponse}
                     initialState={!state.wfsRequest}
                     isGetRequest={!state.getCapResp}
+                    label={consts.response}
+                    onClick={handleGetResponse}
                 />
             </Col>
         </FormGroup>

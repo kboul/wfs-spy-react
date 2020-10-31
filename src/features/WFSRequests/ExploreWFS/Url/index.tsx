@@ -3,6 +3,7 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import Context, { ContextProps } from '../../../../context';
 import { changeUrl } from '../../../../context/actions';
+import { ChangeEvent } from '../../../../shared/models';
 import useInputFocus from './hooks';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
@@ -15,7 +16,7 @@ const UrlInput = () => {
 
     const { state, dispatch } = useContext<ContextProps>(Context);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    const handleChange = (e: ChangeEvent) =>
         dispatch(changeUrl({ url: e.target.value }));
 
     return (
