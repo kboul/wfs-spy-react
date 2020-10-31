@@ -1,44 +1,38 @@
 import { State, Action } from './models';
 import types from './actionTypes';
-import requestReducer from './reducers/requestReducer';
-import wfsRequestReducer from './reducers/wfsRequestReducer';
-import getCapRespReducer from './reducers/getCapRespReducer';
-import descFeatTypeRespReducer from './reducers/descFeatTypeRespReducer';
-import getPropValRespReducer from './reducers/getPropValRespReducer';
+import {
+    descFeatTypeRespReducer,
+    requestReducer,
+    wfsRequestReducer,
+    getCapRespReducer,
+    getPropValRespReducer
+} from './reducers';
 import initialState from './initialState';
 
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {
-        case types.urlChanged: {
-            const { url } = action.payload;
-            return { ...state, url };
-        }
-        case types.versionChanged: {
-            const { version } = action.payload;
-            return { ...state, version };
-        }
+        case types.urlChanged:
+            return { ...state, url: action.payload.url };
+        case types.versionChanged:
+            return { ...state, version: action.payload.version };
         case types.requestChanged:
             return requestReducer(state, action);
-        case types.typenameChanged: {
-            const { typename } = action.payload;
-            return { ...state, typename };
-        }
-        case types.valueReferenceChanged: {
-            const { valueReference } = action.payload;
-            return { ...state, valueReference };
-        }
+        case types.typenameChanged:
+            return { ...state, typename: action.payload.typename };
+        case types.valueReferenceChanged:
+            return { ...state, valueReference: action.payload.valueReference };
         case types.wfsRequestChanged:
             return wfsRequestReducer(state, action);
-        case types.wfsResponseChanged: {
-            const { wfsResponse } = action.payload;
-            return { ...state, wfsResponse };
-        }
+        case types.wfsResponseChanged:
+            return { ...state, wfsResponse: action.payload.wfsResponse };
         case types.getCapRespChanged:
             return getCapRespReducer(state, action);
         case types.descFeatTypeRespChanged:
             return descFeatTypeRespReducer(state, action);
         case types.getPropValRespChanged:
             return getPropValRespReducer(state, action);
+        case types.compOperChanged:
+            return { ...state, compOper: action.payload.compOper };
         case types.stateReset:
             return initialState;
         default:

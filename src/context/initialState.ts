@@ -23,6 +23,7 @@ const initialState = {
     valueCount: '',
     minValue: '',
     maxValue: '',
+    compOper: '',
     getGetCapTime: 0,
     getGetCapNumber: 0,
     getDescFeatTypeTime: 0,

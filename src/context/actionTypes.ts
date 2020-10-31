@@ -9,5 +9,6 @@ export default {
     getCapRespChanged: 'getCapRespChanged',
     descFeatTypeRespChanged: 'descFeatTypeRespChanged',
     getPropValRespChanged: 'getPropValRespChanged',
+    compOperChanged: 'compOperChanged',
     stateReset: 'stateReset'
 };

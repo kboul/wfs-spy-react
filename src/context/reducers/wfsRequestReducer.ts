@@ -3,6 +3,14 @@ import { State, Action } from '../models';
 import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
+const revertGetPropValInputs = {
+    selectedTypValueRef: '',
+    valueCount: '',
+    minValue: '',
+    maxValue: '',
+    compOper: ''
+};
+
 const wfsRequestReducer = (state: State, action: Action) => {
     const errors = { ...state.errors };
     const stateObj = { ...state };
@@ -26,7 +34,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReferences: consts.valueReferences,
             valueReference: '',
             descFeatTypeResp: '',
-            ...consts.revertGetPropValInputs
+            ...revertGetPropValInputs
         };
     }
     if (state.request === requests[1] && state.typename) {
@@ -35,7 +43,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReference: '',
             valueReferences: consts.valueReferences,
             descFeatTypeResp: '',
-            ...consts.revertGetPropValInputs
+            ...revertGetPropValInputs
         };
     }
     // no typename & valueReference
@@ -58,7 +66,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
         const selectedTypValueRef = `typeName: ${state.typename} \n valueReference: ${state.valueReference}`;
         return {
             ...stateObj,
-            ...consts.revertGetPropValInputs,
+            ...revertGetPropValInputs,
             selectedTypValueRef,
             getPropValResp: ''
         };

@@ -61,6 +61,11 @@ const changeGetPropValResp = (payload: {
     payload
 });
 
+const changeCompOper = (payload: { compOper: string }): Action => ({
+    type: types.compOperChanged,
+    payload
+});
+
 const resetState = (): Action => ({ type: types.stateReset, payload: {} });
 
 export {
@@ -74,5 +79,6 @@ export {
     changeGetCapResp,
     changeDescFeatTypeResp,
     changeGetPropValResp,
+    changeCompOper,
     resetState
 };

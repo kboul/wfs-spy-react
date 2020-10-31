@@ -7,9 +7,9 @@ import { extractFilterCap, parseXML } from '../../../shared/wfsMetadata';
 import consts from './constants';
 
 export default function ComparisonOperators() {
-    const { state }: ContextProps = useContext(Context);
+    const { state } = useContext<ContextProps>(Context);
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
+    const parsedResponse = parseXML(state.getCapResp);
     const compOper = extractFilterCap(parsedResponse, 'ComparisonOperator');
     const compOperLength = compOper.length;
 
