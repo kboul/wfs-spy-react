@@ -6,11 +6,10 @@ import consts from './constants';
 import styles from './index.module.sass';
 
 export default function TableButtons({
-    label,
+    disabled,
     hasModal,
-    onClick,
-    initialState,
-    isGetRequest
+    label,
+    onClick
 }: TableButtonsProps) {
     return (
         <Table borderless className={styles.table}>
@@ -18,21 +17,21 @@ export default function TableButtons({
                 <tr>
                     <th>
                         <Button
-                            color="primary"
-                            size="sm"
                             className="float-right"
-                            disabled={initialState}
-                            onClick={onClick}>
+                            color="primary"
+                            disabled={disabled}
+                            onClick={onClick}
+                            size="sm">
                             {consts.get} {label}
                         </Button>
                     </th>
                     <th>
                         <Button
-                            color="primary"
-                            size="sm"
                             className="float-left"
-                            disabled={initialState || isGetRequest}
-                            onClick={onClick}>
+                            color="primary"
+                            disabled={disabled}
+                            onClick={onClick}
+                            size="sm">
                             {consts.post} {label}
                         </Button>
                     </th>
@@ -44,18 +43,18 @@ export default function TableButtons({
                         <td>
                             <Button
                                 color="primary"
-                                size="sm"
                                 className="float-right"
-                                disabled={initialState}>
+                                disabled={disabled}
+                                size="sm">
                                 {consts.openInANewWindow}
                             </Button>
                         </td>
                         <td>
                             <Button
                                 color="primary"
-                                size="sm"
                                 className="float-left"
-                                disabled={initialState || isGetRequest}>
+                                disabled={disabled}
+                                size="sm">
                                 {consts.openInANewWindow}
                             </Button>
                         </td>

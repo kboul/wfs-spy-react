@@ -14,6 +14,7 @@ interface State {
     getCapResp: string;
     descFeatTypeResp: string;
     getPropValResp: string;
+    getPropValFiltResp: string;
     sortBy: string;
     errors: {
         url: string;

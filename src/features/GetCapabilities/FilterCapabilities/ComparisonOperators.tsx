@@ -3,15 +3,14 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { extractFilterCap, parseXML } from '../../../shared/wfsMetadata';
+import { getCompOperList } from '../../../shared/utils';
 import consts from './constants';
 
 export default function ComparisonOperators() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const compOpers = extractFilterCap(parsedResponse, 'ComparisonOperator');
-    const compOperLength = compOpers.length;
+    const compOperList = getCompOperList(getCapResp);
+    const compOperLength = compOperList.length;
 
     const table = (
         <>
@@ -19,9 +18,9 @@ export default function ComparisonOperators() {
                 responsive
                 className="table-striped text-center table-borderless">
                 <tbody>
-                    {compOpers.map((operator, index) => (
+                    {compOperList.map((compOper, index) => (
                         <tr key={`comparison-operators-${index}`}>
-                            <td>{operator}</td>
+                            <td>{compOper}</td>
                         </tr>
                     ))}
                 </tbody>

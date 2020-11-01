@@ -26,7 +26,11 @@ const WFSRequest = () => {
                     disabled
                     value={state.wfsRequest}
                 />
-                <TableButtons label={consts.request} onClick={handleClick} />
+                <TableButtons
+                    disabled={false}
+                    label={consts.request}
+                    onClick={handleClick}
+                />
             </Col>
         </FormGroup>
     );

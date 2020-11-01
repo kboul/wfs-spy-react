@@ -66,7 +66,7 @@ const WFSResponse = () => {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label for="wfsResponse" className={sharedStyles.labelFont}>
+                <Label className={sharedStyles.labelFont} for="wfsResponse">
                     {consts.responseMetadata}
                 </Label>
                 <Input
@@ -77,9 +77,8 @@ const WFSResponse = () => {
                     value={state.wfsResponse}
                 />
                 <TableButtons
+                    disabled={!state.wfsRequest}
                     hasModal
-                    initialState={!state.wfsRequest}
-                    isGetRequest={!state.getCapResp}
                     label={consts.response}
                     onClick={handleGetResponse}
                 />

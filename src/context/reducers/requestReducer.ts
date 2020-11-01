@@ -23,7 +23,7 @@ const requestReducer = (state: State, action: Action) => {
     }
     if (request === requests[2] && !descFeatTypeResp) {
         toast.info(toasts.descFeatTypeFirst);
-        return { ...state, request: requests[1] };
+        return state;
     }
     return {
         ...state,

@@ -15,6 +15,7 @@ const initialState = {
     getCapResp: '',
     descFeatTypeResp: '',
     getPropValResp: '',
+    getPropValFiltResp: '',
     sortBy: 'ASC',
     errors: {
         url: ''

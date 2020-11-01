@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
+import { getCompOperList } from '../../shared/utils';
 import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
@@ -32,6 +33,8 @@ const wfsRequestReducer = (state: State, action: Action) => {
     stateObj.errors = { ...errors, url: '' };
     stateObj.selectedTypValueRef = '';
 
+    const compOperList = getCompOperList(state.getCapResp);
+
     if (state.request === requests[0] && state.url) {
         return {
             ...stateObj,
@@ -41,6 +44,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReferences: consts.valueReferences,
             valueReference: '',
             descFeatTypeResp: '',
+            getPropValResp: '',
             ...revertGetPropValInputs
         };
     }
@@ -50,8 +54,8 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReference: '',
             valueReferences: consts.valueReferences,
             descFeatTypeResp: '',
-            ...revertGetPropValInputs,
-            compOper: state.compOper
+            getPropValResp: '',
+            ...revertGetPropValInputs
         };
     }
     // no typename & valueReference
@@ -71,14 +75,13 @@ const wfsRequestReducer = (state: State, action: Action) => {
         state.typename !== noOption &&
         state.valueReference
     ) {
-        const selectedTypValueRef = `typeName: ${state.typename} \n valueReference: ${state.valueReference}`;
+        const selectedTypValueRef = `typeName: ${state.typename} \nvalueReference: ${state.valueReference}`;
         return {
             ...stateObj,
+            ...revertGetPropValInputs,
             selectedTypValueRef,
-            valueCount: '',
-            minValue: '',
-            maxValue: '',
-            getPropValResp: ''
+            getPropValResp: '',
+            compOper: compOperList[0]
         };
     }
     return stateObj;

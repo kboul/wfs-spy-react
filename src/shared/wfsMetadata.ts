@@ -388,13 +388,8 @@ const extractFilterCap = (
     if (operatorTags && operatorTags.length) {
         operatorTags.forEach(operItem => {
             const operItemAttr = operItem.attributes;
-            if (
-                operItemAttr &&
-                operItemAttr[0] &&
-                operItemAttr[0].textContent
-            ) {
+            if (operItemAttr && operItemAttr[0] && operItemAttr[0].textContent)
                 operands.push(operItemAttr[0].textContent);
-            }
         });
     }
 
