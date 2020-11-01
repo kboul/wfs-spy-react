@@ -9,15 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.sass';
 
 import App from './App';
-import Provider from './context/Provider';
 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <Router basename={`${process.env.PUBLIC_URL}/`}>
-        <Provider>
-            <App />
-        </Provider>
+        <App />
     </Router>,
     document.getElementById('root')
 );

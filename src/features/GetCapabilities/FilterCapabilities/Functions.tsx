@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
 import { extractFunctions, parseXML } from '../../../shared/wfsMetadata';
@@ -9,7 +9,7 @@ import { ClickEvent } from '../../../shared/models';
 import consts from './constants';
 
 export default function Functions() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
     const parsedResponse = parseXML(getCapResp);
     const functions = extractFunctions(parsedResponse);

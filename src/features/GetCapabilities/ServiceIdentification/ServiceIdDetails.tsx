@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import { parseXML, extractServiceId } from '../../../shared/wfsMetadata';
 import { splitStrOnUpperCase } from '../../../shared/utils';
 import consts from './constants';
 
 export default function ServiceIdDetails() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
     const parsedResponse = parseXML(getCapResp);
     const serviceId = extractServiceId(parsedResponse);

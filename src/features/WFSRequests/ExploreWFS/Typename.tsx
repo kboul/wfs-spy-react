@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
-import { changeTypename } from '../../../context/actions';
+import { useAppContext, changeTypename } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const Typename = () => {
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeTypename({ typename: e.target.value }));

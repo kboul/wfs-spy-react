@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
 import TablePagination from '../../../shared/TablePagination';
 import TotalItems from '../../../shared/TotalItems';
@@ -12,7 +12,7 @@ import { noOption } from '../../../shared/constants';
 import consts from './constants';
 
 export default function AttributeDetails() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { descFeatTypeResp, typename } = state;
     const parsedResponse = parseXML(descFeatTypeResp);
     const attrNamesTypes = extractAttrNamesTypes(parsedResponse);

@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import { extractFilterCap, parseXML } from '../../../shared/wfsMetadata';
 import consts from './constants';
 
 export default function ComparisonOperators() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(state.getCapResp);
-    const compOper = extractFilterCap(parsedResponse, 'ComparisonOperator');
-    const compOperLength = compOper.length;
+    const parsedResponse = parseXML(getCapResp);
+    const compOpers = extractFilterCap(parsedResponse, 'ComparisonOperator');
+    const compOperLength = compOpers.length;
 
     const table = (
         <>
@@ -19,7 +19,7 @@ export default function ComparisonOperators() {
                 responsive
                 className="table-striped text-center table-borderless">
                 <tbody>
-                    {compOper.map((operator, index) => (
+                    {compOpers.map((operator, index) => (
                         <tr key={`comparison-operators-${index}`}>
                             <td>{operator}</td>
                         </tr>

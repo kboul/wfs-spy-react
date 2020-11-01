@@ -1,7 +1,7 @@
-import React, { useContext, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
@@ -11,7 +11,7 @@ const selectedTypValueRefStyle: CSSProperties = {
 };
 
 export default function SelectedTypValueRefer() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
 
     return (
         <FormGroup row>

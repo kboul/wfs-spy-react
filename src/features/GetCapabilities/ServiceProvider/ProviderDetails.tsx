@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import { parseXML, extractProvider } from '../../../shared/wfsMetadata';
 import { formalProviderName } from './utils';
 import consts from './constants';
 
 export default function ProviderDetails() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
     const parsedResponse = parseXML(getCapResp);
     const provider = extractProvider(parsedResponse);

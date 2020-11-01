@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../../context';
-import { changeUrl } from '../../../../context/actions';
+import { useAppContext, changeUrl } from '../../../../context';
 import { ChangeEvent } from '../../../../shared/models';
 import useInputFocus from './hooks';
 import consts from '../constants';
@@ -14,7 +13,7 @@ const UrlInput = () => {
 
     const { urlRef, urlBackgroud, handleFocus, handleBlur } = useInputFocus();
 
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeUrl({ url: e.target.value }));

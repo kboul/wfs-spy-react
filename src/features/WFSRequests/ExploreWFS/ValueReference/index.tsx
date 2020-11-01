@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../../context';
-import { changeValueReference } from '../../../../context/actions';
+import { useAppContext, changeValueReference } from '../../../../context';
 import { selectedTypename } from '../../../../shared/utils';
 import { ChangeEvent } from '../../../../shared/models';
 import { disableGeometry } from './utils';
@@ -10,7 +9,7 @@ import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 
 const ValueReference = () => {
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeValueReference({ valueReference: e.target.value }));

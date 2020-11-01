@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import Context from '../../context';
+import { useAppContext } from '../../context';
 import Panel from '../../shared/Panel';
 import chartOptions from './utils';
 import ChartOptions from './models';
 import consts from './constants';
 
 export default function Statistics() {
-    const { state } = useContext(Context);
+    const { state } = useAppContext();
     const [timeOpts, setTimeOpts] = useState<ChartOptions>(
         chartOptions('time')
     );

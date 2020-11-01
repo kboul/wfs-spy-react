@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
-import { changeVersion } from '../../../context/actions';
+import { useAppContext, changeVersion } from '../../../context';
 import { versions } from '../../../shared/constants';
 import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const VersionInput = () => {
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeVersion({ version: e.target.value }));
@@ -21,9 +20,9 @@ const VersionInput = () => {
             </Label>
             <Col md={9}>
                 <Input
+                    onChange={handleChange}
                     type="select"
-                    value={state.version}
-                    onChange={handleChange}>
+                    value={state.version}>
                     {versions.map(version => (
                         <option key={version}>{version}</option>
                     ))}

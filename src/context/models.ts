@@ -23,6 +23,7 @@ interface State {
     minValue: string | undefined;
     maxValue: string | undefined;
     compOper: string;
+    addSortBy: string;
     getGetCapTime: number;
     getGetCapNumber: number;
     getDescFeatTypeTime: number;

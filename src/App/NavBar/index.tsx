@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
     Collapse,
     Navbar,
@@ -13,16 +13,15 @@ import {
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 
-import Context, { ContextProps } from '../../context';
+import { useAppContext, resetState } from '../../context';
 import Logos from './Logos';
 import DropDownItem from './DropDownItem';
-import { resetState } from '../../context/actions';
 import { mainRoutes } from '../routes';
 import { appTitle, dropdownRoutes } from './constants';
 
 export default function NavBar() {
     const { pathname } = useLocation();
-    const { dispatch } = useContext<ContextProps>(Context);
+    const { dispatch } = useAppContext();
 
     const [isOpen, setIsOpen] = useState(false);
 

@@ -1,14 +1,21 @@
 import { toast } from 'react-toastify';
+
 import { State, Action } from '../models';
 import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
+const urlValidation = 'Url is required';
 const revertGetPropValInputs = {
     selectedTypValueRef: '',
     valueCount: '',
     minValue: '',
     maxValue: '',
-    compOper: ''
+    compOper: '',
+    addSortBy: consts.addSortBy
+};
+const toasts = {
+    typenameValueRef:
+        'Typename & valueReference are required to make a GetPropValue request.'
 };
 
 const wfsRequestReducer = (state: State, action: Action) => {
@@ -16,7 +23,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
     const stateObj = { ...state };
 
     if (!state.url) {
-        errors.url = consts.urlValidation;
+        errors.url = urlValidation;
         return { ...stateObj, wfsRequest: '', wfsResponse: '', errors };
     }
 
@@ -43,7 +50,8 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReference: '',
             valueReferences: consts.valueReferences,
             descFeatTypeResp: '',
-            ...revertGetPropValInputs
+            ...revertGetPropValInputs,
+            compOper: state.compOper
         };
     }
     // no typename & valueReference
@@ -52,7 +60,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
         state.typename === noOption &&
         !state.valueReference
     ) {
-        toast.info(consts.toasts.typenameValueRef);
+        toast.info(toasts.typenameValueRef);
         return {
             ...stateObj,
             wfsRequest: ''
@@ -66,8 +74,10 @@ const wfsRequestReducer = (state: State, action: Action) => {
         const selectedTypValueRef = `typeName: ${state.typename} \n valueReference: ${state.valueReference}`;
         return {
             ...stateObj,
-            ...revertGetPropValInputs,
             selectedTypValueRef,
+            valueCount: '',
+            minValue: '',
+            maxValue: '',
             getPropValResp: ''
         };
     }

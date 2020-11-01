@@ -4,12 +4,13 @@ import { ToastContainer } from 'react-toastify';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
+import { Provider } from '../context';
 import { getCapRoutes, descrFeatTypeRoutes, mainRoutes } from './routes';
 
 export default function App() {
     const routes = [...mainRoutes, ...getCapRoutes, ...descrFeatTypeRoutes];
     return (
-        <>
+        <Provider>
             <ToastContainer hideProgressBar />
             <NavBar />
             <Switch>
@@ -23,6 +24,6 @@ export default function App() {
                 <Redirect from="*" to={routes[0].path} />
             </Switch>
             <Footer />
-        </>
+        </Provider>
     );
 }

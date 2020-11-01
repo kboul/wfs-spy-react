@@ -24,6 +24,7 @@ const initialState = {
     minValue: '',
     maxValue: '',
     compOper: '',
+    addSortBy: consts.addSortBy,
     getGetCapTime: 0,
     getGetCapNumber: 0,
     getDescFeatTypeTime: 0,

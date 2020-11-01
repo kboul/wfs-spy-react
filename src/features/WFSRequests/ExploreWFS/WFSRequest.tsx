@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
-import { changeWfsRequest } from '../../../context/actions';
+import { useAppContext, changeWfsRequest } from '../../../context';
 import TableButtons from '../TableButtons';
 import { formWfsRequest } from './utils';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const WFSRequest = () => {
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
 
     const handleClick = () =>
         dispatch(changeWfsRequest({ wfsRequest: formWfsRequest(state) }));

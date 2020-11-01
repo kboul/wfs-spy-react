@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import { parseXML, extractFilterCap } from '../../../shared/wfsMetadata';
 import consts from './constants';
 
 export default function TemporalOperators() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
     const parsedResponse = parseXML(getCapResp);
     const tempOperators = extractFilterCap(parsedResponse, 'TemporalOperator');

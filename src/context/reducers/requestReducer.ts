@@ -1,12 +1,17 @@
 import { toast } from 'react-toastify';
 import { State, Action } from '../models';
 import { requests } from '../../shared/constants';
-import consts from '../constants';
+
+const toasts = {
+    getCapDescFeatTypeFirst:
+        'Please make a GetCapabilities and a DescribeFeatureType request first.',
+    getCapFirst: 'Please make a GetCapabilities request first.',
+    descFeatTypeFirst: 'Please make a DescribeFeatureType request first.'
+};
 
 const requestReducer = (state: State, action: Action) => {
     // ensure request order
     const { request } = action.payload;
-    const { toasts } = consts;
     const { getCapResp, descFeatTypeResp } = state;
     if (request === requests[2] && !descFeatTypeResp && !getCapResp) {
         toast.info(toasts.getCapDescFeatTypeFirst);

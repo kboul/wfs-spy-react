@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Table, UncontrolledTooltip } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
+import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
 import { extractFeatureTypes, parseXML } from '../../../shared/wfsMetadata';
@@ -10,7 +10,7 @@ import { checkAbstractLength } from './utils';
 import consts from './constants';
 
 export default function FeatureDetails() {
-    const { state } = useContext<ContextProps>(Context);
+    const { state } = useAppContext();
     const { getCapResp } = state;
     const parsedResponse = parseXML(getCapResp);
     const features = extractFeatureTypes(parsedResponse);

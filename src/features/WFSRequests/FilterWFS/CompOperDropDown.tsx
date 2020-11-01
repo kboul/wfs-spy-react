@@ -1,17 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import Context, { ContextProps } from '../../../context';
-import { changeCompOper } from '../../../context/actions';
+import { useAppContext, changeCompOper } from '../../../context';
 import { extractFilterCap, parseXML } from '../../../shared/wfsMetadata';
 import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 export default function CompOperDropDown() {
-    const { state, dispatch } = useContext<ContextProps>(Context);
+    const { state, dispatch } = useAppContext();
     const parsedResponse = parseXML(state.getCapResp);
-    const compOper = extractFilterCap(parsedResponse, 'ComparisonOperator');
+    const compOpers = extractFilterCap(parsedResponse, 'ComparisonOperator');
+
+    useEffect(() => {
+        if (state.getCapResp && !state.getPropValResp)
+            dispatch(changeCompOper({ compOper: compOpers[0] }));
+        // eslint-disable-next-line
+    }, [state.getCapResp]);
 
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeCompOper({ compOper: e.target.value }));
@@ -30,7 +35,7 @@ export default function CompOperDropDown() {
                     onChange={handleChange}
                     type="select"
                     value={state.compOper}>
-                    {compOper.map(operator => (
+                    {compOpers.map(operator => (
                         <option key={operator}>{operator}</option>
                     ))}
                 </Input>

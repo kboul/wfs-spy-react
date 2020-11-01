@@ -20,9 +20,9 @@ export default function Panel({ content, header, title }: PanelProps) {
                         aria-label="Toggle card"
                         className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
                         onClick={handleClick}
+                        onKeyDown={() => {}}
                         role="button"
                         tabIndex={0}
-                        onKeyDown={() => {}}
                     />
                 </span>
             </CardHeader>
