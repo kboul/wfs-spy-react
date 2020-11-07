@@ -2,8 +2,8 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeUrl } from '../../../../context';
-import { ChangeEvent } from '../../../../shared/models';
 import useInputFocus from './hooks';
+import { ChangeEvent } from '../../../../shared/models';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 import styles from './index.module.sass';
@@ -25,18 +25,18 @@ const UrlInput = () => {
             </Label>
             <Col md={9}>
                 <Input
-                    type="textarea"
-                    rows="3"
-                    style={{ backgroundColor: urlBackgroud }}
                     className={`${sharedStyles.textarea} form-control ${
                         state.errors.url && 'is-invalid'
                     } `}
+                    type="textarea"
                     innerRef={urlRef}
-                    value={state.url}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                    onBlur={handleBlur}
                     required
+                    rows="3"
+                    style={{ backgroundColor: urlBackgroud }}
+                    value={state.url}
                 />
                 {state.errors.url && (
                     <div className="invalid-feedback">{state.errors.url}</div>

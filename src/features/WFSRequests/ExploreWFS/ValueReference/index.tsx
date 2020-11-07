@@ -30,26 +30,25 @@ const ValueReference = () => {
         // eslint-disable-next-line
     }, [typename, valueReferences, dispatch]);
 
+    const disabled = (index: number) =>
+        disableGeometry(valueReferences?.types[currentSelectedTypename][index]);
+
     return (
         <FormGroup row>
-            <Label for="valueRefer" md={2} className={sharedStyles.labelFont}>
+            <Label className={sharedStyles.labelFont} for="valueRefer" md={2}>
                 {consts.valueReference}
             </Label>
             <Col md={9}>
                 <Input
-                    type="select"
                     disabled={!state.descFeatTypeResp}
-                    value={state.valueReference}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                    type="select"
+                    value={state.valueReference}>
                     {valueReferences?.names[currentSelectedTypename]?.map(
                         (valueRefer: string, index: number) => (
                             <option
                                 key={`value-reference-${index}`}
-                                disabled={disableGeometry(
-                                    valueReferences?.types[
-                                        currentSelectedTypename
-                                    ][index]
-                                )}>
+                                disabled={disabled(index)}>
                                 {valueRefer}
                             </option>
                         )

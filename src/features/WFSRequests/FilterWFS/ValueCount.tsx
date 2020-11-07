@@ -9,11 +9,11 @@ export default function ValueCount() {
     const { state } = useAppContext();
     return (
         <FormGroup row>
-            <Label for="valueCount" md={4} className={sharedStyles.labelFont}>
+            <Label className={sharedStyles.labelFont} for="valueCount" md={4}>
                 {consts.valueCount}
             </Label>
             <Col md={7}>
-                <Input type="text" disabled value={state.valueCount} />
+                <Input disabled type="text" value={state.valueCount} />
             </Col>
         </FormGroup>
     );
