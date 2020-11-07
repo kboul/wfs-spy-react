@@ -8,7 +8,7 @@ import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 import styles from './index.module.sass';
 
-const UrlInput = () => {
+export default function Url() {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
 
     const { urlRef, urlBackgroud, handleFocus, handleBlur } = useInputFocus();
@@ -44,6 +44,4 @@ const UrlInput = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default UrlInput;
+}

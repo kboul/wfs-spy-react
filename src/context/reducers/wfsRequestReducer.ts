@@ -12,6 +12,9 @@ const revertGetPropValInputs = {
     minValue: '',
     maxValue: '',
     compOper: '',
+    numericValue: '',
+    nonNumericValue: '',
+    filtValueCount: '',
     addSortBy: consts.addSortBy
 };
 const toasts = {

@@ -7,7 +7,7 @@ import { formWfsRequest } from './utils';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const WFSRequest = () => {
+export default function WFSRequest() {
     const { state, dispatch } = useAppContext();
 
     const handleClick = () =>
@@ -16,7 +16,7 @@ const WFSRequest = () => {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label for="wfsRequest" className={sharedStyles.labelFont}>
+                <Label className={sharedStyles.labelFont} for="wfsRequest">
                     {consts.formWfsRequest}
                 </Label>
                 <Input
@@ -34,6 +34,4 @@ const WFSRequest = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default WFSRequest;
+}

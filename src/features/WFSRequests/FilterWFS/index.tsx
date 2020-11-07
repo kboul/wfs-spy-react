@@ -5,6 +5,8 @@ import SelectedTypValueRefer from './SelectedTypValueRefer';
 import ValueCount from './ValueCount';
 import MinValue from './MinValue';
 import MaxValue from './MaxValue';
+import NumericValue from './NumericValue';
+import NonNumericValue from './NonNumericValue';
 import FilteredValueCount from './FilteredValueCount';
 import AddSortByASC from './AddSortByASC';
 import CompOperDropDown from './CompOperDropDown';
@@ -24,6 +26,8 @@ export default function FilterWFS() {
                 <ValueCount />
                 <MinValue />
                 <MaxValue />
+                <NumericValue />
+                <NonNumericValue />
                 <CompOperDropDown />
                 <FilteredValueCount />
                 <AddSortByASC />

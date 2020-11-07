@@ -6,7 +6,7 @@ import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const Typename = () => {
+export default function Typename() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
@@ -14,15 +14,15 @@ const Typename = () => {
 
     return (
         <FormGroup row>
-            <Label for="typeName" md={2} className={sharedStyles.labelFont}>
+            <Label className={sharedStyles.labelFont} for="typeName" md={2}>
                 {consts.typename}
             </Label>
             <Col md={9}>
                 <Input
-                    type="select"
                     disabled={!state.typenames.length}
-                    value={state.typename}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                    type="select"
+                    value={state.typename}>
                     {state.typenames.map(typename => (
                         <option key={typename}>{typename}</option>
                     ))}
@@ -30,6 +30,4 @@ const Typename = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default Typename;
+}

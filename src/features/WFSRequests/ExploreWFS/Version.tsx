@@ -7,7 +7,7 @@ import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const VersionInput = () => {
+export default function Version() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
@@ -15,7 +15,7 @@ const VersionInput = () => {
 
     return (
         <FormGroup row>
-            <Label for="version" md={2} className={sharedStyles.labelFont}>
+            <Label className={sharedStyles.labelFont} for="version" md={2}>
                 {consts.version}
             </Label>
             <Col md={9}>
@@ -30,6 +30,4 @@ const VersionInput = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default VersionInput;
+}

@@ -8,6 +8,7 @@ import Service from './Service';
 import Typename from './Typename';
 import ValueReference from './ValueReference';
 import SortBy from './SortBy';
+import HiddenField from './HiddenField';
 import WFSRequest from './WFSRequest';
 import WFSResponse from './WFSResponse';
 import consts from './constants';
@@ -29,6 +30,7 @@ const ExploreWFS = () => {
                 <Typename />
                 <ValueReference />
                 <SortBy />
+                <HiddenField />
                 <WFSRequest />
                 <WFSResponse />
             </Form>

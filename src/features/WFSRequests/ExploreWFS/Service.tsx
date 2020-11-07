@@ -5,18 +5,16 @@ import { useAppContext } from '../../../context';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const Service = () => {
+export default function Service() {
     const { state } = useAppContext();
     return (
         <FormGroup row>
-            <Label for="service" md={2} className={sharedStyles.labelFont}>
+            <Label className={sharedStyles.labelFont} for="service" md={2}>
                 {consts.service}
             </Label>
             <Col md={9}>
-                <Input type="text" value={state.service} disabled />
+                <Input disabled type="text" value={state.service} />
             </Col>
         </FormGroup>
     );
-};
-
-export default Service;
+}

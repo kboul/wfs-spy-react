@@ -7,7 +7,7 @@ import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const RequestInput = () => {
+export default function Request() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
@@ -30,6 +30,4 @@ const RequestInput = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default RequestInput;
+}

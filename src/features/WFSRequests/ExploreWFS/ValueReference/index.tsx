@@ -3,12 +3,12 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeValueReference } from '../../../../context';
 import { selectedTypename } from '../../../../shared/utils';
-import { ChangeEvent } from '../../../../shared/models';
 import { disableGeometry } from './utils';
+import { ChangeEvent } from '../../../../shared/models';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 
-const ValueReference = () => {
+export default function ValueReference() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
@@ -57,6 +57,4 @@ const ValueReference = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default ValueReference;
+}

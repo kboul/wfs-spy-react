@@ -30,6 +30,8 @@ const types = {
     getPropValRespChanged: 'getPropValRespChanged',
     compOperChanged: 'compOperChanged',
     addSortByChanged: 'addSortByChanged',
+    numericValueChanged: 'numericValueChanged',
+    nonNumericValueChanged: 'nonNumericValueChanged',
     stateReset: 'stateReset'
 };
 
@@ -104,6 +106,18 @@ const changeAddSortBy = (payload: { addSortBy: string }): Action => ({
     payload
 });
 
+const changeNumericValue = (payload: { numericValue: string }): Action => ({
+    type: types.numericValueChanged,
+    payload
+});
+
+const changeNonNumericValue = (payload: {
+    nonNumericValue: string;
+}): Action => ({
+    type: types.nonNumericValueChanged,
+    payload
+});
+
 const resetState = (): Action => ({ type: types.stateReset, payload: {} });
 
 export {
@@ -119,6 +133,8 @@ export {
     changeGetPropValResp,
     changeCompOper,
     changeAddSortBy,
+    changeNumericValue,
+    changeNonNumericValue,
     resetState
 };
 
@@ -149,6 +165,13 @@ const reducer = (state: State, action: Action): State => {
             return { ...state, compOper: action.payload.compOper };
         case types.addSortByChanged:
             return { ...state, addSortBy: action.payload.addSortBy };
+        case types.numericValueChanged:
+            return { ...state, numericValue: action.payload.numericValue };
+        case types.nonNumericValueChanged:
+            return {
+                ...state,
+                nonNumericValue: action.payload.nonNumericValue
+            };
         case types.stateReset:
             return initialState;
         default:
@@ -179,7 +202,6 @@ function Provider({ children }: ProviderProps) {
 }
 
 // useAppContent hook
-
 function useAppContext() {
     return useContext<ContextProps>(Context);
 }

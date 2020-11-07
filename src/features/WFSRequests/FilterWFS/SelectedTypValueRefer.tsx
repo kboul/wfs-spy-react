@@ -5,29 +5,28 @@ import { useAppContext } from '../../../context';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const selectedTypValueRefStyle: CSSProperties = {
+const labelStyle: CSSProperties = {
     paddingTop: '20px',
     whiteSpace: 'pre-wrap'
 };
 
 export default function SelectedTypValueRefer() {
     const { state } = useAppContext();
-
     return (
         <FormGroup row>
             <Label
+                className={sharedStyles.labelFont}
                 for="selectedTypValueRef"
                 md={4}
-                className={sharedStyles.labelFont}
-                style={selectedTypValueRefStyle}>
+                style={labelStyle}>
                 {consts.selectedTypValueRef}
             </Label>
             <Col md={7}>
                 <Input
-                    type="textarea"
-                    rows="3"
                     className={sharedStyles.textarea}
                     disabled
+                    rows="3"
+                    type="textarea"
                     value={state.selectedTypValueRef}
                 />
             </Col>

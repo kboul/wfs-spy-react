@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
+import TableButtons from '../../TableButtons';
 import {
     useAppContext,
     changeWfsResponse,
@@ -9,7 +10,6 @@ import {
     changeDescFeatTypeResp,
     changeGetPropValResp
 } from '../../../../context';
-import TableButtons from '../../TableButtons';
 import { extractTypenames } from '../../../../shared/wfsMetadata';
 import { formWfsRequest } from '../utils';
 import { adjustProxyToUrl } from './utils';
@@ -18,7 +18,7 @@ import { requests } from '../../../../shared/constants';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 
-const WFSResponse = () => {
+export default function WFSResponse() {
     const { state, dispatch } = useAppContext();
 
     const handleGetResponse = async () => {
@@ -85,6 +85,4 @@ const WFSResponse = () => {
             </Col>
         </FormGroup>
     );
-};
-
-export default WFSResponse;
+}

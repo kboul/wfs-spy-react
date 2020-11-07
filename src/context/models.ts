@@ -23,6 +23,9 @@ interface State {
     valueCount: string;
     minValue: string | undefined;
     maxValue: string | undefined;
+    numericValue: string;
+    nonNumericValue: string;
+    filtValueCount: string;
     compOper: string;
     addSortBy: string;
     getGetCapTime: number;

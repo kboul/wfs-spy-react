@@ -5,21 +5,19 @@ import { useAppContext } from '../../../context';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const SortBy = () => {
+export default function SortBy() {
     const { state } = useAppContext();
     return (
         <FormGroup row>
             <Label
+                className={`${sharedStyles.labelFont} mb-2`}
                 for="sortBy"
-                md={2}
-                className={`${sharedStyles.labelFont} mb-2`}>
+                md={2}>
                 {consts.sortBy}
             </Label>
             <Col md={9}>
-                <Input type="text" value={state.sortBy} disabled />
+                <Input disabled type="text" value={state.sortBy} />
             </Col>
         </FormGroup>
     );
-};
-
-export default SortBy;
+}
