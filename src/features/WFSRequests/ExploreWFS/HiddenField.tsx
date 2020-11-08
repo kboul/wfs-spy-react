@@ -8,8 +8,8 @@ const formStyle = { opacity: 0 };
 
 export default function HiddenField() {
     const { state } = useAppContext();
-    const { typename, getPropValResp } = state;
-    if (typename && typename !== noOption && getPropValResp)
+    const { typename, valueReference, getPropValResp } = state;
+    if (typename && typename !== noOption && valueReference && getPropValResp)
         return (
             <FormGroup row style={formStyle}>
                 <Label for="hiddenField" md={2} />

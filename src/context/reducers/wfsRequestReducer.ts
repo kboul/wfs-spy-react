@@ -18,8 +18,9 @@ const revertGetPropValInputs = {
     addSortBy: consts.addSortBy
 };
 const toasts = {
-    typenameValueRef:
-        'Typename & valueReference are required to make a GetPropValue request.'
+    noTypValueRef:
+        'typename & valueReference are required to make a GetPropValue request.',
+    noValueRef: 'valueReference is required to make a GetPropValue request.'
 };
 
 const wfsRequestReducer = (state: State, action: Action) => {
@@ -61,13 +62,25 @@ const wfsRequestReducer = (state: State, action: Action) => {
             ...revertGetPropValInputs
         };
     }
+    // typename exists but no valueReference
+    if (
+        state.request === requests[2] &&
+        state.typename &&
+        !state.valueReference
+    ) {
+        toast.info(toasts.noValueRef);
+        return {
+            ...stateObj,
+            wfsRequest: ''
+        };
+    }
     // no typename & valueReference
     if (
         state.request === requests[2] &&
         state.typename === noOption &&
         !state.valueReference
     ) {
-        toast.info(toasts.typenameValueRef);
+        toast.info(toasts.noTypValueRef);
         return {
             ...stateObj,
             wfsRequest: ''

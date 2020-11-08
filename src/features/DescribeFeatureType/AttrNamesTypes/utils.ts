@@ -1,10 +1,8 @@
 import { AttrNamesTypes } from '../../../shared/models';
 import { getFullTypename } from '../../../shared/utils';
-import { State } from '../../../context/models';
 import AttrNameTypeProps from './models';
 
-const attrNameType = (attrNamesTypes: AttrNamesTypes, state: State) => {
-    const { typename } = state;
+const getAttrNameType = (attrNamesTypes: AttrNamesTypes, typename: string) => {
     const slctTypenameAttrNames: string[] =
         attrNamesTypes.names[getFullTypename(typename)];
 
@@ -23,4 +21,4 @@ const attrNameType = (attrNamesTypes: AttrNamesTypes, state: State) => {
     return selectedWfsAttributes;
 };
 
-export default attrNameType;
+export default getAttrNameType;

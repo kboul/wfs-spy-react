@@ -12,5 +12,8 @@ export default {
     panelDescr: `Provides information regarding the attribute names and their types.`,
     attrNames: 'Attribute Names',
     attrTypes: 'Attribute Types',
-    noAttributes: `${noOperation} ${attrNamesTypes}.`
+    noAttributes: `
+        ${noOperation} ${attrNamesTypes}. 
+        Please try making individual DescribeFeatureType reuqests per typename.
+    `
 };

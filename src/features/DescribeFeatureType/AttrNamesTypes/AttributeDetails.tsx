@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
 import TablePagination from '../../../shared/TablePagination';
 import TotalItems from '../../../shared/TotalItems';
-import attrNameType from './utils';
+import { useAppContext } from '../../../context';
+import getAttrNameType from './utils';
 import { parseXML, extractAttrNamesTypes } from '../../../shared/wfsMetadata';
 import { ClickEvent } from '../../../shared/models';
 import { noOption } from '../../../shared/constants';
@@ -18,12 +18,11 @@ export default function AttributeDetails() {
     const attrNamesTypes = extractAttrNamesTypes(parsedResponse);
     const namesLength = Object.keys(attrNamesTypes.names).length;
 
-    const selectedAttrNameType = attrNameType(attrNamesTypes, state);
+    const attrNameType = getAttrNameType(attrNamesTypes, typename);
 
     const pageSize = 10;
     const pagesCount =
-        selectedAttrNameType &&
-        Math.ceil(selectedAttrNameType?.length / pageSize);
+        attrNameType && Math.ceil(attrNameType?.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
     const handleClick = (e: ClickEvent, index: number) => {
@@ -32,7 +31,7 @@ export default function AttributeDetails() {
     };
 
     const attributesExist =
-        typename && typename !== noOption && selectedAttrNameType.length;
+        typename && typename !== noOption && attrNameType.length;
 
     const table = (
         <>
@@ -49,7 +48,7 @@ export default function AttributeDetails() {
                         </tr>
                     </thead>
                     <tbody>
-                        {selectedAttrNameType
+                        {attrNameType
                             .slice(
                                 currentPage * pageSize,
                                 (currentPage + 1) * pageSize
@@ -65,15 +64,15 @@ export default function AttributeDetails() {
                     </tbody>
                 </Table>
             ) : null}
-            {selectedAttrNameType && selectedAttrNameType.length > pageSize && (
+            {attrNameType?.length > pageSize && (
                 <TablePagination
                     currentPage={currentPage}
-                    pagesCount={pagesCount}
                     onClick={handleClick}
+                    pagesCount={pagesCount}
                 />
             )}
-            {selectedAttrNameType && (
-                <TotalItems numberOfItems={selectedAttrNameType?.length} />
+            {attrNameType && (
+                <TotalItems numberOfItems={attrNameType?.length} />
             )}
         </>
     );
