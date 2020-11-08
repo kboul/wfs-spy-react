@@ -15,6 +15,7 @@ import {
     requestReducer,
     wfsRequestReducer
 } from './reducers';
+import { noOption } from '../shared/constants';
 
 // Actions
 const types = {
@@ -147,8 +148,12 @@ const reducer = (state: State, action: Action): State => {
             return { ...state, version: action.payload.version };
         case types.requestChanged:
             return requestReducer(state, action);
-        case types.typenameChanged:
-            return { ...state, typename: action.payload.typename };
+        case types.typenameChanged: {
+            const { typename } = action.payload;
+            if (typename === noOption)
+                return { ...state, typename, valueReference: '' };
+            return { ...state, typename };
+        }
         case types.valueReferenceChanged:
             return { ...state, valueReference: action.payload.valueReference };
         case types.wfsRequestChanged:

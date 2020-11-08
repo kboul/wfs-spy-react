@@ -1,5 +1,7 @@
-const disableGeometry = (valueRefer: string): boolean => {
-    return valueRefer ? valueRefer.includes('gml') : false;
+const hasGeometry = (valueRefer: string): boolean => {
+    if (valueRefer.includes('the_geom') || valueRefer.includes('gml'))
+        return true;
+    return false;
 };
 
-export { disableGeometry };
+export { hasGeometry };

@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeValueReference } from '../../../../context';
-import { selectedTypename } from '../../../../shared/utils';
-import { disableGeometry } from './utils';
+import { getFullTypename } from '../../../../shared/utils';
+import { hasGeometry } from './utils';
 import { ChangeEvent } from '../../../../shared/models';
 import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
@@ -15,15 +15,18 @@ export default function ValueReference() {
         dispatch(changeValueReference({ valueReference: e.target.value }));
 
     const { typename, valueReferences } = state;
-    const currentSelectedTypename = selectedTypename(typename);
+    const fullTypename = getFullTypename(typename);
+    const attrNamesList = valueReferences?.names[fullTypename];
 
     const didMountRef = useRef(false);
     useEffect(() => {
         if (didMountRef.current) {
             if (!typename || !Object.keys(valueReferences.names).length) return;
-            if (valueReferences?.names[currentSelectedTypename]) {
-                const valueReference =
-                    valueReferences?.names[currentSelectedTypename][0];
+            const attrTypesList = valueReferences?.types[fullTypename];
+            if (attrNamesList) {
+                const valueReference = hasGeometry(attrTypesList[0])
+                    ? attrNamesList[1]
+                    : attrNamesList[0];
                 dispatch(changeValueReference({ valueReference }));
             }
         } else didMountRef.current = true;
@@ -31,7 +34,7 @@ export default function ValueReference() {
     }, [typename, valueReferences, dispatch]);
 
     const disabled = (index: number) =>
-        disableGeometry(valueReferences?.types[currentSelectedTypename][index]);
+        hasGeometry(valueReferences?.types[fullTypename][index]);
 
     return (
         <FormGroup row>
@@ -44,15 +47,13 @@ export default function ValueReference() {
                     onChange={handleChange}
                     type="select"
                     value={state.valueReference}>
-                    {valueReferences?.names[currentSelectedTypename]?.map(
-                        (valueRefer: string, index: number) => (
-                            <option
-                                key={`value-reference-${index}`}
-                                disabled={disabled(index)}>
-                                {valueRefer}
-                            </option>
-                        )
-                    )}
+                    {attrNamesList?.map((valueRefer: string, index: number) => (
+                        <option
+                            key={`value-reference-${index}`}
+                            disabled={disabled(index)}>
+                            {valueRefer}
+                        </option>
+                    ))}
                 </Input>
             </Col>
         </FormGroup>

@@ -3,7 +3,7 @@ import { extractFilterCap, parseXML } from './wfsMetadata';
 const splitStrOnUpperCase = (strOnUpperCase: string): string =>
     strOnUpperCase.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
 
-const selectedTypename = (typename: string): string => {
+const getFullTypename = (typename: string): string => {
     return typename ? `${typename.split(':')[1]}Type` : '';
 };
 
@@ -13,4 +13,4 @@ const getCompOperList = (getCapResp: string): string[] => {
     return compOperList;
 };
 
-export { splitStrOnUpperCase, selectedTypename, getCompOperList };
+export { splitStrOnUpperCase, getFullTypename, getCompOperList };
