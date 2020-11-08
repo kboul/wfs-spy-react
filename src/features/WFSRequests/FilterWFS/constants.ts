@@ -9,6 +9,8 @@ export default {
     filtValueCount: ' Filtered value count',
     addSortByAsc: 'Add SortBy ASC',
     compOper: 'Comparison oper.',
+    lowerValue: 'Enter lower value',
+    upperValue: 'Enter upper value',
     formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:',
     filterResponseMetadata:
         'Filtered Response - Metadata using Filter parameters:',
@@ -22,5 +24,6 @@ export default {
         'hexBinary'
     ],
     nonNumericTypes: ['string', 'date', 'dateTime'],
-    stringTypes: ['string', 'date', 'dateTime']
+    stringTypes: ['string', 'date', 'dateTime'],
+    propIsBetween: 'PropertyIsBetween'
 };

@@ -28,6 +28,8 @@ const initialState = {
     nonNumericValue: '',
     filtValueCount: '',
     compOper: '',
+    lowerValue: '',
+    upperValue: '',
     addSortBy: consts.addSortBy,
     getGetCapTime: 0,
     getGetCapNumber: 0,

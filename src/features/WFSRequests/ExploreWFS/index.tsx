@@ -11,6 +11,9 @@ import SortBy from './SortBy';
 import HiddenField from './HiddenField';
 import WFSRequest from './WFSRequest';
 import WFSResponse from './WFSResponse';
+import { useAppContext } from '../../../context';
+import { noOption } from '../../../shared/constants';
+import filtWfsConsts from '../FilterWFS/constants';
 import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
@@ -19,6 +22,12 @@ const containerStyle = {
 };
 
 const ExploreWFS = () => {
+    const { state } = useAppContext();
+    const { typename, valueReference, getPropValResp, compOper } = state;
+    const isPropValResp =
+        typename && typename !== noOption && valueReference && getPropValResp;
+    const isPropBetween = compOper === filtWfsConsts.propIsBetween;
+
     return (
         <Col md="6" style={containerStyle}>
             <h4 className={sharedStyles.header}>{consts.header}</h4>
@@ -30,7 +39,8 @@ const ExploreWFS = () => {
                 <Typename />
                 <ValueReference />
                 <SortBy />
-                <HiddenField />
+                <HiddenField condition={isPropValResp} displayTimes={1} />
+                <HiddenField condition={isPropBetween} displayTimes={2} />
                 <WFSRequest />
                 <WFSResponse />
             </Form>

@@ -10,6 +10,8 @@ import NonNumericValue from './NonNumericValue';
 import FilteredValueCount from './FilteredValueCount';
 import AddSortByASC from './AddSortByASC';
 import CompOperDropDown from './CompOperDropDown';
+import LowerValue from './LowerValue';
+import UpperValue from './UpperValue';
 import WFSFilterRequest from './WFSFilterRequest';
 import WFSFilterResponse from './WFSFilterResponse';
 import consts from './constants';
@@ -29,6 +31,8 @@ export default function FilterWFS() {
                 <NumericValue />
                 <NonNumericValue />
                 <CompOperDropDown />
+                <LowerValue />
+                <UpperValue />
                 <FilteredValueCount />
                 <AddSortByASC />
                 <WFSFilterRequest />

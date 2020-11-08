@@ -1,46 +1,34 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { changeNonNumericValue, useAppContext } from '../../../context';
-import { getValRefType } from './utils';
+import { changeUpperValue, useAppContext } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
 import consts from './constants';
 import colors from '../../../config/colors';
 import sharedStyles from '../shared.module.sass';
 
-export default function NonNumericValue() {
+export default function UpperValue() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
-        dispatch(changeNonNumericValue({ nonNumericValue: e.target.value }));
+        dispatch(changeUpperValue({ upperValue: e.target.value }));
 
-    const valRefType = getValRefType(
-        state.typename,
-        state.valueReference,
-        state.valueReferences
-    );
-
-    if (
-        state.getPropValResp &&
-        valRefType &&
-        consts.nonNumericTypes.includes(valRefType)
-    )
+    if (state.compOper === consts.propIsBetween)
         return (
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="nonNumericValue"
+                    for="upperValue"
                     md={4}>
-                    {consts.nonNumericValue}
+                    {consts.upperValue}
                 </Label>
                 <Col md={7}>
                     <Input
                         autoFocus
-                        disabled={!state.getPropValResp}
                         onChange={handleChange}
                         style={{ backgroundColor: colors.lightPurple }}
                         type="text"
-                        value={state.nonNumericValue}
+                        value={state.upperValue}
                     />
                 </Col>
             </FormGroup>

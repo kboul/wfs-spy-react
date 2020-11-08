@@ -30,6 +30,8 @@ const types = {
     descFeatTypeRespChanged: 'descFeatTypeRespChanged',
     getPropValRespChanged: 'getPropValRespChanged',
     compOperChanged: 'compOperChanged',
+    lowerValueChanged: 'lowerValueChanged',
+    upperValueChanged: 'upperValueChanged',
     addSortByChanged: 'addSortByChanged',
     numericValueChanged: 'numericValueChanged',
     nonNumericValueChanged: 'nonNumericValueChanged',
@@ -102,6 +104,16 @@ const changeCompOper = (payload: { compOper: string }): Action => ({
     payload
 });
 
+const changeLowerValue = (payload: { lowerValue: string }): Action => ({
+    type: types.lowerValueChanged,
+    payload
+});
+
+const changeUpperValue = (payload: { upperValue: string }): Action => ({
+    type: types.upperValueChanged,
+    payload
+});
+
 const changeAddSortBy = (payload: { addSortBy: string }): Action => ({
     type: types.addSortByChanged,
     payload
@@ -133,6 +145,8 @@ export {
     changeDescFeatTypeResp,
     changeGetPropValResp,
     changeCompOper,
+    changeLowerValue,
+    changeUpperValue,
     changeAddSortBy,
     changeNumericValue,
     changeNonNumericValue,
@@ -164,6 +178,10 @@ const reducer = (state: State, action: Action): State => {
             return getPropValRespReducer(state, action);
         case types.compOperChanged:
             return { ...state, compOper: action.payload.compOper };
+        case types.lowerValueChanged:
+            return { ...state, lowerValue: action.payload.lowerValue };
+        case types.upperValueChanged:
+            return { ...state, upperValue: action.payload.upperValue };
         case types.addSortByChanged:
             return { ...state, addSortBy: action.payload.addSortBy };
         case types.numericValueChanged:

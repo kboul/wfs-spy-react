@@ -27,7 +27,10 @@ export default function NumericValue() {
     )
         return (
             <FormGroup row>
-                <Label className={sharedStyles.labelFont} for="maxValue" md={4}>
+                <Label
+                    className={sharedStyles.labelFont}
+                    for="numericValue"
+                    md={4}>
                     {consts.numericValue}
                 </Label>
                 <Col md={7}>

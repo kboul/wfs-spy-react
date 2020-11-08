@@ -27,6 +27,8 @@ interface State {
     nonNumericValue: string;
     filtValueCount: string;
     compOper: string;
+    lowerValue: string;
+    upperValue: string;
     addSortBy: string;
     getGetCapTime: number;
     getGetCapNumber: number;
