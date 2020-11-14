@@ -6,17 +6,7 @@ import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
 const urlValidation = 'Url is required';
-const revertGetPropValInputs = {
-    selectedTypValueRef: '',
-    valueCount: '',
-    minValue: '',
-    maxValue: '',
-    compOper: '',
-    numericValue: '',
-    nonNumericValue: '',
-    filtValueCount: '',
-    addSortBy: consts.addSortBy
-};
+
 const toasts = {
     noTypValueRef:
         'typename & valueReference are required to make a GetPropValue request.',
@@ -49,7 +39,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReference: '',
             descFeatTypeResp: '',
             getPropValResp: '',
-            ...revertGetPropValInputs
+            ...consts.revertGetPropValInputs
         };
     }
     if (state.request === requests[1] && state.typename) {
@@ -59,7 +49,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReferences: consts.valueReferences,
             descFeatTypeResp: '',
             getPropValResp: '',
-            ...revertGetPropValInputs
+            ...consts.revertGetPropValInputs
         };
     }
     // typename exists but no valueReference
@@ -94,7 +84,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
         const selectedTypValueRef = `typeName: ${state.typename} \nvalueReference: ${state.valueReference}`;
         return {
             ...stateObj,
-            ...revertGetPropValInputs,
+            ...consts.revertGetPropValInputs,
             selectedTypValueRef,
             getPropValResp: '',
             compOper: compOperList[0]

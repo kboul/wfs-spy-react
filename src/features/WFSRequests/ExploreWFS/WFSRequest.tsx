@@ -4,8 +4,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { useAppContext, changeWfsRequest } from '../../../context';
 import TableButtons from '../TableButtons';
 import { formWfsRequest } from './utils';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { formWfsRequest: 'Form WFS Request:', request: 'Request' };
 
 export default function WFSRequest() {
     const { state, dispatch } = useAppContext();

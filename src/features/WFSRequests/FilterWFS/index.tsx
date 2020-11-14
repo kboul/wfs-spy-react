@@ -14,10 +14,11 @@ import LowerValue from './LowerValue';
 import UpperValue from './UpperValue';
 import WFSFilterRequest from './WFSFilterRequest';
 import WFSFilterResponse from './WFSFilterResponse';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const containerStyle = { backgroundColor: 'rgb(224, 224, 224)' };
+
+const consts = { header: 'Property Value Filter' };
 
 export default function FilterWFS() {
     return (

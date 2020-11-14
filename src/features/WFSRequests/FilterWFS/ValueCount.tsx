@@ -2,8 +2,9 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { valueCount: 'Value count' };
 
 export default function ValueCount() {
     const { state } = useAppContext();

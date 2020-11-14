@@ -2,13 +2,14 @@ import React, { CSSProperties } from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
 const labelStyle: CSSProperties = {
     paddingTop: '20px',
     whiteSpace: 'pre-wrap'
 };
+
+const consts = { selectedTypValueRef: 'Selected typeName\n & valueReference' };
 
 export default function SelectedTypValueRefer() {
     const { state } = useAppContext();

@@ -15,8 +15,13 @@ import { formWfsRequest } from '../utils';
 import { adjustProxyToUrl } from './utils';
 import WfsResponse from './model';
 import { requests } from '../../../../shared/constants';
-import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
+
+const consts = {
+    response: 'Response',
+    processing: 'processing request...',
+    responseMetadata: 'Response - Metadata & Corresponding operations:'
+};
 
 export default function WFSResponse() {
     const { state, dispatch } = useAppContext();

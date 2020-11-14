@@ -2,8 +2,9 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { maxValue: 'Maximum value' };
 
 export default function MaxValue() {
     const { state } = useAppContext();

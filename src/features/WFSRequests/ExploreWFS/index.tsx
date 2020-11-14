@@ -12,21 +12,21 @@ import HiddenField from './HiddenField';
 import WFSRequest from './WFSRequest';
 import WFSResponse from './WFSResponse';
 import { useAppContext } from '../../../context';
-import { noOption } from '../../../shared/constants';
-import filtWfsConsts from '../FilterWFS/constants';
-import consts from './constants';
+import { noOption, propIsBetween } from '../../../shared/constants';
 import sharedStyles from '../shared.module.sass';
 
 const containerStyle = {
     backgroundColor: 'rgb(211, 211, 211)'
 };
 
+const consts = { header: 'Service and Feature Description' };
+
 const ExploreWFS = () => {
     const { state } = useAppContext();
     const { typename, valueReference, getPropValResp, compOper } = state;
     const isPropValResp =
         typename && typename !== noOption && valueReference && getPropValResp;
-    const isPropBetween = compOper === filtWfsConsts.propIsBetween;
+    const isPropBetween = compOper === propIsBetween;
 
     return (
         <Col md="6" style={containerStyle}>

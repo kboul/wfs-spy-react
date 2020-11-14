@@ -1,18 +1,18 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { changeNonNumericValue, useAppContext } from '../../../context';
-import { getValRefType } from './utils';
-import { ChangeEvent } from '../../../shared/models';
+import { changeNumericValue, useAppContext } from '../../../../context';
+import { getValRefType } from '../utils';
+import { ChangeEvent } from '../../../../shared/models';
 import consts from './constants';
-import colors from '../../../config/colors';
-import sharedStyles from '../shared.module.sass';
+import colors from '../../../../config/colors';
+import sharedStyles from '../../shared.module.sass';
 
-export default function NonNumericValue() {
+export default function NumericValue() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
-        dispatch(changeNonNumericValue({ nonNumericValue: e.target.value }));
+        dispatch(changeNumericValue({ numericValue: e.target.value }));
 
     const valRefType = getValRefType(
         state.typename,
@@ -23,24 +23,23 @@ export default function NonNumericValue() {
     if (
         state.getPropValResp &&
         valRefType &&
-        consts.nonNumericTypes.includes(valRefType)
+        consts.numericTypes.includes(valRefType)
     )
         return (
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="nonNumericValue"
+                    for="numericValue"
                     md={4}>
-                    {consts.nonNumericValue}
+                    {consts.numericValue}
                 </Label>
                 <Col md={7}>
                     <Input
-                        autoFocus
                         disabled={!state.getPropValResp}
                         onChange={handleChange}
                         style={{ backgroundColor: colors.lightPurple }}
                         type="text"
-                        value={state.nonNumericValue}
+                        value={state.numericValue}
                     />
                 </Col>
             </FormGroup>

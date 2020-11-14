@@ -14,7 +14,8 @@ import {
     getPropValRespReducer,
     requestReducer,
     typenameReducer,
-    wfsRequestReducer
+    wfsRequestReducer,
+    valueReferenceReducer
 } from './reducers';
 
 // Actions
@@ -125,7 +126,7 @@ const changeNumericValue = (payload: { numericValue: string }): Action => ({
 });
 
 const changeNonNumericValue = (payload: {
-    nonNumericValue: string;
+    nonNumericValue: string[];
 }): Action => ({
     type: types.nonNumericValueChanged,
     payload
@@ -165,7 +166,7 @@ const reducer = (state: State, action: Action): State => {
         case types.typenameChanged:
             return typenameReducer(state, action);
         case types.valueReferenceChanged:
-            return { ...state, valueReference: action.payload.valueReference };
+            return valueReferenceReducer(state, action);
         case types.wfsRequestChanged:
             return wfsRequestReducer(state, action);
         case types.wfsResponseChanged:

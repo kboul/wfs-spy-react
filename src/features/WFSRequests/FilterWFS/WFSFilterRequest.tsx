@@ -3,8 +3,11 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TableButtons from '../TableButtons';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = {
+    formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:'
+};
 
 export default function WFSFilterRequest() {
     const { state } = useAppContext();

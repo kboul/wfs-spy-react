@@ -25,7 +25,7 @@ const initialState = {
     minValue: '',
     maxValue: '',
     numericValue: '',
-    nonNumericValue: '',
+    nonNumericValue: [],
     filtValueCount: '',
     compOper: '',
     lowerValue: '',
@@ -36,7 +36,8 @@ const initialState = {
     getDescFeatTypeTime: 0,
     getDescFeatTypeNumber: 0,
     getGetPropValTime: 0,
-    getGetPropValNumber: 0
+    getGetPropValNumber: 0,
+    attrValues: []
 };
 
 export default initialState;

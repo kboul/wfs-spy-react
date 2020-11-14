@@ -3,10 +3,9 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { changeAddSortBy, useAppContext } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
 
-const options = ['no', 'yes'];
+const consts = { options: ['no', 'yes'], addSortByAsc: 'Add SortBy ASC' };
 
 export default function AddSortByASC() {
     const { state, dispatch } = useAppContext();
@@ -29,7 +28,7 @@ export default function AddSortByASC() {
                     disabled={!getPropValResp}
                     onChange={handleChange}
                     value={addSortBy}>
-                    {options.map(option => (
+                    {consts.options.map(option => (
                         <option key={option}>{option}</option>
                     ))}
                 </Input>

@@ -2,8 +2,9 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { service: 'service' };
 
 export default function Service() {
     const { state } = useAppContext();

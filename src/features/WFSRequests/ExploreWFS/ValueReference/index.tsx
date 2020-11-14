@@ -5,8 +5,9 @@ import { useAppContext, changeValueReference } from '../../../../context';
 import { getFullTypename } from '../../../../shared/utils';
 import { hasGeometry } from './utils';
 import { ChangeEvent } from '../../../../shared/models';
-import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
+
+const consts = { valueReference: 'valueRefer.' };
 
 export default function ValueReference() {
     const { state, dispatch } = useAppContext();

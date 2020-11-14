@@ -3,8 +3,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeTypename } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { typename: 'typeName' };
 
 export default function Typename() {
     const { state, dispatch } = useAppContext();

@@ -1,4 +1,18 @@
+const addSortBy = 'no';
+
 export default {
     valueReferences: { names: {}, types: {} },
-    addSortBy: 'no'
+    addSortBy,
+    revertGetPropValInputs: {
+        selectedTypValueRef: '',
+        valueCount: '',
+        minValue: '',
+        maxValue: '',
+        compOper: '',
+        numericValue: '',
+        nonNumericValue: [],
+        filtValueCount: '',
+        addSortBy,
+        attrValues: []
+    }
 };

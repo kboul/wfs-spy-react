@@ -3,8 +3,12 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TableButtons from '../TableButtons';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = {
+    filterResponseMetadata:
+        'Filtered Response - Metadata using Filter parameters:'
+};
 
 export default function WFSFilterResponse() {
     const { state } = useAppContext();

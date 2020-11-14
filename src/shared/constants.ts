@@ -6,8 +6,6 @@ const requests: string[] = [
     'GetPropertyValue'
 ];
 
-const totalItems: string = 'Total Items:';
-
 const noOperation: string = 'This WFS service does not provide ';
 
 const tags = {
@@ -38,6 +36,8 @@ const tags = {
     member: 'member'
 };
 
-const noOption = '---';
+const noOption: string = '---';
 
-export { versions, requests, totalItems, noOperation, tags, noOption };
+const propIsBetween: string = 'PropertyIsBetween';
+
+export { versions, requests, noOperation, tags, noOption, propIsBetween };

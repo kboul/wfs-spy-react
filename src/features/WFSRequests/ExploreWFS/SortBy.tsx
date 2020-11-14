@@ -2,8 +2,9 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { sortBy: 'sortBy' };
 
 export default function SortBy() {
     const { state } = useAppContext();

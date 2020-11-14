@@ -4,9 +4,10 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { useAppContext, changeUrl } from '../../../../context';
 import useInputFocus from './hooks';
 import { ChangeEvent } from '../../../../shared/models';
-import consts from '../constants';
 import sharedStyles from '../../shared.module.sass';
 import styles from './index.module.sass';
+
+const consts = { url: 'url' };
 
 export default function Url() {
     const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
@@ -20,7 +21,7 @@ export default function Url() {
 
     return (
         <FormGroup row>
-            <Label for="url" md={2} className={urlStyle}>
+            <Label className={urlStyle} for="url" md={2}>
                 {consts.url}
             </Label>
             <Col md={9}>

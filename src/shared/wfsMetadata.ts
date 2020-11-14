@@ -28,7 +28,7 @@ const extractTypenames = (data: string): string[] => {
 
     if (typenamesTags) {
         typenamesTags.forEach(tag => {
-            if (tag && tag.textContent) typenames.push(tag.textContent);
+            if (tag.textContent) typenames.push(tag.textContent);
         });
     }
 
@@ -42,12 +42,10 @@ const extractTitle = (getCapResp: XMLDocument): string => {
     const titleTags = getCapResp.querySelectorAll(tags.title);
     let title: string = '';
 
-    if (titleTag && titleTag?.textContent) {
-        title = titleTag.textContent;
-    } else if (titleTags) {
+    if (titleTag?.textContent) title = titleTag.textContent;
+    else if (titleTags) {
         Array.from(titleTags).forEach(titleItem => {
-            if (titleItem && titleItem.textContent)
-                title = titleItem.textContent;
+            if (titleItem.textContent) title = titleItem.textContent;
         });
     }
 
@@ -61,12 +59,10 @@ const extractAbstract = (getCapResp: XMLDocument): string => {
     const abstractTags = getCapResp.querySelectorAll(tags.abstract);
     let abstract: string = '';
 
-    if (abstractTag && abstractTag.textContent) {
-        abstract = abstractTag.textContent;
-    } else if (abstractTags) {
+    if (abstractTag?.textContent) abstract = abstractTag.textContent;
+    else if (abstractTags) {
         Array.from(abstractTags).forEach(abstractItem => {
-            if (abstractItem && abstractItem.textContent)
-                abstract = abstractItem.textContent;
+            if (abstractItem.textContent) abstract = abstractItem.textContent;
         });
     }
 
@@ -81,9 +77,7 @@ const extractKeywords = (getCapResp: XMLDocument): string[] => {
 
     if (keywordsTag?.children) {
         Array.from(keywordsTag.children).forEach(keyword => {
-            if (keyword && keyword.textContent) {
-                keywords.push(keyword.textContent);
-            }
+            if (keyword.textContent) keywords.push(keyword.textContent);
         });
     }
 
@@ -128,15 +122,13 @@ const extractAcceptVersions = (getCapResp: XMLDocument): string[] => {
     const acceptVersionChildren = acceptVersionsTag?.children[0]?.children;
     if (acceptVersionChildren) {
         Array.from(acceptVersionChildren).forEach(child => {
-            if (child && child.textContent)
-                acceptVersions.push(child.textContent);
+            if (child.textContent) acceptVersions.push(child.textContent);
         });
     } else {
         const acceptVersionOneChild = acceptVersionsTag?.children;
         if (acceptVersionOneChild) {
             Array.from(acceptVersionOneChild).forEach(child => {
-                if (child && child.textContent)
-                    acceptVersions.push(child.textContent);
+                if (child.textContent) acceptVersions.push(child.textContent);
             });
         }
     }
@@ -336,41 +328,28 @@ const extractFeatureTypes = (getCapResp: XMLDocument): FeatureTypes[] => {
     if (!getCapResp) return featureTypes;
 
     const featureTypeTags = getCapResp.querySelectorAll(tags.featureType);
-    if (featureTypeTags && featureTypeTags.length) {
+    if (featureTypeTags.length) {
         featureTypeTags.forEach(featureType => {
-            if (featureType) {
-                const featName = featureType.querySelector(
-                    tags.featureTypeName
-                );
-                const featTitle = featureType.querySelector(tags.title);
-                const featAbstract = featureType.querySelector(tags.abstract);
-                const featDefaultCRS = featureType.querySelector(
-                    tags.defaultCRS
-                );
-                const featLowerCorner = featureType.querySelector(
-                    tags.lowerCorner
-                );
-                const featUpperCorner = featureType.querySelector(
-                    tags.upperCorner
-                );
-                const obj: FeatureTypes = {};
+            const featName = featureType.querySelector(tags.featureTypeName);
+            const featTitle = featureType.querySelector(tags.title);
+            const featAbstract = featureType.querySelector(tags.abstract);
+            const featDefaultCRS = featureType.querySelector(tags.defaultCRS);
+            const featLowerCorner = featureType.querySelector(tags.lowerCorner);
+            const featUpperCorner = featureType.querySelector(tags.upperCorner);
+            const obj: FeatureTypes = {};
 
-                if (featName && featName.textContent) {
-                    obj.name = featName.textContent;
-                }
-                if (featTitle && featTitle?.textContent)
-                    obj.title = featTitle.textContent;
-                if (featAbstract && featAbstract.textContent)
-                    obj.abstract = featAbstract.textContent;
-                if (featDefaultCRS && featDefaultCRS.textContent)
-                    obj.defaultCRS = featDefaultCRS.textContent;
-                if (featLowerCorner && featLowerCorner.textContent)
-                    obj.lowerCorner = featLowerCorner.textContent;
-                if (featUpperCorner && featUpperCorner.textContent)
-                    obj.upperCorner = featUpperCorner.textContent;
+            if (featName?.textContent) obj.name = featName.textContent;
+            if (featTitle?.textContent) obj.title = featTitle.textContent;
+            if (featAbstract?.textContent)
+                obj.abstract = featAbstract.textContent;
+            if (featDefaultCRS?.textContent)
+                obj.defaultCRS = featDefaultCRS.textContent;
+            if (featLowerCorner?.textContent)
+                obj.lowerCorner = featLowerCorner.textContent;
+            if (featUpperCorner?.textContent)
+                obj.upperCorner = featUpperCorner.textContent;
 
-                featureTypes.push(obj);
-            }
+            featureTypes.push(obj);
         });
     }
 
@@ -385,7 +364,7 @@ const extractFilterCap = (
 
     const operatorTags = getCapResp.querySelectorAll(operator);
     const operands: string[] = [];
-    if (operatorTags && operatorTags.length) {
+    if (operatorTags.length) {
         operatorTags.forEach(operItem => {
             const operItemAttr = operItem.attributes;
             if (operItemAttr && operItemAttr[0] && operItemAttr[0].textContent)
@@ -512,17 +491,31 @@ const extractAttrValuesData = (
     valueCount: string;
     minValue: string | undefined;
     maxValue: string | undefined;
+    attrValues: string[];
 } => {
     const member = getPropValueResp.querySelectorAll(tags.member);
+    console.log(member);
     if (member && member[0]) {
         const valueCount = member.length;
+        const attrValues: string[] = [];
+        member.forEach(m => {
+            if (m.textContent) attrValues.push(m.textContent);
+        });
         return {
             valueCount: valueCount.toString(),
             minValue: member[0].textContent?.trim(),
-            maxValue: member[valueCount - 1].textContent?.trim()
+            maxValue: member[valueCount - 1].textContent?.trim(),
+            attrValues
         };
     }
-    return { valueCount: '', minValue: '', maxValue: '' };
+    if (member?.length === 0)
+        return {
+            valueCount: '-',
+            minValue: '-',
+            maxValue: '-',
+            attrValues: []
+        };
+    return { valueCount: '', minValue: '', maxValue: '', attrValues: [] };
 };
 
 export {

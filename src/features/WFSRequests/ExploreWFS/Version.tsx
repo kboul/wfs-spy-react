@@ -4,8 +4,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { useAppContext, changeVersion } from '../../../context';
 import { versions } from '../../../shared/constants';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { version: 'version' };
 
 export default function Version() {
     const { state, dispatch } = useAppContext();

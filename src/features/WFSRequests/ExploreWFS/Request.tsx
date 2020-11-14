@@ -4,8 +4,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { useAppContext, changeRequest } from '../../../context';
 import { requests } from '../../../shared/constants';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { request: 'request' };
 
 export default function Request() {
     const { state, dispatch } = useAppContext();
@@ -15,8 +16,8 @@ export default function Request() {
 
     return (
         <FormGroup row>
-            <Label for="request" md={2} className={sharedStyles.labelFont}>
-                {consts.requestOperation}
+            <Label className={sharedStyles.labelFont} for="request" md={2}>
+                {consts.request}
             </Label>
             <Col md={9}>
                 <Input

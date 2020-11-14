@@ -3,9 +3,11 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { changeLowerValue, useAppContext } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import colors from '../../../config/colors';
+import { propIsBetween } from '../../../shared/constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { lowerValue: 'Enter lower value' };
 
 export default function LowerValue() {
     const { state, dispatch } = useAppContext();
@@ -13,7 +15,7 @@ export default function LowerValue() {
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeLowerValue({ lowerValue: e.target.value }));
 
-    if (state.compOper === consts.propIsBetween)
+    if (state.compOper === propIsBetween)
         return (
             <FormGroup row>
                 <Label

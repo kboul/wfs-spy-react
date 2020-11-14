@@ -24,7 +24,7 @@ interface State {
     minValue: string | undefined;
     maxValue: string | undefined;
     numericValue: string;
-    nonNumericValue: string;
+    nonNumericValue: string[];
     filtValueCount: string;
     compOper: string;
     lowerValue: string;
@@ -36,6 +36,7 @@ interface State {
     getDescFeatTypeNumber: number;
     getGetPropValTime: number;
     getGetPropValNumber: number;
+    attrValues: string[];
 }
 
 interface Action {

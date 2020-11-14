@@ -4,9 +4,12 @@ import { extractAttrValuesData, parseXML } from '../../shared/wfsMetadata';
 const getPropValRespReducer = (state: State, action: Action): State => {
     const { getPropValResp, getGetPropValTime } = action.payload;
     const parsedResponse = parseXML(getPropValResp);
-    const { valueCount, minValue, maxValue } = extractAttrValuesData(
-        parsedResponse
-    );
+    const {
+        valueCount,
+        minValue,
+        maxValue,
+        attrValues
+    } = extractAttrValuesData(parsedResponse);
     return {
         ...state,
         getPropValResp,
@@ -14,7 +17,8 @@ const getPropValRespReducer = (state: State, action: Action): State => {
         getGetPropValNumber: ++state.getGetPropValNumber,
         valueCount,
         minValue,
-        maxValue
+        maxValue,
+        attrValues
     };
 };
 

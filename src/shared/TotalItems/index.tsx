@@ -1,7 +1,8 @@
 import React from 'react';
 
 import TotalItemsProps from './model';
-import { totalItems } from '../constants';
+
+const totalItems: string = 'Total Items:';
 
 export default function TotalItems({ numberOfItems }: TotalItemsProps) {
     return (

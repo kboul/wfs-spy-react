@@ -4,8 +4,9 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 import { useAppContext, changeCompOper } from '../../../context';
 import { getCompOperList } from '../../../shared/utils';
 import { ChangeEvent } from '../../../shared/models';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { compOper: 'Comparison oper.' };
 
 export default function CompOperDropDown() {
     const { state, dispatch } = useAppContext();

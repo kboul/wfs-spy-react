@@ -2,8 +2,9 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import consts from './constants';
 import sharedStyles from '../shared.module.sass';
+
+const consts = { minValue: 'Minimum value' };
 
 export default function MinValue() {
     const { state } = useAppContext();
