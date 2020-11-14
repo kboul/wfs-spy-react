@@ -19,16 +19,16 @@ export default function FilterCapabilities() {
             <div className="row">
                 <div className="col-md-6">
                     <Panel
+                        content={<CompOper />}
                         header={consts.compOperHeader}
                         title={consts.compOperDescr}
-                        content={<CompOper />}
                     />
                 </div>
                 <div className="col-md-6">
                     <Panel
+                        content={<SpatialOperators />}
                         header={consts.spatOperHeader}
                         title={consts.spatOperDescr}
-                        content={<SpatialOperators />}
                     />
                 </div>
             </div>
@@ -36,31 +36,31 @@ export default function FilterCapabilities() {
             <div className="row">
                 <div className="col-md-4">
                     <Panel
+                        content={<GeometryOperands />}
                         header={consts.geomOperHeader}
                         title={consts.geomOperDescr}
-                        content={<GeometryOperands />}
                     />
                 </div>
                 <div className="col-md-4">
                     <Panel
+                        content={<TemporalOperands />}
                         header={consts.tempOperandsHeader}
                         title={consts.tempOperandsDescr}
-                        content={<TemporalOperands />}
                     />
                 </div>
                 <div className="col-md-4">
                     <Panel
+                        content={<TemporalOperators />}
                         header={consts.tempOperatorsHeader}
                         title={consts.tempOperatorsDescr}
-                        content={<TemporalOperators />}
                     />
                 </div>
             </div>
 
             <Panel
+                content={<Functions />}
                 header={consts.funcHeader}
                 title={consts.funcDescr}
-                content={<Functions />}
             />
         </Col>
     );

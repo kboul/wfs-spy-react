@@ -12,12 +12,14 @@ At this point, the application will not provide geometrical feature manipulation
 
 ## WFS metadata statistics
 
-|                        WFS Url                         | Service Id | Accept Versions | Service Provider | Operations Metadata | Filter Capabilities | typenames / FeatureTypeList |              valueReferences              |
-| :----------------------------------------------------: | :--------: | :-------------: | :--------------: | :-----------------: | :-----------------: | :-------------------------: | :---------------------------------------: |
-|            http://daim.lfv.se/geoserver/wfs            |     7      |        3        |        9         |          8          |       yes all       |             36              | requires individual DescFeatType requests |
-| http://data.gov.au/geoserver/ballarat-corner-shops/wfs |     7      |        3        |        9         |         11          |       yes all       |              1              |                    yes                    |
-|               http://sdi.gdos.gov.pl/wfs               |     7      |        3        |        3         |          8          |       yes all       |             16              |                    yes                    |
-|     http://geoserv.weichand.de:8080/geoserver/wfs      |     7      |        3        |        8         |          8          |       yes all       |              5              |                    yes                    |
+|                        WFS Url                         | Service Id | Accept Versions | Service Provider | Operations Metadata | Filter Capabilities | typenames / FeatureTypeList |              valueReferences              | individual DescFeatType requests |
+| :----------------------------------------------------: | :--------: | :-------------: | :--------------: | :-----------------: | :-----------------: | :-------------------------: | :---------------------------------------: | -------------------------------- |
+|            http://daim.lfv.se/geoserver/wfs            |     7      |        3        |        9         |          8          |       yes all       |             36              | requires individual DescFeatType requests | yes                              |
+| http://data.gov.au/geoserver/ballarat-corner-shops/wfs |     7      |        3        |        9         |         11          |       yes all       |              1              |                    yes                    | no                               |
+|     http://geoserv.weichand.de:8080/geoserver/wfs      |     7      |        3        |        8         |          8          |       yes all       |              5              |                    yes                    | no                               |
+|      http://kls.pria.ee/geoserver/pria_avalik/ows      |     7      |        3        |        3         |          8          |       yes all       |              6              |                    yes                    | yes                              |
+|               http://sdi.gdos.gov.pl/wfs               |     7      |        3        |        3         |          8          |       yes all       |             16              |                    yes                    | no                               |
+|       http://inspire.geop.sazp.sk/geoserver/ows        |     7      |        3        |        7         |          8          |       yes all       |              3              |                    yes                    | yes                              |
 
 ## Run the project
 

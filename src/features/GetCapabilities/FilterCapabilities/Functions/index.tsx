@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
-import TotalItems from '../../../shared/TotalItems';
-import TablePagination from '../../../shared/TablePagination';
-import { extractFunctions, parseXML } from '../../../shared/wfsMetadata';
-import { ClickEvent } from '../../../shared/models';
-import consts from './constants';
+import { useAppContext } from '../../../../context';
+import TotalItems from '../../../../shared/TotalItems';
+import TablePagination from '../../../../shared/TablePagination';
+import { parseXML, extractFunctions } from '../../../../shared/wfsMetadata';
+import { ClickEvent } from '../../../../shared/models';
+import consts from '../constants';
 
 export default function Functions() {
     const { state } = useAppContext();

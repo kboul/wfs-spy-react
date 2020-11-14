@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { extractFilterCap, parseXML } from '../../../shared/wfsMetadata';
+import { useAppContext } from '../../../context';
+import { parseXML, extractFilterCap } from '../../../shared/wfsMetadata';
 import consts from './constants';
 
 export default function GeometryOperands() {
