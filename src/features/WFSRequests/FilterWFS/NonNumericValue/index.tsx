@@ -3,14 +3,10 @@ import { FormGroup, Label, Col } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import { changeNonNumericValue, useAppContext } from '../../../../context';
-import { getValRefType } from '../utils';
 import colors from '../../../../config/colors';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = {
-    nonNumericTypes: ['string', 'date', 'dateTime'],
-    nonNumericValue: 'Search strings'
-};
+const nonNumericValue = 'Search strings';
 
 export default function NonNumericValue() {
     const { state, dispatch } = useAppContext();
@@ -18,24 +14,14 @@ export default function NonNumericValue() {
     const handleChange = (value: string[]) =>
         dispatch(changeNonNumericValue({ nonNumericValue: value }));
 
-    const valRefType = getValRefType(
-        state.typename,
-        state.valueReference,
-        state.valueReferences
-    );
-
-    if (
-        state.getPropValResp &&
-        valRefType &&
-        consts.nonNumericTypes.includes(valRefType)
-    )
+    if (state.showNonNumericValue)
         return (
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
                     for="nonNumericValue"
                     md={4}>
-                    {consts.nonNumericValue}
+                    {nonNumericValue}
                 </Label>
                 <Col md={7}>
                     <Typeahead

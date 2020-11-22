@@ -24,7 +24,9 @@ interface State {
     minValue: string | undefined;
     maxValue: string | undefined;
     numericValue: string;
+    showNumericValue: boolean;
     nonNumericValue: string[];
+    showNonNumericValue: boolean;
     filtValueCount: string;
     compOper: string;
     lowerValue: string;

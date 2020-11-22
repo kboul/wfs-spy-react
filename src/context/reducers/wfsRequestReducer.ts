@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
-import { getCompOperList } from '../../shared/utils';
+import { getCompOperList, getValRefType } from '../../shared/utils';
 import { requests, noOption } from '../../shared/constants';
 import consts from '../constants';
 
@@ -13,25 +13,36 @@ const toasts = {
     noValueRef: 'valueReference is required to make a GetPropValue request.'
 };
 
+const nonNumericTypes = ['string', 'date', 'dateTime'];
+const numericTypes = [
+    'int',
+    'double',
+    'decimal',
+    'float',
+    'long',
+    'short',
+    'hexBinary'
+];
+
 const wfsRequestReducer = (state: State, action: Action) => {
     const errors = { ...state.errors };
-    const stateObj = { ...state };
+    const newState = { ...state };
 
     if (!state.url) {
         errors.url = urlValidation;
-        return { ...stateObj, wfsRequest: '', wfsResponse: '', errors };
+        return { ...newState, wfsRequest: '', wfsResponse: '', errors };
     }
 
-    stateObj.wfsRequest = action.payload.wfsRequest;
-    stateObj.wfsResponse = '';
-    stateObj.errors = { ...errors, url: '' };
-    stateObj.selectedTypValueRef = '';
+    newState.wfsRequest = action.payload.wfsRequest;
+    newState.wfsResponse = '';
+    newState.errors = { ...errors, url: '' };
+    newState.selectedTypValueRef = '';
 
     const compOperList = getCompOperList(state.getCapResp);
 
     if (state.request === requests[0] && state.url) {
         return {
-            ...stateObj,
+            ...newState,
             getCapResp: '',
             typename: '',
             typenames: [],
@@ -39,17 +50,17 @@ const wfsRequestReducer = (state: State, action: Action) => {
             valueReference: '',
             descFeatTypeResp: '',
             getPropValResp: '',
-            ...consts.revertGetPropValInputs
+            ...consts.clearGetPropValInputs
         };
     }
     if (state.request === requests[1] && state.typename) {
         return {
-            ...stateObj,
+            ...newState,
             valueReference: '',
             valueReferences: consts.valueReferences,
             descFeatTypeResp: '',
             getPropValResp: '',
-            ...consts.revertGetPropValInputs
+            ...consts.clearGetPropValInputs
         };
     }
     // typename exists but no valueReference
@@ -59,10 +70,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
         !state.valueReference
     ) {
         toast.info(toasts.noValueRef);
-        return {
-            ...stateObj,
-            wfsRequest: ''
-        };
+        return { ...newState, wfsRequest: '' };
     }
     // no typename & valueReference
     if (
@@ -71,26 +79,28 @@ const wfsRequestReducer = (state: State, action: Action) => {
         !state.valueReference
     ) {
         toast.info(toasts.noTypValueRef);
-        return {
-            ...stateObj,
-            wfsRequest: ''
-        };
+        return { ...newState, wfsRequest: '' };
     }
     if (
         state.request === requests[2] &&
         state.typename !== noOption &&
         state.valueReference
     ) {
+        const valRefType = getValRefType(state);
         const selectedTypValueRef = `typeName: ${state.typename} \nvalueReference: ${state.valueReference}`;
         return {
-            ...stateObj,
-            ...consts.revertGetPropValInputs,
+            ...newState,
+            ...consts.clearGetPropValInputs,
             selectedTypValueRef,
             getPropValResp: '',
-            compOper: compOperList[0]
+            compOper: compOperList[0],
+            showNonNumericValue:
+                (valRefType && nonNumericTypes.includes(valRefType)) || false,
+            showNumericValue:
+                (valRefType && numericTypes.includes(valRefType)) || false
         };
     }
-    return stateObj;
+    return newState;
 };
 
 export default wfsRequestReducer;

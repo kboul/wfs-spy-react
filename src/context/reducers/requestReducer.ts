@@ -14,7 +14,7 @@ const toasts = {
         'Please select a value reference to be able to perform a GetPropertyValue request.'
 };
 
-const requestReducer = (state: State, action: Action) => {
+const requestReducer = (state: State, action: Action): State => {
     // ensure request order
     const { request } = action.payload;
     const { getCapResp, descFeatTypeResp, typename, valueReferences } = state;
@@ -41,10 +41,7 @@ const requestReducer = (state: State, action: Action) => {
         toast.info(toasts.noValRefer);
         return state;
     }
-    return {
-        ...state,
-        request
-    };
+    return { ...state, request };
 };
 
 export default requestReducer;

@@ -1,7 +1,7 @@
 import { State, Action } from '../models';
 import { noOption } from '../../shared/constants';
 
-const getCapRespReducer = (state: State, action: Action) => {
+const getCapRespReducer = (state: State, action: Action): State => {
     return {
         ...state,
         getCapResp: action.payload.getCapResp,

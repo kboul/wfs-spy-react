@@ -12,7 +12,7 @@ import HiddenField from './HiddenField';
 import WFSRequest from './WFSRequest';
 import WFSResponse from './WFSResponse';
 import { useAppContext } from '../../../context';
-import { noOption, propIsBetween } from '../../../shared/constants';
+import { propIsBetween } from '../../../shared/constants';
 import sharedStyles from '../shared.module.sass';
 
 const containerStyle = {
@@ -23,9 +23,10 @@ const consts = { header: 'Service and Feature Description' };
 
 const ExploreWFS = () => {
     const { state } = useAppContext();
-    const { typename, valueReference, getPropValResp, compOper } = state;
-    const isPropValResp =
-        typename && typename !== noOption && valueReference && getPropValResp;
+    const { showNonNumericValue, showNumericValue, compOper } = state;
+
+    const showFilterValue = showNonNumericValue || showNumericValue;
+
     const isPropBetween = compOper === propIsBetween;
 
     return (
@@ -39,7 +40,7 @@ const ExploreWFS = () => {
                 <Typename />
                 <ValueReference />
                 <SortBy />
-                <HiddenField condition={isPropValResp} displayTimes={1} />
+                <HiddenField condition={showFilterValue} displayTimes={1} />
                 <HiddenField condition={isPropBetween} displayTimes={2} />
                 <WFSRequest />
                 <WFSResponse />

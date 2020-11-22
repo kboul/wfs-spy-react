@@ -14,8 +14,7 @@ import {
     getPropValRespReducer,
     requestReducer,
     typenameReducer,
-    wfsRequestReducer,
-    valueReferenceReducer
+    wfsRequestReducer
 } from './reducers';
 
 // Actions
@@ -166,7 +165,7 @@ const reducer = (state: State, action: Action): State => {
         case types.typenameChanged:
             return typenameReducer(state, action);
         case types.valueReferenceChanged:
-            return valueReferenceReducer(state, action);
+            return { ...state, valueReference: action.payload.valueReference };
         case types.wfsRequestChanged:
             return wfsRequestReducer(state, action);
         case types.wfsResponseChanged:

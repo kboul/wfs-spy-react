@@ -1,7 +1,7 @@
-import { State } from '../../../context/models';
-import { getFullTypename } from '../../../shared/utils';
+import { State } from '../../context/models';
+import getFullTypename from './getFullTypename';
 
-const getValRefType = (state: State): string => {
+export default function getValRefType(state: State): string {
     const { typename, valueReference, valueReferences } = state;
 
     const attrNames: string[] =
@@ -18,6 +18,4 @@ const getValRefType = (state: State): string => {
     const typeIndex = attrNames.findIndex(el => el === valueReference);
     const type = valueReferences.types[getFullTypename(typename)][typeIndex];
     return type?.replace('xsd:', '');
-};
-
-export { getValRefType };
+}
