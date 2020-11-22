@@ -12,9 +12,9 @@ export default function AttrNamesTypes() {
             <p>{consts.descr}</p>
 
             <Panel
+                content={<AttributeDetails />}
                 header={consts.panelHeader}
                 title={consts.panelDescr}
-                content={<AttributeDetails />}
             />
         </Col>
     );

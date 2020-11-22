@@ -14,6 +14,6 @@ export default {
     attrTypes: 'Attribute Types',
     noAttributes: `
         ${noOperation} ${attrNamesTypes}. 
-        Please try making individual DescribeFeatureType reuqests per typename.
+        Please try making individual DescribeFeatureType requests per typename.
     `
 };

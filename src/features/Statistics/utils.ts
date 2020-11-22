@@ -54,7 +54,7 @@ const chartOptions = (chart: string): ChartOptions => {
                 dataLabels: {
                     enabled: true,
                     // Prevent zero values from being displayed
-                    formatter: function (this: any) {
+                    formatter(this: any) {
                         if (this.y !== 0) return this.y;
                         return null;
                     }

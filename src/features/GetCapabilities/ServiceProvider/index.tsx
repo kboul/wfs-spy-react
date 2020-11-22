@@ -12,9 +12,9 @@ export default function ServiceProvider() {
             <p>{consts.descr}</p>
 
             <Panel
+                content={<ProviderDetails />}
                 header={consts.providerHeader}
                 title={consts.providerTitle}
-                content={<ProviderDetails />}
             />
         </Col>
     );

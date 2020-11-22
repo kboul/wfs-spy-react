@@ -12,9 +12,9 @@ export default function ServiceIdentification() {
             <p>{consts.descr}</p>
 
             <Panel
+                content={<ServiceIdDetails />}
                 header={consts.serviceIdHeader}
                 title={consts.serviceIdTitle}
-                content={<ServiceIdDetails />}
             />
         </Col>
     );

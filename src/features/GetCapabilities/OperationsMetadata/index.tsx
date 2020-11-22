@@ -13,15 +13,15 @@ export default function OperationsMetadata() {
             <p>{consts.descr}</p>
 
             <Panel
+                content={<AcceptVersions />}
                 header={consts.versionsHeader}
                 title={consts.versionsTitle}
-                content={<AcceptVersions />}
             />
 
             <Panel
+                content={<OperationDetails />}
                 header={consts.operMetaHeader}
                 title={consts.operMetaText}
-                content={<OperationDetails />}
             />
         </Col>
     );

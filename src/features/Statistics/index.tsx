@@ -3,8 +3,8 @@ import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import { useAppContext } from '../../context';
 import Panel from '../../shared/Panel';
+import { useAppContext } from '../../context';
 import chartOptions from './utils';
 import ChartOptions from './models';
 import consts from './constants';
@@ -82,8 +82,6 @@ export default function Statistics() {
             <p>{consts.descr}</p>
 
             <Panel
-                header={consts.respTimeHeader}
-                title={consts.respTimeDescr}
                 content={
                     state.getCapResp && (
                         <HighchartsReact
@@ -92,10 +90,10 @@ export default function Statistics() {
                         />
                     )
                 }
+                header={consts.respTimeHeader}
+                title={consts.respTimeDescr}
             />
             <Panel
-                header={consts.reqTimeHeader}
-                title={consts.reqTimeDescr}
                 content={
                     state.getCapResp && (
                         <HighchartsReact
@@ -104,6 +102,8 @@ export default function Statistics() {
                         />
                     )
                 }
+                header={consts.reqTimeHeader}
+                title={consts.reqTimeDescr}
             />
         </Col>
     );

@@ -12,9 +12,9 @@ export default function FeatureTypeList() {
             <p>{consts.descr}</p>
 
             <Panel
+                content={<FeatureDetails />}
                 header={consts.featTypeListHeader}
                 title={consts.featTypeListText}
-                content={<FeatureDetails />}
             />
         </Col>
     );
