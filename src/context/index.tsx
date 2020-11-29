@@ -35,6 +35,7 @@ const types = {
     addSortByChanged: 'addSortByChanged',
     numericValueChanged: 'numericValueChanged',
     nonNumericValueChanged: 'nonNumericValueChanged',
+    wfsFilterRequestChanged: 'wfsFilterRequestChanged',
     stateReset: 'stateReset'
 };
 
@@ -131,6 +132,13 @@ const changeNonNumericValue = (payload: {
     payload
 });
 
+const changeWfsFilterRequest = (payload: {
+    wfsFilterRequest: string;
+}): Action => ({
+    type: types.wfsFilterRequestChanged,
+    payload
+});
+
 const resetState = (): Action => ({ type: types.stateReset, payload: {} });
 
 export {
@@ -150,6 +158,7 @@ export {
     changeAddSortBy,
     changeNumericValue,
     changeNonNumericValue,
+    changeWfsFilterRequest,
     resetState
 };
 
@@ -190,6 +199,11 @@ const reducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 nonNumericValue: action.payload.nonNumericValue
+            };
+        case types.wfsFilterRequestChanged:
+            return {
+                ...state,
+                wfsFilterRequest: action.payload.wfsFilterRequest
             };
         case types.stateReset:
             return initialState;

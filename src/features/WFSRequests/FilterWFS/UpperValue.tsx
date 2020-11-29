@@ -2,9 +2,9 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { changeUpperValue, useAppContext } from '../../../context';
+import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../shared/models';
 import colors from '../../../config/colors';
-import { propIsBetween } from '../../../shared/constants';
 import sharedStyles from '../shared.module.sass';
 
 const consts = {
@@ -17,7 +17,7 @@ export default function UpperValue() {
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeUpperValue({ upperValue: e.target.value }));
 
-    if (state.compOper === propIsBetween)
+    if (isPropBetween(state.compOper))
         return (
             <FormGroup row>
                 <Label

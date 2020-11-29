@@ -12,7 +12,7 @@ import HiddenField from './HiddenField';
 import WFSRequest from './WFSRequest';
 import WFSResponse from './WFSResponse';
 import { useAppContext } from '../../../context';
-import { propIsBetween } from '../../../shared/constants';
+import { isPropBetween } from '../utils';
 import sharedStyles from '../shared.module.sass';
 
 const containerStyle = {
@@ -27,8 +27,6 @@ const ExploreWFS = () => {
 
     const showFilterValue = showNonNumericValue || showNumericValue;
 
-    const isPropBetween = compOper === propIsBetween;
-
     return (
         <Col md="6" style={containerStyle}>
             <h4 className={sharedStyles.header}>{consts.header}</h4>
@@ -41,7 +39,10 @@ const ExploreWFS = () => {
                 <ValueReference />
                 <SortBy />
                 <HiddenField condition={showFilterValue} displayTimes={1} />
-                <HiddenField condition={isPropBetween} displayTimes={2} />
+                <HiddenField
+                    condition={isPropBetween(compOper)}
+                    displayTimes={1}
+                />
                 <WFSRequest />
                 <WFSResponse />
             </Form>

@@ -9,10 +9,10 @@ import styles from './index.module.sass';
 
 const consts = { url: 'url' };
 
-export default function Url() {
-    const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
+const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
 
-    const { urlRef, urlBackgroud, handleFocus, handleBlur } = useInputFocus();
+export default function Url() {
+    const { urlRef, urlBackground, handleFocus, handleBlur } = useInputFocus();
 
     const { state, dispatch } = useAppContext();
 
@@ -29,14 +29,14 @@ export default function Url() {
                     className={`${sharedStyles.textarea} form-control ${
                         state.errors.url && 'is-invalid'
                     } `}
-                    type="textarea"
                     innerRef={urlRef}
                     onBlur={handleBlur}
                     onChange={handleChange}
                     onFocus={handleFocus}
                     required
                     rows="3"
-                    style={{ backgroundColor: urlBackgroud }}
+                    style={{ backgroundColor: urlBackground }}
+                    type="textarea"
                     value={state.url}
                 />
                 {state.errors.url && (

@@ -3,6 +3,7 @@ import { FormGroup, Label, Col } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import { changeNonNumericValue, useAppContext } from '../../../../context';
+import { isPropBetween } from '../../utils';
 import colors from '../../../../config/colors';
 import sharedStyles from '../../shared.module.sass';
 
@@ -14,7 +15,7 @@ export default function NonNumericValue() {
     const handleChange = (value: string[]) =>
         dispatch(changeNonNumericValue({ nonNumericValue: value }));
 
-    if (state.showNonNumericValue)
+    if (state.showNonNumericValue && !isPropBetween(state.compOper))
         return (
             <FormGroup row>
                 <Label

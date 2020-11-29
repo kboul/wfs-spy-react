@@ -38,6 +38,4 @@ const tags = {
 
 const noOption: string = '---';
 
-const propIsBetween: string = 'PropertyIsBetween';
-
-export { versions, requests, noOperation, tags, noOption, propIsBetween };
+export { versions, requests, noOperation, tags, noOption };

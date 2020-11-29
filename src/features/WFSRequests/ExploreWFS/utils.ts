@@ -1,5 +1,6 @@
-import { requests, noOption } from '../../../shared/constants';
+import { getRootRequest } from '../../../shared/utils';
 import { State } from '../../../context/models';
+import { requests, noOption } from '../../../shared/constants';
 
 const formWfsRequest = (state: State): string => {
     const {
@@ -12,20 +13,20 @@ const formWfsRequest = (state: State): string => {
         sortBy
     } = state;
 
-    const basicRequest = `${url}?\nversion=${version}&\nrequest=${request}&\nservice=${service}`;
+    const rootRequest = getRootRequest(url, version, request, service);
 
     switch (state.request) {
         case requests[0]:
-            return basicRequest;
+            return rootRequest;
         case requests[1]:
             if ([noOption, '', null].includes(typename)) {
                 // to include also empty first value
-                return basicRequest;
+                return rootRequest;
             }
             // Request for individual FeatureType ==> should be TypeName
-            return `${basicRequest}\n&TypeName=${typename}`;
+            return `${rootRequest}\n&TypeName=${typename}`;
         case requests[2]:
-            return `${basicRequest}\n&typeNames=${typename}\n&valueReference=${valueReference}\n&sortBy=${valueReference}+${sortBy}`;
+            return `${rootRequest}&\ntypeNames=${typename}&\nvalueReference=${valueReference}&\nsortBy=${valueReference}+${sortBy}`;
         default:
             return '';
     }

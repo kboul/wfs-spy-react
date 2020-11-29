@@ -32,6 +32,7 @@ interface State {
     lowerValue: string;
     upperValue: string;
     addSortBy: string;
+    wfsFilterRequest: string;
     getGetCapTime: number;
     getGetCapNumber: number;
     getDescFeatTypeTime: number;

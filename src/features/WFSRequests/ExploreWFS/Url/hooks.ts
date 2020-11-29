@@ -4,7 +4,7 @@ import colors from '../../../../config/colors';
 
 export default function useInputFocus() {
     const urlRef = useRef<HTMLInputElement>(null);
-    const [urlBackgroud, setUrlBackground] = useState<string>(
+    const [urlBackground, setUrlBackground] = useState<string>(
         colors.lightPurple
     );
 
@@ -20,5 +20,5 @@ export default function useInputFocus() {
         setUrlBackground(colors.white);
     };
 
-    return { urlRef, urlBackgroud, handleFocus, handleBlur };
+    return { urlRef, urlBackground, handleFocus, handleBlur };
 }

@@ -1,16 +1,37 @@
 import React from 'react';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
 import TableButtons from '../TableButtons';
+import { useAppContext, changeWfsFilterRequest } from '../../../context';
+import { formWfsFilterRequest } from './utils';
 import sharedStyles from '../shared.module.sass';
+import { isPropBetween } from '../utils';
 
 const consts = {
     formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:'
 };
 
 export default function WFSFilterRequest() {
-    const { state } = useAppContext();
+    const { state, dispatch } = useAppContext();
+
+    const handleClick = () => {
+        dispatch(
+            changeWfsFilterRequest({
+                wfsFilterRequest: formWfsFilterRequest(state)
+            })
+        );
+    };
+
+    const validateFiltReqBtn = (): boolean | undefined => {
+        if (!state.getPropValResp) return true;
+        if (isPropBetween(state.compOper))
+            return Boolean(!state.lowerValue) || Boolean(!state.upperValue);
+        if (state.showNonNumericValue)
+            return state.nonNumericValue.length === 0;
+        if (state.showNumericValue) return Boolean(!state.numericValue);
+        return false;
+    };
+
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
@@ -24,11 +45,12 @@ export default function WFSFilterRequest() {
                     disabled
                     rows="10"
                     type="textarea"
+                    value={state.wfsFilterRequest}
                 />
                 <TableButtons
-                    disabled={!state.getPropValResp}
+                    disabled={validateFiltReqBtn()}
                     label="Filter Request"
-                    onClick={() => {}}
+                    onClick={handleClick}
                 />
             </Col>
         </FormGroup>

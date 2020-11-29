@@ -3,6 +3,7 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { changeNumericValue, useAppContext } from '../../../../context';
 import { ChangeEvent } from '../../../../shared/models';
+import { isPropBetween } from '../../utils';
 import colors from '../../../../config/colors';
 import sharedStyles from '../../shared.module.sass';
 
@@ -14,7 +15,7 @@ export default function NumericValue() {
     const handleChange = (e: ChangeEvent) =>
         dispatch(changeNumericValue({ numericValue: e.target.value }));
 
-    if (state.showNumericValue)
+    if (state.showNumericValue && !isPropBetween(state.compOper))
         return (
             <FormGroup row>
                 <Label
