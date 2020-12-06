@@ -18,7 +18,7 @@ import {
 } from './reducers';
 
 // Actions
-const types = {
+export const types = {
     urlChanged: 'urlChanged',
     versionChanged: 'versionChanged',
     requestChanged: 'requestChanged',
@@ -39,128 +39,13 @@ const types = {
     stateReset: 'stateReset'
 };
 
-// Action creators
-const changeUrl = (payload: { url: string }): Action => ({
-    type: types.urlChanged,
+// reusable action creator
+const changeState = (type: string, payload: Object): Action => ({
+    type,
     payload
 });
 
-const changeVersion = (payload: { version: string }): Action => ({
-    type: types.versionChanged,
-    payload
-});
-
-const changeRequest = (payload: { request: string }): Action => ({
-    type: types.requestChanged,
-    payload
-});
-
-const changeTypename = (payload: { typename: string }): Action => ({
-    type: types.typenameChanged,
-    payload
-});
-
-const changeValueReference = (payload: { valueReference: string }): Action => ({
-    type: types.valueReferenceChanged,
-    payload
-});
-
-const changeWfsRequest = (payload: { wfsRequest: string }): Action => ({
-    type: types.wfsRequestChanged,
-    payload
-});
-
-const changeWfsResponse = (payload: { wfsResponse: string }): Action => ({
-    type: types.wfsResponseChanged,
-    payload
-});
-
-const changeGetCapResp = (payload: {
-    getCapResp: string;
-    typenames: string[];
-    getGetCapTime: number;
-}): Action => ({
-    type: types.getCapRespChanged,
-    payload
-});
-
-const changeDescFeatTypeResp = (payload: {
-    descFeatTypeResp: string;
-    getDescFeatTypeTime: number;
-}): Action => ({
-    type: types.descFeatTypeRespChanged,
-    payload
-});
-
-const changeGetPropValResp = (payload: {
-    getPropValResp: string;
-    getGetPropValTime: number;
-}): Action => ({
-    type: types.getPropValRespChanged,
-    payload
-});
-
-const changeCompOper = (payload: { compOper: string }): Action => ({
-    type: types.compOperChanged,
-    payload
-});
-
-const changeLowerValue = (payload: { lowerValue: string }): Action => ({
-    type: types.lowerValueChanged,
-    payload
-});
-
-const changeUpperValue = (payload: { upperValue: string }): Action => ({
-    type: types.upperValueChanged,
-    payload
-});
-
-const changeAddSortBy = (payload: { addSortBy: string }): Action => ({
-    type: types.addSortByChanged,
-    payload
-});
-
-const changeNumericValue = (payload: { numericValue: string }): Action => ({
-    type: types.numericValueChanged,
-    payload
-});
-
-const changeNonNumericValue = (payload: {
-    nonNumericValue: string[];
-}): Action => ({
-    type: types.nonNumericValueChanged,
-    payload
-});
-
-const changeWfsFilterRequest = (payload: {
-    wfsFilterRequest: string;
-}): Action => ({
-    type: types.wfsFilterRequestChanged,
-    payload
-});
-
-const resetState = (): Action => ({ type: types.stateReset, payload: {} });
-
-export {
-    changeUrl,
-    changeVersion,
-    changeRequest,
-    changeTypename,
-    changeValueReference,
-    changeWfsRequest,
-    changeWfsResponse,
-    changeGetCapResp,
-    changeDescFeatTypeResp,
-    changeGetPropValResp,
-    changeCompOper,
-    changeLowerValue,
-    changeUpperValue,
-    changeAddSortBy,
-    changeNumericValue,
-    changeNonNumericValue,
-    changeWfsFilterRequest,
-    resetState
-};
+export { changeState };
 
 // Reducer
 const reducer = (state: State, action: Action): State => {

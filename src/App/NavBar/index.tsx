@@ -13,11 +13,11 @@ import {
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 
-import { useAppContext, resetState } from '../../context';
-import Logos from './Logos';
 import DropDownItem from './DropDownItem';
+import Logos from './Logos';
+import { useAppContext, changeState, types } from '../../context';
 import { mainRoutes } from '../routes';
-import { appTitle, dropdownRoutes } from './constants';
+import { appTitle, dropdownRoutes, resetStyle } from './constants';
 
 export default function NavBar() {
     const { pathname } = useLocation();
@@ -25,10 +25,8 @@ export default function NavBar() {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const resetStyle = { cursor: 'pointer' };
-
     const handleNavbarToggle = () => setIsOpen(!isOpen);
-    const handleStateReset = () => dispatch(resetState());
+    const handleStateReset = () => dispatch(changeState(types.stateReset, {}));
 
     return (
         <Navbar className="navbar-dark bg-dark" expand="md" sticky="top">

@@ -15,6 +15,7 @@ export default {
         showNonNumericValue: false,
         filtValueCount: '',
         addSortBy,
-        attrValues: []
+        attrValues: [],
+        wfsFilterRequest: ''
     }
 };

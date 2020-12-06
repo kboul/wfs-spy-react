@@ -105,7 +105,7 @@ const formWfsFilterRequest = (state: State): string => {
                 addSortByExpr;
             break;
         default:
-            return '';
+            filterRequest += '';
     }
 
     return filterRequest;

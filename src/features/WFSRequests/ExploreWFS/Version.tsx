@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeVersion } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { versions } from '../../../shared/constants';
 import { ChangeEvent } from '../../../shared/models';
 import sharedStyles from '../shared.module.sass';
@@ -11,8 +11,10 @@ const consts = { version: 'version' };
 export default function Version() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeVersion({ version: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const version = e.target.value;
+        dispatch(changeState(types.versionChanged, { version }));
+    };
 
     return (
         <FormGroup row>

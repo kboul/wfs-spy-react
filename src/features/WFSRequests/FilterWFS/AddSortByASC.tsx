@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { changeAddSortBy, useAppContext } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
 import sharedStyles from '../shared.module.sass';
 
@@ -9,10 +9,11 @@ const consts = { options: ['no', 'yes'], addSortByAsc: 'Add SortBy ASC' };
 
 export default function AddSortByASC() {
     const { state, dispatch } = useAppContext();
-    const { getPropValResp, addSortBy } = state;
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeAddSortBy({ addSortBy: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const addSortBy = e.target.value;
+        dispatch(changeState(types.addSortByChanged, { addSortBy }));
+    };
 
     return (
         <FormGroup row>
@@ -25,9 +26,9 @@ export default function AddSortByASC() {
             <Col md={7}>
                 <Input
                     type="select"
-                    disabled={!getPropValResp}
+                    disabled={!state.getPropValResp}
                     onChange={handleChange}
-                    value={addSortBy}>
+                    value={state.addSortBy}>
                     {consts.options.map(option => (
                         <option key={option}>{option}</option>
                     ))}

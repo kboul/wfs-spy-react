@@ -3,64 +3,45 @@ import axios from 'axios';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import TableButtons from '../../TableButtons';
+import { useAppContext, changeState, types } from '../../../../context';
 import {
-    useAppContext,
-    changeWfsResponse,
-    changeGetCapResp,
     changeDescFeatTypeResp,
+    changeGetCapResp,
     changeGetPropValResp
-} from '../../../../context';
-import { extractTypenames } from '../../../../shared/wfsMetadata';
+} from './actions';
 import { formWfsRequest } from '../utils';
 import { adjustProxyToUrl } from './utils';
 import WfsResponse from './model';
 import { requests } from '../../../../shared/constants';
+import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
-
-const consts = {
-    response: 'Response',
-    processing: 'processing request...',
-    responseMetadata: 'Response - Metadata & Corresponding operations:'
-};
 
 export default function WFSResponse() {
     const { state, dispatch } = useAppContext();
 
+    const changeWfsResponse = (wfsResponse: string) => {
+        dispatch(changeState(types.wfsResponseChanged, { wfsResponse }));
+    };
+
     const handleGetResponse = async () => {
-        dispatch(changeWfsResponse({ wfsResponse: consts.processing }));
+        changeWfsResponse(consts.processing);
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();
             const response: WfsResponse = await axios.get(operationUrl);
             if (response.status === 200) {
                 const { data } = response;
-                dispatch(changeWfsResponse({ wfsResponse: data }));
+                changeWfsResponse(data);
                 const time = new Date().getTime() - startGET;
                 switch (state.request) {
                     case requests[0]:
-                        dispatch(
-                            changeGetCapResp({
-                                getCapResp: data,
-                                typenames: extractTypenames(data),
-                                getGetCapTime: time
-                            })
-                        );
+                        changeGetCapResp(dispatch, data, time);
                         break;
                     case requests[1]:
-                        dispatch(
-                            changeDescFeatTypeResp({
-                                descFeatTypeResp: data,
-                                getDescFeatTypeTime: time
-                            })
-                        );
+                        changeDescFeatTypeResp(dispatch, data, time);
                         break;
                     case requests[2]:
-                        dispatch(
-                            changeGetPropValResp({
-                                getPropValResp: data,
-                                getGetPropValTime: time
-                            })
-                        );
+                        changeGetPropValResp(dispatch, data, time);
                         break;
                     default:
                 }

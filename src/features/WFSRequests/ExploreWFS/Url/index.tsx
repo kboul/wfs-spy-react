@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeUrl } from '../../../../context';
+import { useAppContext, changeState, types } from '../../../../context';
 import useInputFocus from './hooks';
 import { ChangeEvent } from '../../../../shared/models';
 import sharedStyles from '../../shared.module.sass';
@@ -17,7 +17,7 @@ export default function Url() {
     const { state, dispatch } = useAppContext();
 
     const handleChange = (e: ChangeEvent) =>
-        dispatch(changeUrl({ url: e.target.value }));
+        dispatch(changeState(types.urlChanged, { url: e.target.value }));
 
     return (
         <FormGroup row>

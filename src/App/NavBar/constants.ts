@@ -8,4 +8,6 @@ const dropdownRoutes: DropdownRoutes[] = [
     { name: 'DescribeFeatureType', routes: descrFeatTypeRoutes }
 ];
 
-export { appTitle, dropdownRoutes };
+const resetStyle = { cursor: 'pointer' };
+
+export { appTitle, dropdownRoutes, resetStyle };

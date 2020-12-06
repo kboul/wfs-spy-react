@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../TableButtons';
-import { useAppContext, changeWfsFilterRequest } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { formWfsFilterRequest } from './utils';
 import sharedStyles from '../shared.module.sass';
 import { isPropBetween } from '../utils';
@@ -16,7 +16,7 @@ export default function WFSFilterRequest() {
 
     const handleClick = () => {
         dispatch(
-            changeWfsFilterRequest({
+            changeState(types.wfsFilterRequestChanged, {
                 wfsFilterRequest: formWfsFilterRequest(state)
             })
         );

@@ -1,21 +1,21 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { changeUpperValue, useAppContext } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../shared/models';
 import colors from '../../../config/colors';
 import sharedStyles from '../shared.module.sass';
 
-const consts = {
-    upperValue: 'Enter upper value'
-};
+const consts = { upperValue: 'Enter upper value' };
 
 export default function UpperValue() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeUpperValue({ upperValue: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const upperValue = e.target.value;
+        dispatch(changeState(types.upperValueChanged, { upperValue }));
+    };
 
     if (isPropBetween(state.compOper))
         return (

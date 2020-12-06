@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeRequest } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { requests } from '../../../shared/constants';
 import { ChangeEvent } from '../../../shared/models';
 import sharedStyles from '../shared.module.sass';
@@ -11,8 +11,10 @@ const consts = { request: 'request' };
 export default function Request() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeRequest({ request: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const request = e.target.value;
+        dispatch(changeState(types.requestChanged, { request }));
+    };
 
     return (
         <FormGroup row>

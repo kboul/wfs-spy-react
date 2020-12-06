@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { changeLowerValue, useAppContext } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../shared/models';
 import colors from '../../../config/colors';
@@ -12,8 +12,10 @@ const consts = { lowerValue: 'Enter lower value' };
 export default function LowerValue() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeLowerValue({ lowerValue: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const lowerValue = e.target.value;
+        dispatch(changeState(types.lowerValueChanged, { lowerValue }));
+    };
 
     if (isPropBetween(state.compOper))
         return (

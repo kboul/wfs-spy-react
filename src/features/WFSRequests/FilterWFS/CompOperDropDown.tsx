@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { useAppContext, changeCompOper } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { getCompOperList } from '../../../shared/utils';
 import { ChangeEvent } from '../../../shared/models';
 import sharedStyles from '../shared.module.sass';
@@ -12,15 +12,17 @@ export default function CompOperDropDown() {
     const { state, dispatch } = useAppContext();
     const compOperList = getCompOperList(state.getCapResp);
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeCompOper({ compOper: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const compOper = e.target.value;
+        dispatch(changeState(types.compOperChanged, { compOper }));
+    };
 
     return (
         <FormGroup row>
             <Label
+                className={sharedStyles.labelFont}
                 for="compOperDropDown"
-                md={4}
-                className={sharedStyles.labelFont}>
+                md={4}>
                 {consts.compOper}
             </Label>
             <Col md={7}>

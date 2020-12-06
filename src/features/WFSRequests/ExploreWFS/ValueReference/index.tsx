@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeValueReference } from '../../../../context';
+import { useAppContext, changeState, types } from '../../../../context';
 import { getFullTypename } from '../../../../shared/utils';
 import { hasGeometry } from './utils';
 import { ChangeEvent } from '../../../../shared/models';
@@ -12,8 +12,10 @@ const consts = { valueReference: 'valueRefer.' };
 export default function ValueReference() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeValueReference({ valueReference: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const valueReference = e.target.value;
+        dispatch(changeState(types.valueReferenceChanged, { valueReference }));
+    };
 
     const { typename, valueReferences } = state;
     const fullTypename = getFullTypename(typename);
@@ -28,7 +30,9 @@ export default function ValueReference() {
                 const valueReference = hasGeometry(attrTypesList[0])
                     ? attrNamesList[1]
                     : attrNamesList[0];
-                dispatch(changeValueReference({ valueReference }));
+                dispatch(
+                    changeState(types.valueReferenceChanged, { valueReference })
+                );
             }
         } else didMountRef.current = true;
         // eslint-disable-next-line

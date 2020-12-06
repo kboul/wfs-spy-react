@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeTypename } from '../../../context';
+import { useAppContext, changeState, types } from '../../../context';
 import { ChangeEvent } from '../../../shared/models';
 import sharedStyles from '../shared.module.sass';
 
@@ -10,8 +10,10 @@ const consts = { typename: 'typeName' };
 export default function Typename() {
     const { state, dispatch } = useAppContext();
 
-    const handleChange = (e: ChangeEvent) =>
-        dispatch(changeTypename({ typename: e.target.value }));
+    const handleChange = (e: ChangeEvent) => {
+        const typename = e.target.value;
+        dispatch(changeState(types.typenameChanged, { typename }));
+    };
 
     return (
         <FormGroup row>
