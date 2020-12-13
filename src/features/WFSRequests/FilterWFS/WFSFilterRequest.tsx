@@ -4,8 +4,8 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 import TableButtons from '../TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
 import { formWfsFilterRequest } from './utils';
-import sharedStyles from '../shared.module.sass';
 import { isPropBetween } from '../utils';
+import sharedStyles from '../shared.module.sass';
 
 const consts = {
     formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:'

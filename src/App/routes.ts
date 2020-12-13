@@ -1,15 +1,26 @@
-import { FC } from 'react';
+import { FC, lazy } from 'react';
 
 import WFSRequests from '../features/WFSRequests';
-import {
-    FilterCapabilities,
-    FeatureTypeList,
-    OperationsMetadata,
-    ServiceIdentification,
-    ServiceProvider
-} from '../features/GetCapabilities';
-import AttrNamesTypes from '../features/DescribeFeatureType/AttrNamesTypes';
-import Statistics from '../features/Statistics';
+
+const AttrNamesTypes = lazy(
+    () => import('../features/DescribeFeatureType/AttrNamesTypes')
+);
+const FeatureTypeList = lazy(
+    () => import('../features/GetCapabilities/FeatureTypeList')
+);
+const FilterCapabilities = lazy(
+    () => import('../features/GetCapabilities/FilterCapabilities')
+);
+const OperationsMetadata = lazy(
+    () => import('../features/GetCapabilities/OperationsMetadata')
+);
+const ServiceIdentification = lazy(
+    () => import('../features/GetCapabilities/ServiceIdentification')
+);
+const ServiceProvider = lazy(
+    () => import('../features/GetCapabilities/ServiceProvider')
+);
+const Statistics = lazy(() => import('../features/Statistics'));
 
 const getCapRoute = '/get-capabilities';
 
