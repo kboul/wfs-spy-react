@@ -1,5 +1,5 @@
-import { Provider } from '../models';
-import { tags } from '../constants';
+import { Provider } from './models';
+import tags from '../config/tags';
 
 const replaceOws = (expression: string): string => {
     if (!expression) return '';

@@ -3,7 +3,7 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
-import { ChangeEvent } from '../../../shared/models';
+import { ChangeEvent } from '../../../models/events';
 import colors from '../../../config/colors';
 import sharedStyles from '../shared.module.sass';
 

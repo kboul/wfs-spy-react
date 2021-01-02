@@ -1,5 +1,5 @@
-import { FeatureTypes } from '../models';
-import { tags } from '../constants';
+import { FeatureTypes } from './models';
+import tags from '../config/tags';
 
 export default function extractFeatureTypes(
     getCapResp: XMLDocument

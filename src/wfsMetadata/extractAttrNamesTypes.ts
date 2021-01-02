@@ -1,5 +1,5 @@
-import { AttrNamesTypes } from '../models';
-import { tags } from '../constants';
+import { AttrNamesTypes } from './models';
+import tags from '../config/tags';
 
 export default function extractAttrNamesTypes(
     descFeatTypeResp: XMLDocument

@@ -1,14 +1,4 @@
-const versions: string[] = ['2.0.0', '2.0.2'];
-
-const requests: string[] = [
-    'GetCapabilities',
-    'DescribeFeatureType',
-    'GetPropertyValue'
-];
-
-const noOperation: string = 'This WFS service does not provide ';
-
-const tags = {
+export default {
     featureTypeName: 'Name',
     title: 'Title',
     abstract: 'Abstract',
@@ -35,7 +25,3 @@ const tags = {
     type: 'type',
     member: 'member'
 };
-
-const noOption: string = '---';
-
-export { versions, requests, noOperation, tags, noOption };

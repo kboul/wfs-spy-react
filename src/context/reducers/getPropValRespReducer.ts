@@ -1,5 +1,5 @@
 import { State, Action } from '../models';
-import { parseXML, extractAttrValues } from '../../shared/wfsMetadata';
+import { parseXML, extractAttrValues } from '../../wfsMetadata';
 
 const getPropValRespReducer = (state: State, action: Action): State => {
     const { getPropValResp, getGetPropValTime } = action.payload;

@@ -1,4 +1,4 @@
-import { versions, requests } from '../shared/constants';
+import { requests, versions } from '../config/constants';
 import consts from './constants';
 
 const initialState = {
@@ -33,7 +33,8 @@ const initialState = {
     lowerValue: '',
     upperValue: '',
     addSortBy: consts.addSortBy,
-    wfsFilterRequest: '',
+    wfsGetFiltReq: '',
+    wfsGetFiltResp: '',
     getGetCapTime: 0,
     getGetCapNumber: 0,
     getDescFeatTypeTime: 0,

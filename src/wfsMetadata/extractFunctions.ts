@@ -1,5 +1,5 @@
-import { Funcs } from '../models';
-import { tags } from '../constants';
+import { Funcs } from './models';
+import tags from '../config/tags';
 
 export default function extractFunctions(getCapResp: XMLDocument): Funcs[] {
     if (!getCapResp) return [];

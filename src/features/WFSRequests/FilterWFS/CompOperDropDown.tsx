@@ -2,8 +2,8 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
-import { getCompOperList } from '../../../shared/utils';
-import { ChangeEvent } from '../../../shared/models';
+import { getCompOperList } from '../../../utils';
+import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { compOper: 'Comparison oper.' };

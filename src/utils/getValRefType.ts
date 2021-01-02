@@ -1,4 +1,4 @@
-import { State } from '../../context/models';
+import { State } from '../context/models';
 import getFullTypename from './getFullTypename';
 
 export default function getValRefType(state: State): string {

@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { getCompOperList } from '../../../shared/utils';
+import { getCompOperList } from '../../../utils';
 import consts from './constants';
 
 export default function ComparisonOperators() {

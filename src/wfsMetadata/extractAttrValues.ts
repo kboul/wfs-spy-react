@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { tags } from '../constants';
+import tags from '../config/tags';
 
 const maxAttrValuesLength = 20000;
 

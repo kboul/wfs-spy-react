@@ -1,5 +1,6 @@
 import parseXML from './parseXML';
-import { tags, noOption } from '../constants';
+import tags from '../config/tags';
+import { noOption } from '../config/constants';
 
 export default function extractTypenames(data: string): string[] {
     if (!data) return [];

@@ -4,8 +4,8 @@ import { Table } from 'reactstrap';
 import { useAppContext } from '../../../../context';
 import TotalItems from '../../../../shared/TotalItems';
 import TablePagination from '../../../../shared/TablePagination';
-import { parseXML, extractFunctions } from '../../../../shared/wfsMetadata';
-import { ClickEvent } from '../../../../shared/models';
+import { parseXML, extractFunctions } from '../../../../wfsMetadata';
+import { ClickEvent } from '../../../../models/events';
 import consts from '../constants';
 
 export default function Functions() {

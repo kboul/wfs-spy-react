@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppContext } from '../../../context';
-import { parseXML, extractAcceptVersions } from '../../../shared/wfsMetadata';
+import { parseXML, extractAcceptVersions } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function AcceptVersions() {

@@ -3,8 +3,8 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { parseXML, extractServiceId } from '../../../shared/wfsMetadata';
-import { splitStrOnUpperCase } from '../../../shared/utils';
+import { parseXML, extractServiceId } from '../../../wfsMetadata';
+import { splitStrOnUpperCase } from '../../../utils';
 import consts from './constants';
 
 export default function ServiceIdDetails() {

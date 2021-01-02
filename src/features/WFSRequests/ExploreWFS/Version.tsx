@@ -2,8 +2,8 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
-import { versions } from '../../../shared/constants';
-import { ChangeEvent } from '../../../shared/models';
+import { versions } from '../../../config/constants';
+import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { version: 'version' };

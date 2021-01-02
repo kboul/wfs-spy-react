@@ -4,8 +4,8 @@ import { Table, UncontrolledTooltip } from 'reactstrap';
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
-import { parseXML, extractFeatureTypes } from '../../../shared/wfsMetadata';
-import { ClickEvent } from '../../../shared/models';
+import { parseXML, extractFeatureTypes } from '../../../wfsMetadata';
+import { ClickEvent } from '../../../models/events';
 import { checkAbstractLength } from './utils';
 import consts from './constants';
 

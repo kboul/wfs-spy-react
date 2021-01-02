@@ -1,4 +1,4 @@
-import { tags } from '../constants';
+import tags from '../config/tags';
 
 export default function extractAcceptVersions(
     getCapResp: XMLDocument

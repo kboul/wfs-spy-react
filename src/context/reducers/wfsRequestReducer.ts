@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
-import { getCompOperList, getValRefType } from '../../shared/utils';
-import { requests, noOption } from '../../shared/constants';
+import { getCompOperList, getValRefType } from '../../utils';
+import { requests, noOption } from '../../config/constants';
 import consts from '../constants';
 
 const urlValidation = 'Url is required';

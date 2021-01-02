@@ -6,9 +6,9 @@ import TablePagination from '../../../shared/TablePagination';
 import TotalItems from '../../../shared/TotalItems';
 import { useAppContext } from '../../../context';
 import getAttrNameType from './utils';
-import { parseXML, extractAttrNamesTypes } from '../../../shared/wfsMetadata';
-import { ClickEvent } from '../../../shared/models';
-import { noOption } from '../../../shared/constants';
+import { parseXML, extractAttrNamesTypes } from '../../../wfsMetadata';
+import { ClickEvent } from '../../../models/events';
+import { noOption } from '../../../config/constants';
 import consts from './constants';
 
 export default function AttributeDetails() {

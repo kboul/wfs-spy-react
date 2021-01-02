@@ -1,5 +1,5 @@
 import { State, Action } from '../models';
-import { noOption } from '../../shared/constants';
+import { noOption } from '../../config/constants';
 
 const getCapRespReducer = (state: State, action: Action): State => {
     return {

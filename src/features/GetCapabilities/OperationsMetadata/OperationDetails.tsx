@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { parseXML, extractOperations } from '../../../shared/wfsMetadata';
+import { parseXML, extractOperations } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function OperationsDetails() {

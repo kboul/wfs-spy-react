@@ -1,4 +1,4 @@
-import { ClickEvent } from '../models';
+import { ClickEvent } from '../../models/events';
 
 export default interface TablePaginationProps {
     currentPage: number;

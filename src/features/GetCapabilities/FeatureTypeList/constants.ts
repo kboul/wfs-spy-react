@@ -1,5 +1,6 @@
-import { noOperation, tags } from '../../../shared/constants';
-import { splitStrOnUpperCase } from '../../../shared/utils';
+import { noOperation } from '../../../config/constants';
+import tags from '../../../config/tags';
+import { splitStrOnUpperCase } from '../../../utils';
 
 const featureTypeList = 'FeatureTypeList';
 

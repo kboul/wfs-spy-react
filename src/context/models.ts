@@ -1,4 +1,4 @@
-import { AttrNamesTypes } from '../shared/models';
+import { AttrNamesTypes } from '../wfsMetadata/models';
 
 interface State {
     url: string;
@@ -32,7 +32,8 @@ interface State {
     lowerValue: string;
     upperValue: string;
     addSortBy: string;
-    wfsFilterRequest: string;
+    wfsGetFiltReq: string;
+    wfsGetFiltResp: string;
     getGetCapTime: number;
     getGetCapNumber: number;
     getDescFeatTypeTime: number;

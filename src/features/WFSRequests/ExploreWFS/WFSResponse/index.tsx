@@ -12,7 +12,7 @@ import {
 import { formWfsRequest } from '../utils';
 import { adjustProxyToUrl } from './utils';
 import WfsResponse from './model';
-import { requests } from '../../../../shared/constants';
+import { requests, proccessMessage } from '../../../../config/constants';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
 
@@ -23,8 +23,8 @@ export default function WFSResponse() {
         dispatch(changeState(types.wfsResponseChanged, { wfsResponse }));
     };
 
-    const handleGetResponse = async () => {
-        changeWfsResponse(consts.processing);
+    const handleClick = async () => {
+        changeWfsResponse(proccessMessage);
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();
@@ -66,7 +66,7 @@ export default function WFSResponse() {
                     disabled={!state.wfsRequest}
                     hasModal
                     label={consts.response}
-                    onClick={handleGetResponse}
+                    onClick={handleClick}
                 />
             </Col>
         </FormGroup>

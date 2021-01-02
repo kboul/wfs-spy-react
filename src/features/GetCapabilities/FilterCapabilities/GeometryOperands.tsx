@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 import TotalItems from '../../../shared/TotalItems';
 import { useAppContext } from '../../../context';
-import { parseXML, extractFilterCap } from '../../../shared/wfsMetadata';
+import { parseXML, extractFilterCap } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function GeometryOperands() {

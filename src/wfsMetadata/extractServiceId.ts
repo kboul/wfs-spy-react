@@ -1,5 +1,5 @@
-import { ServiceId } from '../models';
-import { tags } from '../constants';
+import { ServiceId } from './models';
+import tags from '../config/tags';
 
 const extractTitle = (getCapResp: XMLDocument): string => {
     if (!getCapResp) return '';

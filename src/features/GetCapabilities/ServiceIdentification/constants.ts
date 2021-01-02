@@ -1,4 +1,4 @@
-import { noOperation } from '../../../shared/constants';
+import { noOperation } from '../../../config/constants';
 
 const serviceId = 'Service Identification';
 

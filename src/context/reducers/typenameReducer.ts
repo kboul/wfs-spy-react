@@ -1,5 +1,5 @@
 import { State, Action } from '../models';
-import { noOption } from '../../shared/constants';
+import { noOption } from '../../config/constants';
 
 const typenameReducer = (state: State, action: Action): State => {
     const { typename } = action.payload;

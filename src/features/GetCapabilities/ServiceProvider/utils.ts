@@ -1,5 +1,5 @@
 import consts from './constants';
-import { splitStrOnUpperCase } from '../../../shared/utils';
+import { splitStrOnUpperCase } from '../../../utils';
 
 const formalProviderName = (strOnUpperCase: string): string => {
     const splittedString = splitStrOnUpperCase(strOnUpperCase);

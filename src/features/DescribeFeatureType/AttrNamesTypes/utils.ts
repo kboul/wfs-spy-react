@@ -1,5 +1,5 @@
-import { AttrNamesTypes } from '../../../shared/models';
-import { getFullTypename } from '../../../shared/utils';
+import { AttrNamesTypes } from '../../../wfsMetadata/models';
+import { getFullTypename } from '../../../utils';
 import AttrNameTypeProps from './models';
 
 const getAttrNameType = (attrNamesTypes: AttrNamesTypes, typename: string) => {

@@ -1,6 +1,6 @@
-import { getRootRequest } from '../../../shared/utils';
+import { getRootRequest } from '../../../utils';
 import { State } from '../../../context/models';
-import { requests, noOption } from '../../../shared/constants';
+import { requests, noOption } from '../../../config/constants';
 
 const formWfsRequest = (state: State): string => {
     const {

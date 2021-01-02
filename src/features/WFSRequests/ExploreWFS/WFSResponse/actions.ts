@@ -1,7 +1,8 @@
 import { Dispatch } from 'react';
+
 import { changeState, types } from '../../../../context';
 import { Action } from '../../../../context/models';
-import { extractTypenames } from '../../../../shared/wfsMetadata';
+import { extractTypenames } from '../../../../wfsMetadata';
 
 const changeGetCapResp = (
     dispatch: Dispatch<Action>,

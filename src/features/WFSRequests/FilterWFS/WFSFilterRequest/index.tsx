@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../TableButtons';
-import { useAppContext, changeState, types } from '../../../context';
-import { formWfsFilterRequest } from './utils';
-import { isPropBetween } from '../utils';
-import sharedStyles from '../shared.module.sass';
+import TableButtons from '../../TableButtons';
+import { useAppContext, changeState, types } from '../../../../context';
+import { formWfsGetFiltReq } from '../utils';
+import { validateFiltReqBtn } from './utils';
+import sharedStyles from '../../shared.module.sass';
 
 const consts = {
     formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:'
@@ -16,20 +16,10 @@ export default function WFSFilterRequest() {
 
     const handleClick = () => {
         dispatch(
-            changeState(types.wfsFilterRequestChanged, {
-                wfsFilterRequest: formWfsFilterRequest(state)
+            changeState(types.wfsFiltReqChanged, {
+                wfsGetFiltReq: formWfsGetFiltReq(state)
             })
         );
-    };
-
-    const validateFiltReqBtn = (): boolean | undefined => {
-        if (!state.getPropValResp) return true;
-        if (isPropBetween(state.compOper))
-            return Boolean(!state.lowerValue) || Boolean(!state.upperValue);
-        if (state.showNonNumericValue)
-            return state.nonNumericValue.length === 0;
-        if (state.showNumericValue) return Boolean(!state.numericValue);
-        return false;
     };
 
     return (
@@ -45,10 +35,10 @@ export default function WFSFilterRequest() {
                     disabled
                     rows="10"
                     type="textarea"
-                    value={state.wfsFilterRequest}
+                    value={state.wfsGetFiltReq}
                 />
                 <TableButtons
-                    disabled={validateFiltReqBtn()}
+                    disabled={validateFiltReqBtn(state)}
                     label="Filter Request"
                     onClick={handleClick}
                 />

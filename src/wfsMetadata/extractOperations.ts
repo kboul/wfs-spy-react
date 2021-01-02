@@ -1,5 +1,5 @@
-import { Operations } from '../models';
-import { tags } from '../constants';
+import { Operations } from './models';
+import tags from '../config/tags';
 
 export default function etxractOperations(getCapResp: XMLDocument): Operations {
     if (!getCapResp) return {};
