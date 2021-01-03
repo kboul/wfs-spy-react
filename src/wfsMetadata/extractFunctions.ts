@@ -1,7 +1,10 @@
 import { Funcs } from './models';
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
-export default function extractFunctions(getCapResp: XMLDocument): Funcs[] {
+export default function extractFunctions(xmlString: string): Funcs[] {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     if (!getCapResp) return [];
 
     const functionTags = getCapResp.querySelectorAll(tags.function);

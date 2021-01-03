@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Table, UncontrolledTooltip } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
 import TablePagination from '../../../shared/TablePagination';
-import { parseXML, extractFeatureTypes } from '../../../wfsMetadata';
+import { useAppContext } from '../../../context';
+import { extractFeatureTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
 import { checkAbstractLength } from './utils';
 import consts from './constants';
@@ -12,8 +12,7 @@ import consts from './constants';
 export default function FeatureDetails() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const features = extractFeatureTypes(parsedResponse);
+    const features = extractFeatureTypes(getCapResp);
     const featuresLength = features.length;
 
     const pageSize = 10;

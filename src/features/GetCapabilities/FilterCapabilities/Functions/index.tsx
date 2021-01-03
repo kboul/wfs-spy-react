@@ -4,15 +4,14 @@ import { Table } from 'reactstrap';
 import { useAppContext } from '../../../../context';
 import TotalItems from '../../../../shared/TotalItems';
 import TablePagination from '../../../../shared/TablePagination';
-import { parseXML, extractFunctions } from '../../../../wfsMetadata';
+import { extractFunctions } from '../../../../wfsMetadata';
 import { ClickEvent } from '../../../../models/events';
 import consts from '../constants';
 
 export default function Functions() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const functions = extractFunctions(parsedResponse);
+    const functions = extractFunctions(getCapResp);
     const functionsLength = functions.length;
 
     const pageSize = 10;

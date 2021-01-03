@@ -1,6 +1,5 @@
-import { parseXML, extractFilterCap } from '../wfsMetadata';
+import { extractFilterCap } from '../wfsMetadata';
 
 export default function getCompOperList(getCapResp: string): string[] {
-    const parsedResponse = parseXML(getCapResp);
-    return extractFilterCap(parsedResponse, 'ComparisonOperator');
+    return extractFilterCap(getCapResp, 'ComparisonOperator');
 }

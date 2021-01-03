@@ -1,12 +1,15 @@
 import { Provider } from './models';
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
 const replaceOws = (expression: string): string => {
     if (!expression) return '';
     return expression.replace('ows:', '');
 };
 
-export default function extractProvider(getCapResp: XMLDocument): Provider {
+export default function extractProvider(xmlString: string): Provider {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     const providerNameTag = getCapResp.querySelector(tags.providerName);
     const serviceContactTag = getCapResp.querySelector(tags.serviceContact);
     const providerNames: string[] = [];

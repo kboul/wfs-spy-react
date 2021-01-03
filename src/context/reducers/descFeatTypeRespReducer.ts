@@ -1,15 +1,16 @@
 import { State, Action } from '../models';
-import { parseXML, extractAttrNamesTypes } from '../../wfsMetadata';
+import { extractAttrNamesTypes } from '../../wfsMetadata';
 
-const descFeatTypeRespReducer = (state: State, action: Action): State => {
-    const descFeatTypeResp = parseXML(action.payload.descFeatTypeResp);
+export default function descFeatTypeRespReducer(
+    state: State,
+    action: Action
+): State {
+    const { descFeatTypeResp, getDescFeatTypeTime } = action.payload;
     return {
         ...state,
-        descFeatTypeResp: action.payload.descFeatTypeResp,
-        getDescFeatTypeTime: action.payload.getDescFeatTypeTime,
+        descFeatTypeResp,
+        getDescFeatTypeTime,
         getDescFeatTypeNumber: ++state.getDescFeatTypeNumber,
         valueReferences: extractAttrNamesTypes(descFeatTypeResp)
     };
-};
-
-export default descFeatTypeRespReducer;
+}

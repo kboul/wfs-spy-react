@@ -9,3 +9,4 @@ export { default as extractFilterCap } from './extractFilterCap';
 export { default as extractFunctions } from './extractFunctions';
 export { default as extractAttrNamesTypes } from './extractAttrNamesTypes';
 export { default as extractAttrValues } from './extractAttrValues';
+export { default as extractFiltAttrValues } from './extractFiltAttrValues';

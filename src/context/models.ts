@@ -27,19 +27,21 @@ interface State {
     showNumericValue: boolean;
     nonNumericValue: string[];
     showNonNumericValue: boolean;
-    filtValueCount: string;
+    filterValueCount: string;
     compOper: string;
     lowerValue: string;
     upperValue: string;
     addSortBy: string;
-    wfsGetFiltReq: string;
-    wfsGetFiltResp: string;
+    wfsFilterRequest: string;
+    wfsFilterResponse: string;
     getGetCapTime: number;
     getGetCapNumber: number;
     getDescFeatTypeTime: number;
     getDescFeatTypeNumber: number;
     getGetPropValTime: number;
     getGetPropValNumber: number;
+    getGetPropValFiltTime: number;
+    getGetPropValFiltNumber: number;
     attrValues: string[];
 }
 

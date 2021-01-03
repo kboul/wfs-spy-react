@@ -3,14 +3,13 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { parseXML, extractOperations } from '../../../wfsMetadata';
+import { extractOperations } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function OperationsDetails() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const operations = extractOperations(parsedResponse);
+    const operations = extractOperations(getCapResp);
     const operationsLength = Object.keys(operations).length;
 
     const table = (

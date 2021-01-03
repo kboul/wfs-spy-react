@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { useAppContext } from '../../../context';
-import { parseXML, extractAcceptVersions } from '../../../wfsMetadata';
+import { extractAcceptVersions } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function AcceptVersions() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const acceptVersions = extractAcceptVersions(parsedResponse);
+    const acceptVersions = extractAcceptVersions(getCapResp);
     const versionsLength = acceptVersions.length;
     const lastVersion = versionsLength - 1;
 

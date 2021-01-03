@@ -14,7 +14,8 @@ import {
     getPropValRespReducer,
     requestReducer,
     typenameReducer,
-    wfsRequestReducer
+    wfsRequestReducer,
+    getPropValFiltRespReducer
 } from './reducers';
 
 // Actions
@@ -29,13 +30,14 @@ export const types = {
     getCapRespChanged: 'getCapRespChanged',
     descFeatTypeRespChanged: 'descFeatTypeRespChanged',
     getPropValRespChanged: 'getPropValRespChanged',
+    getPropValFiltRespChanged: 'getPropValFiltRespChanged',
     compOperChanged: 'compOperChanged',
     lowerValueChanged: 'lowerValueChanged',
     upperValueChanged: 'upperValueChanged',
     addSortByChanged: 'addSortByChanged',
     numericValueChanged: 'numericValueChanged',
     nonNumericValueChanged: 'nonNumericValueChanged',
-    wfsFiltReqChanged: 'wfsFilterRequestChanged',
+    wfsFilterRequestChanged: 'wfsFilterRequestChanged',
     wfsFilterResponseChanged: 'wfsFilterResponseChanged',
     stateReset: 'stateReset'
 };
@@ -71,6 +73,8 @@ const reducer = (state: State, action: Action): State => {
             return descFeatTypeRespReducer(state, action);
         case types.getPropValRespChanged:
             return getPropValRespReducer(state, action);
+        case types.getPropValFiltRespChanged:
+            return getPropValFiltRespReducer(state, action);
         case types.compOperChanged:
             return { ...state, compOper: action.payload.compOper };
         case types.lowerValueChanged:
@@ -86,10 +90,17 @@ const reducer = (state: State, action: Action): State => {
                 ...state,
                 nonNumericValue: action.payload.nonNumericValue
             };
-        case types.wfsFiltReqChanged:
+        case types.wfsFilterRequestChanged:
             return {
                 ...state,
-                wfsGetFiltReq: action.payload.wfsGetFiltReq
+                wfsFilterRequest: action.payload.wfsFilterRequest,
+                filterValueCount: '',
+                wfsFilterResponse: ''
+            };
+        case types.wfsFilterResponseChanged:
+            return {
+                ...state,
+                wfsFilterResponse: action.payload.wfsFilterResponse
             };
         case types.stateReset:
             return initialState;

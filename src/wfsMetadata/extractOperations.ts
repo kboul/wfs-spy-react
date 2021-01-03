@@ -1,7 +1,10 @@
 import { Operations } from './models';
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
-export default function etxractOperations(getCapResp: XMLDocument): Operations {
+export default function etxractOperations(xmlString: string): Operations {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     if (!getCapResp) return {};
 
     const operationTags = getCapResp.querySelectorAll(tags.operation);

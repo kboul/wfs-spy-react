@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
 const maxAttrValuesLength = 20000;
 
@@ -19,13 +20,15 @@ const toasts = {
 };
 
 export default function extractAttValues(
-    getPropValueResp: XMLDocument
+    xmlString: string
 ): {
     valueCount: string;
     minValue: string | undefined;
     maxValue: string | undefined;
     attrValues: string[];
 } {
+    const getPropValueResp: XMLDocument = parseXML(xmlString);
+
     const member = getPropValueResp.querySelectorAll(tags.member);
     const memberLength = member?.length;
 

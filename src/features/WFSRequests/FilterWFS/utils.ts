@@ -1,8 +1,8 @@
 /* eslint-disable prefer-template */
 import { State } from '../../../context/models';
-import getRootRequest from '../../../utils/getRootRequest';
+import { getRootRequest } from '../../../utils';
 
-const formWfsGetFiltReq = (state: State): string => {
+export default function formWfsFilterRequest(state: State): string {
     const {
         url,
         version,
@@ -109,6 +109,4 @@ const formWfsGetFiltReq = (state: State): string => {
     }
 
     return filterRequest;
-};
-
-export { formWfsGetFiltReq };
+}

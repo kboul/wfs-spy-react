@@ -3,14 +3,13 @@ import { Table } from 'reactstrap';
 
 import TotalItems from '../../../shared/TotalItems';
 import { useAppContext } from '../../../context';
-import { parseXML, extractFilterCap } from '../../../wfsMetadata';
+import { extractFilterCap } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function TemporalOperators() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const tempOperators = extractFilterCap(parsedResponse, 'TemporalOperator');
+    const tempOperators = extractFilterCap(getCapResp, 'TemporalOperator');
     const tempOperatorsLength = tempOperators.length;
 
     const table = (

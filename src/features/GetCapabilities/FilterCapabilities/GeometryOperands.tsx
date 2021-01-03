@@ -3,14 +3,13 @@ import { Table } from 'reactstrap';
 
 import TotalItems from '../../../shared/TotalItems';
 import { useAppContext } from '../../../context';
-import { parseXML, extractFilterCap } from '../../../wfsMetadata';
+import { extractFilterCap } from '../../../wfsMetadata';
 import consts from './constants';
 
 export default function GeometryOperands() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const geomOper = extractFilterCap(parsedResponse, 'GeometryOperand');
+    const geomOper = extractFilterCap(getCapResp, 'GeometryOperand');
     const geomOperLength = geomOper.length;
 
     const table = (

@@ -6,7 +6,7 @@ import TablePagination from '../../../shared/TablePagination';
 import TotalItems from '../../../shared/TotalItems';
 import { useAppContext } from '../../../context';
 import getAttrNameType from './utils';
-import { parseXML, extractAttrNamesTypes } from '../../../wfsMetadata';
+import { extractAttrNamesTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
 import { noOption } from '../../../config/constants';
 import consts from './constants';
@@ -14,8 +14,7 @@ import consts from './constants';
 export default function AttributeDetails() {
     const { state } = useAppContext();
     const { descFeatTypeResp, typename } = state;
-    const parsedResponse = parseXML(descFeatTypeResp);
-    const attrNamesTypes = extractAttrNamesTypes(parsedResponse);
+    const attrNamesTypes = extractAttrNamesTypes(descFeatTypeResp);
     const namesLength = Object.keys(attrNamesTypes.names).length;
 
     const attrNameType = getAttrNameType(attrNamesTypes, typename);

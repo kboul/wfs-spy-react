@@ -10,7 +10,7 @@ import {
     changeGetPropValResp
 } from './actions';
 import { formWfsRequest } from '../utils';
-import { adjustProxyToUrl } from './utils';
+import { adjustProxyToUrl } from '../../utils';
 import WfsResponse from './model';
 import { requests, proccessMessage } from '../../../../config/constants';
 import consts from './constants';

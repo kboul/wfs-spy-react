@@ -1,7 +1,11 @@
+import parseXML from './parseXML';
+
 export default function extractFilterCap(
-    getCapResp: XMLDocument,
+    xmlString: string,
     operator: string
 ): string[] {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     if (!getCapResp) return [];
 
     const operatorTags = getCapResp.querySelectorAll(operator);

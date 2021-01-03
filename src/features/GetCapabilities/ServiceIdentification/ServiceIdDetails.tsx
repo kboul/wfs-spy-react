@@ -3,15 +3,14 @@ import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
 import TotalItems from '../../../shared/TotalItems';
-import { parseXML, extractServiceId } from '../../../wfsMetadata';
+import { extractServiceId } from '../../../wfsMetadata';
 import { splitStrOnUpperCase } from '../../../utils';
 import consts from './constants';
 
 export default function ServiceIdDetails() {
     const { state } = useAppContext();
     const { getCapResp } = state;
-    const parsedResponse = parseXML(getCapResp);
-    const serviceId = extractServiceId(parsedResponse);
+    const serviceId = extractServiceId(getCapResp);
     const serviceIdLength = Object.keys(serviceId).length;
 
     const table = (

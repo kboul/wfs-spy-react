@@ -3,8 +3,8 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../../TableButtons';
 import { useAppContext, changeState, types } from '../../../../context';
-import { formWfsGetFiltReq } from '../utils';
-import { validateFiltReqBtn } from './utils';
+import formWfsFilterRequest from '../utils';
+import validateFiltReqBtn from './utils';
 import sharedStyles from '../../shared.module.sass';
 
 const consts = {
@@ -16,8 +16,8 @@ export default function WFSFilterRequest() {
 
     const handleClick = () => {
         dispatch(
-            changeState(types.wfsFiltReqChanged, {
-                wfsGetFiltReq: formWfsGetFiltReq(state)
+            changeState(types.wfsFilterRequestChanged, {
+                wfsFilterRequest: formWfsFilterRequest(state)
             })
         );
     };
@@ -35,7 +35,7 @@ export default function WFSFilterRequest() {
                     disabled
                     rows="10"
                     type="textarea"
-                    value={state.wfsGetFiltReq}
+                    value={state.wfsFilterRequest}
                 />
                 <TableButtons
                     disabled={validateFiltReqBtn(state)}

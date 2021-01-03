@@ -1,8 +1,9 @@
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
-export default function extractAcceptVersions(
-    getCapResp: XMLDocument
-): string[] {
+export default function extractAcceptVersions(xmlString: string): string[] {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     if (!getCapResp) return [];
 
     const acceptVersionsTag = getCapResp.querySelector(tags.acceptVersions);

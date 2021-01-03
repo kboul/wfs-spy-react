@@ -1,9 +1,12 @@
+import parseXML from './parseXML';
 import { AttrNamesTypes } from './models';
 import tags from '../config/tags';
 
 export default function extractAttrNamesTypes(
-    descFeatTypeResp: XMLDocument
+    xmlString: string
 ): AttrNamesTypes {
+    const descFeatTypeResp: XMLDocument = parseXML(xmlString);
+
     const valueReferences: AttrNamesTypes = {
         names: {},
         types: {}

@@ -1,6 +1,4 @@
-const consts = {
+export default {
     response: 'Response',
     responseMetadata: 'Response - Metadata & Corresponding operations:'
 };
-
-export default consts;

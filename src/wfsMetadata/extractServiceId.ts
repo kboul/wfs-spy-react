@@ -1,5 +1,6 @@
 import { ServiceId } from './models';
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
 const extractTitle = (getCapResp: XMLDocument): string => {
     if (!getCapResp) return '';
@@ -50,7 +51,9 @@ const extractKeywords = (getCapResp: XMLDocument): string[] => {
     return keywords;
 };
 
-export default function extractServiceId(getCapResp: XMLDocument): ServiceId {
+export default function extractServiceId(xmlString: string): ServiceId {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     if (!getCapResp) return {};
 
     const title = extractTitle(getCapResp);

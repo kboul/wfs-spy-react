@@ -16,6 +16,8 @@ export default {
         filtValueCount: '',
         addSortBy,
         attrValues: [],
-        wfsGetFiltReq: ''
+        wfsFilterRequest: '',
+        wfsFilterResponse: '',
+        filterValueCount: ''
     }
 };

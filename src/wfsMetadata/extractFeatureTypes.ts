@@ -1,9 +1,10 @@
 import { FeatureTypes } from './models';
 import tags from '../config/tags';
+import parseXML from './parseXML';
 
-export default function extractFeatureTypes(
-    getCapResp: XMLDocument
-): FeatureTypes[] {
+export default function extractFeatureTypes(xmlString: string): FeatureTypes[] {
+    const getCapResp: XMLDocument = parseXML(xmlString);
+
     const featureTypes: FeatureTypes[] = [];
 
     if (!getCapResp) return featureTypes;
