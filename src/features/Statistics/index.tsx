@@ -5,7 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 
 import Panel from '../../shared/Panel';
 import { useAppContext } from '../../context';
-import chartOptions from './utils';
+import { chartOptions, getTotalRequestNumber } from './utils';
 import ChartOptions from './models';
 import consts from './constants';
 
@@ -18,10 +18,7 @@ export default function Statistics() {
         chartOptions('number')
     );
 
-    const totalRequestNumber =
-        state.getGetCapNumber +
-        state.getDescFeatTypeNumber +
-        state.getGetPropValNumber;
+    const totalRequestNumber = getTotalRequestNumber(state);
 
     useEffect(() => {
         setRequestsOpts(prevState => {
@@ -30,12 +27,7 @@ export default function Statistics() {
                 totalRequestNumber >= 10 ? totalRequestNumber + 1 : 10;
             return options;
         });
-    }, [
-        state.getGetCapNumber,
-        state.getDescFeatTypeNumber,
-        state.getGetPropValNumber,
-        totalRequestNumber
-    ]);
+    }, [totalRequestNumber]);
 
     useEffect(() => {
         if (!state.getCapResp) return;
@@ -46,13 +38,15 @@ export default function Statistics() {
             series[0].data = [state.getGetCapTime];
             series[1].data = [state.getDescFeatTypeTime];
             series[2].data = [state.getGetPropValTime];
+            series[3].data = [state.getGetPropValFiltTime];
             return options;
         });
     }, [
         state.getCapResp,
         state.getGetCapTime,
         state.getDescFeatTypeTime,
-        state.getGetPropValTime
+        state.getGetPropValTime,
+        state.getGetPropValFiltTime
     ]);
 
     useEffect(() => {
@@ -64,6 +58,7 @@ export default function Statistics() {
             series[0].data = [state.getGetCapNumber];
             series[1].data = [state.getDescFeatTypeNumber];
             series[2].data = [state.getGetPropValNumber];
+            series[3].data = [state.getGetPropValFiltNumber];
             series[4].data = [totalRequestNumber];
             return options;
         });
@@ -73,6 +68,7 @@ export default function Statistics() {
         state.getGetCapNumber,
         state.getDescFeatTypeNumber,
         state.getGetPropValNumber,
+        state.getGetPropValFiltNumber,
         totalRequestNumber
     ]);
 

@@ -34,9 +34,11 @@ export const types = {
     compOperChanged: 'compOperChanged',
     lowerValueChanged: 'lowerValueChanged',
     upperValueChanged: 'upperValueChanged',
+    lowerUpperValuesReset: 'lowerUpperValuesReset',
     addSortByChanged: 'addSortByChanged',
     numericValueChanged: 'numericValueChanged',
     nonNumericValueChanged: 'nonNumericValueChanged',
+    numericNonNumericValuesReset: 'numericNonNumericValuesReset',
     wfsFilterRequestChanged: 'wfsFilterRequestChanged',
     wfsFilterResponseChanged: 'wfsFilterResponseChanged',
     stateReset: 'stateReset'
@@ -81,6 +83,8 @@ const reducer = (state: State, action: Action): State => {
             return { ...state, lowerValue: action.payload.lowerValue };
         case types.upperValueChanged:
             return { ...state, upperValue: action.payload.upperValue };
+        case types.lowerUpperValuesReset:
+            return { ...state, lowerValue: '', upperValue: '' };
         case types.addSortByChanged:
             return { ...state, addSortBy: action.payload.addSortBy };
         case types.numericValueChanged:
@@ -90,6 +94,8 @@ const reducer = (state: State, action: Action): State => {
                 ...state,
                 nonNumericValue: action.payload.nonNumericValue
             };
+        case types.numericNonNumericValuesReset:
+            return { ...state, numericValue: '', nonNumericValue: [] };
         case types.wfsFilterRequestChanged:
             return {
                 ...state,

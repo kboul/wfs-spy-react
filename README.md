@@ -12,14 +12,18 @@ At this point, the application will not provide geometrical feature manipulation
 
 ## WFS metadata statistics
 
-|                        WFS Url                         | Service Id | Accept Versions | Service Provider | Operations Metadata | Filter Capabilities | typenames / FeatureTypeList |              valueReferences              | individual DescFeatType requests |
-| :----------------------------------------------------: | :--------: | :-------------: | :--------------: | :-----------------: | :-----------------: | :-------------------------: | :---------------------------------------: | -------------------------------- |
-|            http://daim.lfv.se/geoserver/wfs            |     7      |        3        |        9         |          8          |       yes all       |             36              | requires individual DescFeatType requests | yes                              |
-| http://data.gov.au/geoserver/ballarat-corner-shops/wfs |     7      |        3        |        9         |         11          |       yes all       |              1              |                    yes                    | no                               |
-|     http://geoserv.weichand.de:8080/geoserver/wfs      |     7      |        3        |        8         |          8          |       yes all       |              5              |                    yes                    | no                               |
-|      http://kls.pria.ee/geoserver/pria_avalik/ows      |     7      |        3        |        3         |          8          |       yes all       |              6              |                    yes                    | yes                              |
-|               http://sdi.gdos.gov.pl/wfs               |     7      |        3        |        3         |          8          |       yes all       |             16              |                    yes                    | no                               |
-|       http://inspire.geop.sazp.sk/geoserver/ows        |     7      |        3        |        7         |          8          |       yes all       |              3              |                    yes                    | yes                              |
+|  #  |                        WFS Url                         | Service Id | Accept Versions | Service Provider | Operations Metadata | Filter Capabilities | typenames / FeatureTypeList | valueReferences | individual DescFeatType requests |
+| :-: | :----------------------------------------------------: | :--------: | :-------------: | :--------------: | :-----------------: | :-----------------: | :-------------------------: | :-------------: | :------------------------------: |
+|  2  |            http://daim.lfv.se/geoserver/wfs            |     7      |        3        |        9         |          8          |       yes all       |             36              |       yes       |               yes                |
+|  3  | http://data.gov.au/geoserver/ballarat-corner-shops/wfs |     7      |        3        |        9         |         11          |       yes all       |              1              |       yes       |                no                |
+|  4  |     http://geoserv.weichand.de:8080/geoserver/wfs      |     7      |        3        |        8         |          8          |       yes all       |              5              |       yes       |                no                |
+|  5  |      http://kls.pria.ee/geoserver/pria_avalik/ows      |     7      |        3        |        3         |          8          |       yes all       |              6              |       yes       |               yes                |
+|  6  |               http://sdi.gdos.gov.pl/wfs               |     7      |        3        |        3         |          8          |       yes all       |             16              |       yes       |                no                |
+|  7  |       http://inspire.geop.sazp.sk/geoserver/ows        |     7      |        3        |        7         |          8          |       yes all       |              3              |       yes       |               yes                |
+|  8  |         https://demo.mapserver.org/cgi-bin/wfs         |     7      |        3        |        4         |          6          |    no functions     |              2              |        -        |                -                 |
+|  9  |      http://inspire.sthelens.gov.uk/geoserver/ows      |     7      |        3        |        6         |         11          |       yes all       |              4              |       yes       |                no                |
+| 10  |      http://tips.noveltis.com/geoserver/tips/wfs       |     7      |        3        |        6         |         11          |       yes all       |              5              |       yes       |                no                |
+| 11  | http://inspire.dundeecity.gov.uk/geoserver/inspire/wfs |     7      |        3        |        8         |          8          |       yes all       |             21              |       yes       |                no                |
 
 ## Run the project
 
@@ -38,3 +42,7 @@ npm start
 ```
 
 browser listens to [http://localhost:3000](http://localhost:3000) as default port
+
+### GetPropertyValue Filter Requests on Chrome
+
+GetPropertyValue Filter requests can not be made on Chrome due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result Firefox or other browsers should be used to make that requests.

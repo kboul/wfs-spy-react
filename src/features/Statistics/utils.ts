@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 
 import ChartOptions from './models';
+import { State } from '../../context/models';
 import consts from './constants';
 
 const chartOptions = (chart: string): ChartOptions => {
@@ -82,4 +83,13 @@ const chartOptions = (chart: string): ChartOptions => {
     };
 };
 
-export default chartOptions;
+const getTotalRequestNumber = (state: State): number => {
+    return (
+        state.getGetCapNumber +
+        state.getDescFeatTypeNumber +
+        state.getGetPropValNumber +
+        state.getGetPropValFiltNumber
+    );
+};
+
+export { chartOptions, getTotalRequestNumber };

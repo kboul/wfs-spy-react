@@ -4,7 +4,7 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
-import { adjustProxyToUrl } from '../utils';
+import { adjustProxyToUrl, handleErrorResponse } from '../utils';
 import formWfsFilterRequest from './utils';
 import { proccessMessage } from '../../../config/constants';
 import sharedStyles from '../shared.module.sass';
@@ -30,17 +30,22 @@ export default function WFSFilterResponse() {
         const operationUrl = adjustProxyToUrl(formWfsFilterRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();
-            const response = await axios.get(operationUrl);
-            if (response.status === 200) {
-                const { data } = response;
-                changeWfsFilterResponse(data);
-                const time = new Date().getTime() - startGET;
-                dispatch(
-                    changeState(types.getPropValFiltRespChanged, {
-                        getPropValFiltResp: data,
-                        getGetPropValFiltTime: time
-                    })
-                );
+            try {
+                const { data, status } = await axios.get(operationUrl);
+                if (status === 200) {
+                    changeWfsFilterResponse(data);
+                    const time = new Date().getTime() - startGET;
+                    dispatch(
+                        changeState(types.getPropValFiltRespChanged, {
+                            getPropValFiltResp: data,
+                            getGetPropValFiltTime: time
+                        })
+                    );
+                }
+            } catch (error) {
+                const { response } = error;
+                if (response)
+                    changeWfsFilterResponse(handleErrorResponse(response));
             }
         }
     };

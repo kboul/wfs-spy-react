@@ -3,6 +3,7 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
 import { getCompOperList } from '../../../utils';
+import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 
@@ -15,6 +16,9 @@ export default function CompOperDropDown() {
     const handleChange = (e: ChangeEvent) => {
         const compOper = e.target.value;
         dispatch(changeState(types.compOperChanged, { compOper }));
+        if (isPropBetween(state.compOper))
+            dispatch(changeState(types.numericNonNumericValuesReset, {}));
+        else dispatch(changeState(types.lowerUpperValuesReset, {}));
     };
 
     return (

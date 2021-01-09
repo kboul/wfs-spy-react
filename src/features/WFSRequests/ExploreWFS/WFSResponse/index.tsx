@@ -10,8 +10,7 @@ import {
     changeGetPropValResp
 } from './actions';
 import { formWfsRequest } from '../utils';
-import { adjustProxyToUrl } from '../../utils';
-import WfsResponse from './model';
+import { adjustProxyToUrl, handleErrorResponse } from '../../utils';
 import { requests, proccessMessage } from '../../../../config/constants';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
@@ -28,23 +27,27 @@ export default function WFSResponse() {
         const operationUrl = adjustProxyToUrl(formWfsRequest(state));
         if (operationUrl) {
             const startGET = new Date().getTime();
-            const response: WfsResponse = await axios.get(operationUrl);
-            if (response.status === 200) {
-                const { data } = response;
-                changeWfsResponse(data);
-                const time = new Date().getTime() - startGET;
-                switch (state.request) {
-                    case requests[0]:
-                        changeGetCapResp(dispatch, data, time);
-                        break;
-                    case requests[1]:
-                        changeDescFeatTypeResp(dispatch, data, time);
-                        break;
-                    case requests[2]:
-                        changeGetPropValResp(dispatch, data, time);
-                        break;
-                    default:
+            try {
+                const { data, status } = await axios.get(operationUrl);
+                if (status === 200) {
+                    changeWfsResponse(data);
+                    const time = new Date().getTime() - startGET;
+                    switch (state.request) {
+                        case requests[0]:
+                            changeGetCapResp(dispatch, data, time);
+                            break;
+                        case requests[1]:
+                            changeDescFeatTypeResp(dispatch, data, time);
+                            break;
+                        case requests[2]:
+                            changeGetPropValResp(dispatch, data, time);
+                            break;
+                        default:
+                    }
                 }
+            } catch (error) {
+                const { response } = error;
+                if (response) changeWfsResponse(handleErrorResponse(response));
             }
         }
     };
