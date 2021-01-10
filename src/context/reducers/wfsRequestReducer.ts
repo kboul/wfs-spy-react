@@ -47,6 +47,7 @@ const wfsRequestReducer = (state: State, action: Action) => {
             typename: '',
             typenames: [],
             valueReferences: consts.valueReferences,
+            xmlNamespaces: {},
             valueReference: '',
             descFeatTypeResp: '',
             getPropValResp: '',

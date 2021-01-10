@@ -5,12 +5,28 @@ export default function descFeatTypeRespReducer(
     state: State,
     action: Action
 ): State {
-    const { descFeatTypeResp, getDescFeatTypeTime } = action.payload;
+    const {
+        descFeatTypeResp,
+        getDescFeatTypeTime,
+        postDescFeatTypeTime
+    } = action.payload;
+
+    const getDescFeatTypeNumber = getDescFeatTypeTime
+        ? ++state.getDescFeatTypeNumber
+        : state.getDescFeatTypeNumber;
+
+    const postDescFeatTypeNumber = postDescFeatTypeTime
+        ? ++state.postDescFeatTypeNumber
+        : state.postDescFeatTypeNumber;
+
     return {
         ...state,
         descFeatTypeResp,
-        getDescFeatTypeTime,
-        getDescFeatTypeNumber: ++state.getDescFeatTypeNumber,
-        valueReferences: extractAttrNamesTypes(descFeatTypeResp)
+        valueReferences: extractAttrNamesTypes(descFeatTypeResp),
+        getDescFeatTypeTime: getDescFeatTypeTime || state.getDescFeatTypeTime,
+        postDescFeatTypeTime:
+            postDescFeatTypeTime || state.postDescFeatTypeTime,
+        getDescFeatTypeNumber,
+        postDescFeatTypeNumber
     };
 }

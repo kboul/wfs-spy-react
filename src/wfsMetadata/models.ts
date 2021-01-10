@@ -31,11 +31,17 @@ interface AttrNamesTypes {
     types: { [complexType: string]: string[] | any };
 }
 
+interface XmlNamespaces {
+    prefixes: string[];
+    uris: string[];
+}
+
 export type {
     Provider,
     Operations,
     Funcs,
     ServiceId,
     FeatureTypes,
-    AttrNamesTypes
+    AttrNamesTypes,
+    XmlNamespaces
 };

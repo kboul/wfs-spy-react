@@ -22,14 +22,16 @@ const changeGetCapResp = (
 const changeDescFeatTypeResp = (
     dispatch: Dispatch<Action>,
     data: string,
-    time: number
+    time: number,
+    httpMethod: string
 ) => {
-    dispatch(
-        changeState(types.descFeatTypeRespChanged, {
-            descFeatTypeResp: data,
-            getDescFeatTypeTime: time
-        })
-    );
+    const payload = {
+        descFeatTypeResp: data,
+        [isMethodGet(httpMethod)
+            ? 'getDescFeatTypeTime'
+            : 'postDescFeatTypeTime']: time
+    };
+    dispatch(changeState(types.descFeatTypeRespChanged, payload));
 };
 
 const changeGetPropValResp = (

@@ -1,5 +1,6 @@
 import { State, Action } from '../models';
 import { noOption } from '../../config/constants';
+import { extractXmlNamespaces } from '../../wfsMetadata';
 
 export default function getCapRespReducer(state: State, action: Action): State {
     const {
@@ -22,6 +23,7 @@ export default function getCapRespReducer(state: State, action: Action): State {
         getCapResp,
         typenames,
         typename: noOption,
+        xmlNamespaces: extractXmlNamespaces(getCapResp),
         getGetCapTime: getGetCapTime || state.getGetCapTime,
         postGetCapTime: postGetCapTime || state.postGetCapTime,
         getGetCapNumber,

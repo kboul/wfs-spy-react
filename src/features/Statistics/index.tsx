@@ -42,16 +42,19 @@ export default function Statistics() {
             const options = { ...prevState };
             const series = [...options.series];
             series[0].data = [state.getGetCapTime, state.postGetCapTime];
-            series[1].data = [state.getDescFeatTypeTime];
+            series[1].data = [
+                state.getDescFeatTypeTime,
+                state.postDescFeatTypeTime
+            ];
             series[2].data = [state.getGetPropValTime];
             series[3].data = [state.getGetPropValFiltTime];
             return options;
         });
     }, [
-        state.getCapResp,
         state.getGetCapTime,
         state.postGetCapTime,
         state.getDescFeatTypeTime,
+        state.postDescFeatTypeTime,
         state.getGetPropValTime,
         state.getGetPropValFiltTime
     ]);
@@ -63,7 +66,10 @@ export default function Statistics() {
             const options = { ...prevState };
             const series = [...options.series];
             series[0].data = [state.getGetCapNumber, state.postGetCapNumber];
-            series[1].data = [state.getDescFeatTypeNumber];
+            series[1].data = [
+                state.getDescFeatTypeNumber,
+                state.postDescFeatTypeNumber
+            ];
             series[2].data = [state.getGetPropValNumber];
             series[3].data = [state.getGetPropValFiltNumber];
             series[4].data = [totalGetRequestNumber, totalPostRequestNumber];
@@ -75,6 +81,7 @@ export default function Statistics() {
         state.getGetCapNumber,
         state.postGetCapNumber,
         state.getDescFeatTypeNumber,
+        state.postDescFeatTypeNumber,
         state.getGetPropValNumber,
         state.getGetPropValFiltNumber,
         totalGetRequestNumber,

@@ -9,6 +9,7 @@ interface State {
     typenames: string[];
     valueReference: string;
     valueReferences: AttrNamesTypes;
+    xmlNamespaces: any;
     wfsRequest: string;
     wfsResponse: string;
     getCapResp: string;
@@ -39,7 +40,9 @@ interface State {
     postGetCapTime: number;
     postGetCapNumber: number;
     getDescFeatTypeTime: number;
+    postDescFeatTypeTime: number;
     getDescFeatTypeNumber: number;
+    postDescFeatTypeNumber: number;
     getGetPropValTime: number;
     getGetPropValNumber: number;
     getGetPropValFiltTime: number;

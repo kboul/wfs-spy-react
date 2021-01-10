@@ -50,7 +50,12 @@ export default function WFSResponse() {
                         changeGetCapResp(dispatch, data, time, httpMethod);
                         break;
                     case requests[1]:
-                        changeDescFeatTypeResp(dispatch, data, time);
+                        changeDescFeatTypeResp(
+                            dispatch,
+                            data,
+                            time,
+                            httpMethod
+                        );
                         break;
                     case requests[2]:
                         changeGetPropValResp(dispatch, data, time);

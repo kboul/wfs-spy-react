@@ -10,3 +10,4 @@ export { default as extractFunctions } from './extractFunctions';
 export { default as extractAttrNamesTypes } from './extractAttrNamesTypes';
 export { default as extractAttrValues } from './extractAttrValues';
 export { default as extractFiltAttrValues } from './extractFiltAttrValues';
+export { default as extractXmlNamespaces } from './extractXmlNamespaces';
