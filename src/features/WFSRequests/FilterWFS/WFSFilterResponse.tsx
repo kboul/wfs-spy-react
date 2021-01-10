@@ -4,7 +4,7 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
-import { adjustProxyToUrl, handleErrorResponse } from '../utils';
+import { adjustProxyToUrl, getTimeInMs, handleErrorResponse } from '../utils';
 import formWfsFilterRequest from './utils';
 import { proccessMessage } from '../../../config/constants';
 import sharedStyles from '../shared.module.sass';
@@ -27,26 +27,24 @@ export default function WFSFilterResponse() {
 
     const handleClick = async () => {
         changeWfsFilterResponse(proccessMessage);
-        const operationUrl = adjustProxyToUrl(formWfsFilterRequest(state));
-        if (operationUrl) {
-            const startGET = new Date().getTime();
-            try {
-                const { data, status } = await axios.get(operationUrl);
-                if (status === 200) {
-                    changeWfsFilterResponse(data);
-                    const time = new Date().getTime() - startGET;
-                    dispatch(
-                        changeState(types.getPropValFiltRespChanged, {
-                            getPropValFiltResp: data,
-                            getGetPropValFiltTime: time
-                        })
-                    );
-                }
-            } catch (error) {
-                const { response } = error;
-                if (response)
-                    changeWfsFilterResponse(handleErrorResponse(response));
+        const wfsRequest = adjustProxyToUrl(formWfsFilterRequest(state));
+        const startGET = getTimeInMs();
+        try {
+            const { data, status } = await axios.get(wfsRequest);
+            if (status === 200) {
+                changeWfsFilterResponse(data);
+                const time = getTimeInMs() - startGET;
+                dispatch(
+                    changeState(types.getPropValFiltRespChanged, {
+                        getPropValFiltResp: data,
+                        getGetPropValFiltTime: time
+                    })
+                );
             }
+        } catch (error) {
+            const { response } = error;
+            if (response)
+                changeWfsFilterResponse(handleErrorResponse(response));
         }
     };
 
@@ -69,7 +67,8 @@ export default function WFSFilterResponse() {
                     disabled={disabled}
                     hasModal
                     label="Filter Response"
-                    onClick={handleClick}
+                    onGetClick={handleClick}
+                    onPostClick={() => {}}
                 />
             </Col>
         </FormGroup>

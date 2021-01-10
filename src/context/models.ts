@@ -36,6 +36,8 @@ interface State {
     wfsFilterResponse: string;
     getGetCapTime: number;
     getGetCapNumber: number;
+    postGetCapTime: number;
+    postGetCapNumber: number;
     getDescFeatTypeTime: number;
     getDescFeatTypeNumber: number;
     getGetPropValTime: number;

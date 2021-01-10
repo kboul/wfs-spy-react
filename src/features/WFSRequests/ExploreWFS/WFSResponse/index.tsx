@@ -9,9 +9,15 @@ import {
     changeGetCapResp,
     changeGetPropValResp
 } from './actions';
-import { formWfsRequest } from '../utils';
-import { adjustProxyToUrl, handleErrorResponse } from '../../utils';
+import { formGetRequest, formPostRequest } from '../utils';
+import {
+    adjustProxyToUrl,
+    getTimeInMs,
+    handleErrorResponse,
+    isMethodGet
+} from '../../utils';
 import { requests, proccessMessage } from '../../../../config/constants';
+import axiosConfig from '../../../../config/axios';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
 
@@ -22,33 +28,39 @@ export default function WFSResponse() {
         dispatch(changeState(types.wfsResponseChanged, { wfsResponse }));
     };
 
-    const handleClick = async () => {
+    const requestMethod = async (httpMethod: string) => {
+        const wfsRequest = isMethodGet(httpMethod)
+            ? formGetRequest(state)
+            : formPostRequest(state);
+        return isMethodGet(httpMethod)
+            ? axios.get(adjustProxyToUrl(wfsRequest))
+            : axios.post(adjustProxyToUrl(state.url), wfsRequest, axiosConfig);
+    };
+
+    const handleClick = async (httpMethod: string) => {
         changeWfsResponse(proccessMessage);
-        const operationUrl = adjustProxyToUrl(formWfsRequest(state));
-        if (operationUrl) {
-            const startGET = new Date().getTime();
-            try {
-                const { data, status } = await axios.get(operationUrl);
-                if (status === 200) {
-                    changeWfsResponse(data);
-                    const time = new Date().getTime() - startGET;
-                    switch (state.request) {
-                        case requests[0]:
-                            changeGetCapResp(dispatch, data, time);
-                            break;
-                        case requests[1]:
-                            changeDescFeatTypeResp(dispatch, data, time);
-                            break;
-                        case requests[2]:
-                            changeGetPropValResp(dispatch, data, time);
-                            break;
-                        default:
-                    }
+        const startGET = getTimeInMs();
+        try {
+            const { data, status } = await requestMethod(httpMethod);
+            if (status === 200) {
+                changeWfsResponse(data);
+                const time = getTimeInMs() - startGET;
+                switch (state.request) {
+                    case requests[0]:
+                        changeGetCapResp(dispatch, data, time, httpMethod);
+                        break;
+                    case requests[1]:
+                        changeDescFeatTypeResp(dispatch, data, time);
+                        break;
+                    case requests[2]:
+                        changeGetPropValResp(dispatch, data, time);
+                        break;
+                    default:
                 }
-            } catch (error) {
-                const { response } = error;
-                if (response) changeWfsResponse(handleErrorResponse(response));
             }
+        } catch (error) {
+            const { response } = error;
+            if (response) changeWfsResponse(handleErrorResponse(response));
         }
     };
 
@@ -69,7 +81,8 @@ export default function WFSResponse() {
                     disabled={!state.wfsRequest}
                     hasModal
                     label={consts.response}
-                    onClick={handleClick}
+                    onGetClick={() => handleClick('GET')}
+                    onPostClick={() => handleClick('POST')}
                 />
             </Col>
         </FormGroup>

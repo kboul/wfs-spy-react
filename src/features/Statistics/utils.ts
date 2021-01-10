@@ -83,7 +83,7 @@ const chartOptions = (chart: string): ChartOptions => {
     };
 };
 
-const getTotalRequestNumber = (state: State): number => {
+const getTotalGetRequestNumber = (state: State): number => {
     return (
         state.getGetCapNumber +
         state.getDescFeatTypeNumber +
@@ -92,4 +92,8 @@ const getTotalRequestNumber = (state: State): number => {
     );
 };
 
-export { chartOptions, getTotalRequestNumber };
+const getTotalPostRequestNumber = (state: State): number => {
+    return state.postGetCapNumber;
+};
+
+export { chartOptions, getTotalGetRequestNumber, getTotalPostRequestNumber };

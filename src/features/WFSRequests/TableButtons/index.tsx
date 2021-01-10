@@ -9,7 +9,8 @@ export default function TableButtons({
     disabled,
     hasModal,
     label,
-    onClick
+    onGetClick,
+    onPostClick
 }: TableButtonsProps) {
     return (
         <Table borderless className={styles.table}>
@@ -20,7 +21,7 @@ export default function TableButtons({
                             className="float-right"
                             color="primary"
                             disabled={disabled}
-                            onClick={onClick}
+                            onClick={onGetClick}
                             size="sm">
                             {consts.get} {label}
                         </Button>
@@ -30,7 +31,7 @@ export default function TableButtons({
                             className="float-left"
                             color="primary"
                             disabled={disabled}
-                            onClick={onClick}
+                            onClick={onPostClick}
                             size="sm">
                             {consts.post} {label}
                         </Button>

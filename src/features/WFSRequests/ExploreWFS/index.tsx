@@ -21,7 +21,7 @@ const containerStyle = {
 
 const consts = { header: 'Service and Feature Description' };
 
-const ExploreWFS = () => {
+export default function ExploreWFS() {
     const { state } = useAppContext();
     const { showNonNumericValue, showNumericValue, compOper } = state;
 
@@ -48,6 +48,4 @@ const ExploreWFS = () => {
             </Form>
         </Col>
     );
-};
-
-export default ExploreWFS;
+}

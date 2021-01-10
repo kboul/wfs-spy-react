@@ -24,6 +24,8 @@ At this point, the application will not provide geometrical feature manipulation
 |  9  |      http://inspire.sthelens.gov.uk/geoserver/ows      |     7      |        3        |        6         |         11          |       yes all       |              4              |       yes       |                no                |
 | 10  |      http://tips.noveltis.com/geoserver/tips/wfs       |     7      |        3        |        6         |         11          |       yes all       |              5              |       yes       |                no                |
 | 11  | http://inspire.dundeecity.gov.uk/geoserver/inspire/wfs |     7      |        3        |        8         |          8          |       yes all       |             21              |       yes       |                no                |
+| 12  |           http://maps.gns.cri.nz/geology/ows           |     7      |        3        |        6         |          8          |       yes all       |             55              |       yes       |               yes                |
+| 13  |        http://www.geo-spatial.org/geoserver/ows        |     7      |        3        |        6         |          8          |       yes all       |             15              |       yes       |               yes                |
 
 ## Run the project
 
@@ -43,6 +45,7 @@ npm start
 
 browser listens to [http://localhost:3000](http://localhost:3000) as default port
 
-### GetPropertyValue Filter Requests on Chrome
+### GetPropertyValue Filter Requests
 
-GetPropertyValue Filter requests can not be made on Chrome due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result Firefox or other browsers should be used to make that requests.
+GetPropertyValue Filter requests can not be made on **Chrome** (version 87.0.4280.141) and **Opera** (version:73.0.3856.284) due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result other browsers should be used to make these requests.
+It has been tested and works without any issues on **Firefox** (version 84.0.2) and **Safari** (version 14.0.2).

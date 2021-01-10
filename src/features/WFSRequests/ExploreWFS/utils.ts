@@ -2,7 +2,7 @@ import { getRootRequest } from '../../../utils';
 import { State } from '../../../context/models';
 import { requests, noOption } from '../../../config/constants';
 
-const formWfsRequest = (state: State): string => {
+const formGetRequest = (state: State): string => {
     const {
         url,
         version,
@@ -32,4 +32,19 @@ const formWfsRequest = (state: State): string => {
     }
 };
 
-export { formWfsRequest };
+const formPostRequest = (state: State): string => {
+    switch (state.request) {
+        case requests[0]:
+            return (
+                '<wfs:GetCapabilities service="WFS"\n' +
+                'xmlns:wfs="http://www.opengis.net/wfs/2.0" \n' +
+                'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n' +
+                'xsi:schemaLocation="http://www.opengis.net/wfs/2.0\n' +
+                'http://schemas.opengis.net/wfs/2.0/wfs.xsd"/>'
+            );
+        default:
+            return '';
+    }
+};
+
+export { formGetRequest, formPostRequest };

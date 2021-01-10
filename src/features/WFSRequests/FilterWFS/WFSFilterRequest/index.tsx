@@ -40,7 +40,8 @@ export default function WFSFilterRequest() {
                 <TableButtons
                     disabled={validateFiltReqBtn(state)}
                     label="Filter Request"
-                    onClick={handleClick}
+                    onGetClick={handleClick}
+                    onPostClick={() => {}}
                 />
             </Col>
         </FormGroup>

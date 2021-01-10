@@ -3,19 +3,20 @@ import { Dispatch } from 'react';
 import { changeState, types } from '../../../../context';
 import { Action } from '../../../../context/models';
 import { extractTypenames } from '../../../../wfsMetadata';
+import { isMethodGet } from '../../utils';
 
 const changeGetCapResp = (
     dispatch: Dispatch<Action>,
     data: string,
-    time: number
+    time: number,
+    httpMethod: string
 ) => {
-    dispatch(
-        changeState(types.getCapRespChanged, {
-            getCapResp: data,
-            typenames: extractTypenames(data),
-            getGetCapTime: time
-        })
-    );
+    const payload = {
+        getCapResp: data,
+        typenames: extractTypenames(data),
+        [isMethodGet(httpMethod) ? 'getGetCapTime' : 'postGetCapTime']: time
+    };
+    dispatch(changeState(types.getCapRespChanged, payload));
 };
 
 const changeDescFeatTypeResp = (

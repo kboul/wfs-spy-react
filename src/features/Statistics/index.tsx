@@ -5,7 +5,11 @@ import HighchartsReact from 'highcharts-react-official';
 
 import Panel from '../../shared/Panel';
 import { useAppContext } from '../../context';
-import { chartOptions, getTotalRequestNumber } from './utils';
+import {
+    chartOptions,
+    getTotalGetRequestNumber,
+    getTotalPostRequestNumber
+} from './utils';
 import ChartOptions from './models';
 import consts from './constants';
 
@@ -18,7 +22,9 @@ export default function Statistics() {
         chartOptions('number')
     );
 
-    const totalRequestNumber = getTotalRequestNumber(state);
+    const totalGetRequestNumber = getTotalGetRequestNumber(state);
+    const totalPostRequestNumber = getTotalPostRequestNumber(state);
+    const totalRequestNumber = totalGetRequestNumber + totalPostRequestNumber;
 
     useEffect(() => {
         setRequestsOpts(prevState => {
@@ -35,7 +41,7 @@ export default function Statistics() {
         setTimeOpts(prevState => {
             const options = { ...prevState };
             const series = [...options.series];
-            series[0].data = [state.getGetCapTime];
+            series[0].data = [state.getGetCapTime, state.postGetCapTime];
             series[1].data = [state.getDescFeatTypeTime];
             series[2].data = [state.getGetPropValTime];
             series[3].data = [state.getGetPropValFiltTime];
@@ -44,6 +50,7 @@ export default function Statistics() {
     }, [
         state.getCapResp,
         state.getGetCapTime,
+        state.postGetCapTime,
         state.getDescFeatTypeTime,
         state.getGetPropValTime,
         state.getGetPropValFiltTime
@@ -55,21 +62,23 @@ export default function Statistics() {
         setRequestsOpts(prevState => {
             const options = { ...prevState };
             const series = [...options.series];
-            series[0].data = [state.getGetCapNumber];
+            series[0].data = [state.getGetCapNumber, state.postGetCapNumber];
             series[1].data = [state.getDescFeatTypeNumber];
             series[2].data = [state.getGetPropValNumber];
             series[3].data = [state.getGetPropValFiltNumber];
-            series[4].data = [totalRequestNumber];
+            series[4].data = [totalGetRequestNumber, totalPostRequestNumber];
             return options;
         });
     }, [
         state.getCapResp,
         state.descFeatTypeResp,
         state.getGetCapNumber,
+        state.postGetCapNumber,
         state.getDescFeatTypeNumber,
         state.getGetPropValNumber,
         state.getGetPropValFiltNumber,
-        totalRequestNumber
+        totalGetRequestNumber,
+        totalPostRequestNumber
     ]);
 
     return (
