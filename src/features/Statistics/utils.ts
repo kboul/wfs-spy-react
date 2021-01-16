@@ -63,11 +63,11 @@ const chartOptions = (chart: string): ChartOptions => {
             }
         },
         legend: {
-            layout: 'vertical',
-            align: 'right',
+            layout: 'horizontal',
+            align: 'center',
             verticalAlign: 'top',
-            x: chart === 'time' ? -40 : -20,
-            y: chart === 'time' ? 0 : -10,
+            x: 25,
+            y: -10,
             floating: true,
             borderWidth: 1,
             backgroundColor:

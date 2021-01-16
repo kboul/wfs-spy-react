@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../../context';
-import TotalItems from '../../../../shared/TotalItems';
-import TablePagination from '../../../../shared/TablePagination';
+import TotalItems from '../../../../components/TotalItems';
+import TablePagination from '../../../../components/TablePagination';
 import { extractFunctions } from '../../../../wfsMetadata';
 import { ClickEvent } from '../../../../models/events';
 import consts from '../constants';

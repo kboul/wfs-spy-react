@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
-import TotalItems from '../../../shared/TotalItems';
+import TotalItems from '../../../components/TotalItems';
 import { extractServiceId } from '../../../wfsMetadata';
 import { splitStrOnUpperCase } from '../../../utils';
 import consts from './constants';

@@ -1,7 +1,7 @@
 export default {
     header: 'Statistics',
-    descr:
-        'This section provides statistics derived from the GetCapabilities, DescribeFeatureType & GetPropertyValue responses.',
+    descr: `This section provides statistics derived from the GetCapabilities, 
+        DescribeFeatureType & GetPropertyValue (Filter) responses.`,
     respTimeHeader: 'HTTP Response Time',
     respTimeDescr: 'Plots WFS latest Get & Post response times in milliseconds',
     reqTimeHeader: 'Individual & Total HTTP Request Number',

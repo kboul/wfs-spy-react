@@ -11,10 +11,11 @@ const changeGetCapResp = (
     time: number,
     httpMethod: string
 ) => {
+    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
         getCapResp: data,
         typenames: extractTypenames(data),
-        [isMethodGet(httpMethod) ? 'getGetCapTime' : 'postGetCapTime']: time
+        [`${getOrPost}GetCapTime`]: time
     };
     dispatch(changeState(types.getCapRespChanged, payload));
 };
@@ -25,11 +26,10 @@ const changeDescFeatTypeResp = (
     time: number,
     httpMethod: string
 ) => {
+    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
         descFeatTypeResp: data,
-        [isMethodGet(httpMethod)
-            ? 'getDescFeatTypeTime'
-            : 'postDescFeatTypeTime']: time
+        [`${getOrPost}DescFeatTypeTime`]: time
     };
     dispatch(changeState(types.descFeatTypeRespChanged, payload));
 };

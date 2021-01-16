@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import TableButtons from '../TableButtons';
+import TableButtons from '../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
 import { formGetRequest, formPostRequest } from './utils';
 import { isMethodGet } from '../utils';

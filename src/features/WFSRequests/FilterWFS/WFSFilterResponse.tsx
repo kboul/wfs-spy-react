@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../TableButtons';
+import TableButtons from '../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
 import { adjustProxyToUrl, getTimeInMs, handleErrorResponse } from '../utils';
 import formWfsFilterRequest from './utils';

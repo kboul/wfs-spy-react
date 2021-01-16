@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import Panel from '../../../shared/Panel';
+import Panel from '../../../components/Panel';
 import OperationDetails from './OperationDetails';
 import AcceptVersions from './AcceptVersions';
 import consts from './constants';

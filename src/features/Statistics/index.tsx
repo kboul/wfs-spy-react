@@ -3,7 +3,7 @@ import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import Panel from '../../shared/Panel';
+import Panel from '../../components/Panel';
 import { useAppContext } from '../../context';
 import {
     chartOptions,

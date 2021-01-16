@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../../TableButtons';
+import TableButtons from '../../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../../context';
 import formWfsFilterRequest from '../utils';
 import validateFiltReqBtn from './utils';

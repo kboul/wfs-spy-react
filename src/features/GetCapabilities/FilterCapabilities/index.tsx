@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import Panel from '../../../shared/Panel';
+import Panel from '../../../components/Panel';
 import CompOper from './ComparisonOperators';
 import SpatialOperators from './SpatialOperators';
 import GeometryOperands from './GeometryOperands';
