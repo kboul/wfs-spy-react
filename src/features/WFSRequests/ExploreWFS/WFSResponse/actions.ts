@@ -6,10 +6,10 @@ import { extractTypenames } from '../../../../wfsMetadata';
 import { isMethodGet } from '../../utils';
 
 const changeGetCapResp = (
+    httpMethod: string,
     dispatch: Dispatch<Action>,
     data: string,
-    time: number,
-    httpMethod: string
+    time: number
 ) => {
     const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
@@ -21,10 +21,10 @@ const changeGetCapResp = (
 };
 
 const changeDescFeatTypeResp = (
+    httpMethod: string,
     dispatch: Dispatch<Action>,
     data: string,
-    time: number,
-    httpMethod: string
+    time: number
 ) => {
     const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
@@ -35,16 +35,18 @@ const changeDescFeatTypeResp = (
 };
 
 const changeGetPropValResp = (
+    httpMethod: string,
     dispatch: Dispatch<Action>,
     data: string,
     time: number
 ) => {
-    dispatch(
-        changeState(types.getPropValRespChanged, {
-            getPropValResp: data,
-            getGetPropValTime: time
-        })
-    );
+    console.log(time);
+    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
+    const payload = {
+        getPropValResp: data,
+        [`${getOrPost}GetPropValTime`]: time
+    };
+    dispatch(changeState(types.getPropValRespChanged, payload));
 };
 
 export { changeGetCapResp, changeDescFeatTypeResp, changeGetPropValResp };

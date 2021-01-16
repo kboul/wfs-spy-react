@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Table, UncontrolledTooltip } from 'reactstrap';
 
-import TotalItems from '../../../components/TotalItems';
-import TablePagination from '../../../components/TablePagination';
+import { TablePagination, TotalItems } from '../../../components';
 import { useAppContext } from '../../../context';
 import { extractFeatureTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';

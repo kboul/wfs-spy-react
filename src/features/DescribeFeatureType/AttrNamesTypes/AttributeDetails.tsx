@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
-import TablePagination from '../../../components/TablePagination';
-import TotalItems from '../../../components/TotalItems';
+import { TablePagination, TotalItems } from '../../../components';
 import { useAppContext } from '../../../context';
 import getAttrNameType from './utils';
 import { extractAttrNamesTypes } from '../../../wfsMetadata';

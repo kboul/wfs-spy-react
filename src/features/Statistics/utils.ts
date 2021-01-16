@@ -38,7 +38,7 @@ const chartOptions = (chart: string): ChartOptions => {
                 },
                 text:
                     chart === 'time'
-                        ? 'Response Time (approx. in ms)'
+                        ? 'Response Time (approximately in ms)'
                         : 'HTTP Request Number',
                 align: 'high'
             },
@@ -66,7 +66,7 @@ const chartOptions = (chart: string): ChartOptions => {
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'top',
-            x: 25,
+            x: 0,
             y: -10,
             floating: true,
             borderWidth: 1,
@@ -93,7 +93,11 @@ const getTotalGetRequestNumber = (state: State): number => {
 };
 
 const getTotalPostRequestNumber = (state: State): number => {
-    return state.postGetCapNumber + state.postDescFeatTypeNumber;
+    return (
+        state.postGetCapNumber +
+        state.postDescFeatTypeNumber +
+        state.postGetPropValNumber
+    );
 };
 
 export { chartOptions, getTotalGetRequestNumber, getTotalPostRequestNumber };

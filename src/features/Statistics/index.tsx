@@ -46,7 +46,10 @@ export default function Statistics() {
                 state.getDescFeatTypeTime,
                 state.postDescFeatTypeTime
             ];
-            series[2].data = [state.getGetPropValTime];
+            series[2].data = [
+                state.getGetPropValTime,
+                state.postGetPropValTime
+            ];
             series[3].data = [state.getGetPropValFiltTime];
             return options;
         });
@@ -56,6 +59,7 @@ export default function Statistics() {
         state.getDescFeatTypeTime,
         state.postDescFeatTypeTime,
         state.getGetPropValTime,
+        state.postGetPropValTime,
         state.getGetPropValFiltTime
     ]);
 
@@ -70,7 +74,10 @@ export default function Statistics() {
                 state.getDescFeatTypeNumber,
                 state.postDescFeatTypeNumber
             ];
-            series[2].data = [state.getGetPropValNumber];
+            series[2].data = [
+                state.getGetPropValNumber,
+                state.postGetPropValNumber
+            ];
             series[3].data = [state.getGetPropValFiltNumber];
             series[4].data = [totalGetRequestNumber, totalPostRequestNumber];
             return options;
@@ -83,6 +90,7 @@ export default function Statistics() {
         state.getDescFeatTypeNumber,
         state.postDescFeatTypeNumber,
         state.getGetPropValNumber,
+        state.postGetPropValNumber,
         state.getGetPropValFiltNumber,
         totalGetRequestNumber,
         totalPostRequestNumber

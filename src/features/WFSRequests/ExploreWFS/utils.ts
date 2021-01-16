@@ -46,6 +46,9 @@ const concatPrefixesAndUris = (xmlNamespaces: XmlNamespaces): string[] => {
 };
 
 const formPostRequest = (state: State): string => {
+    let prefixesAndUris;
+    if ([requests[1], requests[2]].includes(state.request))
+        prefixesAndUris = concatPrefixesAndUris(state.xmlNamespaces).join('\n');
     switch (state.request) {
         case requests[0]:
             return (
@@ -56,9 +59,6 @@ const formPostRequest = (state: State): string => {
                 'http://schemas.opengis.net/wfs/2.0/wfs.xsd"/>'
             );
         case requests[1]: {
-            const prefixesAndUris = concatPrefixesAndUris(
-                state.xmlNamespaces
-            ).join('\n');
             if ([noOption, '', null].includes(state.typename)) {
                 // display an array in a text area putting its elements on diff lines
                 return `<wfs:DescribeFeatureType ${prefixesAndUris}\nversion="${state.version}" service="WFS"/>`;
@@ -69,6 +69,20 @@ const formPostRequest = (state: State): string => {
                 `</wfs:DescribeFeatureType>`
             );
         }
+        case requests[2]:
+            return (
+                `<wfs:GetPropertyValue service="WFS" version="${state.version}" ${prefixesAndUris}\n` +
+                `valueReference="${state.valueReference}">\n` +
+                `<wfs:Query typeNames="${state.typename}">\n` +
+                ` <fes:SortBy>\n` +
+                `  <fes:SortProperty>\n` +
+                `   <fes:ValueReference>${state.valueReference}</fes:ValueReference>\n` +
+                `   <fes:SortOrder>${state.sortBy}</fes:SortOrder>\n` +
+                `  </fes:SortProperty>\n` +
+                ` </fes:SortBy>\n` +
+                `</wfs:Query>\n` +
+                `</wfs:GetPropertyValue>`
+            );
         default:
             return '';
     }

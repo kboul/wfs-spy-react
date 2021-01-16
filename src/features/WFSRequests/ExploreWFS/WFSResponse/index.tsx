@@ -47,18 +47,18 @@ export default function WFSResponse() {
                 const time = getTimeInMs() - startGET;
                 switch (state.request) {
                     case requests[0]:
-                        changeGetCapResp(dispatch, data, time, httpMethod);
+                        changeGetCapResp(httpMethod, dispatch, data, time);
                         break;
                     case requests[1]:
                         changeDescFeatTypeResp(
+                            httpMethod,
                             dispatch,
                             data,
-                            time,
-                            httpMethod
+                            time
                         );
                         break;
                     case requests[2]:
-                        changeGetPropValResp(dispatch, data, time);
+                        changeGetPropValResp(httpMethod, dispatch, data, time);
                         break;
                     default:
                 }

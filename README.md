@@ -47,5 +47,5 @@ browser listens to [http://localhost:3000](http://localhost:3000) as default por
 
 ### GetPropertyValue Filter Requests
 
-GetPropertyValue Filter requests can not be made on **Chrome** (version 87.0.4280.141) and **Opera** (version:73.0.3856.284) due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result other browsers should be used to make these requests.
+GetPropertyValue Filter requests can not be made on **Chrome** (version 87.0.4280.141 & above) and **Opera** (version:73.0.3856.284 & above) due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result other browsers should be used to make these requests.
 It has been tested and works without any issues on **Firefox** (version 84.0.2) and **Safari** (version 14.0.2).

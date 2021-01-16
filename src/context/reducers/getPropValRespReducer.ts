@@ -5,15 +5,31 @@ export default function getPropValRespReducer(
     state: State,
     action: Action
 ): State {
-    const { getPropValResp, getGetPropValTime } = action.payload;
+    const {
+        getPropValResp,
+        getGetPropValTime,
+        postGetPropValTime
+    } = action.payload;
+
+    const getGetPropValNumber = getGetPropValTime
+        ? ++state.getGetPropValNumber
+        : state.getGetPropValNumber;
+
+    const postGetPropValNumber = postGetPropValTime
+        ? ++state.postGetPropValNumber
+        : state.postGetPropValNumber;
+
     const { valueCount, minValue, maxValue, attrValues } = extractAttrValues(
         getPropValResp
     );
+
     return {
         ...state,
         getPropValResp,
-        getGetPropValTime,
-        getGetPropValNumber: ++state.getGetPropValNumber,
+        getGetPropValTime: getGetPropValTime || state.getGetPropValTime,
+        postGetPropValTime: postGetPropValTime || state.postGetPropValTime,
+        getGetPropValNumber,
+        postGetPropValNumber,
         valueCount,
         minValue,
         maxValue,

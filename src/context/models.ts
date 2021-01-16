@@ -44,7 +44,9 @@ interface State {
     getDescFeatTypeNumber: number;
     postDescFeatTypeNumber: number;
     getGetPropValTime: number;
+    postGetPropValTime: number;
     getGetPropValNumber: number;
+    postGetPropValNumber: number;
     getGetPropValFiltTime: number;
     getGetPropValFiltNumber: number;
     attrValues: string[];

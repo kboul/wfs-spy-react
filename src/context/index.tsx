@@ -44,7 +44,7 @@ export const types = {
     stateReset: 'stateReset'
 };
 
-// reusable action creator
+// Reusable Action Creator
 const changeState = (type: string, payload: Object): Action => ({
     type,
     payload

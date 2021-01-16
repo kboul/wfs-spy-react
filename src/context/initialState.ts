@@ -45,7 +45,9 @@ const initialState = {
     getDescFeatTypeNumber: 0,
     postDescFeatTypeNumber: 0,
     getGetPropValTime: 0,
+    postGetPropValTime: 0,
     getGetPropValNumber: 0,
+    postGetPropValNumber: 0,
     getGetPropValFiltTime: 0,
     getGetPropValFiltNumber: 0,
     attrValues: []
