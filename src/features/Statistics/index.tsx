@@ -50,7 +50,10 @@ export default function Statistics() {
                 state.getGetPropValTime,
                 state.postGetPropValTime
             ];
-            series[3].data = [state.getGetPropValFiltTime];
+            series[3].data = [
+                state.getGetPropValFiltTime,
+                state.postGetPropValFiltTime
+            ];
             return options;
         });
     }, [
@@ -60,7 +63,8 @@ export default function Statistics() {
         state.postDescFeatTypeTime,
         state.getGetPropValTime,
         state.postGetPropValTime,
-        state.getGetPropValFiltTime
+        state.getGetPropValFiltTime,
+        state.postGetPropValFiltTime
     ]);
 
     useEffect(() => {
@@ -78,13 +82,14 @@ export default function Statistics() {
                 state.getGetPropValNumber,
                 state.postGetPropValNumber
             ];
-            series[3].data = [state.getGetPropValFiltNumber];
+            series[3].data = [
+                state.getGetPropValFiltNumber,
+                state.postGetPropValFiltNumber
+            ];
             series[4].data = [totalGetRequestNumber, totalPostRequestNumber];
             return options;
         });
     }, [
-        state.getCapResp,
-        state.descFeatTypeResp,
         state.getGetCapNumber,
         state.postGetCapNumber,
         state.getDescFeatTypeNumber,
@@ -92,8 +97,7 @@ export default function Statistics() {
         state.getGetPropValNumber,
         state.postGetPropValNumber,
         state.getGetPropValFiltNumber,
-        totalGetRequestNumber,
-        totalPostRequestNumber
+        state.postGetPropValFiltNumber
     ]);
 
     return (

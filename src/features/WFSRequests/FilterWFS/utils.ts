@@ -1,8 +1,9 @@
 /* eslint-disable prefer-template */
 import { State } from '../../../context/models';
 import { getRootRequest } from '../../../utils';
+import { concatPrefixesAndUris } from '../utils';
 
-export default function formWfsFilterRequest(state: State): string {
+const formGetFilterRequest = (state: State): string => {
     const {
         url,
         version,
@@ -19,7 +20,7 @@ export default function formWfsFilterRequest(state: State): string {
         showNonNumericValue
     } = state;
 
-    let filterRequest = `${getRootRequest(
+    let getFilterRequest = `${getRootRequest(
         url,
         version,
         request,
@@ -38,7 +39,7 @@ export default function formWfsFilterRequest(state: State): string {
         case 'PropertyIsGreaterThan':
         case 'PropertyIsLessThanOrEqualTo':
         case 'PropertyIsGreaterThanOrEqualTo':
-            filterRequest +=
+            getFilterRequest +=
                 'Filter=<Filter>\n' +
                 '<' +
                 compOper +
@@ -56,7 +57,8 @@ export default function formWfsFilterRequest(state: State): string {
                 addSortByExpr;
             break;
         case 'PropertyIsLike':
-            filterRequest +=
+            getFilterRequest +=
+                'Filter=<Filter>\n' +
                 "<PropertyIsLike wildCard='*' singleChar='.' escapeChar='!'>\n" +
                 '<PropertyName>' +
                 valueReference +
@@ -68,7 +70,8 @@ export default function formWfsFilterRequest(state: State): string {
                 addSortByExpr;
             break;
         case 'PropertyIsNull':
-            filterRequest +=
+            getFilterRequest +=
+                'Filter=<Filter>\n' +
                 '<PropertyIsNull>\n' +
                 ' <ValueReference>' +
                 valueReference +
@@ -77,7 +80,8 @@ export default function formWfsFilterRequest(state: State): string {
                 '</Filter>';
             break;
         case 'PropertyIsNil':
-            filterRequest +=
+            getFilterRequest +=
+                'Filter=<Filter>\n' +
                 '<PropertyIsNil>\n' +
                 ' <PropertyName>' +
                 valueReference +
@@ -86,27 +90,132 @@ export default function formWfsFilterRequest(state: State): string {
                 '</Filter>';
             break;
         case 'PropertyIsBetween':
-            filterRequest +=
-                '<PropertyIsBetween>\n <PropertyName>' +
-                valueReference +
-                '</PropertyName>\n' +
+            getFilterRequest +=
+                'Filter=<Filter>\n' +
+                '<PropertyIsBetween>\n ' +
+                `<PropertyName>${valueReference}</PropertyName>\n` +
                 ' <LowerBoundary>\n' +
-                ' <Literal>' +
-                lowerValue +
-                '</Literal>\n' +
+                ` <Literal>${lowerValue}</Literal>\n` +
                 ' </LowerBoundary>\n' +
                 ' <UpperBoundary>\n' +
-                ' <Literal>' +
-                upperValue +
-                '</Literal>\n ' +
+                ` <Literal>${upperValue}</Literal>\n` +
                 ' </UpperBoundary>\n' +
                 '</PropertyIsBetween>\n' +
                 '</Filter>' +
                 addSortByExpr;
             break;
         default:
-            filterRequest += '';
+            getFilterRequest += '';
     }
 
-    return filterRequest;
-}
+    return getFilterRequest;
+};
+
+const formPostFilterRequest = (state: State): string => {
+    const prefixesAndUris = concatPrefixesAndUris(state.xmlNamespaces).join(
+        '\n'
+    );
+
+    const filterInput = state.showNonNumericValue
+        ? state.nonNumericValue
+        : state.numericValue;
+
+    const addSortByExpr =
+        state.addSortBy === 'yes'
+            ? ' <fes:SortBy>\n' +
+              '  <fes:SortProperty>\n' +
+              '    <fes:ValueReference>' +
+              state.valueReference +
+              '</fes:ValueReference>\n' +
+              '    <fes:SortOrder>ASC</fes:SortOrder>\n' +
+              '  </fes:SortProperty>\n' +
+              ' </fes:SortBy>\n' +
+              '</wfs:Query>\n' +
+              '</wfs:GetPropertyValue>'
+            : '</wfs:Query>\n </wfs:GetPropertyValue>';
+
+    let postFilterRequest =
+        '<wfs:GetPropertyValue service="WFS" version="' +
+        state.version +
+        '" ' +
+        prefixesAndUris +
+        '\n' +
+        'valueReference="' +
+        state.valueReference +
+        '">\n' +
+        '<wfs:Query typeNames="' +
+        state.typename +
+        '">\n' +
+        ' <fes:Filter>\n';
+
+    switch (state.compOper) {
+        case 'PropertyIsLessThan':
+        case 'PropertyIsLessThanOrEqualTo':
+        case 'PropertyIsGreaterThan':
+        case 'PropertyIsGreaterThanOrEqualTo':
+        case 'PropertyIsEqualTo':
+        case 'PropertyIsNotEqualTo':
+            postFilterRequest +=
+                `  <fes:${state.compOper}>\n` +
+                `   <fes:ValueReference>${state.valueReference}</fes:ValueReference>\n` +
+                `   <fes:Literal>${filterInput}</fes:Literal>\n` +
+                `  </fes:${state.compOper}>\n` +
+                ' </fes:Filter>\n' +
+                addSortByExpr;
+            break;
+        case 'PropertyIsLike':
+            postFilterRequest +=
+                '  <fes:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">\n' + // wildCard should be with CAPITAL C!
+                '   <fes:ValueReference>' +
+                state.valueReference +
+                '</fes:ValueReference>\n' +
+                '   <fes:Literal>' +
+                filterInput +
+                '</fes:Literal>\n' +
+                '  </fes:PropertyIsLike>\n' +
+                ' </fes:Filter>\n' +
+                addSortByExpr;
+            break;
+        case 'PropertyIsNull':
+            postFilterRequest +=
+                '  <fes:PropertyIsNull>\n' +
+                '   <fes:ValueReference>' +
+                state.valueReference +
+                '</fes:ValueReference>\n' +
+                '  </fes:PropertyIsNull>\n' +
+                ' </fes:Filter>\n' +
+                '</wfs:Query>\n' +
+                '</wfs:GetPropertyValue>';
+            break;
+        case 'PropertyIsNil':
+            postFilterRequest +=
+                '  <fes:PropertyIsNil>\n' +
+                '   <fes:ValueReference>' +
+                state.valueReference +
+                '</fes:ValueReference>\n' +
+                '  </fes:PropertyIsNil>\n' +
+                ' </fes:Filter>\n' +
+                '</wfs:Query>\n' +
+                '</wfs:GetPropertyValue>';
+            break;
+        case 'PropertyIsBetween':
+            postFilterRequest +=
+                '  <fes:PropertyIsBetween>\n' +
+                `   <fes:ValueReference>${state.valueReference}</fes:ValueReference>\n` +
+                '   <fes:LowerBoundary>\n' +
+                `    <fes:Literal>${state.lowerValue}</fes:Literal>\n` +
+                '   </fes:LowerBoundary>\n' +
+                '   <fes:UpperBoundary>\n' +
+                `    <fes:Literal>${state.upperValue}</fes:Literal>\n` +
+                '   </fes:UpperBoundary>\n' +
+                '  </fes:PropertyIsBetween>\n' +
+                ' </fes:Filter>\n' +
+                addSortByExpr;
+            break;
+        default:
+    }
+
+    return postFilterRequest;
+};
+
+export { formGetFilterRequest, formPostFilterRequest };

@@ -4,8 +4,15 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
-import { adjustProxyToUrl, getTimeInMs, handleErrorResponse } from '../utils';
-import formWfsFilterRequest from './utils';
+import {
+    adjustProxyToUrl,
+    getOrPost,
+    getTimeInMs,
+    handleErrorResponse,
+    isMethodGet
+} from '../utils';
+import { formGetFilterRequest, formPostFilterRequest } from './utils';
+import axiosConfig from '../../../config/axios';
 import { proccessMessage } from '../../../config/constants';
 import sharedStyles from '../shared.module.sass';
 
@@ -25,21 +32,28 @@ export default function WFSFilterResponse() {
         );
     };
 
-    const handleClick = async () => {
+    const requestMethod = async (httpMethod: string) => {
+        const wfsRequest = isMethodGet(httpMethod)
+            ? formGetFilterRequest(state)
+            : formPostFilterRequest(state);
+        return isMethodGet(httpMethod)
+            ? axios.get(adjustProxyToUrl(wfsRequest))
+            : axios.post(adjustProxyToUrl(state.url), wfsRequest, axiosConfig);
+    };
+
+    const handleClick = async (httpMethod: string) => {
         changeWfsFilterResponse(proccessMessage);
-        const wfsRequest = adjustProxyToUrl(formWfsFilterRequest(state));
         const startGET = getTimeInMs();
         try {
-            const { data, status } = await axios.get(wfsRequest);
+            const { data, status } = await requestMethod(httpMethod);
             if (status === 200) {
                 changeWfsFilterResponse(data);
                 const time = getTimeInMs() - startGET;
-                dispatch(
-                    changeState(types.getPropValFiltRespChanged, {
-                        getPropValFiltResp: data,
-                        getGetPropValFiltTime: time
-                    })
-                );
+                const payload = {
+                    getPropValFiltResp: data,
+                    [`${getOrPost(httpMethod)}GetPropValFiltTime`]: time
+                };
+                dispatch(changeState(types.getPropValFiltRespChanged, payload));
             }
         } catch (error) {
             const { response } = error;
@@ -67,8 +81,8 @@ export default function WFSFilterResponse() {
                     disabled={disabled}
                     hasModal
                     label="Filter Response"
-                    onGetClick={handleClick}
-                    onPostClick={() => {}}
+                    onGetClick={() => handleClick('GET')}
+                    onPostClick={() => handleClick('POST')}
                 />
             </Col>
         </FormGroup>

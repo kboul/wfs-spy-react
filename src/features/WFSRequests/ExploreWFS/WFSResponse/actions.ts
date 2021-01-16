@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { changeState, types } from '../../../../context';
 import { Action } from '../../../../context/models';
 import { extractTypenames } from '../../../../wfsMetadata';
-import { isMethodGet } from '../../utils';
+import { getOrPost } from '../../utils';
 
 const changeGetCapResp = (
     httpMethod: string,
@@ -11,11 +11,10 @@ const changeGetCapResp = (
     data: string,
     time: number
 ) => {
-    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
         getCapResp: data,
         typenames: extractTypenames(data),
-        [`${getOrPost}GetCapTime`]: time
+        [`${getOrPost(httpMethod)}GetCapTime`]: time
     };
     dispatch(changeState(types.getCapRespChanged, payload));
 };
@@ -26,10 +25,9 @@ const changeDescFeatTypeResp = (
     data: string,
     time: number
 ) => {
-    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
         descFeatTypeResp: data,
-        [`${getOrPost}DescFeatTypeTime`]: time
+        [`${getOrPost(httpMethod)}DescFeatTypeTime`]: time
     };
     dispatch(changeState(types.descFeatTypeRespChanged, payload));
 };
@@ -41,10 +39,9 @@ const changeGetPropValResp = (
     time: number
 ) => {
     console.log(time);
-    const getOrPost = isMethodGet(httpMethod) ? 'get' : 'post';
     const payload = {
         getPropValResp: data,
-        [`${getOrPost}GetPropValTime`]: time
+        [`${getOrPost(httpMethod)}GetPropValTime`]: time
     };
     dispatch(changeState(types.getPropValRespChanged, payload));
 };

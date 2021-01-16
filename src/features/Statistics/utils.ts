@@ -96,7 +96,8 @@ const getTotalPostRequestNumber = (state: State): number => {
     return (
         state.postGetCapNumber +
         state.postDescFeatTypeNumber +
-        state.postGetPropValNumber
+        state.postGetPropValNumber +
+        state.postGetPropValFiltNumber
     );
 };
 

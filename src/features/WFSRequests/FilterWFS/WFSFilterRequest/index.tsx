@@ -3,8 +3,9 @@ import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../../context';
-import formWfsFilterRequest from '../utils';
+import { formGetFilterRequest, formPostFilterRequest } from '../utils';
 import validateFiltReqBtn from './utils';
+import { isMethodGet } from '../../utils';
 import sharedStyles from '../../shared.module.sass';
 
 const consts = {
@@ -14,11 +15,12 @@ const consts = {
 export default function WFSFilterRequest() {
     const { state, dispatch } = useAppContext();
 
-    const handleClick = () => {
+    const handleClick = (httpMethod: string) => {
+        const wfsFilterRequest = isMethodGet(httpMethod)
+            ? formGetFilterRequest(state)
+            : formPostFilterRequest(state);
         dispatch(
-            changeState(types.wfsFilterRequestChanged, {
-                wfsFilterRequest: formWfsFilterRequest(state)
-            })
+            changeState(types.wfsFilterRequestChanged, { wfsFilterRequest })
         );
     };
 
@@ -40,8 +42,8 @@ export default function WFSFilterRequest() {
                 <TableButtons
                     disabled={validateFiltReqBtn(state)}
                     label="Filter Request"
-                    onGetClick={handleClick}
-                    onPostClick={() => {}}
+                    onGetClick={() => handleClick('GET')}
+                    onPostClick={() => handleClick('POST')}
                 />
             </Col>
         </FormGroup>

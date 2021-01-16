@@ -49,7 +49,9 @@ const initialState = {
     getGetPropValNumber: 0,
     postGetPropValNumber: 0,
     getGetPropValFiltTime: 0,
+    postGetPropValFiltTime: 0,
     getGetPropValFiltNumber: 0,
+    postGetPropValFiltNumber: 0,
     attrValues: []
 };
 

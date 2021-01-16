@@ -1,7 +1,7 @@
 import { getRootRequest } from '../../../utils';
 import { State } from '../../../context/models';
-import { XmlNamespaces } from '../../../wfsMetadata/models';
 import { requests, noOption } from '../../../config/constants';
+import { concatPrefixesAndUris } from '../utils';
 
 const formGetRequest = (state: State): string => {
     const {
@@ -31,18 +31,6 @@ const formGetRequest = (state: State): string => {
         default:
             return '';
     }
-};
-
-const concatPrefixesAndUris = (xmlNamespaces: XmlNamespaces): string[] => {
-    // concatenate PREFIX with URI to a unique Array to form XML Namespaces
-    const { prefixes, uris } = xmlNamespaces;
-    const prefixAndUriArray: string[] = [];
-    for (let i = 0; i < prefixes.length; i++) {
-        // avoid attributes[0] which is the version so start from 1
-        if (prefixes[i] && uris[i])
-            prefixAndUriArray[i] = `${prefixes[i]}="${uris[i]}"`;
-    }
-    return prefixAndUriArray;
 };
 
 const formPostRequest = (state: State): string => {

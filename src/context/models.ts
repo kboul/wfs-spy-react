@@ -48,7 +48,9 @@ interface State {
     getGetPropValNumber: number;
     postGetPropValNumber: number;
     getGetPropValFiltTime: number;
+    postGetPropValFiltTime: number;
     getGetPropValFiltNumber: number;
+    postGetPropValFiltNumber: number;
     attrValues: string[];
 }
 
