@@ -15,7 +15,7 @@ export default function HiddenField({
     if (condition)
         return (
             <>
-                {[...Array(displayTimes)].map((e: any, i: number) => (
+                {[...Array(displayTimes)].map((e: Event, i: number) => (
                     <FormGroup key={i} row style={formStyle}>
                         <Label for="hiddenField" md={2} />
                         <Col md={9}>

@@ -10,7 +10,9 @@ export default function TableButtons({
     hasModal,
     label,
     onGetClick,
-    onPostClick
+    onGetModalClick,
+    onPostClick,
+    onPostModalClick
 }: TableButtonsProps) {
     return (
         <Table borderless className={styles.table}>
@@ -46,6 +48,7 @@ export default function TableButtons({
                                 color="primary"
                                 className="float-right"
                                 disabled={disabled}
+                                onClick={onGetModalClick}
                                 size="sm">
                                 {consts.openInANewWindow}
                             </Button>
@@ -55,6 +58,7 @@ export default function TableButtons({
                                 color="primary"
                                 className="float-left"
                                 disabled={disabled}
+                                onClick={onPostModalClick}
                                 size="sm">
                                 {consts.openInANewWindow}
                             </Button>

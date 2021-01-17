@@ -62,6 +62,11 @@ export default function WFSFilterResponse() {
         }
     };
 
+    const handleModalClick = (httpMethod: string) => {
+        dispatch(changeState(types.modalToggled, { modalOperation: 'filter' }));
+        handleClick(httpMethod);
+    };
+
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
@@ -82,7 +87,9 @@ export default function WFSFilterResponse() {
                     hasModal
                     label="Filter Response"
                     onGetClick={() => handleClick('GET')}
+                    onGetModalClick={() => handleModalClick('GET')}
                     onPostClick={() => handleClick('POST')}
+                    onPostModalClick={() => handleModalClick('POST')}
                 />
             </Col>
         </FormGroup>

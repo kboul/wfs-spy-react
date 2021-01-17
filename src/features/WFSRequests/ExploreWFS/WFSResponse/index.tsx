@@ -69,6 +69,11 @@ export default function WFSResponse() {
         }
     };
 
+    const handleModalClick = (httpMethod: string) => {
+        dispatch(changeState(types.modalToggled, { modalOperation: 'normal' }));
+        handleClick(httpMethod);
+    };
+
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
@@ -87,7 +92,9 @@ export default function WFSResponse() {
                     hasModal
                     label={consts.response}
                     onGetClick={() => handleClick('GET')}
+                    onGetModalClick={() => handleModalClick('GET')}
                     onPostClick={() => handleClick('POST')}
+                    onPostModalClick={() => handleModalClick('POST')}
                 />
             </Col>
         </FormGroup>

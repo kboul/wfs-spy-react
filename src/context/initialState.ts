@@ -52,7 +52,9 @@ const initialState = {
     postGetPropValFiltTime: 0,
     getGetPropValFiltNumber: 0,
     postGetPropValFiltNumber: 0,
-    attrValues: []
+    attrValues: [],
+    isModalOpen: false,
+    modalOperation: 'normal'
 };
 
 export default initialState;

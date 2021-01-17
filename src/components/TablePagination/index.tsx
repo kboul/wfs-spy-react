@@ -7,8 +7,8 @@ import './index.sass';
 
 export default function TablePagination({
     currentPage,
-    pagesCount,
-    onClick
+    onClick,
+    pagesCount
 }: TablePaginationProps) {
     const paginationStyle = {
         justifyContent: pagesCount < 300 ? 'center' : 'start'
@@ -39,13 +39,13 @@ export default function TablePagination({
                         href="#"
                     />
                 </PaginationItem>
-                {[...Array(pagesCount)].map((page, i) => (
-                    <PaginationItem active={i === currentPage} key={i}>
+                {[...Array(pagesCount)].map((page, index) => (
+                    <PaginationItem active={index === currentPage} key={index}>
                         <PaginationLink
                             className="paginationLink"
-                            onClick={e => handleCurrentClick(e, i)}
+                            onClick={e => handleCurrentClick(e, index)}
                             href="#">
-                            {i + 1}
+                            {index + 1}
                         </PaginationLink>
                     </PaginationItem>
                 ))}

@@ -41,6 +41,7 @@ export const types = {
     numericNonNumericValuesReset: 'numericNonNumericValuesReset',
     wfsFilterRequestChanged: 'wfsFilterRequestChanged',
     wfsFilterResponseChanged: 'wfsFilterResponseChanged',
+    modalToggled: 'modalToggled',
     stateReset: 'stateReset'
 };
 
@@ -107,6 +108,12 @@ const reducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 wfsFilterResponse: action.payload.wfsFilterResponse
+            };
+        case types.modalToggled:
+            return {
+                ...state,
+                isModalOpen: !state.isModalOpen,
+                modalOperation: action.payload.modalOperation
             };
         case types.stateReset:
             return initialState;

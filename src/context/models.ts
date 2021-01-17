@@ -52,6 +52,8 @@ interface State {
     getGetPropValFiltNumber: number;
     postGetPropValFiltNumber: number;
     attrValues: string[];
+    isModalOpen: boolean;
+    modalOperation: string;
 }
 
 interface Action {
