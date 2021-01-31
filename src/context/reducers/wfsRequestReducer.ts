@@ -24,7 +24,7 @@ const numericTypes = [
     'hexBinary'
 ];
 
-const wfsRequestReducer = (state: State, action: Action) => {
+export default function wfsRequestReducer(state: State, action: Action) {
     const errors = { ...state.errors };
     const newState = { ...state };
 
@@ -37,6 +37,8 @@ const wfsRequestReducer = (state: State, action: Action) => {
     newState.wfsResponse = '';
     newState.errors = { ...errors, url: '' };
     newState.selectedTypValueRef = '';
+    newState.getRequestClicked = action.payload.getRequestClicked;
+    newState.postRequestClicked = action.payload.postRequestClicked;
 
     const compOperList = getCompOperList(state.getCapResp);
 
@@ -102,6 +104,4 @@ const wfsRequestReducer = (state: State, action: Action) => {
         };
     }
     return newState;
-};
-
-export default wfsRequestReducer;
+}

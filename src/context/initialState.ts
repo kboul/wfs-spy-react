@@ -54,7 +54,11 @@ const initialState = {
     postGetPropValFiltNumber: 0,
     attrValues: [],
     isModalOpen: false,
-    modalOperation: 'normal'
+    modalOperation: 'normal',
+    getRequestClicked: false,
+    postRequestClicked: false,
+    getFilterRequestClicked: false,
+    postFilterRequestClicked: false
 };
 
 export default initialState;

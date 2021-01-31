@@ -2,6 +2,8 @@ import React from 'react';
 import { Table, Button } from 'reactstrap';
 
 import TableButtonsProps from './model';
+import { useAppContext } from '../../../../context';
+import disableRespBtns from './utils';
 import consts from './constants';
 import styles from './index.module.sass';
 
@@ -14,15 +16,22 @@ export default function TableButtons({
     onPostClick,
     onPostModalClick
 }: TableButtonsProps) {
+    const { state } = useAppContext();
+
+    const { disableGetRespBtn, disablePostRespBtn } = disableRespBtns(
+        state,
+        label
+    );
+
     return (
         <Table borderless className={styles.table}>
             <thead>
                 <tr>
                     <th>
                         <Button
-                            className="float-right"
                             color="primary"
-                            disabled={disabled}
+                            className="float-right"
+                            disabled={disabled || disableGetRespBtn}
                             onClick={onGetClick}
                             size="sm">
                             {consts.get} {label}
@@ -30,9 +39,9 @@ export default function TableButtons({
                     </th>
                     <th>
                         <Button
-                            className="float-left"
                             color="primary"
-                            disabled={disabled}
+                            className="float-left"
+                            disabled={disabled || disablePostRespBtn}
                             onClick={onPostClick}
                             size="sm">
                             {consts.post} {label}
@@ -45,9 +54,9 @@ export default function TableButtons({
                     <tr>
                         <td>
                             <Button
-                                color="primary"
                                 className="float-right"
-                                disabled={disabled}
+                                color="primary"
+                                disabled={disabled || disableGetRespBtn}
                                 onClick={onGetModalClick}
                                 size="sm">
                                 {consts.openInANewWindow}
@@ -55,9 +64,9 @@ export default function TableButtons({
                         </td>
                         <td>
                             <Button
-                                color="primary"
                                 className="float-left"
-                                disabled={disabled}
+                                color="primary"
+                                disabled={disabled || disablePostRespBtn}
                                 onClick={onPostModalClick}
                                 size="sm">
                                 {consts.openInANewWindow}

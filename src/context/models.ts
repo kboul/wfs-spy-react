@@ -54,6 +54,10 @@ interface State {
     attrValues: string[];
     isModalOpen: boolean;
     modalOperation: string;
+    getRequestClicked: boolean;
+    postRequestClicked: boolean;
+    getFilterRequestClicked: boolean;
+    postFilterRequestClicked: boolean;
 }
 
 interface Action {
