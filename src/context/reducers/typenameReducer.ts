@@ -1,7 +1,7 @@
 import { State, Action } from '../models';
 import { noOption } from '../../config/constants';
 
-const typenameReducer = (state: State, action: Action): State => {
+export default function typenameReducer(state: State, action: Action): State {
     const { typename } = action.payload;
     const newState = { ...state, typename };
 
@@ -15,6 +15,4 @@ const typenameReducer = (state: State, action: Action): State => {
             return { ...newState, valueReference: '' };
     }
     return newState;
-};
-
-export default typenameReducer;
+}

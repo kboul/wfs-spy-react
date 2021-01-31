@@ -12,10 +12,11 @@ import {
     descFeatTypeRespReducer,
     getCapRespReducer,
     getPropValRespReducer,
+    getPropValFiltRespReducer,
     requestReducer,
     typenameReducer,
     wfsRequestReducer,
-    getPropValFiltRespReducer
+    wfsFilterRequestReducer
 } from './reducers';
 
 // Actions
@@ -98,12 +99,7 @@ const reducer = (state: State, action: Action): State => {
         case types.numericNonNumericValuesReset:
             return { ...state, numericValue: '', nonNumericValue: [] };
         case types.wfsFilterRequestChanged:
-            return {
-                ...state,
-                wfsFilterRequest: action.payload.wfsFilterRequest,
-                filterValueCount: '',
-                wfsFilterResponse: ''
-            };
+            return wfsFilterRequestReducer(state, action);
         case types.wfsFilterResponseChanged:
             return {
                 ...state,

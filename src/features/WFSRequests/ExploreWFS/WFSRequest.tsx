@@ -4,7 +4,7 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import TableButtons from '../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
 import { formGetRequest, formPostRequest } from './utils';
-import { isMethodGet } from '../utils';
+import { isMethodGet, requestBtnStatus } from '../utils';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { formWfsRequest: 'Form WFS Request:', request: 'Request' };
@@ -16,7 +16,8 @@ export default function WFSRequest() {
         const wfsRequest = isMethodGet(httpMethod)
             ? formGetRequest(state)
             : formPostRequest(state);
-        dispatch(changeState(types.wfsRequestChanged, { wfsRequest }));
+        const payload = { wfsRequest, ...requestBtnStatus(httpMethod) };
+        dispatch(changeState(types.wfsRequestChanged, payload));
     };
 
     return (

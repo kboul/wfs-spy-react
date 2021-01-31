@@ -5,7 +5,7 @@ import TableButtons from '../../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../../context';
 import { formGetFilterRequest, formPostFilterRequest } from '../utils';
 import validateFiltReqBtn from './utils';
-import { isMethodGet } from '../../utils';
+import { isMethodGet, requestBtnStatus } from '../../utils';
 import sharedStyles from '../../shared.module.sass';
 
 const consts = {
@@ -19,9 +19,11 @@ export default function WFSFilterRequest() {
         const wfsFilterRequest = isMethodGet(httpMethod)
             ? formGetFilterRequest(state)
             : formPostFilterRequest(state);
-        dispatch(
-            changeState(types.wfsFilterRequestChanged, { wfsFilterRequest })
-        );
+        const payload = {
+            wfsFilterRequest,
+            ...requestBtnStatus(httpMethod, 'filter')
+        };
+        dispatch(changeState(types.wfsFilterRequestChanged, payload));
     };
 
     return (

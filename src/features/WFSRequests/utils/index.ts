@@ -5,3 +5,4 @@ export { default as getOrPost } from './getOrPost';
 export { default as handleErrorResponse } from './handleErrorResponse';
 export { default as isMethodGet } from './isMethodGet';
 export { default as isPropBetween } from './isPropBetween';
+export { default as requestBtnStatus } from './requestBtnStatus';
