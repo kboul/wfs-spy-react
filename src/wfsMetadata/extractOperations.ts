@@ -1,6 +1,8 @@
 import { Operations } from './models';
-import tags from '../config/tags';
+import globalConsts from '../config';
 import parseXML from './parseXML';
+
+const { tags } = globalConsts;
 
 export default function etxractOperations(xmlString: string): Operations {
     const getCapResp: XMLDocument = parseXML(xmlString);

@@ -1,4 +1,4 @@
-import { noOperation } from '../../../config/constants';
+import globalConsts from '../../../config';
 
 const serviceProvider = 'Service Provider';
 
@@ -18,5 +18,5 @@ export default {
     fax: 'Fax',
     electrMailAddress: 'Electronic Mail Address',
     email: 'Email',
-    noProvider: `${noOperation} ${serviceProvider} information.`
+    noProvider: `${globalConsts.noOperation} ${serviceProvider} information.`
 };

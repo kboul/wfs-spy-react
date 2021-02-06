@@ -1,7 +1,9 @@
 import { getRootRequest } from '../../../utils';
 import { State } from '../../../context/models';
-import { requests, noOption } from '../../../config/constants';
+import globalConsts from '../../../config';
 import { concatPrefixesAndUris } from '../utils';
+
+const { noOption, requests } = globalConsts;
 
 const formGetRequest = (state: State): string => {
     const {
@@ -37,6 +39,7 @@ const formPostRequest = (state: State): string => {
     let prefixesAndUris;
     if ([requests[1], requests[2]].includes(state.request))
         prefixesAndUris = concatPrefixesAndUris(state.xmlNamespaces).join('\n');
+
     switch (state.request) {
         case requests[0]:
             return (

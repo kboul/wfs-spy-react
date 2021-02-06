@@ -4,10 +4,13 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../models/events';
-import colors from '../../../config/colors';
+import globalConsts from '../../../config';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { upperValue: 'Enter upper value' };
+const upperValueStyle = {
+    backgroundColor: globalConsts.colors.lightPurple
+};
 
 export default function UpperValue() {
     const { state, dispatch } = useAppContext();
@@ -30,7 +33,7 @@ export default function UpperValue() {
                     <Input
                         autoFocus
                         onChange={handleChange}
-                        style={{ backgroundColor: colors.lightPurple }}
+                        style={upperValueStyle}
                         type="text"
                         value={state.upperValue}
                     />

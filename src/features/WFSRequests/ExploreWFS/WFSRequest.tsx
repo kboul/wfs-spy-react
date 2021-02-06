@@ -27,10 +27,10 @@ export default function WFSRequest() {
                     {consts.formWfsRequest}
                 </Label>
                 <Input
-                    type="textarea"
-                    rows="10"
                     className={sharedStyles.textarea}
                     disabled
+                    rows="10"
+                    type="textarea"
                     value={state.wfsRequest}
                 />
                 <TableButtons

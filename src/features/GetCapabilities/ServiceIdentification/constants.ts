@@ -1,4 +1,4 @@
-import { noOperation } from '../../../config/constants';
+import globalConsts from '../../../config';
 
 const serviceId = 'Service Identification';
 
@@ -11,5 +11,5 @@ export default {
     serviceIdHeader: serviceId,
     serviceIdTitle:
         'Lists information regarding Title, Abstract, Keywords, ServiceType, ServiceTypeVersion, Fees & AccessConstraints',
-    noServiceId: `${noOperation} ${serviceId} information.`
+    noServiceId: `${globalConsts.noOperation} ${serviceId} information.`
 };

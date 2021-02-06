@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 
-import colors from '../../../../config/colors';
+import globalConsts from '../../../../config';
+
+const { colors } = globalConsts;
 
 export default function useInputFocus() {
     const urlRef = useRef<HTMLInputElement>(null);

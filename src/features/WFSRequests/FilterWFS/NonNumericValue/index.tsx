@@ -4,10 +4,13 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 
 import { useAppContext, changeState, types } from '../../../../context';
 import { isPropBetween } from '../../utils';
-import colors from '../../../../config/colors';
+import globalConsts from '../../../../config';
 import sharedStyles from '../../shared.module.sass';
 
 const nonNumericValue = 'Search strings';
+const nonNumerivValueStyle = {
+    backgroundColor: globalConsts.colors.lightPurple
+};
 
 export default function NonNumericValue() {
     const { state, dispatch } = useAppContext();
@@ -32,9 +35,7 @@ export default function NonNumericValue() {
                     <Typeahead
                         disabled={!state.getPropValResp}
                         id="basic-typeahead-single"
-                        inputProps={{
-                            style: { backgroundColor: colors.lightPurple }
-                        }}
+                        inputProps={{ style: nonNumerivValueStyle }}
                         onChange={handleChange}
                         options={state.attrValues}
                         placeholder="Type a value..."

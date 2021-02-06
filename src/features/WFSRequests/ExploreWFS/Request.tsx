@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
-import { requests } from '../../../config/constants';
+import globalConsts from '../../../config';
 import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 
@@ -26,7 +26,7 @@ export default function Request() {
                     type="select"
                     value={state.request}
                     onChange={handleChange}>
-                    {requests.map(request => (
+                    {globalConsts.requests.map(request => (
                         <option key={request}>{request}</option>
                     ))}
                 </Input>

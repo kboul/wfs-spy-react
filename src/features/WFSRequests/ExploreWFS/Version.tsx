@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
-import { versions } from '../../../config/constants';
+import globalConsts from '../../../config';
 import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 
@@ -26,7 +26,7 @@ export default function Version() {
                     onChange={handleChange}
                     type="select"
                     value={state.version}>
-                    {versions.map(version => (
+                    {globalConsts.versions.map(version => (
                         <option key={version}>{version}</option>
                     ))}
                 </Input>

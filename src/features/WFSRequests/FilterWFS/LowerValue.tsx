@@ -4,10 +4,13 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../models/events';
-import colors from '../../../config/colors';
+import globalConsts from '../../../config';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { lowerValue: 'Enter lower value' };
+const lowerValueStyle = {
+    backgroundColor: globalConsts.colors.lightPurple
+};
 
 export default function LowerValue() {
     const { state, dispatch } = useAppContext();
@@ -30,7 +33,7 @@ export default function LowerValue() {
                     <Input
                         autoFocus
                         onChange={handleChange}
-                        style={{ backgroundColor: colors.lightPurple }}
+                        style={lowerValueStyle}
                         type="text"
                         value={state.lowerValue}
                     />

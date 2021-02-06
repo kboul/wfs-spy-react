@@ -7,7 +7,7 @@ import { useAppContext } from '../../../context';
 import getAttrNameType from './utils';
 import { extractAttrNamesTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
-import { noOption } from '../../../config/constants';
+import globalConsts from '../../../config';
 import consts from './constants';
 
 export default function AttributeDetails() {
@@ -29,7 +29,7 @@ export default function AttributeDetails() {
     };
 
     const attributesExist =
-        typename && typename !== noOption && attrNameType.length;
+        typename && typename !== globalConsts.noOption && attrNameType.length;
 
     const table = (
         <>

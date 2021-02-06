@@ -1,6 +1,7 @@
 import parseXML from './parseXML';
-import tags from '../config/tags';
-import { noOption } from '../config/constants';
+import globalConsts from '../config';
+
+const { noOption, tags } = globalConsts;
 
 export default function extractTypenames(data: string): string[] {
     if (!data) return [];
