@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
 import { getCompOperList, getValRefType } from '../../utils';
-import { requests, noOption } from '../../config/constants';
+import globalConsts from '../../config';
 import consts from '../constants';
 
 const urlValidation = 'Url is required';
@@ -41,6 +41,8 @@ export default function wfsRequestReducer(state: State, action: Action) {
     newState.postRequestClicked = action.payload.postRequestClicked;
 
     const compOperList = getCompOperList(state.getCapResp);
+
+    const { noOption, requests } = globalConsts;
 
     if (state.request === requests[0] && state.url) {
         return {

@@ -1,10 +1,10 @@
-import { requests, versions } from '../config/constants';
+import globalConsts from '../config';
 import consts from './constants';
 
 const initialState = {
     url: '',
-    version: versions[0],
-    request: requests[0],
+    version: globalConsts.versions[0],
+    request: globalConsts.requests[0],
     service: 'WFS',
     typename: '',
     typenames: [],

@@ -1,6 +1,7 @@
-import { noOperation } from '../../../config/constants';
-import tags from '../../../config/tags';
+import globalConsts from '../../../config';
 import { splitStrOnUpperCase } from '../../../utils';
+
+const { noOperation, tags } = globalConsts;
 
 const featureTypeList = 'FeatureTypeList';
 

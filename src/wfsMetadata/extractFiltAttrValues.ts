@@ -1,7 +1,9 @@
 import parseXML from './parseXML';
-import tags from '../config/tags';
+import globalConsts from '../config';
 
 export default function extractFiltAttrValues(xmlString: string): string {
     const getPropValFiltResp = parseXML(xmlString);
-    return getPropValFiltResp.querySelectorAll(tags.member).length.toString();
+    return getPropValFiltResp
+        .querySelectorAll(globalConsts.tags.member)
+        .length.toString();
 }

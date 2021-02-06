@@ -12,9 +12,10 @@ import {
     isMethodGet
 } from '../utils';
 import { formGetFilterRequest, formPostFilterRequest } from './utils';
-import axiosConfig from '../../../config/axios';
-import { proccessMessage } from '../../../config/constants';
+import globalConsts from '../../../config';
 import sharedStyles from '../shared.module.sass';
+
+const { axiosConfig, proccessMessage } = globalConsts;
 
 const consts = {
     filterResponseMetadata:

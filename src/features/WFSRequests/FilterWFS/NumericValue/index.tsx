@@ -4,10 +4,11 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 import { useAppContext, changeState, types } from '../../../../context';
 import { ChangeEvent } from '../../../../models/events';
 import { isPropBetween } from '../../utils';
-import colors from '../../../../config/colors';
+import globalConsts from '../../../../config';
 import sharedStyles from '../../shared.module.sass';
 
 const consts = { numericValue: 'Enter Value' };
+const numericValueStyle = { backgroundColor: globalConsts.colors.lightPurple };
 
 export default function NumericValue() {
     const { state, dispatch } = useAppContext();
@@ -30,7 +31,7 @@ export default function NumericValue() {
                     <Input
                         disabled={!state.getPropValResp}
                         onChange={handleChange}
-                        style={{ backgroundColor: colors.lightPurple }}
+                        style={numericValueStyle}
                         type="text"
                         value={state.numericValue}
                     />

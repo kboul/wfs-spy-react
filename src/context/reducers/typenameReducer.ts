@@ -1,9 +1,11 @@
 import { State, Action } from '../models';
-import { noOption } from '../../config/constants';
+import globalConsts from '../../config';
 
 export default function typenameReducer(state: State, action: Action): State {
     const { typename } = action.payload;
     const newState = { ...state, typename };
+
+    const { noOption } = globalConsts;
 
     if (typename === noOption) return { ...newState, valueReference: '' };
     if (state.descFeatTypeResp) {

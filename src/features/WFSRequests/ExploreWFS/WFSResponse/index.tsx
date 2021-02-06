@@ -16,10 +16,11 @@ import {
     handleErrorResponse,
     isMethodGet
 } from '../../utils';
-import { requests, proccessMessage } from '../../../../config/constants';
-import axiosConfig from '../../../../config/axios';
+import globalConsts from '../../../../config';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
+
+const { axiosConfig, proccessMessage, requests } = globalConsts;
 
 export default function WFSResponse() {
     const { state, dispatch } = useAppContext();

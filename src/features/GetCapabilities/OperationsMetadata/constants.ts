@@ -1,4 +1,6 @@
-import { noOperation } from '../../../config/constants';
+import globalConsts from '../../../config';
+
+const { noOperation } = globalConsts;
 
 const acceptVersions = 'Accept Versions';
 const operationsMetadata = 'Operations Metadata';
@@ -17,5 +19,5 @@ export default {
     operMetaHeader: operationsMetadata,
     operMetaText: 'Informs which HTTP request methods are supported',
     noAcceptVersions: `${noOperation} ${acceptVersions}.`,
-    noOperation: `This WFS service does not provide ${operationsMetadata}.`
+    noOperation: `${noOperation} ${operationsMetadata}.`
 };

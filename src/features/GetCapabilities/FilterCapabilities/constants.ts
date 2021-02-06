@@ -1,4 +1,6 @@
-import { noOperation } from '../../../config/constants';
+import globalConsts from '../../../config';
+
+const { noOperation } = globalConsts;
 
 const compOper = 'Comparison Operators';
 const spatOper = 'Spatial Operators';

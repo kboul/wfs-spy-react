@@ -1,4 +1,4 @@
-import { noOperation } from '../../../config/constants';
+import globalConsts from '../../../config';
 
 const attrNamesTypes = 'Attribute Names & Types';
 
@@ -13,7 +13,7 @@ export default {
     attrNames: 'Attribute Names',
     attrTypes: 'Attribute Types',
     noAttributes: `
-        ${noOperation} ${attrNamesTypes}. 
+        ${globalConsts.noOperation} ${attrNamesTypes}. 
         Please try making individual DescribeFeatureType requests per typename.
     `
 };

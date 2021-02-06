@@ -30,9 +30,8 @@ export default function ValueReference() {
                 const valueReference = hasGeometry(attrTypesList[0])
                     ? attrNamesList[1]
                     : attrNamesList[0];
-                dispatch(
-                    changeState(types.valueReferenceChanged, { valueReference })
-                );
+                const payload = { valueReference };
+                dispatch(changeState(types.valueReferenceChanged, payload));
             }
         } else didMountRef.current = true;
         // eslint-disable-next-line

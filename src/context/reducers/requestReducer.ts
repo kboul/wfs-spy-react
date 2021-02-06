@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
-import { requests, noOption } from '../../config/constants';
+import globalConsts from '../../config';
 
 const toasts = {
     getCapDescFeatTypeFirst:
@@ -20,6 +20,8 @@ export default function requestReducer(state: State, action: Action): State {
     const { getCapResp, descFeatTypeResp, typename, valueReferences } = state;
 
     const noVarRefNames = Object.keys(valueReferences.names).length === 0;
+
+    const { noOption, requests } = globalConsts;
 
     if (request === requests[2] && !descFeatTypeResp && !getCapResp) {
         toast.info(toasts.getCapDescFeatTypeFirst);
