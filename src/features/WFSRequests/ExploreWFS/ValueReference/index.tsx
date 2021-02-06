@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../../context';
@@ -20,22 +20,6 @@ export default function ValueReference() {
     const { typename, valueReferences } = state;
     const fullTypename = getFullTypename(typename);
     const attrNamesList = valueReferences?.names[fullTypename];
-
-    const didMountRef = useRef(false);
-    useEffect(() => {
-        if (didMountRef.current) {
-            if (!typename || !Object.keys(valueReferences.names).length) return;
-            const attrTypesList = valueReferences?.types[fullTypename];
-            if (attrNamesList) {
-                const valueReference = hasGeometry(attrTypesList[0])
-                    ? attrNamesList[1]
-                    : attrNamesList[0];
-                const payload = { valueReference };
-                dispatch(changeState(types.valueReferenceChanged, payload));
-            }
-        } else didMountRef.current = true;
-        // eslint-disable-next-line
-    }, [typename, valueReferences, dispatch]);
 
     const disabled = (index: number) =>
         hasGeometry(valueReferences?.types[fullTypename][index]);

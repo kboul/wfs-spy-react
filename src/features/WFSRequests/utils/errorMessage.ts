@@ -7,9 +7,7 @@ interface ErrorResponse {
     statusText: string;
 }
 
-export default function handleErrorResponse(
-    errorResponse: ErrorResponse
-): string {
+export default function errorMessage(errorResponse: ErrorResponse): string {
     const { status, data } = errorResponse;
     const httpStatusCode = 'HTTP Status Code';
     switch (status) {

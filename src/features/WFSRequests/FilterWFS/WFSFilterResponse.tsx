@@ -8,7 +8,7 @@ import {
     adjustProxyToUrl,
     getOrPost,
     getTimeInMs,
-    handleErrorResponse,
+    errorMessage,
     isMethodGet
 } from '../utils';
 import { formGetFilterRequest, formPostFilterRequest } from './utils';
@@ -58,8 +58,7 @@ export default function WFSFilterResponse() {
             }
         } catch (error) {
             const { response } = error;
-            if (response)
-                changeWfsFilterResponse(handleErrorResponse(response));
+            if (response) changeWfsFilterResponse(errorMessage(response));
         }
     };
 
