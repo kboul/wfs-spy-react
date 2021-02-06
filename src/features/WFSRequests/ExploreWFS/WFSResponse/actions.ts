@@ -38,7 +38,6 @@ const changeGetPropValResp = (
     data: string,
     time: number
 ) => {
-    console.log(time);
     const payload = {
         getPropValResp: data,
         [`${getOrPost(httpMethod)}GetPropValTime`]: time

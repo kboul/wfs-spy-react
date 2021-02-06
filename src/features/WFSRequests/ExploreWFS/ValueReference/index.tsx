@@ -2,8 +2,7 @@ import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../../context';
-import { getFullTypename } from '../../../../utils';
-import { hasGeometry } from './utils';
+import { getFullTypename, hasGeometry } from '../../../../utils';
 import { ChangeEvent } from '../../../../models/events';
 import sharedStyles from '../../shared.module.sass';
 

@@ -1,5 +1,6 @@
 import { State, Action } from '../models';
 import { extractAttrNamesTypes } from '../../wfsMetadata';
+import { firstValueReference } from '../../utils';
 
 export default function descFeatTypeRespReducer(
     state: State,
@@ -19,10 +20,14 @@ export default function descFeatTypeRespReducer(
         ? ++state.postDescFeatTypeNumber
         : state.postDescFeatTypeNumber;
 
+    const valueReferences = extractAttrNamesTypes(descFeatTypeResp);
+    const valueReference = firstValueReference(state.typename, valueReferences);
+
     return {
         ...state,
         descFeatTypeResp,
-        valueReferences: extractAttrNamesTypes(descFeatTypeResp),
+        valueReferences,
+        valueReference: valueReference || state.valueReference,
         getDescFeatTypeTime: getDescFeatTypeTime || state.getDescFeatTypeTime,
         postDescFeatTypeTime:
             postDescFeatTypeTime || state.postDescFeatTypeTime,

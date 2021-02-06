@@ -8,7 +8,8 @@ import { useAppContext } from '../../context';
 import {
     chartOptions,
     getTotalGetRequestNumber,
-    getTotalPostRequestNumber
+    getTotalPostRequestNumber,
+    getMaxRequestNumber
 } from './utils';
 import ChartOptions from './models';
 import consts from './constants';
@@ -25,13 +26,15 @@ export default function Statistics() {
     const totalGetRequestNumber = getTotalGetRequestNumber(state);
     const totalPostRequestNumber = getTotalPostRequestNumber(state);
     const totalRequestNumber = totalGetRequestNumber + totalPostRequestNumber;
+    const maxRequestNumber = getMaxRequestNumber(state);
 
     useEffect(() => {
         setRequestsOpts(prevState => {
-            const options = { ...prevState };
-            options.yAxis.max =
-                totalRequestNumber >= 10 ? totalRequestNumber + 1 : 10;
-            return options;
+            prevState.yAxis = {
+                ...prevState.yAxis,
+                max: maxRequestNumber >= 10 ? maxRequestNumber + 1 : 10
+            };
+            return prevState;
         });
     }, [totalRequestNumber]);
 
