@@ -8,11 +8,13 @@ import GeometryOperands from './GeometryOperands';
 import TemporalOperands from './TemporalOperands';
 import TemporalOperators from './TemporalOperators';
 import Functions from './Functions';
+import { getSizeAndOffset } from '../../../utils';
 import consts from './constants';
 
 export default function FilterCapabilities() {
+    const { size, offset } = getSizeAndOffset();
     return (
-        <Col md={{ size: 8, offset: 2 }} className="mt-4">
+        <Col className="mt-4" md={{ size, offset }}>
             <h3>{consts.header}</h3>
             <p>{consts.descr}</p>
 
