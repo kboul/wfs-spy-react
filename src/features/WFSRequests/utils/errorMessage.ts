@@ -7,16 +7,14 @@ interface ErrorResponse {
     statusText: string;
 }
 
-export default function handleErrorResponse(
-    errorResponse: ErrorResponse
-): string {
+export default function errorMessage(errorResponse: ErrorResponse): string {
     const { status, data } = errorResponse;
     const httpStatusCode = 'HTTP Status Code';
     switch (status) {
         case 400: // Bad Request
             return `${httpStatusCode} 400. Malformed Request.`;
         case 403: // Forbidden
-            return `${httpStatusCode} 403. Access to the requested resource is forbidden`;
+            return `${httpStatusCode} 403. Access to the requested resource is forbidden.`;
         case 404: // Not Found
             return `${httpStatusCode} 404. The server could not find what was requested.`;
         case 500: // Internal Server Error

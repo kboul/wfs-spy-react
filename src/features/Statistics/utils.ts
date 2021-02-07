@@ -101,4 +101,16 @@ const getTotalPostRequestNumber = (state: State): number => {
     );
 };
 
-export { chartOptions, getTotalGetRequestNumber, getTotalPostRequestNumber };
+const getMaxRequestNumber = (state: State) => {
+    return Math.max(
+        getTotalGetRequestNumber(state),
+        getTotalPostRequestNumber(state)
+    );
+};
+
+export {
+    chartOptions,
+    getTotalGetRequestNumber,
+    getTotalPostRequestNumber,
+    getMaxRequestNumber
+};

@@ -13,7 +13,7 @@ import { formGetRequest, formPostRequest } from '../utils';
 import {
     adjustProxyToUrl,
     getTimeInMs,
-    handleErrorResponse,
+    errorMessage,
     isMethodGet
 } from '../../utils';
 import globalConsts from '../../../../config';
@@ -66,7 +66,7 @@ export default function WFSResponse() {
             }
         } catch (error) {
             const { response } = error;
-            if (response) changeWfsResponse(handleErrorResponse(response));
+            if (response) changeWfsResponse(errorMessage(response));
         }
     };
 
