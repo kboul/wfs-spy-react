@@ -1,21 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../context';
-import {
-    adjustProxyToUrl,
-    getOrPost,
-    getTimeInMs,
-    errorMessage,
-    isMethodGet
-} from '../utils';
+import wfsApi from '../../../api/wfsApi';
+import { errorMessage, getOrPost, getTimeInMs, isMethodGet } from '../utils';
 import { formGetFilterRequest, formPostFilterRequest } from './utils';
 import globalConsts from '../../../config';
 import sharedStyles from '../shared.module.sass';
-
-const { axiosConfig, proccessMessage } = globalConsts;
 
 const consts = {
     filterResponseMetadata:
@@ -34,16 +26,13 @@ export default function WFSFilterResponse() {
     };
 
     const requestMethod = async (httpMethod: string) => {
-        const wfsRequest = isMethodGet(httpMethod)
-            ? formGetFilterRequest(state)
-            : formPostFilterRequest(state);
         return isMethodGet(httpMethod)
-            ? axios.get(adjustProxyToUrl(wfsRequest))
-            : axios.post(adjustProxyToUrl(state.url), wfsRequest, axiosConfig);
+            ? wfsApi.getWfsRequest(formGetFilterRequest(state))
+            : wfsApi.postWfsRequest(formPostFilterRequest(state));
     };
 
     const handleClick = async (httpMethod: string) => {
-        changeWfsFilterResponse(proccessMessage);
+        changeWfsFilterResponse(globalConsts.proccessMessage);
         const startGET = getTimeInMs();
         try {
             const { data, status } = await requestMethod(httpMethod);

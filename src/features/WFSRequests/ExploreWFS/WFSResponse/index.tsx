@@ -1,26 +1,21 @@
 import React from 'react';
-import axios from 'axios';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import TableButtons from '../../components/TableButtons';
 import { useAppContext, changeState, types } from '../../../../context';
+import wfsApi from '../../../../api/wfsApi';
 import {
     changeDescFeatTypeResp,
     changeGetCapResp,
     changeGetPropValResp
 } from './actions';
 import { formGetRequest, formPostRequest } from '../utils';
-import {
-    adjustProxyToUrl,
-    getTimeInMs,
-    errorMessage,
-    isMethodGet
-} from '../../utils';
+import { getTimeInMs, errorMessage, isMethodGet } from '../../utils';
 import globalConsts from '../../../../config';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
 
-const { axiosConfig, proccessMessage, requests } = globalConsts;
+const { proccessMessage, requests } = globalConsts;
 
 export default function WFSResponse() {
     const { state, dispatch } = useAppContext();
@@ -30,12 +25,10 @@ export default function WFSResponse() {
     };
 
     const requestMethod = async (httpMethod: string) => {
-        const wfsRequest = isMethodGet(httpMethod)
-            ? formGetRequest(state)
-            : formPostRequest(state);
+        const wfsRequest = formGetRequest(state).replace(state.url, '');
         return isMethodGet(httpMethod)
-            ? axios.get(adjustProxyToUrl(wfsRequest))
-            : axios.post(adjustProxyToUrl(state.url), wfsRequest, axiosConfig);
+            ? wfsApi.getWfsRequest(wfsRequest)
+            : wfsApi.postWfsRequest(formPostRequest(state));
     };
 
     const handleClick = async (httpMethod: string) => {
