@@ -1,14 +1,17 @@
 import client from './client';
 
-const axiosConfig = {
+const axiosConfig = (url: string) => ({
     headers: {
         'Content-Type': 'text/plain;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        url
     }
-};
+});
 
-const getWfsRequest = (apiEndpoint: string) => client.get(apiEndpoint);
+const getWfsRequest = (apiEndpoint: string, url: string) =>
+    client.get(apiEndpoint, { headers: { url } });
 
-const postWfsRequest = (data: Object) => client.post('', data, axiosConfig);
+const postWfsRequest = (data: Object, url: string) =>
+    client.post('', data, axiosConfig(url));
 
 export default { getWfsRequest, postWfsRequest };

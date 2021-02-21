@@ -27,8 +27,8 @@ export default function WFSResponse() {
     const requestMethod = async (httpMethod: string) => {
         const wfsRequest = formGetRequest(state).replace(state.url, '');
         return isMethodGet(httpMethod)
-            ? wfsApi.getWfsRequest(wfsRequest)
-            : wfsApi.postWfsRequest(formPostRequest(state));
+            ? wfsApi.getWfsRequest(wfsRequest, state.url)
+            : wfsApi.postWfsRequest(formPostRequest(state), state.url);
     };
 
     const handleClick = async (httpMethod: string) => {

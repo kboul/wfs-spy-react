@@ -27,8 +27,8 @@ export default function WFSFilterResponse() {
 
     const requestMethod = async (httpMethod: string) => {
         return isMethodGet(httpMethod)
-            ? wfsApi.getWfsRequest(formGetFilterRequest(state))
-            : wfsApi.postWfsRequest(formPostFilterRequest(state));
+            ? wfsApi.getWfsRequest(formGetFilterRequest(state), state.url)
+            : wfsApi.postWfsRequest(formPostFilterRequest(state), state.url);
     };
 
     const handleClick = async (httpMethod: string) => {
