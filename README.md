@@ -27,6 +27,8 @@ At this point, the application will not provide geometrical feature manipulation
 | 11  |           http://maps.gns.cri.nz/geology/ows           |     7      |        3        |        6         |          8          |       yes all       |             55              |       yes       |               yes                | yes  |
 | 12  |        http://www.geo-spatial.org/geoserver/ows        |     7      |        3        |        6         |          8          |       yes all       |             15              |       yes       |               yes                | no   |
 | 13  |  http://stadtplaene.ulm.de/geoserver/geoportalUlm/wfs  |     7      |        3        |        7         |         11          |       yes all       |             32              |       yes       |                no                | yes  |
+| 14  |       http://kort.strandnr.dk/geoserver/nobc/wfs       |     7      |        3        |        8         |          8          |       yes all       |              9              |       yes       |                no                | yes  |
+| 15  |            http://gis.epa.ie/geoserver/wfs             |     7      |        3        |        9         |          8          |       yes all       |             362             |       yes       |               yes                | no   |
 
 ## Run the project
 
