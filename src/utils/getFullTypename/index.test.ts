@@ -6,7 +6,7 @@ describe('getFullTypename', () => {
         expect(fullTypename).toBe('baeumeType');
     });
 
-    test('splits string on upper case when typename is empyt string', () => {
+    test('returns an empty string when input is empty string', () => {
         const fullTypename = getFullTypename('');
         expect(fullTypename).toBe('');
     });
