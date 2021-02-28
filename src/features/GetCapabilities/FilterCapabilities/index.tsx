@@ -8,11 +8,13 @@ import GeometryOperands from './GeometryOperands';
 import TemporalOperands from './TemporalOperands';
 import TemporalOperators from './TemporalOperators';
 import Functions from './Functions';
+import { useWindowWidth } from '../../../hooks';
 import { getSizeAndOffset } from '../../../utils';
 import consts from './constants';
 
 export default function FilterCapabilities() {
-    const { size, offset } = getSizeAndOffset();
+    const windowWidth = useWindowWidth();
+    const { size, offset } = getSizeAndOffset(windowWidth);
     return (
         <Col className="mt-4" md={{ size, offset }}>
             <h3>{consts.header}</h3>
