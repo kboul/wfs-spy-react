@@ -1,9 +1,17 @@
-import { State } from '../context/models';
-import getFullTypename from './getFullTypename';
+import { AttrNamesTypes } from '../../wfsMetadata/models';
+import getFullTypename from '../getFullTypename';
 
-export default function getValRefType(state: State): string {
-    const { typename, valueReference, valueReferences } = state;
+interface ArgsType {
+    typename: string;
+    valueReference: string;
+    valueReferences: AttrNamesTypes;
+}
 
+export default function getValRefType({
+    typename,
+    valueReference,
+    valueReferences
+}: ArgsType): string {
     const attrNames: string[] =
         valueReferences.names[getFullTypename(typename)];
 
