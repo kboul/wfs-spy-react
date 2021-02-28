@@ -29,6 +29,7 @@ At this point, the application will not provide geometrical feature manipulation
 | 13  |  http://stadtplaene.ulm.de/geoserver/geoportalUlm/wfs  |     7      |        3        |        7         |         11          |       yes all       |             32              |       yes       |                no                | yes  |
 | 14  |       http://kort.strandnr.dk/geoserver/nobc/wfs       |     7      |        3        |        8         |          8          |       yes all       |              9              |       yes       |                no                | yes  |
 | 15  |            http://gis.epa.ie/geoserver/wfs             |     7      |        3        |        9         |          8          |       yes all       |             362             |       yes       |               yes                | no   |
+| 16  |                 http://mapfog.com/ows                  |
 
 ## Run the project
 
