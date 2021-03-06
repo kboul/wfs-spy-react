@@ -1,6 +1,6 @@
 import getRootRequest from '.';
 
-test('returns WFS GET request url given a service url, version and request', () => {
+test('returns a valid WFS GET request url', () => {
     const url = 'http://daim.lfv.se/geoserver/wfs';
     const version = '2.0.0';
     const request = 'GetCapabilities';

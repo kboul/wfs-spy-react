@@ -5,7 +5,7 @@ import { TablePagination, TotalItems } from '../../../components';
 import { useAppContext } from '../../../context';
 import { extractFeatureTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
-import { checkAbstractLength } from './utils';
+import { truncate } from './utils';
 import consts from './constants';
 
 export default function FeatureDetails() {
@@ -62,13 +62,10 @@ export default function FeatureDetails() {
                                         <td>{name}</td>
                                         <td>
                                             <span id={`tooltip-${index + 1}`}>
-                                                {abstract &&
-                                                    checkAbstractLength(
-                                                        abstract
-                                                    )}
+                                                {abstract && truncate(abstract)}
                                             </span>
                                         </td>
-                                        {abstract && (
+                                        {abstract && abstract?.length > 50 && (
                                             <UncontrolledTooltip
                                                 placement="right"
                                                 target={`tooltip-${index + 1}`}>

@@ -4,12 +4,12 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import useWindowWidth from '.';
 
 describe('useWindowWidth', () => {
-    test('initial width is equal to window inner width', () => {
+    test('initial width is equal to browser width', () => {
         const { result } = renderHook(useWindowWidth);
         expect(result.current).toEqual(window.innerWidth);
     });
 
-    test('initial width is equal to window inner width', async () => {
+    test('returns the browser"s width after it gets resized', async () => {
         const { result } = renderHook(useWindowWidth);
 
         act(() => {

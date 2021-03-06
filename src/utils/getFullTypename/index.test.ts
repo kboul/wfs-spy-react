@@ -6,7 +6,7 @@ describe('getFullTypename', () => {
         expect(fullTypename).toBe('baeumeType');
     });
 
-    test('returns an empty string when input is empty string', () => {
+    test('returns an empty string when input is an empty string', () => {
         const fullTypename = getFullTypename('');
         expect(fullTypename).toBe('');
     });

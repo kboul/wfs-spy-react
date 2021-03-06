@@ -2,7 +2,10 @@ import { AttrNamesTypes } from '../../../wfsMetadata/models';
 import { getFullTypename } from '../../../utils';
 import AttrNameTypeProps from './models';
 
-const getAttrNameType = (attrNamesTypes: AttrNamesTypes, typename: string) => {
+export default function getAttrNameType(
+    attrNamesTypes: AttrNamesTypes,
+    typename: string
+) {
     const slctTypenameAttrNames: string[] =
         attrNamesTypes.names[getFullTypename(typename)];
 
@@ -19,6 +22,4 @@ const getAttrNameType = (attrNamesTypes: AttrNamesTypes, typename: string) => {
     });
 
     return selectedWfsAttributes;
-};
-
-export default getAttrNameType;
+}
