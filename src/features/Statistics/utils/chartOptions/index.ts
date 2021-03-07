@@ -1,10 +1,9 @@
 import Highcharts from 'highcharts';
 
-import ChartOptions from './models';
-import { State } from '../../context/models';
-import consts from './constants';
+import ChartOptions from '../../models';
+import consts from '../../constants';
 
-const chartOptions = (chart: string): ChartOptions => {
+export default function chartOptions(chart: string): ChartOptions {
     return {
         chart: {
             type: 'bar'
@@ -81,36 +80,4 @@ const chartOptions = (chart: string): ChartOptions => {
         },
         series: chart === 'time' ? consts.timeSeries : consts.numberSeries
     };
-};
-
-const getTotalGetRequestNumber = (state: State): number => {
-    return (
-        state.getGetCapNumber +
-        state.getDescFeatTypeNumber +
-        state.getGetPropValNumber +
-        state.getGetPropValFiltNumber
-    );
-};
-
-const getTotalPostRequestNumber = (state: State): number => {
-    return (
-        state.postGetCapNumber +
-        state.postDescFeatTypeNumber +
-        state.postGetPropValNumber +
-        state.postGetPropValFiltNumber
-    );
-};
-
-const getMaxRequestNumber = (state: State) => {
-    return Math.max(
-        getTotalGetRequestNumber(state),
-        getTotalPostRequestNumber(state)
-    );
-};
-
-export {
-    chartOptions,
-    getTotalGetRequestNumber,
-    getTotalPostRequestNumber,
-    getMaxRequestNumber
-};
+}
