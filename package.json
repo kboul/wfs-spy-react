@@ -37,6 +37,13 @@
         "lint": "eslint '*/**/*.{ts,tsx}'",
         "test:coverage": "npm test -- --coverage --watchAll=false"
     },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.{ts,tsx}",
+            "!src/index.tsx",
+            "!src/serviceWorker.ts"
+        ]
+    },
     "eslintConfig": {
         "extends": "react-app"
     },

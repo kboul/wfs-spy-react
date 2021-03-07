@@ -13,7 +13,7 @@ describe('getValRefType', () => {
         test('returns the correct valueReference type when attribute has string type', () => {
             args.valueReference = 'TYPEOFAREA';
             const output = getValRefType(args);
-            expect(output).toEqual('string');
+            expect(output).toBe('string');
         });
 
         test('returns the correct valueReference type when attribute has decimal type', () => {
