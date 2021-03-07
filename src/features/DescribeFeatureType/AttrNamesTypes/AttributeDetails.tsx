@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
 import { TablePagination, TotalItems } from '../../../components';
 import { useAppContext } from '../../../context';
-import getAttrNameType from './utils';
+import { getAttrNameTypeList } from './utils';
 import { extractAttrNamesTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
 import globalConsts from '../../../config';
@@ -16,7 +16,7 @@ export default function AttributeDetails() {
     const attrNamesTypes = extractAttrNamesTypes(descFeatTypeResp);
     const namesLength = Object.keys(attrNamesTypes.names).length;
 
-    const attrNameType = getAttrNameType(attrNamesTypes, typename);
+    const attrNameType = getAttrNameTypeList(typename, attrNamesTypes);
 
     const pageSize = 10;
     const pagesCount =

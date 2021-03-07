@@ -1,10 +1,10 @@
-import { AttrNamesTypes } from '../../../wfsMetadata/models';
-import { getFullTypename } from '../../../utils';
-import AttrNameTypeProps from './models';
+import { AttrNamesTypes } from '../../../../../wfsMetadata/models';
+import { getFullTypename } from '../../../../../utils';
+import AttrNameTypeProps from '../../models';
 
-export default function getAttrNameType(
-    attrNamesTypes: AttrNamesTypes,
-    typename: string
+export default function getAttrNameTypeList(
+    typename: string,
+    attrNamesTypes: AttrNamesTypes
 ) {
     const slctTypenameAttrNames: string[] =
         attrNamesTypes.names[getFullTypename(typename)];
