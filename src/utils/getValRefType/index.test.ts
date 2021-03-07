@@ -1,28 +1,63 @@
 import getValRefType from '.';
 import valueReferences from '../../tests/constants/valueReferences';
+import consts from '../../context/constants';
 
 describe('getValRefType', () => {
-    const args = {
-        typename: 'mais:ATCCS_ESMM',
-        valueReference: '',
-        valueReferences
-    };
+    describe('all arguments are defined', () => {
+        const args = {
+            typename: 'mais:ATCCS_ESMM',
+            valueReference: '',
+            valueReferences
+        };
 
-    test('returns the correct valueReference type when attribute has string type', () => {
-        args.valueReference = 'TYPEOFAREA';
-        const valueReferenceType = getValRefType(args);
-        expect(valueReferenceType).toEqual('string');
+        test('returns the correct valueReference type when attribute has string type', () => {
+            args.valueReference = 'TYPEOFAREA';
+            const output = getValRefType(args);
+            expect(output).toEqual('string');
+        });
+
+        test('returns the correct valueReference type when attribute has decimal type', () => {
+            args.valueReference = 'MSID';
+            const output = getValRefType(args);
+            expect(output).toEqual('decimal');
+        });
+
+        test('returns the correct valueReference type when attribute has geometry type', () => {
+            args.valueReference = 'GEOMETRY';
+            const output = getValRefType(args);
+            expect(output).toEqual('gml:SurfacePropertyType');
+        });
     });
 
-    test('returns the correct valueReference type when attribute has decimal type', () => {
-        args.valueReference = 'MSID';
-        const valueReferenceType = getValRefType(args);
-        expect(valueReferenceType).toEqual('decimal');
-    });
+    describe('an argument is not defined', () => {
+        test('return empty string when typename is not defined or is an empty string', () => {
+            const args = {
+                typename: '',
+                valueReference: 'GEOMETRY',
+                valueReferences
+            };
+            const output = getValRefType(args);
+            expect(output).toEqual('');
+        });
 
-    test('returns the correct valueReference type when attribute has geometry type', () => {
-        args.valueReference = 'GEOMETRY';
-        const valueReferenceType = getValRefType(args);
-        expect(valueReferenceType).toEqual('gml:SurfacePropertyType');
+        test('return empty string when typename is not defined or is an empty string', () => {
+            const args = {
+                typename: 'TYPEOFAREA',
+                valueReference: '',
+                valueReferences
+            };
+            const output = getValRefType(args);
+            expect(output).toEqual('');
+        });
+
+        test('return empty string when valueReferences" names list is empty', () => {
+            const args = {
+                typename: 'TYPEOFAREA',
+                valueReference: 'GEOMETRY',
+                valueReferences: consts.valueReferences
+            };
+            const output = getValRefType(args);
+            expect(output).toEqual('');
+        });
     });
 });
