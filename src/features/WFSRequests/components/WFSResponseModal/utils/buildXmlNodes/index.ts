@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import constructXmlAttributes from './constructXmlAttributes';
-import makeSpace from './makeSpace';
+import buildXmlAttributes from '../buildXmlAttributes';
+import makeSpace from '../makeSpace';
 
-export default function constructXmlNodes(
+export default function buildXmlNodes(
     rootElement: XMLDocument | ChildNode,
     level: number
 ): string {
@@ -20,12 +20,12 @@ export default function constructXmlNodes(
 
             txt += `<span style='color:black'><b>&lt;</b></span><span style='color:brown'><b>${
                 rootElementChildNode.nodeName
-            }</b></span>${constructXmlAttributes(
+            }</b></span>${buildXmlAttributes(
                 rootElementChildNode
             )}<span style='color:black'><b>&gt;</b></span>`;
 
             level++;
-            txt += constructXmlNodes(rootElementChildNode, level);
+            txt += buildXmlNodes(rootElementChildNode, level);
             level--;
 
             if (rootElementChildNode.nodeName === 'parsererror')

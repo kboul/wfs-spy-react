@@ -1,4 +1,4 @@
-export default function xmlAttributes(childNode: any): string {
+export default function buildXmlAttributes(childNode: any): string {
     let i;
     let txt = '';
 

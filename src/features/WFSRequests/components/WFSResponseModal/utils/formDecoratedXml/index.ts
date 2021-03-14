@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import constructXmlNodes from './constructXmlNodes';
+import buildXmlNodes from '../buildXmlNodes';
 
 export default function formDecoratedXml(xml: XMLDocument, level: number) {
     const rootElement = xml.documentElement;
@@ -35,7 +35,7 @@ export default function formDecoratedXml(xml: XMLDocument, level: number) {
     )}</span><span style='color:black'><b>&gt;</b></span>`; // &lt; stands for < and &gt; stands for >
 
     level = 1;
-    xmlOutput += constructXmlNodes(rootElement, level);
+    xmlOutput += buildXmlNodes(rootElement, level);
     level = 0;
 
     xmlOutput += `<br><span style='color:black'><b>&lt;/</b></span><span style='color:brown'><b>${rootElement.nodeName}</b></span><span style='color:black'><b>&gt;</b></span>`;
