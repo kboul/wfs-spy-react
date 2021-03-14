@@ -1,4 +1,4 @@
-import { State } from '../../../../context/models';
+import { State } from '../../../../../context/models';
 
 export default function disableRespBtns(state: State, label: string) {
     const labelHasResponse = label.includes('Response');
@@ -11,6 +11,7 @@ export default function disableRespBtns(state: State, label: string) {
         disableGetRespBtn = state.postRequestClicked;
         disablePostRespBtn = state.getRequestClicked;
     }
+
     if (labelHasFilterResponse) {
         disableGetRespBtn = state.postFilterRequestClicked;
         disablePostRespBtn = state.getFilterRequestClicked;
