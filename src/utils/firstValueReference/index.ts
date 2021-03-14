@@ -10,11 +10,10 @@ export default function firstValueReference(
     const attrNamesList = valueReferences?.names[fullTypename];
     const attrTypesList = valueReferences?.types[fullTypename];
 
-    let valueReference;
+    let valueReference = '';
     if (attrTypesList)
         valueReference = hasGeometry(attrTypesList[0])
             ? attrNamesList[1]
             : attrNamesList[0];
-
     return valueReference;
 }

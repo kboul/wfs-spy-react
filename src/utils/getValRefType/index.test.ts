@@ -30,7 +30,7 @@ describe('getValRefType', () => {
     });
 
     describe('an argument is not defined', () => {
-        test('return empty string when typename is not defined or is an empty string', () => {
+        test('returns an empty string when typename is not defined or is an empty string', () => {
             const args = {
                 typename: '',
                 valueReference: 'GEOMETRY',
@@ -40,7 +40,7 @@ describe('getValRefType', () => {
             expect(output).toEqual('');
         });
 
-        test('return empty string when typename is not defined or is an empty string', () => {
+        test('returns an empty string when typename is not defined or is an empty string', () => {
             const args = {
                 typename: 'TYPEOFAREA',
                 valueReference: '',
@@ -50,7 +50,7 @@ describe('getValRefType', () => {
             expect(output).toEqual('');
         });
 
-        test('return empty string when valueReferences" names list is empty', () => {
+        test('returns an empty string when valueReferences" names list is empty', () => {
             const args = {
                 typename: 'TYPEOFAREA',
                 valueReference: 'GEOMETRY',
