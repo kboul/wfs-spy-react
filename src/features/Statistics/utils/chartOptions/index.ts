@@ -1,5 +1,3 @@
-import Highcharts from 'highcharts';
-
 import ChartOptions from '../../models';
 import consts from '../../constants';
 
@@ -69,10 +67,7 @@ export default function chartOptions(chart: string): ChartOptions {
             y: -10,
             floating: true,
             borderWidth: 1,
-            backgroundColor:
-                ((Highcharts as any).theme &&
-                    (Highcharts as any).theme.legendBackgroundColor) ||
-                '#FFFFFF',
+            backgroundColor: '#FFFFFF',
             shadow: true
         },
         credits: {

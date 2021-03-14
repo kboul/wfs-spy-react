@@ -2,8 +2,8 @@ import truncate from '.';
 
 describe('checkAbstractLength', () => {
     test('returns - when input is an empty string', () => {
-        const abstract = truncate('');
-        expect(abstract).toEqual('-');
+        const output = truncate('');
+        expect(output).toEqual('-');
     });
 
     test('returns the input truncated with 3 dots when its length is bigger than 50 characters ', () => {
