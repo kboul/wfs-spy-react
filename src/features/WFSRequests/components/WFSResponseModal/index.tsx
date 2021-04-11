@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { changeState, types, useAppContext } from '../../../../context';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import TotalItemsProps from './model';
 
 const totalItems: string = 'Total Items:';

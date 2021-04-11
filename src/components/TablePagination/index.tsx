@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import { ClickEvent } from '../../models/events';

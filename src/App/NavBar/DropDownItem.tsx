@@ -1,4 +1,3 @@
-import React from 'react';
 import { DropdownItem } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 

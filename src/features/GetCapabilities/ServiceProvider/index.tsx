@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col } from 'reactstrap';
 
 import Panel from '../../../components/Panel';

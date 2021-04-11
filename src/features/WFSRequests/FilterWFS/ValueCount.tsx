@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../context';
