@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
 import { getCompOperList, getValRefType } from '../../utils';
-import globalConsts from '../../config';
+import globalConsts from '../../constants';
 import consts from '../constants';
 
 const urlValidation = 'Url is required';

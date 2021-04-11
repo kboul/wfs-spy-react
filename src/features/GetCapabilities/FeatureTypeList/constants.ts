@@ -1,4 +1,4 @@
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import { splitStrOnUpperCase } from '../../../utils';
 
 const { noOperation, tags } = globalConsts;

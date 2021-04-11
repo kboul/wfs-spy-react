@@ -1,8 +1,7 @@
-import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import { ChangeEvent } from '../../../models/events';
 import sharedStyles from '../shared.module.sass';
 

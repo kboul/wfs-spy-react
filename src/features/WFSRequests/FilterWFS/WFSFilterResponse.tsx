@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
 import TableButtons from '../components/TableButtons';
@@ -12,7 +11,7 @@ import {
     isMethodGet
 } from '../utils';
 import { formGetFilterRequest, formPostFilterRequest } from './utils';
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import sharedStyles from '../shared.module.sass';
 
 const consts = {

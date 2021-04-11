@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import TableButtons from '../../components/TableButtons';
@@ -16,7 +15,7 @@ import {
     isMethodGet,
     adjustProxyToUrl
 } from '../../utils';
-import globalConsts from '../../../../config';
+import globalConsts from '../../../../constants';
 import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
 

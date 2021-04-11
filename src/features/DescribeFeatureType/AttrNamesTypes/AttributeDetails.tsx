@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Table } from 'reactstrap';
 
 import Typename from '../../WFSRequests/ExploreWFS/Typename';
@@ -7,7 +7,7 @@ import { useAppContext } from '../../../context';
 import { getAttrNameTypeList } from './utils';
 import { extractAttrNamesTypes } from '../../../wfsMetadata';
 import { ClickEvent } from '../../../models/events';
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import consts from './constants';
 
 export default function AttributeDetails() {

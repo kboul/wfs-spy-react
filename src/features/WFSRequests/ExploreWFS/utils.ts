@@ -1,6 +1,6 @@
 import { getRootRequest } from '../../../utils';
 import { State } from '../../../context/models';
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import { concatPrefixesAndUris } from '../utils';
 
 const { noOption, requests } = globalConsts;

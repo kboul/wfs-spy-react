@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
-import globalConsts from '../../config';
+import globalConsts from '../../constants';
 
 const toasts = {
     getCapDescFeatTypeFirst:

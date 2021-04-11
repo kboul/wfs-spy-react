@@ -1,5 +1,5 @@
 import { Funcs } from './models';
-import globalConsts from '../config';
+import globalConsts from '../constants';
 import parseXML from './parseXML';
 
 const { tags } = globalConsts;

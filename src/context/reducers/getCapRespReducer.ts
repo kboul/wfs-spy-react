@@ -1,5 +1,5 @@
 import { State, Action } from '../models';
-import globalConsts from '../../config';
+import globalConsts from '../../constants';
 import { extractXmlNamespaces } from '../../wfsMetadata';
 
 export default function getCapRespReducer(state: State, action: Action): State {
