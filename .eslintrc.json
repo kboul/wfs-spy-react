@@ -68,8 +68,7 @@
                     "**/*.test.ts",
                     "**/*.test.tsx",
                     "./src/setupTests.ts",
-                    "./src/mocks/*",
-                    "./src/tests/*"
+                    "./src/tests/*/*"
                 ]
             }
         ]
