@@ -1,6 +1,7 @@
 import { renderWithContext, screen, fireEvent } from '../../../../tests/utils';
 
 import Version from '.';
+import consts from '../../../../constants';
 
 let version: HTMLElement;
 
@@ -14,10 +15,10 @@ test('version dropdown appears in the page', () => {
 });
 
 test('version value is 2.0.0 initially', () => {
-    expect(version).toHaveValue('2.0.0');
+    expect(version).toHaveValue(consts.versions[0]);
 });
 
 test('version value is updated when user selects other option', () => {
-    fireEvent.change(version, { target: { value: '2.0.2' } });
-    expect(version).toHaveValue('2.0.2');
+    fireEvent.change(version, { target: { value: consts.versions[1] } });
+    expect(version).toHaveValue(consts.versions[1]);
 });
