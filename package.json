@@ -34,7 +34,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint '*/**/*.{ts,tsx}'",
+        "lint": "eslint '*/**/*.{ts,tsx}' --max-warnings=0",
         "test:coverage": "npm test -- --coverage --watchAll=false",
         "prepare": "husky install"
     },
