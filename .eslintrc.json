@@ -45,7 +45,6 @@
         "react/jsx-indent": "off",
         "react/jsx-indent-props": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-        "no-console": "off",
         "import/prefer-default-export": "off",
         "import/extensions": [
             "error",
@@ -60,13 +59,5 @@
         ],
         "arrow-body-style": "off",
         "react/react-in-jsx-scope": "off"
-    },
-    "overrides": [
-        {
-            "files": ["serviceWorker.ts"],
-            "rules": {
-                "no-use-before-define": "off"
-            }
-        }
-    ]
+    }
 }
