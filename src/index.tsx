@@ -10,13 +10,9 @@ import './index.sass';
 
 import App from './App';
 
-import * as serviceWorker from './serviceWorker';
-
 ReactDOM.render(
     <Router basename={`${process.env.PUBLIC_URL}/`}>
         <App />
     </Router>,
     document.getElementById('root')
 );
-
-serviceWorker.unregister();
