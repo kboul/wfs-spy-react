@@ -1,6 +1,6 @@
 import parseXML from './parseXML';
 import { AttrNamesTypes } from './models';
-import globalConsts from '../config';
+import globalConsts from '../constants';
 
 const { tags } = globalConsts;
 

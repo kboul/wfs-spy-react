@@ -1,4 +1,4 @@
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 
 const { noOperation } = globalConsts;
 

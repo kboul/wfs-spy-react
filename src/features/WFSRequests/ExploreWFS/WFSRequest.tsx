@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import TableButtons from '../components/TableButtons';

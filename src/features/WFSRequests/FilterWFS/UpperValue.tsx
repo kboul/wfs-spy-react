@@ -1,10 +1,9 @@
-import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { useAppContext, changeState, types } from '../../../context';
 import { isPropBetween } from '../utils';
 import { ChangeEvent } from '../../../models/events';
-import globalConsts from '../../../config';
+import globalConsts from '../../../constants';
 import sharedStyles from '../shared.module.sass';
 
 const consts = { upperValue: 'Enter upper value' };

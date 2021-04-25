@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { State, Action } from '../models';
 import { getCompOperList, getValRefType } from '../../utils';
-import globalConsts from '../../config';
+import globalConsts from '../../constants';
 import consts from '../constants';
 
 const urlValidation = 'Url is required';
@@ -91,7 +91,11 @@ export default function wfsRequestReducer(state: State, action: Action) {
         state.typename !== noOption &&
         state.valueReference
     ) {
-        const valRefType = getValRefType(state);
+        const valRefType = getValRefType({
+            typename: state.typename,
+            valueReference: state.valueReference,
+            valueReferences: state.valueReferences
+        });
         const selectedTypValueRef = `typeName: ${state.typename} \nvalueReference: ${state.valueReference}`;
         return {
             ...newState,

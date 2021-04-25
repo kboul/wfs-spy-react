@@ -1,5 +1,5 @@
 import { State, Action } from '../models';
-import globalConsts from '../../config';
+import globalConsts from '../../constants';
 
 export default function typenameReducer(state: State, action: Action): State {
     const { typename } = action.payload;

@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import globalConsts from '../config';
+import globalConsts from '../constants';
 import parseXML from './parseXML';
 
 const maxAttrValuesLength = 20000;

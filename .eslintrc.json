@@ -58,7 +58,8 @@
                 "mjs": "never"
             }
         ],
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "react/react-in-jsx-scope": "off"
     },
     "overrides": [
         {

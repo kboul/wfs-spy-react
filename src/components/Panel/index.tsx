@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardBody, Collapse, CardTitle } from 'reactstrap';
 
 import PanelProps from './model';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -7,9 +7,9 @@ import Panel from '../../components/Panel';
 import { useAppContext } from '../../context';
 import {
     chartOptions,
+    getMaxRequestNumber,
     getTotalGetRequestNumber,
-    getTotalPostRequestNumber,
-    getMaxRequestNumber
+    getTotalPostRequestNumber
 } from './utils';
 import ChartOptions from './models';
 import consts from './constants';

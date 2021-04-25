@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Form } from 'reactstrap';
 
 import SelectedTypValueRefer from './SelectedTypValueRefer';

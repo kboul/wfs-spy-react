@@ -1,4 +1,4 @@
-import globalConsts from '../config';
+import globalConsts from '../constants';
 import consts from './constants';
 
 const initialState = {

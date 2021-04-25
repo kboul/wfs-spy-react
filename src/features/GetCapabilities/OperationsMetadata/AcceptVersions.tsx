@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useAppContext } from '../../../context';
 import { extractAcceptVersions } from '../../../wfsMetadata';
 import consts from './constants';
