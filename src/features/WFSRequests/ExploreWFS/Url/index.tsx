@@ -28,6 +28,7 @@ export default function Url() {
                     className={`${sharedStyles.textarea} form-control ${
                         state.errors.url && 'is-invalid'
                     } `}
+                    id="url"
                     innerRef={urlRef}
                     onBlur={handleBlur}
                     onChange={handleChange}
