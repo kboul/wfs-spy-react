@@ -9,7 +9,7 @@ beforeEach(() => {
     service = screen.getByLabelText('service');
 });
 
-test('service input appears in the page', () => {
+test('service input appears on the page', () => {
     expect(service).toBeInTheDocument();
 });
 

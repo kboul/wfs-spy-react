@@ -9,7 +9,7 @@ beforeEach(() => {
     sortBy = screen.getByLabelText('sortBy');
 });
 
-test('sortBy input appears in the page', () => {
+test('sortBy input appears on the page', () => {
     expect(sortBy).toBeInTheDocument();
 });
 
