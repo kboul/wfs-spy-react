@@ -4,29 +4,32 @@ import { renderWithContext, screen, fireEvent } from '../../../../tests/utils';
 
 import Url from '.';
 
-let urlInput: HTMLElement;
+let url: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<Url />);
-    urlInput = screen.getByLabelText('url');
+    url = screen.getByLabelText('url');
 });
 
-test('appears in the page', () => {
-    expect(urlInput).toBeInTheDocument();
+test('url input appears in the page', () => {
+    expect(url).toBeInTheDocument();
 });
 
-test('is empty when page lands', () => {
-    expect(urlInput).toHaveValue('');
+test('url input is empty initially', () => {
+    expect(url).toHaveValue('');
 });
 
-test('text has purple color when focused & white when blurred', () => {
-    expect(urlInput).toHaveStyle({ backgroundColor: 'rgb(238, 238, 255)' });
-    fireEvent.blur(urlInput);
-    expect(urlInput).toHaveStyle({ backgroundColor: 'rgb(255, 255, 255)' });
+test('url textbox has purple color when focused & white when blurred', () => {
+    expect(url).toHaveStyle({ backgroundColor: 'rgb(238, 238, 255)' });
+    fireEvent.blur(url);
+    expect(url).toHaveStyle({ backgroundColor: 'rgb(255, 255, 255)' });
 });
 
-test('text updates when user types a value', () => {
+test('url text updates when user types a value', () => {
     const value = 'http://domain.com';
-    userEvent.type(urlInput, value);
-    expect(urlInput).toHaveValue(value);
+    userEvent.type(url, value);
+    expect(url).toHaveValue(value);
+
+    userEvent.clear(url);
+    expect(url).toHaveValue('');
 });

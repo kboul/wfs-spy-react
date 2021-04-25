@@ -20,7 +20,7 @@ export default function Url() {
 
     return (
         <FormGroup row>
-            <Label className={urlStyle} for="url" md={2}>
+            <Label className={urlStyle} for={consts.url} md={2}>
                 {consts.url}
             </Label>
             <Col md={9}>
@@ -28,7 +28,7 @@ export default function Url() {
                     className={`${sharedStyles.textarea} form-control ${
                         state.errors.url && 'is-invalid'
                     } `}
-                    id="url"
+                    id={consts.url}
                     innerRef={urlRef}
                     onBlur={handleBlur}
                     onChange={handleChange}
