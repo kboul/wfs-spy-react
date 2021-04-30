@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { useAppContext, changeState, types } from '../../../context';
-import { ChangeEvent } from '../../../models/events';
-import { firstValueReference } from '../../../utils';
-import sharedStyles from '../shared.module.sass';
-
-const consts = { typename: 'typeName' };
+import { useAppContext, changeState, types } from '../../../../context';
+import { ChangeEvent } from '../../../../models/events';
+import { firstValueReference } from '../../../../utils';
+import consts from './constants';
+import sharedStyles from '../../shared.module.sass';
 
 export default function Typename() {
     const { state, dispatch } = useAppContext();
@@ -35,12 +34,16 @@ export default function Typename() {
 
     return (
         <FormGroup row>
-            <Label className={sharedStyles.labelFont} for="typeName" md={2}>
+            <Label
+                className={sharedStyles.labelFont}
+                for={consts.typename}
+                md={2}>
                 {consts.typename}
             </Label>
             <Col md={9}>
                 <Input
                     disabled={!state.typenames.length}
+                    id={consts.typename}
                     onChange={handleChange}
                     type="select"
                     value={state.typename}>
