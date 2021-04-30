@@ -11,11 +11,8 @@ beforeEach(() => {
     url = screen.getByLabelText('url');
 });
 
-test('url input appears on the page', () => {
+test('url input appears on the page with empty initial value', () => {
     expect(url).toBeInTheDocument();
-});
-
-test('url input is empty initially', () => {
     expect(url).toHaveValue('');
 });
 
