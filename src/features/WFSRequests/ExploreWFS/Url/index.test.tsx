@@ -11,7 +11,7 @@ beforeEach(() => {
     url = screen.getByLabelText(consts.label);
 });
 
-test('url input appears on the page with empty initial value', () => {
+test('url input appears on the page', () => {
     expect(url).toBeInTheDocument();
 });
 

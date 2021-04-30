@@ -10,7 +10,7 @@ beforeEach(() => {
     version = screen.getByLabelText(consts.label);
 });
 
-test('version dropdown appears on the page with initial value 2.0.0', () => {
+test('version dropdown appears on the page', () => {
     expect(version).toBeInTheDocument();
 });
 

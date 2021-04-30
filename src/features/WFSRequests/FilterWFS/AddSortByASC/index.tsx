@@ -1,10 +1,14 @@
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { useAppContext, changeState, types } from '../../../context';
-import { ChangeEvent } from '../../../models/events';
-import sharedStyles from '../shared.module.sass';
+import { useAppContext, changeState, types } from '../../../../context';
+import { ChangeEvent } from '../../../../models/events';
+import sharedStyles from '../../shared.module.sass';
 
-const consts = { options: ['no', 'yes'], addSortByAsc: 'Add SortBy ASC' };
+export const consts = {
+    id: 'addSortByAsc',
+    label: 'Add SortBy ASC',
+    options: ['no', 'yes']
+};
 
 export default function AddSortByASC() {
     const { state, dispatch } = useAppContext();
@@ -17,16 +21,17 @@ export default function AddSortByASC() {
     return (
         <FormGroup row>
             <Label
-                for="addSortByAsc"
-                md={4}
-                className={`${sharedStyles.labelFont} mb-2`}>
-                {consts.addSortByAsc}
+                className={`${sharedStyles.labelFont} mb-2`}
+                for={consts.id}
+                md={4}>
+                {consts.label}
             </Label>
             <Col md={7}>
                 <Input
-                    type="select"
                     disabled={!state.getPropValResp}
+                    id={consts.id}
                     onChange={handleChange}
+                    type="select"
                     value={state.addSortBy}>
                     {consts.options.map(option => (
                         <option key={option}>{option}</option>

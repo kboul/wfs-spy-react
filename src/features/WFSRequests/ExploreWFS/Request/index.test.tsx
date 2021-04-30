@@ -10,7 +10,7 @@ beforeEach(() => {
     request = screen.getByLabelText(consts.label);
 });
 
-test('request dropdown appears on the page with initial value GetCapabilities', () => {
+test('request dropdown appears on the page', () => {
     expect(request).toBeInTheDocument();
 });
 
