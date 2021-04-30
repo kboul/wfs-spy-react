@@ -1,14 +1,13 @@
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import TableButtons from '../components/TableButtons';
-import { useAppContext, changeState, types } from '../../../context';
-import { formGetRequest, formPostRequest } from './utils';
-import { isMethodGet, requestBtnStatus } from '../utils';
-import sharedStyles from '../shared.module.sass';
+import TableButtons from '../../components/TableButtons';
+import { useAppContext, changeState, types } from '../../../../context';
+import { formGetRequest, formPostRequest } from '../utils';
+import { isMethodGet, requestBtnStatus } from '../../utils';
+import consts from './constants';
+import sharedStyles from '../../shared.module.sass';
 
-const consts = { formWfsRequest: 'Form WFS Request:', request: 'Request' };
-
-export default function WFSRequest() {
+export default function WfsRequest() {
     const { state, dispatch } = useAppContext();
 
     const handleClick = (httpMethod: string) => {
@@ -22,11 +21,14 @@ export default function WFSRequest() {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label className={sharedStyles.labelFont} for="wfsRequest">
-                    {consts.formWfsRequest}
+                <Label
+                    className={sharedStyles.labelFont}
+                    for={consts.wfsRequest}>
+                    {consts.wfsRequestLabel}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
+                    id={consts.wfsRequest}
                     disabled
                     rows="10"
                     type="textarea"

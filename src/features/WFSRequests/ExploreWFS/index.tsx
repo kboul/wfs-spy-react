@@ -8,8 +8,8 @@ import Typename from './Typename';
 import ValueReference from './ValueReference';
 import SortBy from './SortBy';
 import HiddenField from './HiddenField';
-import WFSRequest from './WFSRequest';
-import WFSResponse from './WFSResponse';
+import WfsRequest from './WfsRequest';
+import WfsResponse from './WfsResponse';
 import { useAppContext } from '../../../context';
 import { isPropBetween } from '../utils';
 import sharedStyles from '../shared.module.sass';
@@ -42,8 +42,8 @@ export default function ExploreWFS() {
                     condition={isPropBetween(compOper)}
                     displayTimes={1}
                 />
-                <WFSRequest />
-                <WFSResponse />
+                <WfsRequest />
+                <WfsResponse />
             </Form>
         </Col>
     );

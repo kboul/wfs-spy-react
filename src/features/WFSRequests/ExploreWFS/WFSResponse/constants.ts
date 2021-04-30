@@ -1,4 +1,5 @@
 export default {
     response: 'Response',
-    responseMetadata: 'Response - Metadata & Corresponding operations:'
+    wfsResponse: 'wfsResponse',
+    wfsResponseLabel: 'Response - Metadata & Corresponding operations:'
 };
