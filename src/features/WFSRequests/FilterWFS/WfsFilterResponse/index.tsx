@@ -1,25 +1,21 @@
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../components/TableButtons';
-import { useAppContext, changeState, types } from '../../../context';
-import wfsApi from '../../../api/wfsApi';
+import TableButtons from '../../components/TableButtons';
+import { useAppContext, changeState, types } from '../../../../context';
+import wfsApi from '../../../../api/wfsApi';
 import {
     adjustProxyToUrl,
     errorMessage,
     getOrPost,
     getTimeInMs,
     isMethodGet
-} from '../utils';
-import { formGetFilterRequest, formPostFilterRequest } from './utils';
-import globalConsts from '../../../constants';
-import sharedStyles from '../shared.module.sass';
+} from '../../utils';
+import { formGetFilterRequest, formPostFilterRequest } from '../utils';
+import globalConsts from '../../../../constants';
+import consts from './constants';
+import sharedStyles from '../../shared.module.sass';
 
-const consts = {
-    filterResponseMetadata:
-        'Filtered Response - Metadata using Filter parameters:'
-};
-
-export default function WFSFilterResponse() {
+export default function WfsFilterResponse() {
     const { state, dispatch } = useAppContext();
 
     const disabled = !state.getPropValResp || !state.wfsFilterRequest;
@@ -69,12 +65,13 @@ export default function WFSFilterResponse() {
             <Col md={{ size: 10, offset: 1 }}>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="wfsFilterResponse">
-                    {consts.filterResponseMetadata}
+                    for={consts.wfsFilterResponse}>
+                    {consts.wfsFilterResponseLabel}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
                     disabled
+                    id={consts.wfsFilterResponse}
                     rows="10"
                     type="textarea"
                     value={state.wfsFilterResponse}

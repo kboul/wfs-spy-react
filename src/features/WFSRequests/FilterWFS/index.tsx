@@ -11,8 +11,8 @@ import AddSortByASC from './AddSortByASC';
 import CompOperDropDown from './CompOperDropDown';
 import LowerValue from './LowerValue';
 import UpperValue from './UpperValue';
-import WFSFilterRequest from './WFSFilterRequest';
-import WFSFilterResponse from './WFSFilterResponse';
+import WfsFilterRequest from './WfsFilterRequest';
+import WfsFilterResponse from './WfsFilterResponse';
 import sharedStyles from '../shared.module.sass';
 
 const containerStyle = { backgroundColor: 'rgb(224, 224, 224)' };
@@ -35,8 +35,8 @@ export default function FilterWFS() {
                 <UpperValue />
                 <FilteredValueCount />
                 <AddSortByASC />
-                <WFSFilterRequest />
-                <WFSFilterResponse />
+                <WfsFilterRequest />
+                <WfsFilterResponse />
             </Form>
         </Col>
     );
