@@ -77,14 +77,12 @@ export default function WfsResponse() {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label
-                    className={sharedStyles.labelFont}
-                    for={consts.wfsResponse}>
-                    {consts.wfsResponseLabel}
+                <Label className={sharedStyles.labelFont} for={consts.id}>
+                    {consts.label}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
-                    id={consts.wfsResponse}
+                    id={consts.id}
                     disabled
                     rows="10"
                     type="textarea"
@@ -93,7 +91,7 @@ export default function WfsResponse() {
                 <TableButtons
                     disabled={!state.wfsRequest}
                     hasModal
-                    label={consts.response}
+                    label={consts.buttonsLabel}
                     onGetClick={() => handleClick('GET')}
                     onGetModalClick={() => handleModalClick('GET')}
                     onPostClick={() => handleClick('POST')}

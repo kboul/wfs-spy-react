@@ -3,8 +3,9 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { useAppContext, changeState, types } from '../../../../context';
 import { getFullTypename, hasGeometry } from '../../../../utils';
 import { ChangeEvent } from '../../../../models/events';
-import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
+
+export const consts = { label: 'valueRefer.' };
 
 export default function ValueReference() {
     const { state, dispatch } = useAppContext();
@@ -23,16 +24,13 @@ export default function ValueReference() {
 
     return (
         <FormGroup row>
-            <Label
-                className={sharedStyles.labelFont}
-                for={consts.valueReference}
-                md={2}>
-                {consts.valueReference}
+            <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
                     disabled={!state.descFeatTypeResp}
-                    id={consts.valueReference}
+                    id={consts.label}
                     onChange={handleChange}
                     type="select"
                     value={state.valueReference}>

@@ -9,7 +9,7 @@ beforeEach(() => {
 
 test('wfsResponse textarea appears on the page and has no value', () => {
     const wfsResponse = screen.getByRole('textbox', {
-        name: consts.wfsResponseLabel
+        name: consts.label
     });
     expect(wfsResponse).toBeInTheDocument();
     expect(wfsResponse).toHaveValue('');

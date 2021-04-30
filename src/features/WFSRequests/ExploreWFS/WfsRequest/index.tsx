@@ -21,14 +21,12 @@ export default function WfsRequest() {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label
-                    className={sharedStyles.labelFont}
-                    for={consts.wfsRequest}>
-                    {consts.wfsRequestLabel}
+                <Label className={sharedStyles.labelFont} for={consts.id}>
+                    {consts.label}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
-                    id={consts.wfsRequest}
+                    id={consts.id}
                     disabled
                     rows="10"
                     type="textarea"
@@ -36,7 +34,7 @@ export default function WfsRequest() {
                 />
                 <TableButtons
                     disabled={false}
-                    label={consts.request}
+                    label={consts.buttonsLabel}
                     onGetClick={() => handleClick('GET')}
                     onPostClick={() => handleClick('POST')}
                 />

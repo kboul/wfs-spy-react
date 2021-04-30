@@ -1,5 +1,5 @@
 export default {
-    request: 'Request',
-    wfsRequest: 'wfsRequest',
-    wfsRequestLabel: 'Form WFS Request:'
+    buttonsLabel: 'Request',
+    id: 'wfsRequest',
+    label: 'Form WFS Request:'
 };

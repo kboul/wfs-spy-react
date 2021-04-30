@@ -5,7 +5,7 @@ import globalConsts from '../../../../constants';
 import { ChangeEvent } from '../../../../models/events';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = { request: 'request' };
+export const consts = { label: 'request' };
 
 export default function Request() {
     const { state, dispatch } = useAppContext();
@@ -17,15 +17,12 @@ export default function Request() {
 
     return (
         <FormGroup row>
-            <Label
-                className={sharedStyles.labelFont}
-                for={consts.request}
-                md={2}>
-                {consts.request}
+            <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
-                    id={consts.request}
+                    id={consts.label}
                     type="select"
                     value={state.request}
                     onChange={handleChange}>

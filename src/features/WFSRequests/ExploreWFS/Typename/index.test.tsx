@@ -1,13 +1,12 @@
 import { renderWithContext, screen } from '../../../../tests/utils';
 
-import Typename from '.';
-import consts from './constants';
+import Typename, { consts } from '.';
 
 let typeName: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<Typename />);
-    typeName = screen.getByLabelText(consts.typename);
+    typeName = screen.getByLabelText(consts.label);
 });
 
 test('typeName dropdown appears on the page', () => {

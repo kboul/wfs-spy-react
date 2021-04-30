@@ -6,11 +6,14 @@ let service: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<Service />);
-    service = screen.getByLabelText(consts.service);
+    service = screen.getByLabelText(consts.label);
 });
 
-test('service input appears on the page with value WFS', () => {
+test('service input appears on the page', () => {
     expect(service).toBeInTheDocument();
+});
+
+test('service input has initial value WFS', () => {
     expect(service).toHaveValue('WFS');
 });
 

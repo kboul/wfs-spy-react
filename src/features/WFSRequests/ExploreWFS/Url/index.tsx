@@ -6,7 +6,7 @@ import { ChangeEvent } from '../../../../models/events';
 import sharedStyles from '../../shared.module.sass';
 import styles from './index.module.sass';
 
-const consts = { url: 'url' };
+export const consts = { label: 'url' };
 
 const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
 
@@ -20,15 +20,15 @@ export default function Url() {
 
     return (
         <FormGroup row>
-            <Label className={urlStyle} for={consts.url} md={2}>
-                {consts.url}
+            <Label className={urlStyle} for={consts.label} md={2}>
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
                     className={`${sharedStyles.textarea} form-control ${
                         state.errors.url && 'is-invalid'
                     } `}
-                    id={consts.url}
+                    id={consts.label}
                     innerRef={urlRef}
                     onBlur={handleBlur}
                     onChange={handleChange}

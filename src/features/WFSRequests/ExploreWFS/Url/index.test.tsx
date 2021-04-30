@@ -2,17 +2,20 @@ import userEvent from '@testing-library/user-event';
 
 import { renderWithContext, screen, fireEvent } from '../../../../tests/utils';
 
-import Url from '.';
+import Url, { consts } from '.';
 
 let url: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<Url />);
-    url = screen.getByLabelText('url');
+    url = screen.getByLabelText(consts.label);
 });
 
 test('url input appears on the page with empty initial value', () => {
     expect(url).toBeInTheDocument();
+});
+
+test('url input has empty initial value', () => {
     expect(url).toHaveValue('');
 });
 

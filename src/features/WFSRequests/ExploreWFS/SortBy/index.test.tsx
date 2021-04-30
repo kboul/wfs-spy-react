@@ -1,13 +1,12 @@
 import { renderWithContext, screen } from '../../../../tests/utils';
 
-import SortBy from '.';
-import consts from './constants';
+import SortBy, { consts } from '.';
 
 let sortBy: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<SortBy />);
-    sortBy = screen.getByLabelText(consts.sortBy);
+    sortBy = screen.getByLabelText(consts.label);
 });
 
 test('sortBy input appears on the page', () => {

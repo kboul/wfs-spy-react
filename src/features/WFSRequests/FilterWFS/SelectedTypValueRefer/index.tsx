@@ -1,15 +1,18 @@
 import { CSSProperties } from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { useAppContext } from '../../../context';
-import sharedStyles from '../shared.module.sass';
+import { useAppContext } from '../../../../context';
+import sharedStyles from '../../shared.module.sass';
 
 const labelStyle: CSSProperties = {
     paddingTop: '20px',
     whiteSpace: 'pre-wrap'
 };
 
-const consts = { selectedTypValueRef: 'Selected typeName\n & valueReference' };
+export const consts = {
+    id: 'selectedTypValueRef',
+    label: 'Selected typeName\n & valueReference'
+};
 
 export default function SelectedTypValueRefer() {
     const { state } = useAppContext();
@@ -20,12 +23,13 @@ export default function SelectedTypValueRefer() {
                 for="selectedTypValueRef"
                 md={4}
                 style={labelStyle}>
-                {consts.selectedTypValueRef}
+                {consts.label}
             </Label>
             <Col md={7}>
                 <Input
                     className={sharedStyles.textarea}
                     disabled
+                    id={consts.id}
                     rows="3"
                     type="textarea"
                     value={state.selectedTypValueRef}

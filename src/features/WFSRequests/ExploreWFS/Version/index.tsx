@@ -5,7 +5,7 @@ import globalConsts from '../../../../constants';
 import { ChangeEvent } from '../../../../models/events';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = { version: 'version' };
+export const consts = { label: 'version' };
 
 export default function Version() {
     const { state, dispatch } = useAppContext();
@@ -17,15 +17,12 @@ export default function Version() {
 
     return (
         <FormGroup row>
-            <Label
-                className={sharedStyles.labelFont}
-                for={consts.version}
-                md={2}>
-                {consts.version}
+            <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
-                    id={consts.version}
+                    id={consts.label}
                     onChange={handleChange}
                     type="select"
                     value={state.version}>

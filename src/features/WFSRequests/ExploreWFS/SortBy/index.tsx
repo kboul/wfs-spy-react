@@ -1,8 +1,9 @@
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import { useAppContext } from '../../../../context';
-import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
+
+export const consts = { label: 'sortBy' };
 
 export default function SortBy() {
     const { state } = useAppContext();
@@ -10,14 +11,14 @@ export default function SortBy() {
         <FormGroup row>
             <Label
                 className={`${sharedStyles.labelFont} mb-2`}
-                for={consts.sortBy}
+                for={consts.label}
                 md={2}>
-                {consts.sortBy}
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
                     disabled
-                    id={consts.sortBy}
+                    id={consts.label}
                     type="text"
                     value={state.sortBy}
                 />
