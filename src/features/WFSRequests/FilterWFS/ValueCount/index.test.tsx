@@ -1,5 +1,4 @@
 import { renderWithContext, screen } from '../../../../tests/utils';
-
 import ValueCount, { consts } from '.';
 
 let valueCountInput: HTMLElement;
@@ -14,7 +13,7 @@ test('value count input appears on the page', () => {
 });
 
 test('value count is initially disabled', () => {
-    expect(valueCountInput).toBeInTheDocument();
+    expect(valueCountInput).toBeDisabled();
 });
 
 test('value count input has empty intial value', () => {

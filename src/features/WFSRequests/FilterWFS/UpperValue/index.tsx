@@ -1,12 +1,12 @@
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { useAppContext, changeState, types } from '../../../context';
-import { isPropBetween } from '../utils';
-import { ChangeEvent } from '../../../models/events';
-import globalConsts from '../../../constants';
-import sharedStyles from '../shared.module.sass';
+import { useAppContext, changeState, types } from '../../../../context';
+import { isPropBetween } from '../../utils';
+import { ChangeEvent } from '../../../../models/events';
+import globalConsts from '../../../../constants';
+import sharedStyles from '../../shared.module.sass';
 
-const consts = { upperValue: 'Enter upper value' };
+export const consts = { id: 'upperValue', label: 'Enter upper value' };
 const upperValueStyle = {
     backgroundColor: globalConsts.colors.lightPurple
 };
@@ -24,13 +24,14 @@ export default function UpperValue() {
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="upperValue"
+                    for={consts.id}
                     md={4}>
-                    {consts.upperValue}
+                    {consts.label}
                 </Label>
                 <Col md={7}>
                     <Input
                         autoFocus
+                        id={consts.id}
                         onChange={handleChange}
                         style={upperValueStyle}
                         type="text"
