@@ -1,12 +1,12 @@
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
-import { useAppContext, changeState, types } from '../../../context';
-import { getCompOperList } from '../../../utils';
-import { isPropBetween } from '../utils';
-import { ChangeEvent } from '../../../models/events';
-import sharedStyles from '../shared.module.sass';
+import { useAppContext, changeState, types } from '../../../../context';
+import { getCompOperList } from '../../../../utils';
+import { isPropBetween } from '../../utils';
+import { ChangeEvent } from '../../../../models/events';
+import sharedStyles from '../../shared.module.sass';
 
-const consts = { compOper: 'Comparison oper.' };
+export const consts = { id: 'compOperDropDown', label: 'Comparison oper.' };
 
 export default function CompOperDropDown() {
     const { state, dispatch } = useAppContext();
@@ -16,21 +16,21 @@ export default function CompOperDropDown() {
         const compOper = e.target.value;
         dispatch(changeState(types.compOperChanged, { compOper }));
         if (isPropBetween(state.compOper))
-            dispatch(changeState(types.numericNonNumericValuesReset, {}));
-        else dispatch(changeState(types.lowerUpperValuesReset, {}));
+            return dispatch(
+                changeState(types.numericNonNumericValuesReset, {})
+            );
+        return dispatch(changeState(types.lowerUpperValuesReset, {}));
     };
 
     return (
         <FormGroup row>
-            <Label
-                className={sharedStyles.labelFont}
-                for="compOperDropDown"
-                md={4}>
-                {consts.compOper}
+            <Label className={sharedStyles.labelFont} for={consts.id} md={4}>
+                {consts.label}
             </Label>
             <Col md={7}>
                 <Input
                     disabled={!state.getPropValResp}
+                    id={consts.id}
                     onChange={handleChange}
                     type="select"
                     value={state.compOper}>
