@@ -93,6 +93,6 @@ export default function FeatureDetails() {
     );
 
     if (featuresLength) return table;
-    if (getCapResp && !featuresLength) return <b>{consts.noFeatures}</b>;
+    if (getCapResp && !featuresLength) return <b>{consts.noFeaturesMsg}</b>;
     return null;
 }

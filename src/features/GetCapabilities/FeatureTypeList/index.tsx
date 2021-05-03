@@ -9,6 +9,7 @@ import consts from './constants';
 export default function FeatureTypeList() {
     const windowWidth = useWindowWidth();
     const { size, offset } = getSizeAndOffset(windowWidth);
+
     return (
         <Col md={{ size, offset }} className="mt-4">
             <h3>{consts.header}</h3>
@@ -16,8 +17,8 @@ export default function FeatureTypeList() {
 
             <Panel
                 content={<FeatureDetails />}
-                header={consts.featTypeListHeader}
-                title={consts.featTypeListText}
+                header={consts.cardHeader}
+                title={consts.cardTitle}
             />
         </Col>
     );
