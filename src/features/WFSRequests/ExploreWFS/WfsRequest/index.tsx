@@ -1,6 +1,6 @@
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import TableButtons from '../../components/TableButtons';
+import { TableButtons } from '../../components';
 import { useAppContext, changeState, types } from '../../../../context';
 import { formGetRequest, formPostRequest } from '../utils';
 import { isMethodGet, requestBtnStatus } from '../../utils';

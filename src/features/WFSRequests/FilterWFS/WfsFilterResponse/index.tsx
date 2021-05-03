@@ -1,6 +1,6 @@
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../../components/TableButtons';
+import { TableButtons } from '../../components';
 import { useAppContext, changeState, types } from '../../../../context';
 import wfsApi from '../../../../api/wfsApi';
 import {

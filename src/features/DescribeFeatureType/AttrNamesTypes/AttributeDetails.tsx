@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import Typename from '../../WFSRequests/ExploreWFS/Typename';
+import Typename from '../../WfsRequests/ExploreWFS/Typename';
 import { TablePagination, TotalItems } from '../../../components';
 import { useAppContext } from '../../../context';
 import { getAttrNameTypeList } from './utils';

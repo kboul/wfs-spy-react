@@ -9,7 +9,7 @@ const modalContentStyle = { fontSize: '14px' };
 const modalStyle = { maxWidth: '90%' };
 const level = 1;
 
-export default function WFSResponseModal() {
+export default function WfsResponseModal() {
     const { state, dispatch } = useAppContext();
 
     const toggle = () =>
