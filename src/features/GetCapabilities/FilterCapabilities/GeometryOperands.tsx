@@ -29,6 +29,6 @@ export default function GeometryOperands() {
     );
 
     if (geomOperLength) return table;
-    if (getCapResp && !geomOperLength) return <b>{consts.noGeomOper}</b>;
+    if (getCapResp && !geomOperLength) return <b>{consts.noGeomOperMsg}</b>;
     return null;
 }

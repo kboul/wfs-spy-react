@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Table } from 'reactstrap';
 
-import { useAppContext } from '../../../../context';
-import { TablePagination, TotalItems } from '../../../../components';
-import { extractFunctions } from '../../../../wfsMetadata';
-import { ClickEvent } from '../../../../models/events';
-import consts from '../constants';
+import { useAppContext } from '../../../context';
+import { TablePagination, TotalItems } from '../../../components';
+import { extractFunctions } from '../../../wfsMetadata';
+import { ClickEvent } from '../../../models/events';
+import consts from './constants';
 
 export default function Functions() {
     const { state } = useAppContext();
@@ -14,7 +14,7 @@ export default function Functions() {
     const functionsLength = functions.length;
 
     const pageSize = 10;
-    const pagesCount = Math.ceil(functions.length / pageSize);
+    const pagesCount = Math.ceil(functionsLength / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
     const handleClick = (e: ClickEvent, index: number) => {
@@ -59,6 +59,6 @@ export default function Functions() {
     );
 
     if (functionsLength) return table;
-    if (getCapResp && !functionsLength) return <b>{consts.noFunctions}</b>;
+    if (getCapResp && !functionsLength) return <b>{consts.noFunctionsMsg}</b>;
     return null;
 }

@@ -1,4 +1,4 @@
-import { Col } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 
 import Panel from '../../../components/Panel';
 import CompOper from './ComparisonOperators';
@@ -19,51 +19,51 @@ export default function FilterCapabilities() {
             <h3>{consts.header}</h3>
             <p>{consts.descr}</p>
 
-            <div className="row">
-                <div className="col-md-6">
+            <Row>
+                <Col md="6">
                     <Panel
                         content={<CompOper />}
-                        header={consts.compOperHeader}
-                        title={consts.compOperDescr}
+                        header={consts.compOperCardHeader}
+                        title={consts.compOperCardTitle}
                     />
-                </div>
-                <div className="col-md-6">
+                </Col>
+                <Col md="6">
                     <Panel
                         content={<SpatialOperators />}
-                        header={consts.spatOperHeader}
-                        title={consts.spatOperDescr}
+                        header={consts.spatOperCardHeader}
+                        title={consts.spatOperCardTitle}
                     />
-                </div>
-            </div>
+                </Col>
+            </Row>
 
-            <div className="row">
-                <div className="col-md-4">
+            <Row>
+                <Col md="4">
                     <Panel
                         content={<GeometryOperands />}
-                        header={consts.geomOperHeader}
-                        title={consts.geomOperDescr}
+                        header={consts.geomOperCardHeader}
+                        title={consts.geomOperCardTitle}
                     />
-                </div>
-                <div className="col-md-4">
+                </Col>
+                <Col md="4">
                     <Panel
                         content={<TemporalOperands />}
-                        header={consts.tempOperandsHeader}
-                        title={consts.tempOperandsDescr}
+                        header={consts.tempOperandsCardHeader}
+                        title={consts.tempOperandsCardTitle}
                     />
-                </div>
-                <div className="col-md-4">
+                </Col>
+                <Col md="4">
                     <Panel
                         content={<TemporalOperators />}
-                        header={consts.tempOperatorsHeader}
-                        title={consts.tempOperatorsDescr}
+                        header={consts.tempOperatorsCardHeader}
+                        title={consts.tempOperatorsCardTitle}
                     />
-                </div>
-            </div>
+                </Col>
+            </Row>
 
             <Panel
                 content={<Functions />}
-                header={consts.funcHeader}
-                title={consts.funcDescr}
+                header={consts.funcCardHeader}
+                title={consts.funcCardTitle}
             />
         </Col>
     );
