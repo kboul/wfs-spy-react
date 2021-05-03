@@ -9,5 +9,5 @@ export default {
     cardHeader: header,
     cardTitle:
         'Lists information regarding Title, Abstract, Keywords, ServiceType, ServiceTypeVersion, Fees & AccessConstraints',
-    noServiceId: `${globalConsts.noOperation} ${header} information.`
+    noServiceIdMsg: `${globalConsts.noOperation} ${header} information.`
 };

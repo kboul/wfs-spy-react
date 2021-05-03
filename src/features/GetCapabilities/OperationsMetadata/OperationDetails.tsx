@@ -38,6 +38,6 @@ export default function OperationsDetails() {
     );
 
     if (operationsLength) return table;
-    if (getCapResp && !operationsLength) return <b>{consts.noOperation}</b>;
+    if (getCapResp && !operationsLength) return <b>{consts.noOperMetaMsg}</b>;
     return null;
 }

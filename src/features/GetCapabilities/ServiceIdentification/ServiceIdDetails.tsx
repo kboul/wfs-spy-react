@@ -33,6 +33,6 @@ export default function ServiceIdDetails() {
     );
 
     if (getCapResp && serviceIdLength) return table;
-    if (getCapResp && !serviceIdLength) return <b>{consts.noServiceId}</b>;
+    if (getCapResp && !serviceIdLength) return <b>{consts.noServiceIdMsg}</b>;
     return null;
 }

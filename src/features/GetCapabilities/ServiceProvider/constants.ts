@@ -15,5 +15,5 @@ export default {
     fax: 'Fax',
     electrMailAddress: 'Electronic Mail Address',
     email: 'Email',
-    noProvider: `${globalConsts.noOperation} ${header} information.`
+    noProviderMsg: `${globalConsts.noOperation} ${header} information.`
 };
