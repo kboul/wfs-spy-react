@@ -1,5 +1,3 @@
-import userEvent from '@testing-library/user-event';
-
 import { renderWithContext, screen } from '../../../tests/utils';
 import OperationsMetadata from '.';
 import consts from './constants';
@@ -24,19 +22,6 @@ describe('accept versions', () => {
         expect(cardHeader).toBeInTheDocument;
     });
 
-    test('card icon appears on the page & user sees proper icon upon toggle', () => {
-        const toggleCardIcon = screen.getAllByLabelText('toggle card')[0];
-        expect(toggleCardIcon).toBeInTheDocument();
-
-        expect(toggleCardIcon).toHaveClass('fa-chevron-down');
-
-        userEvent.click(toggleCardIcon);
-        expect(toggleCardIcon).toHaveClass('fa-chevron-right');
-
-        userEvent.click(toggleCardIcon);
-        expect(toggleCardIcon).toHaveClass('fa-chevron-down');
-    });
-
     test('card title appears on the page', () => {
         const cardTitle = screen.getByText(consts.acceptVersionsCardTitle);
         expect(cardTitle).toBeInTheDocument;
@@ -47,19 +32,6 @@ describe('operations metadata', () => {
     test('card header appears on the page', () => {
         const cardHeader = screen.getAllByText(consts.operMetaCardHeader);
         expect(cardHeader).toBeInTheDocument;
-    });
-
-    test('card icon appears on the page & user sees proper icon upon toggle', () => {
-        const toggleCardIcon = screen.getAllByLabelText('toggle card')[1];
-        expect(toggleCardIcon).toBeInTheDocument();
-
-        expect(toggleCardIcon).toHaveClass('fa-chevron-down');
-
-        userEvent.click(toggleCardIcon);
-        expect(toggleCardIcon).toHaveClass('fa-chevron-right');
-
-        userEvent.click(toggleCardIcon);
-        expect(toggleCardIcon).toHaveClass('fa-chevron-down');
     });
 
     test('card title appears on the page', () => {
