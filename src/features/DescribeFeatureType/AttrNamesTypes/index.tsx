@@ -12,8 +12,8 @@ export default function AttrNamesTypes() {
 
             <Panel
                 content={<AttributeDetails />}
-                header={consts.panelHeader}
-                title={consts.panelDescr}
+                header={consts.cardHeader}
+                title={consts.cardTitle}
             />
         </Col>
     );

@@ -76,6 +76,7 @@ export default function AttributeDetails() {
     );
 
     if (namesLength) return table;
-    if (descFeatTypeResp && !namesLength) return <b>{consts.noAttributes}</b>;
+    if (descFeatTypeResp && !namesLength)
+        return <b>{consts.noAttributesMsg}</b>;
     return null;
 }
