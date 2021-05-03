@@ -1,11 +1,11 @@
 import userEvent from '@testing-library/user-event';
 
 import { renderWithContext, screen } from '../../../tests/utils';
-import ServiceIdentification from '.';
+import ServiceProvider from '.';
 import consts from './constants';
 
 beforeEach(() => {
-    renderWithContext(<ServiceIdentification />);
+    renderWithContext(<ServiceProvider />);
 });
 
 test('header appears on the page', () => {

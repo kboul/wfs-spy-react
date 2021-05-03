@@ -12,8 +12,8 @@ export default function ServiceProvider() {
 
             <Panel
                 content={<ProviderDetails />}
-                header={consts.providerHeader}
-                title={consts.providerTitle}
+                header={consts.cardHeader}
+                title={consts.cardTitle}
             />
         </Col>
     );
