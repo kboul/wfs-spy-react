@@ -16,13 +16,17 @@ test('wfsRequest textarea appears on the page witn no value', () => {
 });
 
 test('get request button appears on the page and is enabled', () => {
-    const getRequestBtn = screen.getByRole('button', { name: 'GET Request' });
+    const getRequestBtn = screen.getByRole('button', {
+        name: consts.getReqBtnLabel
+    });
     expect(getRequestBtn).toBeInTheDocument();
     expect(getRequestBtn).toBeEnabled();
 });
 
 test('post request button appears on the page and is enabled', () => {
-    const postRequestBtn = screen.getByRole('button', { name: 'POST Request' });
+    const postRequestBtn = screen.getByRole('button', {
+        name: consts.postReqBtnLabel
+    });
     expect(postRequestBtn).toBeInTheDocument();
     expect(postRequestBtn).toBeEnabled();
 });

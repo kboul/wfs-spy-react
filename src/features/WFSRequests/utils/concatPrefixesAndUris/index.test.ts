@@ -1,5 +1,5 @@
 import concatPrefixesAndUris from '.';
-import xmlNamespaces from '../../../../tests/constants/xmlNamespaces';
+import xmlNamespaces from '../../../../tests/data/xmlNamespaces';
 
 test('returns an array of strings with prefixes and uris', () => {
     const output = concatPrefixesAndUris(xmlNamespaces);

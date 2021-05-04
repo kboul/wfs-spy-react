@@ -16,14 +16,16 @@ test('wfsResponse textarea appears on the page and has no value', () => {
 });
 
 test('get response button appears on the page and is disabled', () => {
-    const getResponseBtn = screen.getByRole('button', { name: 'GET Response' });
+    const getResponseBtn = screen.getByRole('button', {
+        name: consts.getRespBtnLabel
+    });
     expect(getResponseBtn).toBeInTheDocument();
     expect(getResponseBtn).toBeDisabled();
 });
 
 test('open in a new window button for get response appears on the page and is disabled', () => {
     const openInANewWindowGetBtn = screen.getAllByRole('button', {
-        name: 'Open in a new window'
+        name: consts.openInANewWindowLabel
     })[0];
     expect(openInANewWindowGetBtn).toBeInTheDocument();
     expect(openInANewWindowGetBtn).toBeDisabled();
@@ -31,7 +33,7 @@ test('open in a new window button for get response appears on the page and is di
 
 test('post response button appears on the page and is disabled', () => {
     const postRequestBtn = screen.getByRole('button', {
-        name: 'POST Response'
+        name: consts.postRespBtnLabel
     });
     expect(postRequestBtn).toBeInTheDocument();
     expect(postRequestBtn).toBeDisabled();
@@ -39,7 +41,7 @@ test('post response button appears on the page and is disabled', () => {
 
 test('open in a new window button for post response appears on the page and is disabled', () => {
     const openInANewWindowPostBtn = screen.getAllByRole('button', {
-        name: 'Open in a new window'
+        name: consts.openInANewWindowLabel
     })[1];
     expect(openInANewWindowPostBtn).toBeInTheDocument();
     expect(openInANewWindowPostBtn).toBeDisabled();
