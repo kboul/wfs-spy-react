@@ -1,11 +1,14 @@
 import userEvent from '@testing-library/user-event';
 
-import ExploreWFS from './ExploreWFS';
-import { renderWithContext, screen } from '../../tests/utils';
+import { renderWithContext, screen, waitFor } from '../../tests/utils';
+import WfsRequests from '.';
 import globalConsts from '../../constants';
 import { consts as urlConsts } from './ExploreWFS/Url';
 import wfsReqConsts from './ExploreWFS/WfsRequest/constants';
 import wfsRespConsts from './ExploreWFS/WfsResponse/constants';
+import { consts as typenameConsts } from './ExploreWFS/Typename';
+import { consts as valReferConsts } from './ExploreWFS/ValueReference';
+// import { consts as compOperConsts } from './FilterWFS/CompOperDropDown';
 
 const url = 'http://kort.strandnr.dk/geoserver/nobc/wfs';
 const getWfsRequest = `${url}?
@@ -14,7 +17,7 @@ request=GetCapabilities&
 service=WFS`;
 
 test('GET request GetCapabilities response', async () => {
-    renderWithContext(<ExploreWFS />);
+    renderWithContext(<WfsRequests />);
 
     const urlTextarea = screen.getByLabelText(urlConsts.label);
     userEvent.type(urlTextarea, url);
@@ -36,10 +39,32 @@ test('GET request GetCapabilities response', async () => {
     });
     userEvent.click(getResponseBtn);
 
-    const wfsResponseTextarea = await screen.findByRole('textbox', {
+    const wfsResponseTextarea = screen.getByRole('textbox', {
         name: wfsRespConsts.label
     });
     expect(wfsResponseTextarea).toHaveValue(globalConsts.proccessMessage);
 
-    // console.log(screen.debug());
+    await waitFor(() => {
+        // WFS Response textarea
+        expect(wfsResponseTextarea).not.toHaveValue('');
+        expect(wfsResponseTextarea).not.toHaveValue(
+            globalConsts.proccessMessage
+        );
+
+        // typeName
+        const typeNameDropdown = screen.getByLabelText(typenameConsts.label);
+        expect(typeNameDropdown).toHaveValue(globalConsts.noOption);
+        expect(typeNameDropdown.children).toHaveLength(10);
+
+        // console.log(screen.debug(undefined, 300000));
+
+        // valueReference
+        const valueReferenceDropdown = screen.getByLabelText(
+            valReferConsts.label
+        );
+        expect(valueReferenceDropdown).toBeDisabled();
+
+        // const compOperDropdown = screen.getByLabelText(compOperConsts.label);
+        // expect(compOperDropdown.children).toBeGreaterThan(0);
+    });
 });
