@@ -1,24 +1,25 @@
 import { renderWithContext, screen, fireEvent } from '../../../../tests/utils';
-
 import Request, { consts } from '.';
 import globalConsts from '../../../../constants';
 
-let request: HTMLElement;
+let requestDropdown: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<Request />);
-    request = screen.getByLabelText(consts.label);
+    requestDropdown = screen.getByLabelText(consts.label);
 });
 
 test('request dropdown appears on the page', () => {
-    expect(request).toBeInTheDocument();
+    expect(requestDropdown).toBeInTheDocument();
 });
 
 test('request dropdown has initial value GetCapabilities', () => {
-    expect(request).toHaveValue(globalConsts.requests[0]);
+    expect(requestDropdown).toHaveValue(globalConsts.requests[0]);
 });
 
 test('request value is not updated when user selects other option and a GetCapabilities request has not been performed', () => {
-    fireEvent.change(request, { target: { value: globalConsts.requests[1] } });
-    expect(request).toHaveValue(globalConsts.requests[0]);
+    fireEvent.change(requestDropdown, {
+        target: { value: globalConsts.requests[1] }
+    });
+    expect(requestDropdown).toHaveValue(globalConsts.requests[0]);
 });

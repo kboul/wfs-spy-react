@@ -8,11 +8,11 @@ beforeEach(() => {
 });
 
 test('wfsRequest textarea appears on the page witn no value', () => {
-    const wfsRequest = screen.getByRole('textbox', {
+    const wfsRequestTextarea = screen.getByRole('textbox', {
         name: consts.label
     });
-    expect(wfsRequest).toBeInTheDocument();
-    expect(wfsRequest).toHaveValue('');
+    expect(wfsRequestTextarea).toBeInTheDocument();
+    expect(wfsRequestTextarea).toHaveValue('');
 });
 
 test('get request button appears on the page and is enabled', () => {

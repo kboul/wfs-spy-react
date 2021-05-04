@@ -1,18 +1,17 @@
 import { renderWithContext, screen } from '../../../../tests/utils';
-
 import SortBy, { consts } from '.';
 
-let sortBy: HTMLElement;
+let sortByInput: HTMLElement;
 
 beforeEach(() => {
     renderWithContext(<SortBy />);
-    sortBy = screen.getByLabelText(consts.label);
+    sortByInput = screen.getByLabelText(consts.label);
 });
 
 test('sortBy input appears on the page', () => {
-    expect(sortBy).toBeInTheDocument();
+    expect(sortByInput).toBeInTheDocument();
 });
 
 test('sortBy input is disabled by default', () => {
-    expect(sortBy).toBeDisabled();
+    expect(sortByInput).toBeDisabled();
 });
