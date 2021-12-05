@@ -31,6 +31,10 @@ At this point, the application will not provide geometrical feature manipulation
 | 15  |            http://gis.epa.ie/geoserver/wfs             |     7      |        3        |        9         |          8          |       yes all       |             362             |       yes       |               yes                | no   |
 | 16  |                 http://mapfog.com/ows                  |     7      |        3        |        5         |         11          |       yes all       |             140             |       yes       |               yes                | yes  |
 
+## Enable the proxy (cors.anywhere) server
+
+The user (developer) must visit a page at cors-anywhere.herokuapp.com to temporarily unlock the demo for their browser. This allows developers to try out the functionality, to help with deciding on self-hosting or looking for alternatives. You can find more in this [thread](https://github.com/Rob--W/cors-anywhere/issues/301).
+
 ## Run the project
 
 clone the project
@@ -65,3 +69,17 @@ npm run test:coverage
 
 GetPropertyValue Filter **get requests** can not be made on **Chrome** (version 87.0.4280.141 & above) and **Opera** (version:73.0.3856.284 & above) due to this known [issue](https://www.chromestatus.com/feature/5735596811091968). As a result other browsers should be used to make these requests.
 It has been tested and works without any issues on **Firefox** (version 84.0.2) and **Safari** (version 14.0.2).
+
+### Proxy
+
+The app needs a proxy in order to get data from servers with a different domain from the one used to run WFS Spy. For the first version of the application, the one with the old stack, a proxy written in Perl was used along with local apache configuration to run proxies. For the new stack, the following solutions were tried:
+
+-   [cors.anywhere](https://github.com/Rob--W/cors-anywhere)
+
+-   [cors.bridged.cc](https://blog.grida.co/cors-anywhere-for-everyone-free-reliable-cors-proxy-service-73507192714e)
+
+-   [thingproxy](https://github.com/freeboard/thingproxy)
+
+The first was eventually used despite tring other proxies, although restrictions in usage were imposed, because it seems to be the most reliable in terms of getting correct server responses from the servers listed on WFS metadata statistics section.
+
+Other solutions can be found in this [article](https://nordicapis.com/10-free-to-use-cors-proxies/).

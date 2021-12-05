@@ -63,9 +63,8 @@ export default function WfsResponse() {
                     default:
                 }
             }
-        } catch (error) {
-            const { response } = error;
-            if (response) changeWfsResponse(errorMessage(response));
+        } catch (error: any) {
+            changeWfsResponse(errorMessage(error.response));
         }
     };
 
