@@ -16,6 +16,8 @@ version=2.0.0&
 request=GetCapabilities&
 service=WFS`;
 
+jest.setTimeout(30000);
+
 test('GET request GetCapabilities response', async () => {
     renderWithContext(<WfsRequests />);
 
