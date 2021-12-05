@@ -7,7 +7,11 @@ interface ErrorResponse {
     statusText: string;
 }
 
+const unknownError = 'An unknown error occured. Please try again.';
+
 export default function errorMessage(errorResponse: ErrorResponse): string {
+    if (!errorResponse) return unknownError;
+
     const { status, data } = errorResponse;
     const httpStatusCode = 'HTTP Status Code';
     switch (status) {
@@ -19,9 +23,11 @@ export default function errorMessage(errorResponse: ErrorResponse): string {
             return `${httpStatusCode} 404. The server could not find what was requested.`;
         case 500: // Internal Server Error
             return data;
+        case 502:
+            return `${httpStatusCode} 502. Bad Gateway.`;
         case 503:
-            return 'HTTP 503. Service Unavailable.';
+            return `${httpStatusCode} 503. Service Unavailable.`;
         default:
-            return 'An unknown error occured. Please try again.';
+            return unknownError;
     }
 }
