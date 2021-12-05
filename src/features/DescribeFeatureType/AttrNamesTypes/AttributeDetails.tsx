@@ -20,7 +20,7 @@ export default function AttributeDetails() {
 
     const pageSize = 10;
     const pagesCount =
-        attrNameType && Math.ceil(attrNameType?.length / pageSize);
+        attrNameType && Math.ceil(attrNameType.length / pageSize);
     const [currentPage, setCurrentPage] = useState(0);
 
     const handleClick = (e: ClickEvent, index: number) => {
@@ -38,7 +38,8 @@ export default function AttributeDetails() {
             {attributesExist ? (
                 <Table
                     responsive
-                    className="table-striped text-center table-borderless">
+                    className="table-striped text-center table-borderless"
+                >
                     <thead>
                         <tr>
                             <th>{consts.attrNames}</th>

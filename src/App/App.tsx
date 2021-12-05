@@ -1,5 +1,10 @@
 import { Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Navigate,
+    Routes,
+    Route
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Footer from './Footer';
@@ -13,19 +18,26 @@ export default function App() {
     return (
         <Provider>
             <ToastContainer hideProgressBar />
-            <NavBar />
-            <Suspense fallback={<Spinner />}>
-                <Switch>
-                    {routes.map(({ path, component }, index) => (
+            <Router basename={`${process.env.PUBLIC_URL}/`}>
+                <NavBar />
+                <Routes>
+                    {routes.map(({ path, Component }, index) => (
                         <Route
-                            component={component}
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <Component />
+                                </Suspense>
+                            }
                             key={`routes-${index}`}
                             path={path}
                         />
                     ))}
-                    <Redirect from="*" to={routes[0].path} />
-                </Switch>
-            </Suspense>
+                    <Route
+                        path="*"
+                        element={<Navigate to={routes[0].path} />}
+                    />
+                </Routes>
+            </Router>
             <Footer />
         </Provider>
     );

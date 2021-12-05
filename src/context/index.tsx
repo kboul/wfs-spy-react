@@ -3,6 +3,7 @@ import {
     Dispatch,
     useContext,
     useReducer,
+    useMemo,
     ReactNode
 } from 'react';
 
@@ -133,11 +134,10 @@ interface ProviderProps {
 
 function Provider({ children }: ProviderProps) {
     const [state, dispatch] = useReducer(reducer, initialState);
-    return (
-        <Context.Provider value={{ state, dispatch }}>
-            {children}
-        </Context.Provider>
-    );
+
+    const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+
+    return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 
 // useAppContent hook

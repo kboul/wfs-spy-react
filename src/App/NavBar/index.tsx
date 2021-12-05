@@ -40,7 +40,8 @@ export default function NavBar() {
                         <UncontrolledDropdown
                             nav
                             inNavbar
-                            key={`dropdown-item-${name}`}>
+                            key={`dropdown-item-${name}`}
+                        >
                             <DropdownToggle nav caret>
                                 {name}
                             </DropdownToggle>
@@ -56,14 +57,15 @@ export default function NavBar() {
                                     <NavLink
                                         tag={Link}
                                         to={path}
-                                        active={path === pathname}>
+                                        active={path === pathname}
+                                    >
                                         {name}
                                     </NavLink>
                                 </NavItem>
                             )
                     )}
                     <NavItem>
-                        <NavLink style={resetStyle} onClick={handleStateReset}>
+                        <NavLink onClick={handleStateReset} style={resetStyle}>
                             Reset
                         </NavLink>
                     </NavItem>
