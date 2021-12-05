@@ -1,19 +1,17 @@
 import globalConsts from '../../../constants';
 
-const attrNamesTypes = 'Attribute Names & Types';
+const header = 'Attribute Names & Types';
 
 export default {
-    header: attrNamesTypes,
-    descr: `This section provides metadata information derived from the
-        DescribeFeatureType response. The displayed attribute names &
-        types depend on the selected typename drop-down list from the
-        Description / Filter tab.`,
-    panelHeader: attrNamesTypes,
-    panelDescr: `Provides information regarding the attribute names and their types.`,
+    header,
+    descr:
+        'This section provides metadata information derived from the DescribeFeatureType response. The displayed attribute names & types depend on the selected typename drop-down list from the Description / Filter tab.',
+    cardHeader: header,
+    cardTitle: `Provides information regarding the attribute names and their types.`,
     attrNames: 'Attribute Names',
     attrTypes: 'Attribute Types',
-    noAttributes: `
-        ${globalConsts.noOperation} ${attrNamesTypes}. 
+    noAttributesMsg: `
+        ${globalConsts.noOperation} ${header}. 
         Please try making individual DescribeFeatureType requests per typename.
     `
 };

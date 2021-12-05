@@ -32,6 +32,6 @@ export default function ProviderDetails() {
     );
 
     if (hasProvider) return table;
-    if (getCapResp && !hasProvider) return <b>{consts.noProvider}</b>;
+    if (getCapResp && !hasProvider) return <b>{consts.noProviderMsg}</b>;
     return null;
 }

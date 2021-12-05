@@ -17,7 +17,7 @@ export default function Panel({ content, header, title }: PanelProps) {
                 <span>
                     {header}
                     <i
-                        aria-label="Toggle card"
+                        aria-label="toggle card"
                         className={`fa fa-chevron-${iconDirection} ${styles.icon}`}
                         onClick={handleClick}
                         onKeyDown={() => {}}

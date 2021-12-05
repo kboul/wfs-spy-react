@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Col } from 'reactstrap';
 import Highcharts from 'highcharts';
@@ -117,8 +118,8 @@ export default function Statistics() {
                         />
                     )
                 }
-                header={consts.respTimeHeader}
-                title={consts.respTimeDescr}
+                header={consts.respTimeCardHeader}
+                title={consts.respTimeCardTitle}
             />
             <Panel
                 content={
@@ -129,8 +130,8 @@ export default function Statistics() {
                         />
                     )
                 }
-                header={consts.reqTimeHeader}
-                title={consts.reqTimeDescr}
+                header={consts.reqTimeCardHeader}
+                title={consts.reqTimeCardTitle}
             />
         </Col>
     );

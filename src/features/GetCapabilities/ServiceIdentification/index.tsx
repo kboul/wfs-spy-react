@@ -12,8 +12,8 @@ export default function ServiceIdentification() {
 
             <Panel
                 content={<ServiceIdDetails />}
-                header={consts.serviceIdHeader}
-                title={consts.serviceIdTitle}
+                header={consts.cardHeader}
+                title={consts.cardTitle}
             />
         </Col>
     );

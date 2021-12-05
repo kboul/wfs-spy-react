@@ -30,6 +30,6 @@ export default function TemporalOperands() {
 
     if (tempOperandsLength) return table;
     if (getCapResp && !tempOperandsLength)
-        return <b>{consts.noTempOperands}</b>;
+        return <b>{consts.noTempOperandsMsg}</b>;
     return null;
 }

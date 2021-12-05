@@ -1,5 +1,5 @@
 import getValRefType from '.';
-import valueReferences from '../../tests/constants/valueReferences';
+import valueReferences from '../../tests/data/valueReferences';
 import consts from '../../context/constants';
 
 describe('getValRefType', () => {

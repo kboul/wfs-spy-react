@@ -29,6 +29,6 @@ export default function ComparisonOperators() {
     );
 
     if (compOperLength) return table;
-    if (getCapResp && !compOperLength) return <b>{consts.noCompOper}</b>;
+    if (getCapResp && !compOperLength) return <b>{consts.noCompOperMsg}</b>;
     return null;
 }

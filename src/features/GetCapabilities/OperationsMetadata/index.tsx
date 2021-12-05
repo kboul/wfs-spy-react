@@ -13,14 +13,14 @@ export default function OperationsMetadata() {
 
             <Panel
                 content={<AcceptVersions />}
-                header={consts.versionsHeader}
-                title={consts.versionsTitle}
+                header={consts.acceptVersionsCardHeader}
+                title={consts.acceptVersionsCardTitle}
             />
 
             <Panel
                 content={<OperationDetails />}
-                header={consts.operMetaHeader}
-                title={consts.operMetaText}
+                header={consts.operMetaCardHeader}
+                title={consts.operMetaCardTitle}
             />
         </Col>
     );

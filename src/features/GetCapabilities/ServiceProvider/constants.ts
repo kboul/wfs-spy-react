@@ -1,16 +1,13 @@
 import globalConsts from '../../../constants';
 
-const serviceProvider = 'Service Provider';
+const header = 'Service Provider';
 
 export default {
-    header: 'Service Provider',
-    descr: ` 
-        Provides 
-        contact information about the company publishing the WFS service, including telephone,
-        website, and email.
-    `,
-    providerHeader: serviceProvider,
-    providerTitle:
+    header,
+    descr:
+        'Provides contact information about the company publishing the WFS service, including telephone, website, and email.',
+    cardHeader: header,
+    cardTitle:
         'Provides contact information about the company including telephone - website and email',
     voice: 'Voice',
     telephone: 'Telephone',
@@ -18,5 +15,5 @@ export default {
     fax: 'Fax',
     electrMailAddress: 'Electronic Mail Address',
     email: 'Email',
-    noProvider: `${globalConsts.noOperation} ${serviceProvider} information.`
+    noProviderMsg: `${globalConsts.noOperation} ${header} information.`
 };

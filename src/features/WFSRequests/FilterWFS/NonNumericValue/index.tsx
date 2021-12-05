@@ -6,7 +6,7 @@ import { isPropBetween } from '../../utils';
 import globalConsts from '../../../../constants';
 import sharedStyles from '../../shared.module.sass';
 
-const nonNumericValue = 'Search strings';
+export const consts = { id: 'nonNumericValue', label: 'Search strings' };
 const nonNumerivValueStyle = {
     backgroundColor: globalConsts.colors.lightPurple
 };
@@ -26,14 +26,14 @@ export default function NonNumericValue() {
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="nonNumericValue"
+                    for={consts.id}
                     md={4}>
-                    {nonNumericValue}
+                    {consts.label}
                 </Label>
                 <Col md={7}>
                     <Typeahead
                         disabled={!state.getPropValResp}
-                        id="basic-typeahead-single"
+                        id={consts.id}
                         inputProps={{ style: nonNumerivValueStyle }}
                         onChange={handleChange}
                         options={state.attrValues}

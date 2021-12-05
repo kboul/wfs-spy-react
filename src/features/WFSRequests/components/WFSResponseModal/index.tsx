@@ -5,11 +5,13 @@ import { changeState, types, useAppContext } from '../../../../context';
 import { parseXML } from '../../../../wfsMetadata';
 import formDecoratedXml from './utils/formDecoratedXml';
 
-const modalContentStyle = { fontSize: '14px' };
-const modalStyle = { maxWidth: '90%' };
+const styles = {
+    modalContainer: { maxWidth: '90%' },
+    modalContent: { fontSize: '14px' }
+};
 const level = 1;
 
-export default function WFSResponseModal() {
+export default function WfsResponseModal() {
     const { state, dispatch } = useAppContext();
 
     const toggle = () =>
@@ -29,13 +31,13 @@ export default function WFSResponseModal() {
         <Modal
             isOpen={state.isModalOpen}
             size="lg"
-            style={modalStyle}
+            style={styles.modalContainer}
             toggle={toggle}>
             <ModalHeader toggle={toggle}>{state.url}</ModalHeader>
             <ModalBody>
                 <div
                     dangerouslySetInnerHTML={{ __html: modalContent }}
-                    style={modalContentStyle}
+                    style={styles.modalContent}
                 />
             </ModalBody>
         </Modal>

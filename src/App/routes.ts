@@ -1,6 +1,6 @@
 import { FC, lazy } from 'react';
 
-import WFSRequests from '../features/WFSRequests';
+import WfsRequests from '../features/WfsRequests';
 
 const AttrNamesTypes = lazy(
     () => import('../features/DescribeFeatureType/AttrNamesTypes')
@@ -70,7 +70,7 @@ const mainRoutes: Routes[] = [
     {
         path: '/wfs-requests',
         name: '',
-        component: WFSRequests
+        component: WfsRequests
     },
     {
         path: '/statistics',

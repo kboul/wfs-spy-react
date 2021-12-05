@@ -1,15 +1,20 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "extends": [
+        "react-app",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:import/typescript",
+        "plugin:testing-library/recommended",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
         "airbnb",
-        "prettier",
-        "plugin:import/typescript"
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -23,7 +28,13 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "prettier"],
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "prettier",
+        "testing-library",
+        "jest-dom"
+    ],
     "rules": {
         // Assignment to property of function parameter 'state'.
         "no-param-reassign": [
@@ -46,18 +57,20 @@
         "react/jsx-indent-props": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
         "import/prefer-default-export": "off",
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "js": "never",
-                "jsx": "never",
-                "ts": "never",
-                "tsx": "never",
-                "mjs": "never"
-            }
-        ],
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
         "arrow-body-style": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "**/*.test.ts",
+                    "**/*.test.tsx",
+                    "./src/setupTests.ts",
+                    "./src/tests/*/*"
+                ]
+            }
+        ]
     }
 }

@@ -1,4 +1,8 @@
 export default {
-    response: 'Response',
-    responseMetadata: 'Response - Metadata & Corresponding operations:'
+    buttonsLabel: 'Response',
+    getRespBtnLabel: 'GET Response',
+    id: 'wfsResponse',
+    label: 'Response - Metadata & Corresponding operations:',
+    openInANewWindowLabel: 'Open in a new window',
+    postRespBtnLabel: 'POST Response'
 };

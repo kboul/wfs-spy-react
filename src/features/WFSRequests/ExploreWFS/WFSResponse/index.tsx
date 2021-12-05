@@ -1,6 +1,6 @@
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import TableButtons from '../../components/TableButtons';
+import { TableButtons } from '../../components';
 import { useAppContext, changeState, types } from '../../../../context';
 import wfsApi from '../../../../api/wfsApi';
 import {
@@ -21,7 +21,7 @@ import sharedStyles from '../../shared.module.sass';
 
 const { proccessMessage, requests } = globalConsts;
 
-export default function WFSResponse() {
+export default function WfsResponse() {
     const { state, dispatch } = useAppContext();
 
     const changeWfsResponse = (wfsResponse: string) => {
@@ -77,11 +77,12 @@ export default function WFSResponse() {
     return (
         <FormGroup className="text-center" row>
             <Col md={{ size: 10, offset: 1 }}>
-                <Label className={sharedStyles.labelFont} for="wfsResponse">
-                    {consts.responseMetadata}
+                <Label className={sharedStyles.labelFont} for={consts.id}>
+                    {consts.label}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
+                    id={consts.id}
                     disabled
                     rows="10"
                     type="textarea"
@@ -90,7 +91,7 @@ export default function WFSResponse() {
                 <TableButtons
                     disabled={!state.wfsRequest}
                     hasModal
-                    label={consts.response}
+                    label={consts.buttonsLabel}
                     onGetClick={() => handleClick('GET')}
                     onGetModalClick={() => handleModalClick('GET')}
                     onPostClick={() => handleClick('POST')}

@@ -13,7 +13,7 @@ export default function AcceptVersions() {
         <>
             {acceptVersions.map((version, index) => (
                 <span key={`accept-versions-${index}`}>
-                    {index === 0 && consts.acceptVersionsStr}
+                    {index === 0 && consts.supportsMsg}
                     <b>
                         {version}
                         {index !== lastVersion ? ', ' : ''}
@@ -25,6 +25,7 @@ export default function AcceptVersions() {
     );
 
     if (versionsLength) return output;
-    if (getCapResp && !versionsLength) return <b>{consts.noAcceptVersions}</b>;
+    if (getCapResp && !versionsLength)
+        return <b>{consts.noAcceptVersionsMsg}</b>;
     return null;
 }

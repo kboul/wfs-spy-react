@@ -6,7 +6,7 @@ import { isPropBetween } from '../../utils';
 import globalConsts from '../../../../constants';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = { numericValue: 'Enter Value' };
+export const consts = { id: 'numericValue', label: 'Enter Value' };
 const numericValueStyle = { backgroundColor: globalConsts.colors.lightPurple };
 
 export default function NumericValue() {
@@ -22,13 +22,14 @@ export default function NumericValue() {
             <FormGroup row>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="numericValue"
+                    for={consts.id}
                     md={4}>
-                    {consts.numericValue}
+                    {consts.label}
                 </Label>
                 <Col md={7}>
                     <Input
                         disabled={!state.getPropValResp}
+                        id={consts.id}
                         onChange={handleChange}
                         style={numericValueStyle}
                         type="text"

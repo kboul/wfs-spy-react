@@ -1,17 +1,14 @@
 import { FormGroup, Col, Label, Input } from 'reactstrap';
 
-import TableButtons from '../../components/TableButtons';
+import { TableButtons } from '../../components';
 import { useAppContext, changeState, types } from '../../../../context';
 import { formGetFilterRequest, formPostFilterRequest } from '../utils';
 import validateFiltReqBtn from './utils';
 import { isMethodGet, requestBtnStatus } from '../../utils';
+import consts from './constants';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = {
-    formWfsFilterRequest: 'Form WFS GetPropertyValue Filter Request:'
-};
-
-export default function WFSFilterRequest() {
+export default function WfsFilterRequest() {
     const { state, dispatch } = useAppContext();
 
     const handleClick = (httpMethod: string) => {
@@ -30,12 +27,13 @@ export default function WFSFilterRequest() {
             <Col md={{ size: 10, offset: 1 }}>
                 <Label
                     className={sharedStyles.labelFont}
-                    for="formWfsFilterRequest">
-                    {consts.formWfsFilterRequest}
+                    for={consts.wfsFilterRequest}>
+                    {consts.wfsFilterRequestLabel}
                 </Label>
                 <Input
                     className={sharedStyles.textarea}
                     disabled
+                    id={consts.wfsFilterRequest}
                     rows="10"
                     type="textarea"
                     value={state.wfsFilterRequest}

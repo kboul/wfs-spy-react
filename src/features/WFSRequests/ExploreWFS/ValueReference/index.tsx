@@ -5,7 +5,7 @@ import { getFullTypename, hasGeometry } from '../../../../utils';
 import { ChangeEvent } from '../../../../models/events';
 import sharedStyles from '../../shared.module.sass';
 
-const consts = { valueReference: 'valueRefer.' };
+export const consts = { label: 'valueRefer.' };
 
 export default function ValueReference() {
     const { state, dispatch } = useAppContext();
@@ -24,12 +24,13 @@ export default function ValueReference() {
 
     return (
         <FormGroup row>
-            <Label className={sharedStyles.labelFont} for="valueRefer" md={2}>
-                {consts.valueReference}
+            <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
+                {consts.label}
             </Label>
             <Col md={9}>
                 <Input
                     disabled={!state.descFeatTypeResp}
+                    id={consts.label}
                     onChange={handleChange}
                     type="select"
                     value={state.valueReference}>

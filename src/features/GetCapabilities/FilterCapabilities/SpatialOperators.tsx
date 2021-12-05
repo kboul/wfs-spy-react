@@ -29,6 +29,7 @@ export default function SpatialOperators() {
     );
 
     if (spatialOperLength) return table;
-    if (getCapResp && !spatialOperLength) return <b>{consts.noSpatialOper}</b>;
+    if (getCapResp && !spatialOperLength)
+        return <b>{consts.noSpatialOperMsg}</b>;
     return null;
 }

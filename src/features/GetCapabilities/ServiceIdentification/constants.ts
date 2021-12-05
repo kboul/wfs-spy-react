@@ -1,15 +1,13 @@
 import globalConsts from '../../../constants';
 
-const serviceId = 'Service Identification';
+const header = 'Service Identification';
 
 export default {
-    header: serviceId,
-    descr: `
-        Contains basic header information for the request such as the Title and ServiceType. 
-        The ServiceType indicates which version(s) of WFS are supported. 
-    `,
-    serviceIdHeader: serviceId,
-    serviceIdTitle:
+    header,
+    descr:
+        'Contains basic header information for the request such as the Title and ServiceType. The ServiceType indicates which version(s) of WFS are supported.',
+    cardHeader: header,
+    cardTitle:
         'Lists information regarding Title, Abstract, Keywords, ServiceType, ServiceTypeVersion, Fees & AccessConstraints',
-    noServiceId: `${globalConsts.noOperation} ${serviceId} information.`
+    noServiceIdMsg: `${globalConsts.noOperation} ${header} information.`
 };
