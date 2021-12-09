@@ -7,6 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './index.sass';
 
-import App from './App/App';
+import { App } from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));

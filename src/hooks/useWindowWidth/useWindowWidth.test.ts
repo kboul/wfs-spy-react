@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import useWindowWidth from '.';
+import useWindowWidth from './useWindowWidth';
 
 describe('useWindowWidth', () => {
     test('initial width is equal to browser width', () => {
