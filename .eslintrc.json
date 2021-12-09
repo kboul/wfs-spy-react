@@ -5,12 +5,10 @@
         "jest": true
     },
     "extends": [
-        "react-app",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:import/typescript",
-        "plugin:testing-library/recommended",
         "plugin:testing-library/react",
         "plugin:jest-dom/recommended",
         "airbnb",
@@ -30,6 +28,7 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint",
         "prettier",
         "testing-library",
@@ -71,6 +70,12 @@
                     "./src/tests/*/*"
                 ]
             }
-        ]
+        ],
+        "react/function-component-definition": "off",
+        "testing-library/no-render-in-setup": [
+            "error",
+            { "allowTestingFrameworkSetupHook": "beforeEach" }
+        ],
+        "no-restricted-exports": "off"
     }
 }

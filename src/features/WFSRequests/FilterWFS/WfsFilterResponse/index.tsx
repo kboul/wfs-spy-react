@@ -49,9 +49,8 @@ export default function WfsFilterResponse() {
                 };
                 dispatch(changeState(types.getPropValFiltRespChanged, payload));
             }
-        } catch (error) {
-            const { response } = error;
-            if (response) changeWfsFilterResponse(errorMessage(response));
+        } catch (error: any) {
+            changeWfsFilterResponse(errorMessage(error.response));
         }
     };
 
@@ -65,7 +64,8 @@ export default function WfsFilterResponse() {
             <Col md={{ size: 10, offset: 1 }}>
                 <Label
                     className={sharedStyles.labelFont}
-                    for={consts.wfsFilterResponse}>
+                    for={consts.wfsFilterResponse}
+                >
                     {consts.wfsFilterResponseLabel}
                 </Label>
                 <Input

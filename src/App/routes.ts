@@ -25,57 +25,57 @@ const Statistics = lazy(() => import('../features/Statistics'));
 const getCapRoute = '/get-capabilities';
 
 export interface Routes {
-    path: string;
+    Component: FC;
     name: string;
-    component: FC;
+    path: string;
 }
 
 const getCapRoutes: Routes[] = [
     {
-        path: `${getCapRoute}/service-identification`,
+        Component: ServiceIdentification,
         name: 'Service Identification',
-        component: ServiceIdentification
+        path: `${getCapRoute}/service-identification`
     },
     {
-        path: `${getCapRoute}/service-provider`,
+        Component: ServiceProvider,
         name: 'Service Provider',
-        component: ServiceProvider
+        path: `${getCapRoute}/service-provider`
     },
     {
-        path: `${getCapRoute}/operations-metadata`,
+        Component: OperationsMetadata,
         name: 'Operations Metadata',
-        component: OperationsMetadata
+        path: `${getCapRoute}/operations-metadata`
     },
     {
-        path: `${getCapRoute}/feature-type-list`,
+        Component: FeatureTypeList,
         name: 'FeatureTypeList',
-        component: FeatureTypeList
+        path: `${getCapRoute}/feature-type-list`
     },
     {
-        path: `${getCapRoute}/filter-capabilities`,
+        Component: FilterCapabilities,
         name: 'Filter Capabilities',
-        component: FilterCapabilities
+        path: `${getCapRoute}/filter-capabilities`
     }
 ];
 
 const descrFeatTypeRoutes: Routes[] = [
     {
-        path: '/describe-feature-type/attribute-names-types',
+        Component: AttrNamesTypes,
         name: 'Attribute Names & Types',
-        component: AttrNamesTypes
+        path: '/describe-feature-type/attribute-names-types'
     }
 ];
 
 const mainRoutes: Routes[] = [
     {
-        path: '/wfs-requests',
+        Component: WfsRequests,
         name: '',
-        component: WfsRequests
+        path: '/wfs-requests'
     },
     {
-        path: '/statistics',
+        Component: Statistics,
         name: 'Statistics',
-        component: Statistics
+        path: '/statistics'
     }
 ];
 
