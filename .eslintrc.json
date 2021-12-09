@@ -75,6 +75,7 @@
         "testing-library/no-render-in-setup": [
             "error",
             { "allowTestingFrameworkSetupHook": "beforeEach" }
-        ]
+        ],
+        "no-restricted-exports": "off"
     }
 }

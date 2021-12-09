@@ -1,1 +1,1 @@
-export { useWindowWidth } from './useWindowWidth';
+export { default as useWindowWidth } from './useWindowWidth';

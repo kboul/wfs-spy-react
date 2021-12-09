@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Footer from '.';
+import Footer from './Footer';
 
 test('footer appears on the page', () => {
     render(<Footer />);
