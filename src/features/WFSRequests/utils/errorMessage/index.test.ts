@@ -1,4 +1,5 @@
 import errorMessage from '.';
+import errorResponses from './constants';
 
 describe('errorMessage', () => {
     const response = {
@@ -13,19 +14,19 @@ describe('errorMessage', () => {
     test('returns a message containing 400 status code', () => {
         response.status = 400;
         const output = errorMessage(response);
-        expect(output).toContain(response.status);
+        expect(output).toContain(errorResponses['400']);
     });
 
     test('returns a message containing 403 status code', () => {
         response.status = 403;
         const output = errorMessage(response);
-        expect(output).toContain(response.status);
+        expect(output).toContain(errorResponses['403']);
     });
 
     test('returns a message containing 404 status code', () => {
         response.status = 404;
         const output = errorMessage(response);
-        expect(output).toContain(response.status);
+        expect(output).toContain(errorResponses['404']);
     });
 
     test('returns a message containing 500 status code', () => {
@@ -37,7 +38,7 @@ describe('errorMessage', () => {
     test('returns a message containing 503 status code', () => {
         response.status = 503;
         const output = errorMessage(response);
-        expect(output).toContain(response.status);
+        expect(output).toContain(errorResponses['503']);
     });
 
     test('returns a message when status code is different from the above', () => {
