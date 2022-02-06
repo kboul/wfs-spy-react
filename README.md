@@ -1,6 +1,6 @@
 # WFS Spy
 
-WFS Spy is a client application which extracts Web Feature Services' (WFS) metadata. It was developed in 2015 and was my master thesis project in the department of Geodesy & Geoinformation Science at the Techical University of Berlin (TU Berlin) using an old JS stack (jquery, es5, css, no css framework). This is an approach to rewrite the application using a modern JS stack (React, Typescript, Bootstrap, SASS, npm) and make it also mobile friendly.
+WFS Spy is a client application which extracts Web Feature Services' (WFS) metadata. It was developed in 2015 and was my master thesis project in the department of Geodesy & Geoinformation Science at the Techical University of Berlin (TU Berlin) using an old JS stack (vanilla javascrit - es5 in combination with jquery, css, no css framework). This is an approach to rewrite the application using a modern JS stack (React with hooks, Typescript, Bootstrap, SASS, npm) along with unit testing (jest, react-testing-library) and make it also mobile friendly.
 
 WFS information extraction is achieved by querying the service itself and those queries follow Open Geospatial Consortium's (OGC) standards. It was aimed to provide a generic approach to cover as many WFS as possible and bridge gaps between existing service variations.
 
@@ -33,7 +33,7 @@ At this point, the application will not provide geometrical feature manipulation
 
 ## Enable the proxy (cors.anywhere) server
 
-The user (developer) must visit a page at cors-anywhere.herokuapp.com to temporarily unlock the demo for their browser. This allows developers to try out the functionality, to help with deciding on self-hosting or looking for alternatives. You can find more in this [thread](https://github.com/Rob--W/cors-anywhere/issues/301).
+At the moment the user or the developer has to visit the following page at [cors-anywhere.herokuapp.com](cors-anywhere.herokuapp.com) to request temporarily access to the demo server. This allows developers to try out the functionality, to help with deciding on self-hosting or looking for alternatives. You can find more in this [thread](https://github.com/Rob--W/cors-anywhere/issues/301).
 
 ## Run the project
 
@@ -81,5 +81,6 @@ The app needs a proxy in order to get data from servers with a different domain 
 -   [thingproxy](https://github.com/freeboard/thingproxy)
 
 The first was eventually used despite tring other proxies, although restrictions in usage were imposed, because it seems to be the most reliable in terms of getting correct server responses from the servers listed on WFS metadata statistics section.
+A future goal will be to develop something like a proxy middleware solution in order not to rely on external proxies.
 
 Other solutions can be found in this [article](https://nordicapis.com/10-free-to-use-cors-proxies/).
