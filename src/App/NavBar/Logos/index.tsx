@@ -1,1 +1,1 @@
-export { default } from './Logos';
+export { default } from "./Logos";

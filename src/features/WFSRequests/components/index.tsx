@@ -1,2 +1,2 @@
-export { default as TableButtons } from './TableButtons';
-export { default as WfsResponseModal } from './WfsResponseModal';
+export { default as TableButtons } from "./TableButtons";
+export { default as WFSResponseModal } from "./WFSResponseModal";

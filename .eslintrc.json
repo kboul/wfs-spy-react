@@ -1,81 +1,81 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jest": true
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:import/typescript",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:import/typescript",
-        "plugin:testing-library/react",
-        "plugin:jest-dom/recommended",
-        "airbnb",
-        "prettier"
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "testing-library",
+    "jest-dom"
+  ],
+  "rules": {
+    // Assignment to property of function parameter 'state'.
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "react-hooks",
-        "@typescript-eslint",
-        "prettier",
-        "testing-library",
-        "jest-dom"
+    "no-unused-expressions": "off",
+    "react/no-array-index-key": "off",
+    "no-plusplus": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-unused-vars": "off",
+    "no-undef": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-expressions": "off",
+    "no-use-before-define": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-indent": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "arrow-body-style": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "./src/setupTests.ts",
+          "./src/tests/*/*"
+        ]
+      }
     ],
-    "rules": {
-        // Assignment to property of function parameter 'state'.
-        "no-param-reassign": [
-            2,
-            {
-                "props": false
-            }
-        ],
-        "no-unused-expressions": "off",
-        "react/no-array-index-key": "off",
-        "no-plusplus": "off",
-        "react/jsx-one-expression-per-line": "off",
-        "no-unused-vars": "off",
-        "no-undef": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "@typescript-eslint/no-unused-expressions": "off",
-        "no-use-before-define": "off",
-        "react/jsx-closing-bracket-location": "off",
-        "react/jsx-indent": "off",
-        "react/jsx-indent-props": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-        "import/prefer-default-export": "off",
-        "import/extensions": "off",
-        "import/no-unresolved": "off",
-        "arrow-body-style": "off",
-        "react/react-in-jsx-scope": "off",
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "**/*.test.ts",
-                    "**/*.test.tsx",
-                    "./src/setupTests.ts",
-                    "./src/tests/*/*"
-                ]
-            }
-        ],
-        "react/function-component-definition": "off",
-        "testing-library/no-render-in-setup": [
-            "error",
-            { "allowTestingFrameworkSetupHook": "beforeEach" }
-        ],
-        "no-restricted-exports": "off"
-    }
+    "react/function-component-definition": "off",
+    "testing-library/no-render-in-setup": [
+      "error",
+      { "allowTestingFrameworkSetupHook": "beforeEach" }
+    ],
+    "no-restricted-exports": "off"
+  }
 }

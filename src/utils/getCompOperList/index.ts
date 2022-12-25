@@ -1,5 +1,5 @@
-import { extractFilterCap } from '../../wfsMetadata';
+import { extractFilterCap } from "../../wfsMetadata";
 
 export default function getCompOperList(getCapResp: string): string[] {
-    return extractFilterCap(getCapResp, 'ComparisonOperator');
+  return extractFilterCap(getCapResp, "ComparisonOperator");
 }

@@ -1,47 +1,47 @@
 interface Provider {
-    providerNames: string[];
-    providerValues: string[];
+  providerNames: string[];
+  providerValues: string[];
 }
 
 interface Operations {
-    [operations: string]: { get: string; post: string };
+  [operations: string]: { get: string; post: string };
 }
 
 interface Funcs {
-    name?: string;
-    returns?: string;
-    argsAndTypes?: string[];
+  name?: string;
+  returns?: string;
+  argsAndTypes?: string[];
 }
 
 interface ServiceId {
-    [serviceIdTag: string]: string;
+  [serviceIdTag: string]: string;
 }
 
 interface FeatureTypes {
-    name?: string;
-    title?: string;
-    abstract?: string;
-    defaultCRS?: string;
-    lowerCorner?: string;
-    upperCorner?: string;
+  name?: string;
+  title?: string;
+  abstract?: string;
+  defaultCRS?: string;
+  lowerCorner?: string;
+  upperCorner?: string;
 }
 
 interface AttrNamesTypes {
-    names: { [complexType: string]: string[] | any };
-    types: { [complexType: string]: string[] | any };
+  names: { [complexType: string]: string[] | any };
+  types: { [complexType: string]: string[] | any };
 }
 
 interface XmlNamespaces {
-    prefixes: string[];
-    uris: string[];
+  prefixes: string[];
+  uris: string[];
 }
 
 export type {
-    Provider,
-    Operations,
-    Funcs,
-    ServiceId,
-    FeatureTypes,
-    AttrNamesTypes,
-    XmlNamespaces
+  Provider,
+  Operations,
+  Funcs,
+  ServiceId,
+  FeatureTypes,
+  AttrNamesTypes,
+  XmlNamespaces
 };
