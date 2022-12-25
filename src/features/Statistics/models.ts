@@ -1,66 +1,66 @@
 export default interface ChartOptions {
-    chart: {
-        type: string;
-    };
+  chart: {
+    type: string;
+  };
+  title: {
+    text: string;
+  };
+  subtitle: {
+    text: string;
+  };
+  xAxis: {
+    categories: string[];
     title: {
-        text: string;
+      text: string | null;
     };
-    subtitle: {
-        text: string;
+    labels: {
+      style: {
+        font: string;
+        fontWeight: string;
+      };
     };
-    xAxis: {
-        categories: string[];
-        title: {
-            text: string | null;
-        };
-        labels: {
-            style: {
-                font: string;
-                fontWeight: string;
-            };
-        };
+  };
+  yAxis: {
+    allowDecimals: boolean | null;
+    min: number;
+    max: number | null;
+    title: {
+      style: {
+        font: string;
+        fontWeight: string;
+      };
+      text: string;
+      align: string;
     };
-    yAxis: {
-        allowDecimals: boolean | null;
-        min: number;
-        max: number | null;
-        title: {
-            style: {
-                font: string;
-                fontWeight: string;
-            };
-            text: string;
-            align: string;
-        };
-        labels: {
-            overflow: string;
-        };
+    labels: {
+      overflow: string;
     };
-    tooltip: {
-        valueSuffix: string;
-    };
-    colors: string[];
-    plotOptions: {
-        bar: {
-            dataLabels: {
-                enabled: boolean;
-                formatter: (this: any) => number | null;
-            };
-        };
-    };
-    legend: {
-        layout: string;
-        align: string;
-        verticalAlign: string;
-        x: number;
-        y: number;
-        floating: true;
-        borderWidth: number;
-        backgroundColor: string;
-        shadow: true;
-    };
-    credits: {
+  };
+  tooltip: {
+    valueSuffix: string;
+  };
+  colors: string[];
+  plotOptions: {
+    bar: {
+      dataLabels: {
         enabled: boolean;
+        formatter: (this: any) => number | null;
+      };
     };
-    series: { name: string; data: number[] }[];
+  };
+  legend: {
+    layout: string;
+    align: string;
+    verticalAlign: string;
+    x: number;
+    y: number;
+    floating: true;
+    borderWidth: number;
+    backgroundColor: string;
+    shadow: true;
+  };
+  credits: {
+    enabled: boolean;
+  };
+  series: { name: string; data: number[] }[];
 }

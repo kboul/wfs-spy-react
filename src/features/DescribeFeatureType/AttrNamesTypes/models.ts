@@ -1,4 +1,4 @@
 export default interface AttrNameTypeProps {
-    name: string;
-    type: string;
+  name: string;
+  type: string;
 }

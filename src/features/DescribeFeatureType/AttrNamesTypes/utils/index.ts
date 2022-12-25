@@ -1,1 +1,1 @@
-export { default as getAttrNameTypeList } from './getAttrNameTypeList';
+export { default as getAttrNameTypeList } from "./getAttrNameTypeList";

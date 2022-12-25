@@ -1,35 +1,33 @@
-import { Table } from 'reactstrap';
+import { Table } from "reactstrap";
 
-import TotalItems from '../../../components/TotalItems';
-import { useAppContext } from '../../../context';
-import { extractFilterCap } from '../../../wfsMetadata';
-import consts from './constants';
+import TotalItems from "../../../components/TotalItems";
+import { useAppContext } from "../../../context";
+import { extractFilterCap } from "../../../wfsMetadata";
+import consts from "./constants";
 
 export default function TemporalOperators() {
-    const { state } = useAppContext();
-    const { getCapResp } = state;
-    const tempOperators = extractFilterCap(getCapResp, 'TemporalOperator');
-    const tempOperatorsLength = tempOperators.length;
+  const { state } = useAppContext();
+  const { getCapResp } = state;
+  const tempOperators = extractFilterCap(getCapResp, "TemporalOperator");
+  const tempOperatorsLength = tempOperators.length;
 
-    const table = (
-        <>
-            <Table
-                responsive
-                className="table-striped text-center table-borderless">
-                <tbody>
-                    {tempOperators.map((operator, index) => (
-                        <tr key={`temporal-operators-${index}`}>
-                            <td>{operator}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <TotalItems numberOfItems={tempOperatorsLength} />
-        </>
-    );
+  const table = (
+    <>
+      <Table responsive className="table-striped text-center table-borderless">
+        <tbody>
+          {tempOperators.map((operator, index) => (
+            <tr key={`temporal-operators-${index}`}>
+              <td>{operator}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <TotalItems numberOfItems={tempOperatorsLength} />
+    </>
+  );
 
-    if (tempOperatorsLength) return table;
-    if (getCapResp && !tempOperatorsLength)
-        return <b>{consts.noTempOperatorsMsg}</b>;
-    return null;
+  if (tempOperatorsLength) return table;
+  if (getCapResp && !tempOperatorsLength)
+    return <b>{consts.noTempOperatorsMsg}</b>;
+  return null;
 }

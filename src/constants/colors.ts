@@ -1,4 +1,4 @@
 export default {
-    lightPurple: '#eeeeff',
-    white: '#ffffff'
+  lightPurple: "#eeeeff",
+  white: "#ffffff"
 };

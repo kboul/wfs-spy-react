@@ -1,1 +1,1 @@
-export { default as formalProviderName } from './formalProviderName';
+export { default as formalProviderName } from "./formalProviderName";
