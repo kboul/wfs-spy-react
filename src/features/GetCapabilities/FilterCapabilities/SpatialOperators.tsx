@@ -1,6 +1,6 @@
 import { Table } from "reactstrap";
 
-import TotalItems from "../../../components/TotalItems";
+import { TotalItems } from "../../../components";
 import { useAppContext } from "../../../context";
 import { extractFilterCap } from "../../../wfsMetadata";
 import consts from "./constants";

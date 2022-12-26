@@ -1,7 +1,7 @@
 import { Table } from "reactstrap";
 
 import { useAppContext } from "../../../context";
-import TotalItems from "../../../components/TotalItems";
+import { TotalItems } from "../../../components";
 import { extractOperations } from "../../../wfsMetadata";
 import consts from "./constants";
 

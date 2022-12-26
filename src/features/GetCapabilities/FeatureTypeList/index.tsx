@@ -1,6 +1,6 @@
 import { Col } from "reactstrap";
 
-import Panel from "../../../components/Panel/Panel";
+import { Panel } from "../../../components";
 import FeatureDetails from "./FeatureDetails";
 import { useWindowWidth } from "../../../hooks";
 import { getSizeAndOffset } from "../../../utils";

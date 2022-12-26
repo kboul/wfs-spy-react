@@ -1,6 +1,6 @@
 import { Col, Row } from "reactstrap";
 
-import Panel from "../../../components/Panel/Panel";
+import { Panel } from "../../../components";
 import CompOper from "./ComparisonOperators";
 import SpatialOperators from "./SpatialOperators";
 import GeometryOperands from "./GeometryOperands";
