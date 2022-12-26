@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardHeader, CardBody, Collapse, CardTitle } from "reactstrap";
 
 import PanelProps from "./model";
-import styles from "./index.module.sass";
+import styles from "./Panel.module.sass";
 
 export default function Panel({ content, header, title }: PanelProps) {
   const [isCardOpen, setIsCardOpen] = useState(true);

@@ -1,4 +1,6 @@
-import TotalItemsProps from "./model";
+interface TotalItemsProps {
+  numberOfItems: number;
+}
 
 const totalItems: string = "Total Items:";
 

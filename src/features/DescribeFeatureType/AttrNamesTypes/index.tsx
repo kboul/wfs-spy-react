@@ -1,6 +1,6 @@
 import { Col } from "reactstrap";
 
-import Panel from "../../../components/Panel";
+import Panel from "../../../components/Panel/Panel";
 import AttributeDetails from "./AttributeDetails";
 import consts from "./constants";
 

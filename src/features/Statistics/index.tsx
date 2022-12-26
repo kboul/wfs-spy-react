@@ -4,7 +4,7 @@ import { Col } from "reactstrap";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import Panel from "../../components/Panel";
+import Panel from "../../components/Panel/Panel";
 import { useAppContext } from "../../context";
 import {
   chartOptions,

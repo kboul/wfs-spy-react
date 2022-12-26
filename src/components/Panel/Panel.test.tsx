@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Panel from ".";
+import Panel from "./Panel";
 
 const content = "My Content";
 const header = "My header";

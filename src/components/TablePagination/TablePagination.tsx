@@ -2,7 +2,7 @@ import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
 import { ClickEvent } from "../../models/events";
 import TablePaginationProps from "./model";
-import "./index.sass";
+import "./TablePagination.sass";
 
 export default function TablePagination({
   currentPage,
