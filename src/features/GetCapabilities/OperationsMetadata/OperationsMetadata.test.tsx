@@ -5,9 +5,7 @@ import {
 import OperationsMetadata from ".";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<OperationsMetadata />);
-});
+beforeEach(() => renderWithContext(<OperationsMetadata />));
 
 test("header appears on the page", () => {
   const header = screen.getByRole("heading", { name: consts.header });

@@ -8,3 +8,4 @@ export { default as getFullTypename } from "./getFullTypename/getFullTypename";
 export { default as getRootRequest } from "./getRootRequest/getRootRequest";
 export { default as getValRefType } from "./getValRefType/getValRefType";
 export { default as splitStrOnUpperCase } from "./splitStrOnUpperCase/splitStrOnUpperCase";
+export { default as truncate } from "./truncate/truncate";

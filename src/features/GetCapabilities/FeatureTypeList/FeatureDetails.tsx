@@ -5,7 +5,7 @@ import { TablePagination, TotalItems } from "../../../components";
 import { useAppContext } from "../../../context";
 import { extractFeatureTypes } from "../../../wfsMetadata";
 import { ClickEvent } from "../../../models/events";
-import { truncate } from "./utils";
+import { truncate } from "../../../utils";
 import consts from "./constants";
 
 export default function FeatureDetails() {

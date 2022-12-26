@@ -1,7 +1,7 @@
-import consts from "../../constants";
-import { splitStrOnUpperCase } from "../../../../../utils";
+import consts from "./constants";
+import { splitStrOnUpperCase } from "../../../utils";
 
-export default function formalProviderName(strOnUpperCase: string): string {
+export function formalProviderName(strOnUpperCase: string): string {
   const splittedString = splitStrOnUpperCase(strOnUpperCase);
   switch (splittedString) {
     case consts.voice:

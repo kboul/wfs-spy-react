@@ -5,9 +5,7 @@ import {
 import FilterCapabilities from ".";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<FilterCapabilities />);
-});
+beforeEach(() => renderWithContext(<FilterCapabilities />));
 
 test("header appears on the page", () => {
   const header = screen.getByRole("heading", { name: consts.header });

@@ -1,4 +1,4 @@
-import truncate from ".";
+import truncate from "./truncate";
 
 describe("checkAbstractLength", () => {
   test("returns - when input is an empty string", () => {

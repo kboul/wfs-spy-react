@@ -2,12 +2,10 @@ import {
   renderWithContext,
   screen
 } from "../../../tests/utils/renderWithContext";
-import ServiceProvider from ".";
+import FeatureTypeList from ".";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<ServiceProvider />);
-});
+beforeEach(() => renderWithContext(<FeatureTypeList />));
 
 test("header appears on the page", () => {
   const header = screen.getByRole("heading", { name: consts.header });

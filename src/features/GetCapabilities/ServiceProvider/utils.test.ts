@@ -1,5 +1,5 @@
-import formalProviderName from ".";
-import consts from "../../constants";
+import { formalProviderName } from "./utils";
+import consts from "./constants";
 
 describe("formalProviderName", () => {
   test("returns formal provider name when input is Voice", () => {
