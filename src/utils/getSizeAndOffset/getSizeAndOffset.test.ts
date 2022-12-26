@@ -1,4 +1,4 @@
-import getSizeAndOffset from ".";
+import getSizeAndOffset from "./getSizeAndOffset";
 
 describe("getSizeAndOffset", () => {
   test("size should be 12 and offset 0 when window width is smaller than 1550px", () => {

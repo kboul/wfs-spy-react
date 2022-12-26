@@ -1,4 +1,4 @@
-import hasGeometry from ".";
+import hasGeometry from "./hasGeometry";
 
 describe("hasGeometry", () => {
   test("returns falsy when value reference type is not of geometry type", () => {

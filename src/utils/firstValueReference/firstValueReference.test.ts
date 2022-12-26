@@ -1,4 +1,4 @@
-import firstValueReference from ".";
+import firstValueReference from "./firstValueReference";
 import { AttrNamesTypes } from "../../wfsMetadata/models";
 
 describe("firstValueReference", () => {

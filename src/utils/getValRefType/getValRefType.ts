@@ -1,5 +1,5 @@
 import { AttrNamesTypes } from "../../wfsMetadata/models";
-import getFullTypename from "../getFullTypename";
+import getFullTypename from "../getFullTypename/getFullTypename";
 
 interface ArgsType {
   typename: string;

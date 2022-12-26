@@ -1,4 +1,4 @@
-import getValRefType from ".";
+import getValRefType from "./getValRefType";
 import valueReferences from "../../tests/data/valueReferences";
 import consts from "../../context/constants";
 

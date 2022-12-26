@@ -1,4 +1,4 @@
-import getFullTypename from ".";
+import getFullTypename from "./getFullTypename";
 
 describe("getFullTypename", () => {
   test("splits string on upper case when typename is defined", () => {

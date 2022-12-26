@@ -1,5 +1,5 @@
-import hasGeometry from "../hasGeometry";
-import getFullTypename from "../getFullTypename";
+import hasGeometry from "../hasGeometry/hasGeometry";
+import getFullTypename from "../getFullTypename/getFullTypename";
 import { AttrNamesTypes } from "../../wfsMetadata/models";
 
 export default function firstValueReference(

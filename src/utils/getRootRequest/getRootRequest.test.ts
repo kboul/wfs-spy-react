@@ -1,4 +1,4 @@
-import getRootRequest from ".";
+import getRootRequest from "./getRootRequest";
 
 test("returns a valid WFS GET request url", () => {
   const url = "http://daim.lfv.se/geoserver/wfs";
