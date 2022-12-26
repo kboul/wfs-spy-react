@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import FilteredValueCount, { consts } from ".";
+import { label } from "./constants";
+import FilteredValueCount from "./FilteredValueCount";
 
 let filterdValueCountInput: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<FilteredValueCount />);
-  filterdValueCountInput = screen.getByLabelText(consts.label);
+  filterdValueCountInput = screen.getByLabelText(label);
 });
 
 test("filtered value count input appears on the page", () => {

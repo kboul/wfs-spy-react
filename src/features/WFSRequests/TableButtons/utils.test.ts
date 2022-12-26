@@ -1,4 +1,4 @@
-import disableRespBtns from "./utils";
+import { disableRespBtns } from "./utils";
 import initialState from "../../../context/initialState";
 
 describe("disableRespBtns", () => {

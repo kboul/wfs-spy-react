@@ -1,6 +1,6 @@
 import { State } from "../../../context/models";
 
-export default function disableRespBtns(state: State, label: string) {
+export function disableRespBtns(state: State, label: string) {
   const labelHasResponse = label.includes("Response");
   const labelHasFilterResponse = label.includes("Filter Response");
 

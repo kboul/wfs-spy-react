@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import MinValue, { consts } from ".";
+import MinValue, { consts } from "./MinValue";
 
 let minValueInput: HTMLElement;
 

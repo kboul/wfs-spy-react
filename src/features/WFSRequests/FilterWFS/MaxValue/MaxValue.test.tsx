@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import MaxValue, { consts } from ".";
+import MaxValue, { consts } from "./MaxValue";
 
 let maxValueInput: HTMLElement;
 

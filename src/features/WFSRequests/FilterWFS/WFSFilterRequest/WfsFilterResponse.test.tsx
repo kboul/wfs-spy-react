@@ -2,17 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-
 import WfsFilterResponse from ".";
-import consts from "./constants";
+import { label } from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<WfsFilterResponse />);
-});
+beforeEach(() => renderWithContext(<WfsFilterResponse />));
 
 test("wfs filter response textarea appears on the page witn no value", () => {
   const wfsFilterRequestTextarea = screen.getByRole("textbox", {
-    name: consts.wfsFilterRequestLabel
+    name: label
   });
   expect(wfsFilterRequestTextarea).toBeInTheDocument();
   expect(wfsFilterRequestTextarea).toHaveValue("");

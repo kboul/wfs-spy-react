@@ -2,7 +2,7 @@ import { Table, Button } from "reactstrap";
 
 import TableButtonsProps from "./model";
 import { useAppContext } from "../../../context";
-import disableRespBtns from "./utils";
+import { disableRespBtns } from "./utils";
 import consts from "./constants";
 import styles from "./TableButtons.module.sass";
 

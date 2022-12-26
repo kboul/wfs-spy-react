@@ -2,8 +2,8 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-
-import SelectedTypValueRefer, { consts } from ".";
+import SelectedTypValueRefer from "./SelectedTypValueRefer";
+import { label } from "./constants";
 
 let selectedTypValueRefTextarea: HTMLElement;
 
@@ -11,7 +11,7 @@ beforeEach(() => {
   renderWithContext(<SelectedTypValueRefer />);
 
   selectedTypValueRefTextarea = screen.getByRole("textbox", {
-    name: consts.label.replace("\n", "")
+    name: label.replace("\n", "")
   });
 });
 

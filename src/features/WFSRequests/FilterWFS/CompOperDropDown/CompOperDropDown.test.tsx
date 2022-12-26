@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import CompOperDropDown, { consts } from ".";
+import CompOperDropDown from "./CompOperDropDown";
+import { label } from "./constants";
 
 let compOperDropdown: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<CompOperDropDown />);
-  compOperDropdown = screen.getByLabelText(consts.label);
+  compOperDropdown = screen.getByLabelText(label);
 });
 
 test("comparison operators dropdown appears on the page", () => {

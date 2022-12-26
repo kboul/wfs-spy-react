@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import ValueCount, { consts } from ".";
+import ValueCount from ".";
+import { label } from "./constants";
 
 let valueCountInput: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<ValueCount />);
-  valueCountInput = screen.getByLabelText(consts.label);
+  valueCountInput = screen.getByLabelText(label);
 });
 
 test("value count input appears on the page", () => {

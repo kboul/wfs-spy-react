@@ -1,4 +1,5 @@
-export default {
-    wfsFilterRequest: 'wfsFilterRequest',
-    wfsFilterRequestLabel: 'Form WFS GetPropertyValue Filter Request:'
-};
+const id = "wfsFilterRequest";
+
+const label = "Form WFS GetPropertyValue Filter Request:";
+
+export { id, label };
