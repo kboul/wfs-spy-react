@@ -1,7 +1,8 @@
-import ChartOptions from "../../models";
-import consts from "../../constants";
+import ChartOptions from "./models";
+import consts from "./constants";
+import { State } from "../../context/models";
 
-export default function chartOptions(chart: string): ChartOptions {
+function chartOptions(chart: string): ChartOptions {
   return {
     chart: {
       type: "bar"
@@ -76,3 +77,35 @@ export default function chartOptions(chart: string): ChartOptions {
     series: chart === "time" ? consts.timeSeries : consts.numberSeries
   };
 }
+
+function getMaxRequestNumber(state: State) {
+  return Math.max(
+    getTotalGetRequestNumber(state),
+    getTotalPostRequestNumber(state)
+  );
+}
+
+function getTotalGetRequestNumber(state: State): number {
+  return (
+    state.getGetCapNumber +
+    state.getDescFeatTypeNumber +
+    state.getGetPropValNumber +
+    state.getGetPropValFiltNumber
+  );
+}
+
+function getTotalPostRequestNumber(state: State): number {
+  return (
+    state.postGetCapNumber +
+    state.postDescFeatTypeNumber +
+    state.postGetPropValNumber +
+    state.postGetPropValFiltNumber
+  );
+}
+
+export {
+  chartOptions,
+  getMaxRequestNumber,
+  getTotalGetRequestNumber,
+  getTotalPostRequestNumber
+};

@@ -2,9 +2,7 @@ import { renderWithContext, screen } from "../../tests/utils/renderWithContext";
 import Statistics from ".";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<Statistics />);
-});
+beforeEach(() => renderWithContext(<Statistics />));
 
 test("header appears on the page", () => {
   const header = screen.getByRole("heading", { name: consts.header });
