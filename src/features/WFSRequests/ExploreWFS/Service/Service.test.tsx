@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import Service, { consts } from ".";
+import Service, { consts } from "./Service";
 
 let serviceInput: HTMLElement;
 

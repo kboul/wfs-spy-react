@@ -5,7 +5,7 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Url, { consts } from ".";
+import Url, { consts } from "./Url";
 
 let urlTextarea: HTMLElement;
 

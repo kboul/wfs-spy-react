@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import Typename, { consts } from ".";
+import Typename, { consts } from "./Typename";
 
 let typeNameDropdown: HTMLElement;
 

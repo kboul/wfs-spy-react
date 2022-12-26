@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-import globalConsts from "../../../../constants";
+import globalConsts from "../constants";
 
 const { colors } = globalConsts;
 

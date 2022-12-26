@@ -6,13 +6,13 @@ import {
   screen,
   waitFor
 } from "../../tests/utils/renderWithContext";
-import WfsRequests from ".";
+import WfsRequests from "./WFSRequests";
 import globalConsts from "../../constants";
-import { consts as urlConsts } from "./ExploreWFS/Url";
+import { consts as urlConsts } from "./ExploreWFS/Url/Url";
 import wfsReqConsts from "./ExploreWFS/WfsRequest/constants";
 import wfsRespConsts from "./ExploreWFS/WFSResponse/constants";
 // import { consts as typenameConsts } from './ExploreWFS/Typename';
-import { consts as valReferConsts } from "./ExploreWFS/ValueReference";
+import { consts as valReferConsts } from "./ExploreWFS/ValueReference/ValueReference";
 // import { consts as compOperConsts } from './FilterWFS/CompOperDropDown';
 
 const url = "http://kort.strandnr.dk/geoserver/nobc/wfs";

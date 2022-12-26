@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import ValueReference, { consts } from ".";
+import ValueReference, { consts } from "./ValueReference";
 
 let valueReferenceDropdown: HTMLElement;
 

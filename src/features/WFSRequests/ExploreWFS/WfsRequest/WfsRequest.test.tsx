@@ -3,12 +3,10 @@ import {
   screen
 } from "../../../../tests/utils/renderWithContext";
 
-import WfsRequest from ".";
+import WfsRequest from "./WfsRequest";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<WfsRequest />);
-});
+beforeEach(() => renderWithContext(<WfsRequest />));
 
 test("wfsRequest textarea appears on the page witn no value", () => {
   const wfsRequestTextarea = screen.getByRole("textbox", {

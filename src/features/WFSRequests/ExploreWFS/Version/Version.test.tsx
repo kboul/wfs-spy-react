@@ -3,7 +3,7 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Version, { consts } from ".";
+import Version, { consts } from "./Version";
 import globalConsts from "../../../../constants";
 
 let versionDropdown: HTMLElement;

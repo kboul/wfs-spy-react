@@ -3,7 +3,7 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Request, { consts } from ".";
+import Request, { consts } from "./Request";
 import globalConsts from "../../../../constants";
 
 let requestDropdown: HTMLElement;

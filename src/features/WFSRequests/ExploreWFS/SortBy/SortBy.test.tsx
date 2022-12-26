@@ -2,7 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import SortBy, { consts } from ".";
+import SortBy, { consts } from "./SortBy";
 
 let sortByInput: HTMLElement;
 
