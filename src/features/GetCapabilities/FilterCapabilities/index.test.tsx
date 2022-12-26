@@ -1,4 +1,7 @@
-import { renderWithContext, screen } from "../../../tests/utils";
+import {
+  renderWithContext,
+  screen
+} from "../../../tests/utils/renderWithContext";
 import FilterCapabilities from ".";
 import consts from "./constants";
 

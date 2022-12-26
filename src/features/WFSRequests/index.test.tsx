@@ -1,7 +1,11 @@
 /* eslint-disable testing-library/no-wait-for-multiple-assertions */
 import userEvent from "@testing-library/user-event";
 
-import { renderWithContext, screen, waitFor } from "../../tests/utils";
+import {
+  renderWithContext,
+  screen,
+  waitFor
+} from "../../tests/utils/renderWithContext";
 import WfsRequests from ".";
 import globalConsts from "../../constants";
 import { consts as urlConsts } from "./ExploreWFS/Url";

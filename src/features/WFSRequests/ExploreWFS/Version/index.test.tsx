@@ -1,4 +1,8 @@
-import { renderWithContext, screen, fireEvent } from "../../../../tests/utils";
+import {
+  renderWithContext,
+  screen,
+  fireEvent
+} from "../../../../tests/utils/renderWithContext";
 import Version, { consts } from ".";
 import globalConsts from "../../../../constants";
 

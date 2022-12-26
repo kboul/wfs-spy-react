@@ -1,6 +1,10 @@
 import userEvent from "@testing-library/user-event";
 
-import { renderWithContext, screen, fireEvent } from "../../../../tests/utils";
+import {
+  renderWithContext,
+  screen,
+  fireEvent
+} from "../../../../tests/utils/renderWithContext";
 import Url, { consts } from ".";
 
 let urlTextarea: HTMLElement;

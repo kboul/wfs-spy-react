@@ -1,4 +1,7 @@
-import { renderWithContext, screen } from "../../../tests/utils";
+import {
+  renderWithContext,
+  screen
+} from "../../../tests/utils/renderWithContext";
 import FeatureTypeList from ".";
 import consts from "./constants";
 

@@ -1,4 +1,4 @@
-import { renderWithContext, screen } from "../../tests/utils";
+import { renderWithContext, screen } from "../../tests/utils/renderWithContext";
 import Statistics from ".";
 import consts from "./constants";
 

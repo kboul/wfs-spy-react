@@ -1,10 +1,13 @@
-import { renderWithContext, screen } from '../../../../tests/utils';
+import {
+  renderWithContext,
+  screen
+} from "../../../../tests/utils/renderWithContext";
 
-import NonNumericValue, { consts } from '.';
+import NonNumericValue, { consts } from ".";
 
-test('non numeric value input does not appear initially on the page ', () => {
-    renderWithContext(<NonNumericValue />);
+test("non numeric value input does not appear initially on the page ", () => {
+  renderWithContext(<NonNumericValue />);
 
-    const nonNumericValueInput = screen.queryByLabelText(consts.label);
-    expect(nonNumericValueInput).not.toBeInTheDocument();
+  const nonNumericValueInput = screen.queryByLabelText(consts.label);
+  expect(nonNumericValueInput).not.toBeInTheDocument();
 });

@@ -1,6 +1,6 @@
 import { MemoryRouter } from "react-router-dom";
 
-import { renderWithContext, screen } from "../../tests/utils";
+import { renderWithContext, screen } from "../../tests/utils/renderWithContext";
 
 import Navbar from ".";
 
