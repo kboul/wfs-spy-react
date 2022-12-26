@@ -1,6 +1,6 @@
-import { AttrNamesTypes } from "../../../../../wfsMetadata/models";
-import { getFullTypename } from "../../../../../utils";
-import AttrNameTypeProps from "../../models";
+import { AttrNamesTypes } from "../../../wfsMetadata/models";
+import { getFullTypename } from "../../../utils";
+import AttrNameTypeProps from "./models";
 
 export default function getAttrNameTypeList(
   typename: string,

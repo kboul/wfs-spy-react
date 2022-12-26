@@ -5,9 +5,7 @@ import {
 import AttrNamesTypes from ".";
 import consts from "./constants";
 
-beforeEach(() => {
-  renderWithContext(<AttrNamesTypes />);
-});
+beforeEach(() => renderWithContext(<AttrNamesTypes />));
 
 test("header appears on the page", () => {
   const header = screen.getByRole("heading", { name: consts.header });

@@ -4,7 +4,7 @@ import { Table } from "reactstrap";
 import Typename from "../../WFSRequests/ExploreWFS/Typename";
 import { TablePagination, TotalItems } from "../../../components";
 import { useAppContext } from "../../../context";
-import { getAttrNameTypeList } from "./utils";
+import getAttrNameTypeList from "./utils";
 import { extractAttrNamesTypes } from "../../../wfsMetadata";
 import { ClickEvent } from "../../../models/events";
 import globalConsts from "../../../constants";
