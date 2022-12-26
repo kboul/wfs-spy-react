@@ -2,7 +2,7 @@ import { Container, Row } from "reactstrap";
 
 import ExploreWFS from "./ExploreWFS";
 import FilterWFS from "./FilterWFS";
-import { WFSResponseModal } from "./components";
+import WfsResponseModal from "./WFSResponseModal";
 
 export default function WFSRequests() {
   return (
@@ -11,7 +11,7 @@ export default function WFSRequests() {
         <ExploreWFS />
         <FilterWFS />
       </Row>
-      <WFSResponseModal />
+      <WfsResponseModal />
     </Container>
   );
 }

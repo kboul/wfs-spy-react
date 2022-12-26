@@ -1,6 +1,6 @@
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
-import { TableButtons } from "../../components";
+import TableButtons from "../../TableButtons";
 import { useAppContext, changeState, types } from "../../../../context";
 import wfsApi from "../../../../api/wfsApi";
 import {
@@ -9,12 +9,8 @@ import {
   changeGetPropValResp
 } from "./actions";
 import { formGetRequest, formPostRequest } from "../utils";
-import {
-  getTimeInMs,
-  errorMessage,
-  isMethodGet,
-  adjustProxyToUrl
-} from "../../utils";
+import { getTimeInMs, errorMessage, isMethodGet } from "../../utils";
+import { adjustProxyToUrl } from "../../../../utils";
 import globalConsts from "../../../../constants";
 import consts from "./constants";
 import sharedStyles from "../../shared.module.sass";

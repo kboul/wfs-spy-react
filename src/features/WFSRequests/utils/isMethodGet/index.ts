@@ -1,3 +1,3 @@
 export default function isMethodGet(httpMethod: string): boolean {
-    return httpMethod === 'GET';
+  return httpMethod === "GET";
 }

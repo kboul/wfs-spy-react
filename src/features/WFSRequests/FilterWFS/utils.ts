@@ -1,7 +1,6 @@
 /* eslint-disable prefer-template */
 import { State } from "../../../context/models";
-import { getRootRequest } from "../../../utils";
-import { concatPrefixesAndUris } from "../utils";
+import { concatPrefixesAndUris, getRootRequest } from "../../../utils";
 
 const formGetFilterRequest = (state: State): string => {
   const {

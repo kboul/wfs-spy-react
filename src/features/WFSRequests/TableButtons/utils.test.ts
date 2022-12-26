@@ -1,5 +1,5 @@
-import disableRespBtns from ".";
-import initialState from "../../../../../context/initialState";
+import disableRespBtns from "./utils";
+import initialState from "../../../context/initialState";
 
 describe("disableRespBtns", () => {
   describe("label includes Response", () => {

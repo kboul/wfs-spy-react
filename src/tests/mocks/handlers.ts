@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { rest } from "msw";
 
-import { adjustProxyToUrl } from "../../features/WFSRequests/utils";
+import { adjustProxyToUrl } from "../../utils";
 import getGetCapResponse from "../data/getGetCapResponse";
 
 const wfsUrl = "http://kort.strandnr.dk/geoserver/nobc/wfs";

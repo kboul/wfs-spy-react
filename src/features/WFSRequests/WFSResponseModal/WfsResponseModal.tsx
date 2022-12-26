@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
-import { changeState, types, useAppContext } from "../../../../context";
-import { parseXML } from "../../../../wfsMetadata";
-import formDecoratedXml from "./utils/formDecoratedXml";
+import { changeState, types, useAppContext } from "../../../context";
+import { parseXML } from "../../../wfsMetadata";
+import { formDecoratedXml } from "./utils";
 
 const styles = {
   modalContainer: { maxWidth: "90%" },
