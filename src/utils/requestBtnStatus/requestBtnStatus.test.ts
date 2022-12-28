@@ -1,4 +1,4 @@
-import requestBtnStatus from ".";
+import requestBtnStatus from "./requestBtnStatus";
 
 describe("requestBtnStatus", () => {
   describe("request argument is defined", () => {

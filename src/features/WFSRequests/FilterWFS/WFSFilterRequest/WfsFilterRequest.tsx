@@ -2,9 +2,10 @@ import { FormGroup, Col, Label, Input } from "reactstrap";
 
 import TableButtons from "../../TableButtons";
 import { useAppContext, changeState, types } from "../../../../context";
+import { requestBtnStatus } from "../../../../utils";
 import { formGetFilterRequest, formPostFilterRequest } from "../utils";
 import { validateFiltReqBtn } from "./utils";
-import { isMethodGet, requestBtnStatus } from "../../utils";
+import { isMethodGet } from "../../utils";
 import { id, label } from "./constants";
 import sharedStyles from "../../shared.module.sass";
 
