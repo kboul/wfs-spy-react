@@ -1,4 +1,4 @@
-import getTimeInMs from ".";
+import getTimeInMs from "./getTimeInMs";
 
 test("retuns input in miliseconds", () => {
   const mockDate = getTimeInMs();

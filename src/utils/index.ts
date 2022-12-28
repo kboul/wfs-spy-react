@@ -4,6 +4,7 @@ export { default as errorMessage } from "./errorMessage/errorMessage";
 export { default as getCompOperList } from "./getCompOperList";
 export { default as getOrPost } from "./getOrPost/getOrPost";
 export { default as getSizeAndOffset } from "./getSizeAndOffset/getSizeAndOffset";
+export { default as getTimeInMs } from "./getTimeInMs/getTimeInMs";
 export { default as firstValueReference } from "./firstValueReference/firstValueReference";
 export { default as hasGeometry } from "./hasGeometry/hasGeometry";
 export { default as getFullTypename } from "./getFullTypename/getFullTypename";

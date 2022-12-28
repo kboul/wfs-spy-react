@@ -3,8 +3,13 @@ import { FormGroup, Col, Label, Input } from "reactstrap";
 import TableButtons from "../../TableButtons";
 import { useAppContext, changeState, types } from "../../../../context";
 import wfsApi from "../../../../api/wfsApi";
-import { getTimeInMs, isMethodGet } from "../../utils";
-import { adjustProxyToUrl, errorMessage, getOrPost } from "../../../../utils";
+import { isMethodGet } from "../../utils";
+import {
+  adjustProxyToUrl,
+  errorMessage,
+  getOrPost,
+  getTimeInMs
+} from "../../../../utils";
 import { formGetFilterRequest, formPostFilterRequest } from "../utils";
 import globalConsts from "../../../../constants";
 import { id, label } from "./constants";
