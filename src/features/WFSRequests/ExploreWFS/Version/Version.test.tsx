@@ -3,14 +3,15 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Version, { consts } from "./Version";
+import Version from "./Version";
 import globalConsts from "../../../../constants";
+import labels from "../labels";
 
 let versionDropdown: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<Version />);
-  versionDropdown = screen.getByLabelText(consts.label);
+  versionDropdown = screen.getByLabelText(labels.version);
 });
 
 test("version dropdown appears on the page", () => {

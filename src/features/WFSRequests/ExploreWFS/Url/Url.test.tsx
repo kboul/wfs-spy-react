@@ -5,13 +5,14 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Url, { consts } from "./Url";
+import Url from "./Url";
+import labels from "../labels";
 
 let urlTextarea: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<Url />);
-  urlTextarea = screen.getByLabelText(consts.label);
+  urlTextarea = screen.getByLabelText(labels.url);
 });
 
 test("url input appears on the page", () => {

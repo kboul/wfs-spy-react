@@ -4,6 +4,7 @@ import TableButtons from "../../TableButtons";
 import { useAppContext, changeState, types } from "../../../../context";
 import { requestBtnStatus, isMethodGet } from "../../../../utils";
 import { formGetRequest, formPostRequest } from "../utils";
+import labels from "../labels";
 import consts from "./constants";
 import sharedStyles from "../../shared.module.sass";
 
@@ -22,7 +23,7 @@ export default function WfsRequest() {
     <FormGroup className="text-center" row>
       <Col md={{ size: 10, offset: 1 }}>
         <Label className={sharedStyles.labelFont} for={consts.id}>
-          {consts.label}
+          {labels.wfsRequest}
         </Label>
         <Input
           className={sharedStyles.textarea}

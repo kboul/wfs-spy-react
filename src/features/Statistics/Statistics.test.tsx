@@ -1,5 +1,5 @@
 import { renderWithContext, screen } from "../../tests/utils/renderWithContext";
-import Statistics from ".";
+import Statistics from "./Statistics";
 import consts from "./constants";
 
 beforeEach(() => renderWithContext(<Statistics />));

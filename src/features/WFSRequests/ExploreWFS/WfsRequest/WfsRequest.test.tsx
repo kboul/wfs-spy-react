@@ -2,15 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-
 import WfsRequest from "./WfsRequest";
-import consts from "./constants";
+import labels from "../labels";
 
 beforeEach(() => renderWithContext(<WfsRequest />));
 
 test("wfsRequest textarea appears on the page witn no value", () => {
   const wfsRequestTextarea = screen.getByRole("textbox", {
-    name: consts.label
+    name: labels.wfsRequest
   });
   expect(wfsRequestTextarea).toBeInTheDocument();
   expect(wfsRequestTextarea).toHaveValue("");
@@ -18,7 +17,7 @@ test("wfsRequest textarea appears on the page witn no value", () => {
 
 test("get request button appears on the page and is enabled", () => {
   const getRequestBtn = screen.getByRole("button", {
-    name: consts.getReqBtnLabel
+    name: labels.getReqBtn
   });
   expect(getRequestBtn).toBeInTheDocument();
   expect(getRequestBtn).toBeEnabled();
@@ -26,7 +25,7 @@ test("get request button appears on the page and is enabled", () => {
 
 test("post request button appears on the page and is enabled", () => {
   const postRequestBtn = screen.getByRole("button", {
-    name: consts.postReqBtnLabel
+    name: labels.postReqBtn
   });
   expect(postRequestBtn).toBeInTheDocument();
   expect(postRequestBtn).toBeEnabled();

@@ -3,14 +3,15 @@ import {
   screen,
   fireEvent
 } from "../../../../tests/utils/renderWithContext";
-import Request, { consts } from "./Request";
+import Request from "./Request";
 import globalConsts from "../../../../constants";
+import labels from "../labels";
 
 let requestDropdown: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<Request />);
-  requestDropdown = screen.getByLabelText(consts.label);
+  requestDropdown = screen.getByLabelText(labels.request);
 });
 
 test("request dropdown appears on the page", () => {

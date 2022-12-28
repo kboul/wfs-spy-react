@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import ValueReference, { consts } from "./ValueReference";
+import ValueReference from "./ValueReference";
+import labels from "../labels";
 
 let valueReferenceDropdown: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<ValueReference />);
-  valueReferenceDropdown = screen.getByLabelText(consts.label);
+  valueReferenceDropdown = screen.getByLabelText(labels.valueReference);
 });
 
 test("valueReference dropdown appears on the page", () => {

@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import Typename, { consts } from "./Typename";
+import Typename from "./Typename";
+import labels from "../labels";
 
 let typeNameDropdown: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<Typename />);
-  typeNameDropdown = screen.getByLabelText(consts.label);
+  typeNameDropdown = screen.getByLabelText(labels.typename);
 });
 
 test("typeName dropdown appears on the page", () => {

@@ -8,11 +8,9 @@ import {
 } from "../../tests/utils/renderWithContext";
 import WfsRequests from "./WFSRequests";
 import globalConsts from "../../constants";
-import { consts as urlConsts } from "./ExploreWFS/Url/Url";
-import wfsReqConsts from "./ExploreWFS/WfsRequest/constants";
+import labels from "./ExploreWFS/labels";
 import wfsRespConsts from "./ExploreWFS/WFSResponse/constants";
 // import { consts as typenameConsts } from './ExploreWFS/Typename';
-import { consts as valReferConsts } from "./ExploreWFS/ValueReference/ValueReference";
 // import { consts as compOperConsts } from './FilterWFS/CompOperDropDown';
 
 const url = "http://kort.strandnr.dk/geoserver/nobc/wfs";
@@ -26,17 +24,17 @@ service=WFS`;
 test.skip("GET request GetCapabilities response", async () => {
   renderWithContext(<WfsRequests />);
 
-  const urlTextarea = screen.getByLabelText(urlConsts.label);
+  const urlTextarea = screen.getByLabelText(labels.url);
   userEvent.type(urlTextarea, url);
 
   // click on GET Request btn
   const getRequestBtn = screen.getByRole("button", {
-    name: wfsReqConsts.getReqBtnLabel
+    name: labels.getReqBtn
   });
   userEvent.click(getRequestBtn);
   // textarea has the GET GetCapabilities request formed
   const wfsRequestTextarea = screen.getByRole("textbox", {
-    name: wfsReqConsts.label
+    name: labels.wfsRequest
   });
   expect(wfsRequestTextarea).toHaveValue(getWfsRequest);
 
@@ -64,7 +62,7 @@ test.skip("GET request GetCapabilities response", async () => {
     // console.log(screen.debug(undefined, 300000));
 
     // valueReference
-    const valueReferenceDropdown = screen.getByLabelText(valReferConsts.label);
+    const valueReferenceDropdown = screen.getByLabelText(labels.valueReference);
     expect(valueReferenceDropdown).toBeDisabled();
 
     // const compOperDropdown = screen.getByLabelText(compOperConsts.label);

@@ -2,8 +2,7 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-
-import WfsResponse from ".";
+import WfsResponse from "./WfsFilterResponse";
 import { label } from "./constants";
 
 beforeEach(() => renderWithContext(<WfsResponse />));

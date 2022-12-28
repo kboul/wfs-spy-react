@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import Service, { consts } from "./Service";
+import labels from "../labels";
+import Service from "./Service";
 
 let serviceInput: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<Service />);
-  serviceInput = screen.getByLabelText(consts.label);
+  serviceInput = screen.getByLabelText(labels.service);
 });
 
 test("service input appears on the page", () => {

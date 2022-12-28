@@ -4,9 +4,8 @@ import { useAppContext, changeState, types } from "../../../../context";
 import useInputFocus from "../../../../hooks/useInputFocus";
 import { ChangeEvent } from "../../../../models/events";
 import sharedStyles from "../../shared.module.sass";
+import labels from "../labels";
 import styles from "./Url.module.sass";
-
-export const consts = { label: "url" };
 
 const urlStyle = `${sharedStyles.labelFont} ${styles.url}`;
 
@@ -20,15 +19,15 @@ export default function Url() {
 
   return (
     <FormGroup row>
-      <Label className={urlStyle} for={consts.label} md={2}>
-        {consts.label}
+      <Label className={urlStyle} for={labels.url} md={2}>
+        {labels.url}
       </Label>
       <Col md={9}>
         <Input
           className={`${sharedStyles.textarea} form-control ${
             state.errors.url && "is-invalid"
           } `}
-          id={consts.label}
+          id={labels.url}
           innerRef={urlRef}
           onBlur={handleBlur}
           onChange={handleChange}

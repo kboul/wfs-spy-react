@@ -3,9 +3,8 @@ import { Col, FormGroup, Label, Input } from "reactstrap";
 import { useAppContext, changeState, types } from "../../../../context";
 import globalConsts from "../../../../constants";
 import { ChangeEvent } from "../../../../models/events";
+import labels from "../labels";
 import sharedStyles from "../../shared.module.sass";
-
-export const consts = { label: "request" };
 
 export default function Request() {
   const { state, dispatch } = useAppContext();
@@ -17,12 +16,12 @@ export default function Request() {
 
   return (
     <FormGroup row>
-      <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
-        {consts.label}
+      <Label className={sharedStyles.labelFont} for={labels.request} md={2}>
+        {labels.request}
       </Label>
       <Col md={9}>
         <Input
-          id={consts.label}
+          id={labels.request}
           type="select"
           value={state.request}
           onChange={handleChange}

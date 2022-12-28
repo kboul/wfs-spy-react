@@ -4,9 +4,8 @@ import { Col, FormGroup, Label, Input } from "reactstrap";
 import { useAppContext, changeState, types } from "../../../../context";
 import { ChangeEvent } from "../../../../models/events";
 import { firstValueReference } from "../../../../utils";
+import labels from "../labels";
 import sharedStyles from "../../shared.module.sass";
-
-export const consts = { label: "typeName" };
 
 export default function Typename() {
   const { state, dispatch } = useAppContext();
@@ -31,13 +30,13 @@ export default function Typename() {
 
   return (
     <FormGroup row>
-      <Label className={sharedStyles.labelFont} for={consts.label} md={2}>
-        {consts.label}
+      <Label className={sharedStyles.labelFont} for={labels.typename} md={2}>
+        {labels.typename}
       </Label>
       <Col md={9}>
         <Input
           disabled={!state.typenames.length}
-          id={consts.label}
+          id={labels.typename}
           onChange={handleChange}
           type="select"
           value={state.typename}
