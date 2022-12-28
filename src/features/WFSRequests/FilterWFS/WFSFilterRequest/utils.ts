@@ -1,5 +1,5 @@
 import { State } from "../../../../context/models";
-import { isPropBetween } from "../../utils";
+import { isPropBetween } from "../../../../utils";
 
 export function validateFiltReqBtn(state: State): boolean | undefined {
   if (!state.getPropValResp) return true;

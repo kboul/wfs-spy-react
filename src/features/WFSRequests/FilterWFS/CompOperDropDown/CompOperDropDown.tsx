@@ -1,8 +1,7 @@
 import { FormGroup, Label, Col, Input } from "reactstrap";
 
 import { useAppContext, changeState, types } from "../../../../context";
-import { getCompOperList } from "../../../../utils";
-import { isPropBetween } from "../../utils";
+import { getCompOperList, isPropBetween } from "../../../../utils";
 import { ChangeEvent } from "../../../../models/events";
 import { id, label } from "./constants";
 import sharedStyles from "../../shared.module.sass";

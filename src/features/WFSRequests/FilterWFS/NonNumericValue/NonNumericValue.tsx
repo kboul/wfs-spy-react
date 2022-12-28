@@ -2,7 +2,7 @@ import { FormGroup, Label, Col } from "reactstrap";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 import { useAppContext, changeState, types } from "../../../../context";
-import { isPropBetween } from "../../utils";
+import { isPropBetween } from "../../../../utils";
 import globalConsts from "../../../../constants";
 import sharedStyles from "../../shared.module.sass";
 

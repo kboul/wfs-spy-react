@@ -1,4 +1,4 @@
-import isPropBetween from ".";
+import isPropBetween from "./isPropBetween";
 
 describe("isPropBetween", () => {
   test("returns truthy when comparison operator is PropertyIsBetween", () => {

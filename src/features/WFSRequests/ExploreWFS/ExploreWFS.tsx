@@ -11,7 +11,7 @@ import HiddenField from "./HiddenField";
 import WfsRequest from "./WfsRequest";
 import WfsResponse from "./WFSResponse";
 import { useAppContext } from "../../../context";
-import { isPropBetween } from "../utils";
+import { isPropBetween } from "../../../utils";
 import sharedStyles from "../shared.module.sass";
 
 const containerStyle = {

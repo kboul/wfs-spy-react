@@ -1,10 +1,10 @@
 import { FormGroup, Label, Col, Input } from "reactstrap";
 
 import { useAppContext, changeState, types } from "../../../../context";
-import { isPropBetween } from "../../utils";
 import { ChangeEvent } from "../../../../models/events";
-import sharedStyles from "../../shared.module.sass";
+import { isPropBetween } from "../../../../utils";
 import { id, label, upperValueStyle } from "./constants";
+import sharedStyles from "../../shared.module.sass";
 
 export default function UpperValue() {
   const { state, dispatch } = useAppContext();
