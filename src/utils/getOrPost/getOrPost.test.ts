@@ -1,4 +1,4 @@
-import getOrPost from ".";
+import getOrPost from "./getOrPost";
 
 describe("getOrPost", () => {
   test("returns get when input is GET", () => {

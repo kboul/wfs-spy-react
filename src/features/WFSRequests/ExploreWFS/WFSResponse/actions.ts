@@ -2,8 +2,8 @@ import { Dispatch } from "react";
 
 import { changeState, types } from "../../../../context";
 import { Action } from "../../../../context/models";
+import { getOrPost } from "../../../../utils";
 import { extractTypenames } from "../../../../wfsMetadata";
-import { getOrPost } from "../../utils";
 
 const changeGetCapResp = (
   httpMethod: string,
