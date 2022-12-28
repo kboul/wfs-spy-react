@@ -1,4 +1,4 @@
-import errorMessage from ".";
+import errorMessage from "./errorMessage";
 import errorResponses from "./constants";
 
 describe("errorMessage", () => {

@@ -1,5 +1,6 @@
 export { default as adjustProxyToUrl } from "./adjustProxyToUrl/adjustProxyToUrl";
 export { default as concatPrefixesAndUris } from "./concatPrefixesAndUris/concatPrefixesAndUris";
+export { default as errorMessage } from "./errorMessage/errorMessage";
 export { default as getCompOperList } from "./getCompOperList";
 export { default as getSizeAndOffset } from "./getSizeAndOffset/getSizeAndOffset";
 export { default as firstValueReference } from "./firstValueReference/firstValueReference";

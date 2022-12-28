@@ -9,8 +9,8 @@ import {
   changeGetPropValResp
 } from "./actions";
 import { formGetRequest, formPostRequest } from "../utils";
-import { getTimeInMs, errorMessage, isMethodGet } from "../../utils";
-import { adjustProxyToUrl } from "../../../../utils";
+import { getTimeInMs, isMethodGet } from "../../utils";
+import { adjustProxyToUrl, errorMessage } from "../../../../utils";
 import globalConsts from "../../../../constants";
 import consts from "./constants";
 import sharedStyles from "../../shared.module.sass";
