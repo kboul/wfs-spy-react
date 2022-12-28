@@ -1,4 +1,4 @@
-import isMethodGet from ".";
+import isMethodGet from "./isMethodGet";
 
 describe("isMethodGet", () => {
   test("returns truthy when input is GET ", () => {

@@ -1,4 +1,4 @@
-import isMethodGet from "../../features/WFSRequests/utils/isMethodGet";
+import isMethodGet from "../isMethodGet/isMethodGet";
 
 interface ReturnType {
   getRequestClicked?: boolean;

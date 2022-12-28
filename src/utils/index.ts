@@ -10,6 +10,7 @@ export { default as hasGeometry } from "./hasGeometry/hasGeometry";
 export { default as getFullTypename } from "./getFullTypename/getFullTypename";
 export { default as getRootRequest } from "./getRootRequest/getRootRequest";
 export { default as getValRefType } from "./getValRefType/getValRefType";
+export { default as isMethodGet } from "./isMethodGet/isMethodGet";
 export { default as isPropBetween } from "./isPropBetween/isPropBetween";
 export { default as requestBtnStatus } from "./requestBtnStatus/requestBtnStatus";
 export { default as splitStrOnUpperCase } from "./splitStrOnUpperCase/splitStrOnUpperCase";
