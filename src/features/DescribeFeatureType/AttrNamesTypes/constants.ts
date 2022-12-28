@@ -11,7 +11,7 @@ export default {
   attrNames: "Attribute Names",
   attrTypes: "Attribute Types",
   noAttributesMsg: `
-        ${globalConsts.noOperation} ${header}. 
-        Please try making individual DescribeFeatureType requests per typename.
-    `
+    ${globalConsts.noOperation} ${header}. 
+    Please try making individual DescribeFeatureType requests per typename.
+  `
 };

@@ -1,12 +1,9 @@
 import { MemoryRouter } from "react-router-dom";
 
 import { renderWithContext, screen } from "../../tests/utils/renderWithContext";
+import Navbar from "./Navbar";
 
-import Navbar from ".";
-
-beforeEach(() => {
-  renderWithContext(<Navbar />, { wrapper: MemoryRouter });
-});
+beforeEach(() => renderWithContext(<Navbar />, { wrapper: MemoryRouter }));
 
 test("app logo appears on navbar ", () => {
   const appLogo = screen.getByText("WFS Spy");
