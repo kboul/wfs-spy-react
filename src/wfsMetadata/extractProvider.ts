@@ -1,8 +1,6 @@
 import { Provider } from "./models";
-import globalConsts from "../constants";
+import { tags } from "../constants";
 import parseXML from "./parseXML";
-
-const { tags } = globalConsts;
 
 const replaceOws = (expression: string): string => {
   if (!expression) return "";

@@ -1,4 +1,4 @@
-export default {
+export const tags = {
   featureTypeName: "Name",
   title: "Title",
   abstract: "Abstract",

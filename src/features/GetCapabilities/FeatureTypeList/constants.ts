@@ -1,7 +1,7 @@
-import globalConsts from "../../../constants";
+import globalConsts, { tags } from "../../../constants";
 import { splitStrOnUpperCase } from "../../../utils";
 
-const { noOperation, tags } = globalConsts;
+const { noOperation } = globalConsts;
 
 const header = "FeatureTypeList";
 

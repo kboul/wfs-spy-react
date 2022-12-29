@@ -1,7 +1,5 @@
-import globalConsts from "../constants";
+import { tags } from "../constants";
 import parseXML from "./parseXML";
-
-const { tags } = globalConsts;
 
 export default function extractAcceptVersions(xmlString: string): string[] {
   const getCapResp: XMLDocument = parseXML(xmlString);

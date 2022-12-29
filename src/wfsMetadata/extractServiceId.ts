@@ -1,8 +1,6 @@
 import { ServiceId } from "./models";
-import globalConsts from "../constants";
+import { tags } from "../constants";
 import parseXML from "./parseXML";
-
-const { tags } = globalConsts;
 
 const extractTitle = (getCapResp: XMLDocument): string => {
   if (!getCapResp) return "";

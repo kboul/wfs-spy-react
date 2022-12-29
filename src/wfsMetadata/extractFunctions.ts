@@ -1,8 +1,6 @@
 import { Funcs } from "./models";
-import globalConsts from "../constants";
+import { tags } from "../constants";
 import parseXML from "./parseXML";
-
-const { tags } = globalConsts;
 
 export default function extractFunctions(xmlString: string): Funcs[] {
   const getCapResp: XMLDocument = parseXML(xmlString);

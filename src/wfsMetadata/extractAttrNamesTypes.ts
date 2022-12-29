@@ -1,8 +1,6 @@
 import parseXML from "./parseXML";
 import { AttrNamesTypes } from "./models";
-import globalConsts from "../constants";
-
-const { tags } = globalConsts;
+import { tags } from "../constants";
 
 export default function extractAttrNamesTypes(
   xmlString: string
