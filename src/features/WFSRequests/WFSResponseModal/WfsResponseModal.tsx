@@ -4,12 +4,7 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { changeState, types, useAppContext } from "../../../context";
 import { parseXML } from "../../../wfsMetadata";
 import { formDecoratedXml } from "./utils";
-
-const styles = {
-  modalContainer: { maxWidth: "90%" },
-  modalContent: { fontSize: "14px" }
-};
-const level = 1;
+import { level, styles } from "./constants";
 
 export default function WfsResponseModal() {
   const { state, dispatch } = useAppContext();
