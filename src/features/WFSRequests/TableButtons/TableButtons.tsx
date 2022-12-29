@@ -29,7 +29,7 @@ export default function TableButtons({
           <th>
             <Button
               color="primary"
-              className="float-right"
+              className="float-end"
               disabled={disabled || disableGetRespBtn}
               onClick={onGetClick}
               size="sm"
@@ -40,7 +40,7 @@ export default function TableButtons({
           <th>
             <Button
               color="primary"
-              className="float-left"
+              className="float-start"
               disabled={disabled || disablePostRespBtn}
               onClick={onPostClick}
               size="sm"
@@ -55,7 +55,7 @@ export default function TableButtons({
           <tr>
             <td>
               <Button
-                className="float-right"
+                className="float-end"
                 color="primary"
                 disabled={disabled || disableGetRespBtn}
                 onClick={onGetModalClick}
@@ -66,7 +66,7 @@ export default function TableButtons({
             </td>
             <td>
               <Button
-                className="float-left"
+                className="float-start"
                 color="primary"
                 disabled={disabled || disablePostRespBtn}
                 onClick={onPostModalClick}
