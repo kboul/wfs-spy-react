@@ -1,5 +1,6 @@
 import { FormGroup, Label, Col } from "reactstrap";
 import { Typeahead } from "react-bootstrap-typeahead";
+import { Option } from "react-bootstrap-typeahead/types/types";
 
 import { useAppContext, changeState, types } from "../../../../context";
 import { isPropBetween } from "../../../../utils";
@@ -9,7 +10,7 @@ import sharedStyles from "../../shared.module.sass";
 export default function NonNumericValue() {
   const { state, dispatch } = useAppContext();
 
-  const handleChange = (value: string[]) =>
+  const handleChange = (value: Option[]) =>
     dispatch(
       changeState(types.nonNumericValueChanged, {
         nonNumericValue: value
