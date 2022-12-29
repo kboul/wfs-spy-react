@@ -7,6 +7,7 @@ import {
 } from "../../../../tests/utils/renderWithContext";
 import Url from "./Url";
 import labels from "../labels";
+import { colors } from "../../../../constants";
 
 let urlTextarea: HTMLElement;
 
@@ -24,9 +25,9 @@ test("url input has empty initial value", () => {
 });
 
 test("url textbox has purple color when focused & white when blurred", () => {
-  expect(urlTextarea).toHaveStyle({ backgroundColor: "rgb(238, 238, 255)" });
+  expect(urlTextarea).toHaveStyle({ backgroundColor: colors.lightPurpleRGB });
   fireEvent.blur(urlTextarea);
-  expect(urlTextarea).toHaveStyle({ backgroundColor: "rgb(255, 255, 255)" });
+  expect(urlTextarea).toHaveStyle({ backgroundColor: colors.whiteRGB });
 });
 
 test("url text updates when user types a value", () => {

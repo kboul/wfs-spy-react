@@ -1,10 +1,10 @@
-import globalConsts from "../../../../constants";
+import { colors } from "../../../../constants";
 
 const id = "lowerValue";
 const label = "Enter lower value";
 
 const lowerValueStyle = {
-  backgroundColor: globalConsts.colors.lightPurple
+  backgroundColor: colors.lightPurpleHex
 };
 
 export { id, label, lowerValueStyle };

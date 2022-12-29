@@ -1,11 +1,11 @@
-import globalConsts from "../../../../constants";
+import { colors } from "../../../../constants";
 
 const id = "nonNumericValue";
 
 const label = "Search strings";
 
 const nonNumerivValueStyle = {
-  backgroundColor: globalConsts.colors.lightPurple
+  backgroundColor: colors.lightPurpleHex
 };
 
 export { id, label, nonNumerivValueStyle };

@@ -1,8 +1,8 @@
-import colors from "./colors";
 import tags from "./tags";
 
+export * from "./colors";
+
 export default Object.freeze({
-  colors,
   noOperation: "This WFS service does not provide ",
   noOption: "---",
   proccessMessage: "processing request...",

@@ -12,13 +12,14 @@ import WfsRequest from "./WfsRequest";
 import WfsResponse from "./WFSResponse";
 import { useAppContext } from "../../../context";
 import { isPropBetween } from "../../../utils";
+import { colors } from "../../../constants";
 import sharedStyles from "../shared.module.sass";
 
 const containerStyle = {
-  backgroundColor: "rgb(211, 211, 211)"
+  backgroundColor: colors.darkGray
 };
 
-const consts = { header: "Service and Feature Description" };
+const header = "Service and Feature Description";
 
 export default function ExploreWFS() {
   const { state } = useAppContext();
@@ -28,7 +29,7 @@ export default function ExploreWFS() {
 
   return (
     <Col md="6" style={containerStyle}>
-      <h4 className={sharedStyles.header}>{consts.header}</h4>
+      <h4 className={sharedStyles.header}>{header}</h4>
       <Form noValidate>
         <Url />
         <Version />

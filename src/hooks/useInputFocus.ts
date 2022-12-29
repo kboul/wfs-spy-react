@@ -1,25 +1,23 @@
 import { useRef, useState, useEffect } from "react";
 
-import globalConsts from "../constants";
-
-const { colors } = globalConsts;
+import { colors } from "../constants";
 
 export default function useInputFocus() {
   const urlRef = useRef<HTMLInputElement>(null);
   const [urlBackground, setUrlBackground] = useState<string>(
-    colors.lightPurple
+    colors.lightPurpleHex
   );
 
   useEffect(() => urlRef?.current?.focus(), []);
 
   const handleFocus = () => {
     urlRef.current?.focus();
-    setUrlBackground(colors.lightPurple);
+    setUrlBackground(colors.lightPurpleHex);
   };
 
   const handleBlur = () => {
     urlRef.current?.blur();
-    setUrlBackground(colors.white);
+    setUrlBackground(colors.whiteHex);
   };
 
   return { urlRef, urlBackground, handleFocus, handleBlur };
