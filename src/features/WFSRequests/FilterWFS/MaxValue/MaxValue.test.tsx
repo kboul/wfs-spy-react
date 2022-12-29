@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import MaxValue, { consts } from "./MaxValue";
+import MaxValue from "./MaxValue";
+import { label } from "./constants";
 
 let maxValueInput: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<MaxValue />);
-  maxValueInput = screen.getByLabelText(consts.label);
+  maxValueInput = screen.getByLabelText(label);
 });
 
 test("max value input appears on the page", () => {

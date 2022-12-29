@@ -3,11 +3,8 @@ import { FormGroup, Label, Col, Input } from "reactstrap";
 import { useAppContext, changeState, types } from "../../../../context";
 import { ChangeEvent } from "../../../../models/events";
 import { isPropBetween } from "../../../../utils";
-import globalConsts from "../../../../constants";
+import { id, label, numericValueStyle } from "./constants";
 import sharedStyles from "../../shared.module.sass";
-
-export const consts = { id: "numericValue", label: "Enter Value" };
-const numericValueStyle = { backgroundColor: globalConsts.colors.lightPurple };
 
 export default function NumericValue() {
   const { state, dispatch } = useAppContext();
@@ -20,13 +17,13 @@ export default function NumericValue() {
   if (state.showNumericValue && !isPropBetween(state.compOper))
     return (
       <FormGroup row>
-        <Label className={sharedStyles.labelFont} for={consts.id} md={4}>
-          {consts.label}
+        <Label className={sharedStyles.labelFont} for={id} md={4}>
+          {label}
         </Label>
         <Col md={7}>
           <Input
             disabled={!state.getPropValResp}
-            id={consts.id}
+            id={id}
             onChange={handleChange}
             style={numericValueStyle}
             type="text"

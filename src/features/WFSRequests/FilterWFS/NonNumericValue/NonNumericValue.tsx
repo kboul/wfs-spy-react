@@ -3,13 +3,8 @@ import { Typeahead } from "react-bootstrap-typeahead";
 
 import { useAppContext, changeState, types } from "../../../../context";
 import { isPropBetween } from "../../../../utils";
-import globalConsts from "../../../../constants";
+import { id, label, nonNumerivValueStyle } from "./constants";
 import sharedStyles from "../../shared.module.sass";
-
-export const consts = { id: "nonNumericValue", label: "Search strings" };
-const nonNumerivValueStyle = {
-  backgroundColor: globalConsts.colors.lightPurple
-};
 
 export default function NonNumericValue() {
   const { state, dispatch } = useAppContext();
@@ -24,13 +19,13 @@ export default function NonNumericValue() {
   if (state.showNonNumericValue && !isPropBetween(state.compOper))
     return (
       <FormGroup row>
-        <Label className={sharedStyles.labelFont} for={consts.id} md={4}>
-          {consts.label}
+        <Label className={sharedStyles.labelFont} for={id} md={4}>
+          {label}
         </Label>
         <Col md={7}>
           <Typeahead
             disabled={!state.getPropValResp}
-            id={consts.id}
+            id={id}
             inputProps={{ style: nonNumerivValueStyle }}
             onChange={handleChange}
             options={state.attrValues}

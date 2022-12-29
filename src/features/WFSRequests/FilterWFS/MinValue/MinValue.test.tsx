@@ -2,13 +2,14 @@ import {
   renderWithContext,
   screen
 } from "../../../../tests/utils/renderWithContext";
-import MinValue, { consts } from "./MinValue";
+import MinValue from "./MinValue";
+import { label } from "./constants";
 
 let minValueInput: HTMLElement;
 
 beforeEach(() => {
   renderWithContext(<MinValue />);
-  minValueInput = screen.getByLabelText(consts.label);
+  minValueInput = screen.getByLabelText(label);
 });
 
 test("min value input appears on the page", () => {
