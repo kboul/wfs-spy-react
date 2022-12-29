@@ -1,19 +1,19 @@
-import parseXML from './parseXML';
-import globalConsts from '../constants';
+import parseXML from "./parseXML";
+import globalConsts, { tags } from "../constants";
 
-const { noOption, tags } = globalConsts;
+const { noOption } = globalConsts;
 
 export default function extractTypenames(data: string): string[] {
-    if (!data) return [];
+  if (!data) return [];
 
-    const typenamesTags = parseXML(data).querySelectorAll(tags.featureTypeName);
-    const typenames: string[] = [noOption];
+  const typenamesTags = parseXML(data).querySelectorAll(tags.featureTypeName);
+  const typenames: string[] = [noOption];
 
-    if (typenamesTags) {
-        typenamesTags.forEach(tag => {
-            if (tag.textContent) typenames.push(tag.textContent);
-        });
-    }
+  if (typenamesTags) {
+    typenamesTags.forEach((tag) => {
+      if (tag.textContent) typenames.push(tag.textContent);
+    });
+  }
 
-    return typenames;
+  return typenames;
 }

@@ -74,11 +74,11 @@ It has been tested and works without any issues on **Firefox** (version 84.0.2) 
 
 The app needs a proxy in order to get data from servers with a different domain from the one used to run WFS Spy. For the first version of the application, the one with the old stack, a proxy written in Perl was used along with local apache configuration to run proxies. For the new stack, the following solutions were tried:
 
--   [cors.anywhere](https://github.com/Rob--W/cors-anywhere)
+- [cors.anywhere](https://github.com/Rob--W/cors-anywhere)
 
--   [cors.bridged.cc](https://blog.grida.co/cors-anywhere-for-everyone-free-reliable-cors-proxy-service-73507192714e)
+- [cors.bridged.cc](https://blog.grida.co/cors-anywhere-for-everyone-free-reliable-cors-proxy-service-73507192714e)
 
--   [thingproxy](https://github.com/freeboard/thingproxy)
+- [thingproxy](https://github.com/freeboard/thingproxy)
 
 The first was eventually used despite tring other proxies, although restrictions in usage were imposed, because it seems to be the most reliable in terms of getting correct server responses from the servers listed on WFS metadata statistics section.
 A future goal will be to develop something like a proxy middleware solution in order not to rely on external proxies.
