@@ -1,6 +1,6 @@
 {
   "name": "wfs-spy-react",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "dependencies": {
     "@types/jest": "^29.2.4",

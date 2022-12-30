@@ -6,6 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Container } from "reactstrap";
 
 import Footer from "./Footer";
 import NavBar from "./NavBar";
@@ -25,7 +26,9 @@ export default function App() {
             <Route
               element={
                 <Suspense fallback={<Spinner />}>
-                  <Component />
+                  <Container fluid>
+                    <Component />
+                  </Container>
                 </Suspense>
               }
               key={`routes-${index}`}
