@@ -35,7 +35,7 @@ export default function NavBar() {
       </NavbarBrand>
       <NavbarToggler onClick={handleNavbarToggle} />
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar>
+        <Nav className="me-auto" navbar>
           {dropdownRoutes.map(({ name, routes }) => (
             <UncontrolledDropdown nav inNavbar key={`dropdown-item-${name}`}>
               <DropdownToggle nav caret>

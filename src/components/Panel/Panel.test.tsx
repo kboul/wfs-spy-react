@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Panel from "./Panel";
@@ -33,13 +33,14 @@ test("toggle card icon appears on the page", () => {
   expect(toggleCardIcon).toBeInTheDocument();
 });
 
-test("user sees down toggle card icon initially and right if it is clicked", () => {
+test("user sees down toggle card icon initially and right if it is clicked", async () => {
   const toggleCardIcon = screen.getByLabelText("toggle card");
   expect(toggleCardIcon).toHaveClass("fa-chevron-down");
 
   userEvent.click(toggleCardIcon);
-  expect(toggleCardIcon).toHaveClass("fa-chevron-right");
+
+  await waitFor(() => expect(toggleCardIcon).toHaveClass("fa-chevron-right"));
 
   userEvent.click(toggleCardIcon);
-  expect(toggleCardIcon).toHaveClass("fa-chevron-down");
+  await waitFor(() => expect(toggleCardIcon).toHaveClass("fa-chevron-down"));
 });

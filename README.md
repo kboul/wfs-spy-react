@@ -33,7 +33,7 @@ At this point, the application will not provide geometrical feature manipulation
 
 ## Enable the proxy (cors.anywhere) server
 
-At the moment the user or the developer has to visit the following page at [cors-anywhere.herokuapp.com](cors-anywhere.herokuapp.com) to request temporarily access to the demo server. This allows developers to try out the functionality, to help with deciding on self-hosting or looking for alternatives. You can find more in this [thread](https://github.com/Rob--W/cors-anywhere/issues/301).
+At the moment the user or the developer has to visit the following page at [https://cors-anywhere.herokuapp.com/corsdemo](https://cors-anywhere.herokuapp.com/corsdemo) to request temporarily access to the demo server. This allows developers to try out the functionality, to help with deciding on self-hosting or looking for alternatives. You can find more in this [thread](https://github.com/Rob--W/cors-anywhere/issues/301).
 
 ## Run the project
 
@@ -44,11 +44,11 @@ select master branch
 Navigate to the root folder:
 
 ```
-npm install
+yarn install
 ```
 
 ```
-npm start
+yarn start
 ```
 
 browser listens to [http://localhost:3000](http://localhost:3000) as default port.

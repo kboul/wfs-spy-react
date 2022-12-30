@@ -3,7 +3,8 @@ import userEvent from "@testing-library/user-event";
 import {
   renderWithContext,
   screen,
-  fireEvent
+  fireEvent,
+  waitFor
 } from "../../../../tests/utils/renderWithContext";
 import Url from "./Url";
 import labels from "../labels";
@@ -30,10 +31,13 @@ test("url textbox has purple color when focused & white when blurred", () => {
   expect(urlTextarea).toHaveStyle({ backgroundColor: colors.whiteRGB });
 });
 
-test("url text updates when user types a value", () => {
+test("url text updates when user types a value", async () => {
   const value = "http://domain.com";
   userEvent.type(urlTextarea, value);
-  expect(urlTextarea).toHaveValue(value);
+
+  await waitFor(() => {
+    expect(urlTextarea).toHaveValue(value);
+  });
 
   userEvent.clear(urlTextarea);
   expect(urlTextarea).toHaveValue("");
