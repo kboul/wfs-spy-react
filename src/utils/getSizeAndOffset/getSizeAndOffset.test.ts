@@ -5,7 +5,7 @@ describe("getSizeAndOffset", () => {
     const windowWidth = 1000;
     const { size, offset } = getSizeAndOffset(windowWidth);
     expect(size).toBe(12);
-    expect(offset).toBe(1);
+    expect(offset).toBe(0);
   });
 
   test("size should be 8 and offset 2 when window width is bigger than 1550px", () => {
